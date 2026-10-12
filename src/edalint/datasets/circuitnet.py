@@ -16,6 +16,7 @@ complete (an .incomplete partner, or no sha256 match recorded in manifests/MANIF
 """
 from __future__ import annotations
 
+import gzip
 import io
 import json
 import math
@@ -236,7 +237,8 @@ def stream_tarball(tar_path, design: str, dir_to_feature: Dict[str, str], wanted
     """One sequential pass over the tarball. For members `<design>/<dir>/<name>.npz` with dir in dir_to_feature: record presence
     of (feature, name) for every such member and, when `wanted` is None or name in wanted, call handle(feature, name, array)."""
     presence: Dict[str, set] = {f: set() for f in dir_to_feature.values()}
-    with tarfile.open(tar_path, 'r|gz') as tf:
+    # tarfile's own 'r|gz' decompresses in tiny chunks (8 MB/s measured); a large-buffer GzipFile under mode 'r|' gives ~130 MB/s
+    with open(tar_path, 'rb') as raw, gzip.GzipFile(fileobj=raw) as gz,             tarfile.open(fileobj=io.BufferedReader(gz, buffer_size=1 << 24), mode='r|', bufsize=1 << 24) as tf:
         for m in tf:
             if not m.isfile() or not m.name.endswith('.npz'):
                 continue
@@ -285,6 +287,7 @@ class N14Dataset(MapDataset):
         meta: Dict[str, dict] = {}
         splits: Dict[str, List[str]] = {'train': [], 'test': []}
         self._wanted: Dict[Tuple[str, str], List[str]] = {}
+        self._listed: Dict[str, set] = {}                  # every CSV-listed name per design (before any subsampling)
         skipped: List[dict] = []
         self._design_ok: Dict[str, Tuple[bool, str]] = {}
         for split, names in rows.items():
@@ -295,6 +298,7 @@ class N14Dataset(MapDataset):
                 if designs and des not in designs:
                     continue
                 ns = sorted(ns)
+                self._listed.setdefault(des, set()).update(ns)
                 if max_per_design and len(ns) > max_per_design:
                     ns = [ns[j] for j in np.unique(np.linspace(0, len(ns) - 1, max_per_design).round().astype(int))]
                 ok, why = self._design_ok.setdefault(des, tarball_status(self.root, self.task_spec['tar'], des, self.manifest, require_sha))
@@ -305,6 +309,7 @@ class N14Dataset(MapDataset):
                 for n in ns:
                     meta[n] = {'split': split, 'design': des, 'name': n}
                     splits[split].append(n)
+                    splits.setdefault(des, []).append(n)           # per-design split, e.g. --fit Vortex-small --eval nvdla-small
         spec = self.task_spec
         super().__init__(f'circuitnet_n14_{task}_{mode}', task, splits, meta, primary_input=spec['primary'],
                          hotspot=spec['hotspot'] if mode == 'authors' else {'kind': 'top_frac', 'value': 0.05},
@@ -313,6 +318,7 @@ class N14Dataset(MapDataset):
                                       'congestion': (0.0, 1.0) if mode == 'authors' else (0.0, None)}[task],
                          label_units='', protocol_dir=protocol_dir, cache_items=cache_items)
         self.skipped = skipped
+        self.aux_splits = {d for (_, d) in self._wanted}
         self._staged: set = set()
         if stage:
             self.stage_all(include_test=False)
@@ -350,7 +356,7 @@ class N14Dataset(MapDataset):
             pres = stream_tarball(tar, design, self._dir_map(), wanted, handle)
             self.store.set_presence(key, pres)
         self.inventory[design] = {f: len(pres[f]) for f in req}
-        listed = {n for (s, d), v in self._wanted.items() if d == design for n in v}
+        listed = self._listed.get(design, set())
         union = set().union(*[pres[f] for f in req]) if req else set()
         self.unlisted[design] = len(union - listed)
         keep = []
@@ -362,7 +368,8 @@ class N14Dataset(MapDataset):
                 keep.append(n)
         gone = set(names) - set(keep)
         if gone:
-            self.splits[split] = [i for i in self.splits[split] if i not in gone]
+            for k in (split, design):
+                self.splits[k] = [i for i in self.splits[k] if i not in gone]
         self._staged.add((design, split))
 
     def stage_all(self, include_test: bool = False):

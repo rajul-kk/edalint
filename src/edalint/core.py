@@ -166,6 +166,7 @@ class MapDataset:
         self.label_range = label_range
         self.label_units = label_units
         self.protocol_dir = protocol_dir
+        self.aux_splits: set = set()                 # splits that are views of other splits (fake, visible, per-design): not leakage units
         self.skipped: List[dict] = []
         self.errors: Dict[str, str] = {}
         self._cache: 'OrderedDict[str, Sample]' = OrderedDict()

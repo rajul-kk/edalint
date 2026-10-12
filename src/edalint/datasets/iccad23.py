@@ -134,6 +134,7 @@ class ICCAD23Dataset(MapDataset):
         super().__init__('iccad23', 'ir_drop', splits, meta, primary_input='current',
                          hotspot={'kind': 'frac_of_max', 'value': 0.9}, label_range=(0.0, VDD), label_units='V',
                          protocol_dir=protocol_dir, cache_items=cache_items)
+        self.aux_splits = {'fake', 'visible'}
 
     def _load(self, sid: str) -> Sample:
         c = self._cases[sid]
