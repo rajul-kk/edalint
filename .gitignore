@@ -1,0 +1,10 @@
+data/
+*.npz
+*.npy
+*.pt
+__pycache__/
+*.egg-info/
+build/
+dist/
+results/scratch/
+.venv/
