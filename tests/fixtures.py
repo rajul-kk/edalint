@@ -106,9 +106,9 @@ def make_n14_tree(root: Path, n_per=4, h=40, w=44, missing=None):
     csv(tr, ['DesA', 'DesC'])
     csv(te, ['DesB'])
     man = root / 'manifest.json'
-    files = {f'CircuitNet-N14/{s}/{d}.tar.gz': {'sha256_matches_hf': True}
+    files = {f'CircuitNet-N14/{s}/{d}.tar.gz': {'sha256': 'x', 'sha256_matches_hf': True}
              for s, d in (('routability_features', 'DesA'), ('routability_features', 'DesB'), ('routability_features', 'DesC'),
                           ('IR_drop_features', 'DesA'))}
-    del files['CircuitNet-N14/routability_features/DesC.tar.gz']['sha256_matches_hf']        # no sha match recorded -> unusable
+    del files['CircuitNet-N14/routability_features/DesC.tar.gz']['sha256']        # no sha256 recorded -> unusable
     man.write_text(json.dumps({'datasets': {'circuitnet_n14': {'files': files}}}))
     return root, (str(tr), str(te)), str(man), names

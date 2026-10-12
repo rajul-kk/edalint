@@ -303,8 +303,16 @@ def e003_duplicates(ds: MapDataset, opt: Options) -> CheckResult:
 
 
 # -- E004 ------------------------------------------------------------------------------------------------------------------------
+# Pre-declared CircuitNet-N14 design families (protocol_n14.md section 3; lead decision 2026-10-13). Cross-split family overlap is an
+# informational observation, not a finding: the authors' split is design-level by intent.
+N14_FAMILIES = {'riscy': 'riscy', 'riscy-fpu': 'riscy', 'zero-riscy': 'riscy', 'vortex-small': 'vortex', 'vortex-large': 'vortex',
+                'nvdla-small': 'nvdla', 'nvdla-large': 'nvdla', 'openc910-1': 'openc910'}
+
+
 def _family(design: str) -> str:
     d = design.lower()
+    if d in N14_FAMILIES:
+        return N14_FAMILIES[d]
     for suf in ('-fpu', '-small', '-large', '-1', '-a', '-b'):
         d = d.replace(suf, '')
     return d

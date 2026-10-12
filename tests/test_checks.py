@@ -167,7 +167,8 @@ def test_e004_related_designs_family_info():
     from edalint.checks import _family
     assert _family('Vortex-small') == _family('Vortex-large') == 'vortex'
     assert _family('RISCY-FPU') == _family('RISCY')
-    assert _family('zero-riscy') != _family('RISCY')
+    assert _family('zero-riscy') == _family('RISCY') == 'riscy'          # pre-declared N14 family rule (lead decision 2026-10-13)
+    assert _family('nvdla-small') == 'nvdla' and _family('openc910-1') == 'openc910' and _family('nvdla-small') != _family('Vortex-small')
 
 
 # -- E005 ------------------------------------------------------------------------------------------------------------------------

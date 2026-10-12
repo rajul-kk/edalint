@@ -1,5 +1,5 @@
 {
- "generated_utc": "2026-10-12T09:58:30Z",
+ "generated_utc": "2026-10-12T21:41:55Z",
  "datasets": {
   "iccad23_problem_c": {
    "url": "https://github.com/ASU-VDA-Lab/ML-for-IR-drop",
@@ -2491,25 +2491,31 @@
    ],
    "n_files": 16,
    "total_bytes_expected": 76575302253,
-   "n_downloaded": 7,
+   "n_downloaded": 16,
    "files": {
     "CircuitNet-N14/IR_drop_features/RISCY-FPU.tar.gz": {
      "url": "https://huggingface.co/datasets/CircuitNet/CircuitNet/resolve/df74f33e302f927bf0548dc0d7936ca43b634f2a/CircuitNet-N14/IR_drop_features/RISCY-FPU.tar.gz",
      "size": 14536296658,
      "sha256_expected_hf_lfs": "0e78921d34a2fa90d47bf5748302484fccb8969b070a07b44a39b63e3ec96669",
-     "status": "not yet downloaded"
+     "sha256": "0e78921d34a2fa90d47bf5748302484fccb8969b070a07b44a39b63e3ec96669",
+     "sha256_matches_hf": true,
+     "status": "downloaded"
     },
     "CircuitNet-N14/IR_drop_features/RISCY.tar.gz": {
      "url": "https://huggingface.co/datasets/CircuitNet/CircuitNet/resolve/df74f33e302f927bf0548dc0d7936ca43b634f2a/CircuitNet-N14/IR_drop_features/RISCY.tar.gz",
      "size": 10423471258,
      "sha256_expected_hf_lfs": "aaeb359138f32a838f02acca0a72af843afbec6464fc2941da23d54104dca9b6",
-     "status": "not yet downloaded"
+     "sha256": "aaeb359138f32a838f02acca0a72af843afbec6464fc2941da23d54104dca9b6",
+     "sha256_matches_hf": true,
+     "status": "downloaded"
     },
     "CircuitNet-N14/IR_drop_features/Vortex-large.tar.gz": {
      "url": "https://huggingface.co/datasets/CircuitNet/CircuitNet/resolve/df74f33e302f927bf0548dc0d7936ca43b634f2a/CircuitNet-N14/IR_drop_features/Vortex-large.tar.gz",
      "size": 4040647821,
      "sha256_expected_hf_lfs": "c768c0d700b81b13f4a12bcda52ab60d2966e80fa63ed77dc1ba9e897f9a9ee4",
-     "status": "not yet downloaded"
+     "sha256": "c768c0d700b81b13f4a12bcda52ab60d2966e80fa63ed77dc1ba9e897f9a9ee4",
+     "sha256_matches_hf": true,
+     "status": "downloaded"
     },
     "CircuitNet-N14/IR_drop_features/Vortex-small.tar.gz": {
      "url": "https://huggingface.co/datasets/CircuitNet/CircuitNet/resolve/df74f33e302f927bf0548dc0d7936ca43b634f2a/CircuitNet-N14/IR_drop_features/Vortex-small.tar.gz",
@@ -2523,7 +2529,9 @@
      "url": "https://huggingface.co/datasets/CircuitNet/CircuitNet/resolve/df74f33e302f927bf0548dc0d7936ca43b634f2a/CircuitNet-N14/IR_drop_features/nvdla-large.tar.gz",
      "size": 4966123393,
      "sha256_expected_hf_lfs": "ed987b83c3054e2845c58e30620be01f3d4014f40b678d9ce5932817c4cefc03",
-     "status": "not yet downloaded"
+     "sha256": "ed987b83c3054e2845c58e30620be01f3d4014f40b678d9ce5932817c4cefc03",
+     "sha256_matches_hf": true,
+     "status": "downloaded"
     },
     "CircuitNet-N14/IR_drop_features/nvdla-small.tar.gz": {
      "url": "https://huggingface.co/datasets/CircuitNet/CircuitNet/resolve/df74f33e302f927bf0548dc0d7936ca43b634f2a/CircuitNet-N14/IR_drop_features/nvdla-small.tar.gz",
@@ -2537,25 +2545,33 @@
      "url": "https://huggingface.co/datasets/CircuitNet/CircuitNet/resolve/df74f33e302f927bf0548dc0d7936ca43b634f2a/CircuitNet-N14/IR_drop_features/openc910-1.tar.gz",
      "size": 4913858709,
      "sha256_expected_hf_lfs": "93ead0d0f90ac86cefed3a397e6bb0e88e838a4c4ea5742a531a8c8fe4365619",
-     "status": "not yet downloaded"
+     "sha256": "93ead0d0f90ac86cefed3a397e6bb0e88e838a4c4ea5742a531a8c8fe4365619",
+     "sha256_matches_hf": true,
+     "status": "downloaded"
     },
     "CircuitNet-N14/IR_drop_features/zero-riscy.tar.gz": {
      "url": "https://huggingface.co/datasets/CircuitNet/CircuitNet/resolve/df74f33e302f927bf0548dc0d7936ca43b634f2a/CircuitNet-N14/IR_drop_features/zero-riscy.tar.gz",
      "size": 8892579388,
      "sha256_expected_hf_lfs": "b26a9dbbaf67168df18ca136e0989e74d00009aa77dc19cdd5175fe23f4ee612",
-     "status": "not yet downloaded"
+     "sha256": "b26a9dbbaf67168df18ca136e0989e74d00009aa77dc19cdd5175fe23f4ee612",
+     "sha256_matches_hf": true,
+     "status": "downloaded"
     },
     "CircuitNet-N14/routability_features/RISCY-FPU.tar.gz": {
      "url": "https://huggingface.co/datasets/CircuitNet/CircuitNet/resolve/df74f33e302f927bf0548dc0d7936ca43b634f2a/CircuitNet-N14/routability_features/RISCY-FPU.tar.gz",
      "size": 6295286066,
      "sha256_expected_hf_lfs": "c54a5998c7654c5cee2fc42c5a0543ea0cf5350ebd3b327a5635420ccb510455",
-     "status": "not yet downloaded"
+     "sha256": "c54a5998c7654c5cee2fc42c5a0543ea0cf5350ebd3b327a5635420ccb510455",
+     "sha256_matches_hf": true,
+     "status": "downloaded"
     },
     "CircuitNet-N14/routability_features/RISCY.tar.gz": {
      "url": "https://huggingface.co/datasets/CircuitNet/CircuitNet/resolve/df74f33e302f927bf0548dc0d7936ca43b634f2a/CircuitNet-N14/routability_features/RISCY.tar.gz",
      "size": 4925519091,
      "sha256_expected_hf_lfs": "4e40b4ddabc223bd04417c9e61d7bb98d0f07ad6a59b574505b884da22b30d6f",
-     "status": "not yet downloaded"
+     "sha256": "4e40b4ddabc223bd04417c9e61d7bb98d0f07ad6a59b574505b884da22b30d6f",
+     "sha256_matches_hf": true,
+     "status": "downloaded"
     },
     "CircuitNet-N14/routability_features/Vortex-large.tar.gz": {
      "url": "https://huggingface.co/datasets/CircuitNet/CircuitNet/resolve/df74f33e302f927bf0548dc0d7936ca43b634f2a/CircuitNet-N14/routability_features/Vortex-large.tar.gz",
@@ -2577,7 +2593,9 @@
      "url": "https://huggingface.co/datasets/CircuitNet/CircuitNet/resolve/df74f33e302f927bf0548dc0d7936ca43b634f2a/CircuitNet-N14/routability_features/nvdla-large.tar.gz",
      "size": 4462461331,
      "sha256_expected_hf_lfs": "69c83b2a26d6a77f4ed157d8d90e8e57b60aa96bdcf1db33b06e6cf7600e2ff6",
-     "status": "not yet downloaded"
+     "sha256": "69c83b2a26d6a77f4ed157d8d90e8e57b60aa96bdcf1db33b06e6cf7600e2ff6",
+     "sha256_matches_hf": true,
+     "status": "downloaded"
     },
     "CircuitNet-N14/routability_features/nvdla-small.tar.gz": {
      "url": "https://huggingface.co/datasets/CircuitNet/CircuitNet/resolve/df74f33e302f927bf0548dc0d7936ca43b634f2a/CircuitNet-N14/routability_features/nvdla-small.tar.gz",

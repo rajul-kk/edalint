@@ -114,8 +114,10 @@ def tarball_status(root, subset: str, design: str, manifest: Optional[dict] = No
         return False, 'incomplete (download still in progress: .incomplete in the HF cache)'
     if ent.get('size') and p.stat().st_size != ent['size']:
         return False, f'size {p.stat().st_size} != expected {ent["size"]}'
-    if require_sha and not ent.get('sha256_matches_hf'):
-        return False, 'no sha256 match recorded in MANIFEST.json'
+    if require_sha and not ent.get('sha256'):
+        return False, 'no sha256 recorded in MANIFEST.json'
+    if require_sha and ent.get('sha256_matches_hf') is False:
+        return False, 'sha256 differs from the HF LFS oid'
     return True, 'ok'
 
 
@@ -208,15 +210,8 @@ def stage_member(feature: str, arr: np.ndarray, mode: str) -> np.ndarray:
     return out.astype(np.float32)
 
 
-def assemble(task: str, mode: str, get) -> Tuple[Dict[str, np.ndarray], np.ndarray]:
-    """Build (inputs, label) from staged members; `get(feature) -> array`. See module docstring for the exact transforms."""
-    spec = TASKS[task]
-    ins: Dict[str, np.ndarray] = {}
-    for f in spec['inputs']:
-        x = get(f).astype(np.float64)
-        if mode == 'authors':
-            x = np.stack([_std(s) for s in x]) if f == 'power_t' else _std(x)
-        ins[f] = x
+def assemble_label(task: str, mode: str, get) -> np.ndarray:
+    """The label of `assemble` alone (needs only the label members): authors mode = the authors' scaling of the label."""
     if task == 'congestion':
         lab = get('GR_horizontal_overflow').astype(np.float64) + get('GR_vertical_overflow').astype(np.float64)
         if mode == 'authors':
@@ -229,7 +224,19 @@ def assemble(task: str, mode: str, get) -> Tuple[Dict[str, np.ndarray], np.ndarr
         lab = get('IR_drop').astype(np.float64)
         if mode == 'authors':
             lab = (np.log10(lab) + 6) / (math.log10(50) + 6)
-    return ins, np.squeeze(lab)
+    return np.squeeze(lab)
+
+
+def assemble(task: str, mode: str, get) -> Tuple[Dict[str, np.ndarray], np.ndarray]:
+    """Build (inputs, label) from staged members; `get(feature) -> array`. See module docstring for the exact transforms."""
+    spec = TASKS[task]
+    ins: Dict[str, np.ndarray] = {}
+    for f in spec['inputs']:
+        x = get(f).astype(np.float64)
+        if mode == 'authors':
+            x = np.stack([_std(s) for s in x]) if f == 'power_t' else _std(x)
+        ins[f] = x
+    return ins, assemble_label(task, mode, get)
 
 
 # -- streaming ----------------------------------------------------------------------------------------------------------------
@@ -265,12 +272,13 @@ class N14Dataset(MapDataset):
     designs          restrict to these designs.
     split_csvs       (train.csv, test.csv); default the packaged official files.
     stage            stage non-test splits at construction (test splits only after the guard passes).
+    select           optional callable (split, design, sorted_names) -> names, replacing max_per_design (registered runs: seeded random fit sample).
     """
 
     def __init__(self, task: str = 'ir_drop', mode: str = 'authors', root: Optional[str] = None, cache_dir: Optional[str] = None,
                  max_per_design: Optional[int] = None, designs: Optional[Sequence[str]] = None,
                  split_csvs: Optional[Tuple[str, str]] = None, manifest_path: Optional[str] = None, require_sha: bool = True,
-                 protocol_dir: Optional[str] = None, stage: bool = True, cache_items: int = 8):
+                 protocol_dir: Optional[str] = None, stage: bool = True, cache_items: int = 8, select=None):
         if task not in TASKS:
             raise ValueError(f'task must be one of {sorted(TASKS)}')
         if mode not in ('authors', 'raw'):
@@ -299,7 +307,9 @@ class N14Dataset(MapDataset):
                     continue
                 ns = sorted(ns)
                 self._listed.setdefault(des, set()).update(ns)
-                if max_per_design and len(ns) > max_per_design:
+                if select is not None:
+                    ns = list(select(split, des, ns))
+                elif max_per_design and len(ns) > max_per_design:
                     ns = [ns[j] for j in np.unique(np.linspace(0, len(ns) - 1, max_per_design).round().astype(int))]
                 ok, why = self._design_ok.setdefault(des, tarball_status(self.root, self.task_spec['tar'], des, self.manifest, require_sha))
                 if not ok:
@@ -373,6 +383,9 @@ class N14Dataset(MapDataset):
         self._staged.add((design, split))
 
     def stage_all(self, include_test: bool = False):
+        if include_test and any(s == 'test' for (s, _) in self._wanted):
+            from ..protocol import require_frozen
+            require_frozen(self.protocol_dir, what='staging the test split', dataset=self.name)
         splits = ('train', 'test') if include_test else ('train',)
         for des in sorted({d for (s, d) in self._wanted if s in splits}):
             self.stage_design(des, splits)
