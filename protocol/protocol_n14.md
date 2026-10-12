@@ -24,13 +24,12 @@ model" hypothesis; the ICCAD'23 H2 (exact solve) has no counterpart.
   (b) the **array shapes** of the first file of each routability feature of each test design (same smoke test; no values);
   (c) design and sample **names only** for E004 (`results/dev/circuitnet_n14_drc_authors_all_p3dev_metadata_only.*`, 200 ids);
   (d) the test CSV rows. No test map or label **value** was read, no test statistic computed, and no baseline fitted or scored on a test
-  sample. The IR-drop tarballs of the test designs were not opened at all except for the file listing in the P1 download check.
+  sample. No committed record shows that the IR-drop tarballs of the test designs were opened by this project (the inventory and the smoke test cover routability tarballs only).
 * **Published information not independent of the test labels:** CircuitNet 2.0 and GIF report results on N14 whose test designs may
   overlap the official test designs (section 9 states which ones and why they are only weak references). None of those numbers was used
   to choose a baseline setting.
 * **Train-only development (labelled dev):** `results/dev/circuitnet_n14_*_p3dev.*` and `results/dev/n14_ir_label_clip_probe_p3dev.json`. They
-  cover **only a 40-per-design evenly spaced subset of Vortex-small and nvdla-small** (the two small train designs; 80 samples per task, 40 for
-  the clip probe the full 96 and 85) in the authors' preprocessing. RISCY and RISCY-FPU (93 % of the train rows) have not been read by this project.
+  cover **only a 40-per-design evenly spaced subset of Vortex-small and nvdla-small** (the two small train designs; 80 samples per task; the clip probe read all 96 and 85 IR labels of those two designs) in the authors' preprocessing. RISCY and RISCY-FPU (93 % of the train rows) have not been read by this project.
   Everything cited from dev below is tagged **(dev)**; these numbers motivate choices, they are not criteria and not results.
 * **Dev expectations, set after seeing the dev numbers and stated now:** IR drop: ridge and GBM beat mean_map clearly on NRMS, SSIM and
   AUC (dev: GBM NRMS skill 0.45, ridge 0.23; section 6), and H1 is **undecided** on IR drop (the dev SSIM ratio is 0.78, close to the 0.8 line).
@@ -124,11 +123,11 @@ The cap changes no verdict logic (the unit is the design), reduces the zero-risc
 
 All primary metrics are computed per sample on the 256 x 256 authors-space maps with `src/edalint/metrics.py`, which reproduces the authors' `utils/metrics.py`:
 
-* **NRMS** = RMSE / (max(gold) - min(gold)) (skimage min-max; `metrics.py` 111-124). A constant gold gives inf, which the authors' wrapper replaces by 0.05 (lines 122-123), or 0/0 = NaN.
+* **NRMS** = RMSE / (max(gold) - min(gold)) (skimage min-max; `metrics.py` 111-123). A constant gold gives inf, which the authors' wrapper replaces by 0.05 (lines 122-123), or 0/0 = NaN.
   Registered primary: defined values only, with the counts of undefined and of substituted samples reported (and the 0.05-substituted variant as secondary).
 * **SSIM**: the authors' implementation (`metrics.py` 72-109), data range 1.
 * **ROC-AUC / PR-AUC (IR and DRC), official procedure** (`metrics.py` 175-250, 273): 200 prediction thresholds in `linspace(0, 1, 200, endpoint=False)`, label cut with `>= threshold`; per-threshold TPR, FPR and precision are **averaged over the samples that are not skipped**, where a sample is skipped if
-  `fp = tn = 0` or `tp = fn = 0` or `tp = fp = 0` (lines 205-212), i.e. every sample **without a positive pixel is silently dropped**. Implemented as `official_threshold_metrics`. Secondary: per-sample AUC (undefined for single-class samples).
+  `fp = tn = 0` or `tp = fn = 0` or `tp = fp = 0` (`metrics.py` 175-221), i.e. every sample **without a positive pixel is silently dropped**. Implemented as `official_threshold_metrics`. Secondary: per-sample AUC (undefined for single-class samples).
 * Mean over samples is over defined values (not the `test.py` 53-54 running mean that skips values exactly 1 but divides by the full length; that variant, `official_running_mean`, is reported as secondary).
 * Secondary, all tasks: NMAE, Pearson, Spearman, Kendall (as in `circuitnet_case_metrics`). Congestion EMD is not computed (not a published-comparison quantity here).
 
@@ -204,8 +203,8 @@ in `MANIFEST.json` (the loader skips them), so the manifest and the inventory mu
 Not a hypothesis; a measurement with a stated reading. For each task, using the ridge baseline (registered hyperparameters) and the primary metric:
 
 * **C1a (train only, no test data).** Within the capped train set (4 designs): 5-fold random sample-level cross-validation versus leave-one-design-out (4 folds). Skill = Gain of ridge over `scalar` (the E004 definition, but on the task's primary metric); gap = Skill_random - Skill_design. E004 code: `_split_gap`, with `gap_max_samples` = 979 and `gap_folds` = 5 (the code uses `min(folds, designs)`).
-* **C1b (reads test; run in the registered stage).** Pool train and test (capped), draw a random sample-level split with the **same train fraction as the official split** (65 % / 35 % of the pooled rows), 5 repetitions with seeds 0 to 4; gap = Skill_random (mean) - Skill_official (ridge fitted on official train, scored on official test), design-macro on the official side, sample-mean on the random side (a random split has no design unit).
-* **Reading, fixed now:** the random split is called **materially optimistic** if the C1b gap is >= 0.10 in absolute Skill on at least 2 of 3 tasks (0.10 is a pragmatic size; it is about a quarter of the dev IR ridge-versus-GBM spread) **[DECIDE: 0.10]**. C1a is reported as the train-only counterpart and cannot change that reading.
+* **C1b (reads test; run in the registered stage).** Pool train and test (capped), draw a random sample-level split with the **same train fraction as the official split** (about 66 % / 34 % of the pooled rows, 6,790 of 10,334), 5 repetitions with seeds 0 to 4; gap = Skill_random (mean) - Skill_official (ridge fitted on official train, scored on official test), design-macro on the official side, sample-mean on the random side (a random split has no design unit).
+* **Reading, fixed now:** the random split is called **materially optimistic** if the C1b gap is >= 0.10 in absolute Skill on at least 2 of 3 tasks (0.10 is a pragmatic size, about half the dev ridge-versus-GBM NRMS-skill spread on IR drop, 0.22) **[DECIDE: 0.10]**. C1a is reported as the train-only counterpart and cannot change that reading.
   Because RISCY and RISCY-FPU are siblings, the leave-one-design-out folds of C1a are themselves partly leaky; the report says so.
 
 ## 9. Comparison table (copied from `docs/published_numbers.md` at the freeze)
@@ -247,4 +246,4 @@ anything not specified here is POST HOC, labelled, written to `results/posthoc/`
 9. **E004 family rule** for RISCY / RISCY-FPU / zero-riscy: add it to code before the freeze or keep it as prose.
 10. **Prerequisites that block the freeze (work, not decisions):** refresh `manifests/MANIFEST.json` sha256 matches for the 9 unverified tarballs (about 10 minutes of hashing; includes the test tarballs' bytes but no analysis); refresh `n14_inventory.json` for all 16; write and test `p4_n14.py`; confirm the cache budget on E:. 
 11. **GIF claim:** accept that the map-level proxy can only confirm, never refute, the all-zero-bbox claim (7.2 b), or download `graph_features` for the three test designs (size not yet checked) to look at the object GIF named.
-12. **nvdla-large and the unlisted samples** (27 of Vortex-large's 74, 40 of openc910-1's 96 are in neither CSV): excluded as in the authors' pipeline; say so in the report, or add an exploratory, labelled post hoc pass on them.
+12. **nvdla-large and the unlisted samples** (inventory, routability: 27 of Vortex-large's 73 DRC labels and 40 of openc910-1's 96 are in neither CSV): excluded as in the authors' pipeline; say so in the report, or add an exploratory, labelled post hoc pass on them.
