@@ -1,0 +1,31 @@
+[build-system]
+requires = ["setuptools>=61"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "edalint"
+version = "0.1.0"
+description = "Linter, metrics and baseline zoo for ML-for-EDA map benchmarks (ICCAD'23 Problem C, CircuitNet)"
+readme = "README.md"
+requires-python = ">=3.9"
+license = { text = "MIT" }
+authors = [{ name = "Rajul Kabeer" }]
+dependencies = ["numpy>=1.22", "scipy>=1.8", "pandas>=1.4"]
+
+[project.optional-dependencies]
+sklearn = ["scikit-learn"]
+amg = ["pyamg"]
+test = ["pytest", "scikit-learn", "scikit-image", "opencv-python-headless"]
+
+[project.scripts]
+edalint = "edalint.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.setuptools.package-data]
+edalint = ["data/*.csv"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+markers = ["realdata: needs external datasets on disk (skipped if absent)"]
