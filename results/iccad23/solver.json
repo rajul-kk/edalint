@@ -1,0 +1,274 @@
+{
+ "label": "REGISTERED",
+ "method": "direct",
+ "interp": "cubic",
+ "timing_definition": "end-to-end = perf_counter around exact_ir_drop(): netlist parse + sparse LU solve + cubic rasterisation to the native grid; excludes reading the CSV maps. solve-only = the sparse solve call only.",
+ "rows": [
+  {
+   "id": "hidden/testcase7",
+   "design": "real_601x601_24988src",
+   "shape": [
+    601,
+    601
+   ],
+   "seconds_end_to_end": 6.681123900227249,
+   "seconds_parse": 1.0332682132720947,
+   "seconds_assemble_prepare": 0.047882795333862305,
+   "seconds_solve_only": 0.24228286743164062,
+   "seconds_rasterize": 5.323085069656372,
+   "rel_residual": 7.503757737951824e-15,
+   "n_nodes": 85592,
+   "n_floating_merged_nodes": 0,
+   "finite": true,
+   "max_abs_diff_to_label_mV": 0.11667454352371756,
+   "mae_mV": 0.0015329547034911893,
+   "f1_golden_max": 0.9801324503311258,
+   "f1_golden_max_ge": 0.9801324503311258,
+   "f1_top10pct": 0.99856023479248,
+   "f1_pred_max": 0.9789745481372187
+  },
+  {
+   "id": "hidden/testcase8",
+   "design": "real_601x601_24988src",
+   "shape": [
+    601,
+    601
+   ],
+   "seconds_end_to_end": 6.056743800174445,
+   "seconds_parse": 0.8868041038513184,
+   "seconds_assemble_prepare": 0.04961109161376953,
+   "seconds_solve_only": 0.15095210075378418,
+   "seconds_rasterize": 4.922905921936035,
+   "rel_residual": 6.9849177435318655e-15,
+   "n_nodes": 83031,
+   "n_floating_merged_nodes": 0,
+   "finite": true,
+   "max_abs_diff_to_label_mV": 0.10705250882363107,
+   "mae_mV": 0.00229589657718951,
+   "f1_golden_max": 0.9803108808290155,
+   "f1_golden_max_ge": 0.9803108808290155,
+   "f1_top10pct": 0.9980899653979238,
+   "f1_pred_max": 0.9613562702567938
+  },
+  {
+   "id": "hidden/testcase9",
+   "design": "real_835x835_64064src",
+   "shape": [
+    835,
+    835
+   ],
+   "seconds_end_to_end": 12.57487150002271,
+   "seconds_parse": 1.8247954845428467,
+   "seconds_assemble_prepare": 0.09434843063354492,
+   "seconds_solve_only": 0.47507643699645996,
+   "seconds_rasterize": 10.124167680740356,
+   "rel_residual": 7.315675228452105e-15,
+   "n_nodes": 166735,
+   "n_floating_merged_nodes": 0,
+   "finite": true,
+   "max_abs_diff_to_label_mV": 0.2466565448187093,
+   "mae_mV": 0.0017979032477947851,
+   "f1_golden_max": 0.9625,
+   "f1_golden_max_ge": 0.9625,
+   "f1_top10pct": 0.996707576877004,
+   "f1_pred_max": 0.9608247422680413
+  },
+  {
+   "id": "hidden/testcase10",
+   "design": "real_835x835_64064src",
+   "shape": [
+    835,
+    835
+   ],
+   "seconds_end_to_end": 12.063480699900538,
+   "seconds_parse": 1.6316277980804443,
+   "seconds_assemble_prepare": 0.07892560958862305,
+   "seconds_solve_only": 0.28798842430114746,
+   "seconds_rasterize": 10.018543243408203,
+   "rel_residual": 6.592508756356299e-15,
+   "n_nodes": 159941,
+   "n_floating_merged_nodes": 0,
+   "finite": true,
+   "max_abs_diff_to_label_mV": 0.3349512743808481,
+   "mae_mV": 0.0032100136939605837,
+   "f1_golden_max": 0.9767054908485857,
+   "f1_golden_max_ge": 0.9767054908485857,
+   "f1_top10pct": 0.9929950599757659,
+   "f1_pred_max": 0.9743164871582436
+  },
+  {
+   "id": "hidden/testcase13",
+   "design": "real_257x257_11864src",
+   "shape": [
+    257,
+    257
+   ],
+   "seconds_end_to_end": 1.1312031000852585,
+   "seconds_parse": 0.16472196578979492,
+   "seconds_assemble_prepare": 0.014763593673706055,
+   "seconds_solve_only": 0.018828392028808594,
+   "seconds_rasterize": 0.9300317764282227,
+   "rel_residual": 6.399154458358662e-15,
+   "n_nodes": 15769,
+   "n_floating_merged_nodes": 0,
+   "finite": true,
+   "max_abs_diff_to_label_mV": 0.293957706298387,
+   "mae_mV": 0.003835312094397039,
+   "f1_golden_max": 0.9807692307692307,
+   "f1_golden_max_ge": 0.9807692307692307,
+   "f1_top10pct": 0.9953840332954975,
+   "f1_pred_max": 0.970873786407767
+  },
+  {
+   "id": "hidden/testcase14",
+   "design": "real_257x257_11864src",
+   "shape": [
+    257,
+    257
+   ],
+   "seconds_end_to_end": 1.0780255999416113,
+   "seconds_parse": 0.1379997730255127,
+   "seconds_assemble_prepare": 0.007181406021118164,
+   "seconds_solve_only": 0.01527094841003418,
+   "seconds_rasterize": 0.9015591144561768,
+   "rel_residual": 5.7442185182514476e-15,
+   "n_nodes": 15437,
+   "n_floating_merged_nodes": 0,
+   "finite": true,
+   "max_abs_diff_to_label_mV": 0.30577434483715704,
+   "mae_mV": 0.005310417775440978,
+   "f1_golden_max": 0.9655172413793104,
+   "f1_golden_max_ge": 0.9655172413793104,
+   "f1_top10pct": 0.9993943981831945,
+   "f1_pred_max": 0.9739130434782609
+  },
+  {
+   "id": "hidden/testcase15",
+   "design": "real_489x489_44117src",
+   "shape": [
+    489,
+    489
+   ],
+   "seconds_end_to_end": 4.260525400284678,
+   "seconds_parse": 0.7221407890319824,
+   "seconds_assemble_prepare": 0.028330326080322266,
+   "seconds_solve_only": 0.11902475357055664,
+   "seconds_rasterize": 3.367548942565918,
+   "rel_residual": 6.040109571259876e-15,
+   "n_nodes": 57509,
+   "n_floating_merged_nodes": 0,
+   "finite": true,
+   "max_abs_diff_to_label_mV": 0.40416076250229893,
+   "mae_mV": 0.0037017538906382107,
+   "f1_golden_max": 0.9844236760124611,
+   "f1_golden_max_ge": 0.9844236760124611,
+   "f1_top10pct": 0.9933486718259779,
+   "f1_pred_max": 0.9644012944983819
+  },
+  {
+   "id": "hidden/testcase16",
+   "design": "real_489x489_44117src",
+   "shape": [
+    489,
+    489
+   ],
+   "seconds_end_to_end": 4.270680099725723,
+   "seconds_parse": 0.6859409809112549,
+   "seconds_assemble_prepare": 0.012065410614013672,
+   "seconds_solve_only": 0.11816763877868652,
+   "seconds_rasterize": 3.4369866847991943,
+   "rel_residual": 5.5918700612922235e-15,
+   "n_nodes": 55198,
+   "n_floating_merged_nodes": 0,
+   "finite": true,
+   "max_abs_diff_to_label_mV": 0.4599564187779447,
+   "mae_mV": 0.006511153056702787,
+   "f1_golden_max": 0.970392749244713,
+   "f1_golden_max_ge": 0.970392749244713,
+   "f1_top10pct": 0.9896342737722048,
+   "f1_pred_max": 0.9331619537275064
+  },
+  {
+   "id": "hidden/testcase19",
+   "design": "real_870x870_63347src",
+   "shape": [
+    870,
+    870
+   ],
+   "seconds_end_to_end": 13.178299199789762,
+   "seconds_parse": 1.8842284679412842,
+   "seconds_assemble_prepare": 0.0636897087097168,
+   "seconds_solve_only": 0.7169451713562012,
+   "seconds_rasterize": 10.433505296707153,
+   "rel_residual": 7.824527657798116e-15,
+   "n_nodes": 181207,
+   "n_floating_merged_nodes": 178,
+   "finite": true,
+   "max_abs_diff_to_label_mV": 0.0538614536797074,
+   "mae_mV": 0.0006782059300877925,
+   "f1_golden_max": 0.9483352468427095,
+   "f1_golden_max_ge": 0.9483352468427095,
+   "f1_top10pct": 0.9963858844672318,
+   "f1_pred_max": 0.9409090909090909
+  },
+  {
+   "id": "hidden/testcase20",
+   "design": "real_870x870_63347src",
+   "shape": [
+    870,
+    870
+   ],
+   "seconds_end_to_end": 13.677622499875724,
+   "seconds_parse": 1.84977388381958,
+   "seconds_assemble_prepare": 0.0627431869506836,
+   "seconds_solve_only": 0.3300340175628662,
+   "seconds_rasterize": 11.381574153900146,
+   "rel_residual": 6.954521580251499e-15,
+   "n_nodes": 174305,
+   "n_floating_merged_nodes": 0,
+   "finite": true,
+   "max_abs_diff_to_label_mV": 0.05717565640535782,
+   "mae_mV": 0.001070174450862273,
+   "f1_golden_max": 0.9871794871794872,
+   "f1_golden_max_ge": 0.9871794871794872,
+   "f1_top10pct": 0.9957005580688836,
+   "f1_pred_max": 0.974025974025974
+  }
+ ],
+ "provenance": {
+  "started": "2026-10-12T20:49:00+0800",
+  "git_head": "7707b200de69ec21fe96a4a88d5bc1e759eb3db3",
+  "git_dirty_tracked": "M manifests/n14_inventory.json",
+  "code_hash": "750d252f863b119518b660db061d1e5b814a84ad9ca68672a28a1c62ad5e5f8e",
+  "versions": {
+   "python": "3.10.0",
+   "numpy": "2.2.6",
+   "scipy": "1.15.3",
+   "pandas": "2.3.3",
+   "platform": "Windows-10-10.0.26200-SP0",
+   "sklearn": "1.6.1",
+   "pyamg": "5.3.0",
+   "edalint": "0.1.0",
+   "cpu_model": "13th Gen Intel(R) Core(TM) i7-1355U",
+   "logical_cores": 12
+  },
+  "argv": [
+   "D:\\Work\\edalint\\src\\edalint\\p4_iccad23.py",
+   "solver"
+  ],
+  "frozen_protocol": {
+   "dataset": "iccad23",
+   "code_hash": "750d252f863b119518b660db061d1e5b814a84ad9ca68672a28a1c62ad5e5f8e",
+   "protocol_file": "protocol/protocol_iccad23.md",
+   "protocol_sha256": "efffaed85a5f2b04de518541b9bde9c3ef07871dd74db428c57302c671caf0d5",
+   "protocol_sha256_note": "sha256 of the file with CRLF normalised to LF",
+   "frozen_at": "2026-10-12T20:38:41+0800",
+   "frozen_commit": "79779855b0d09ffa8569f7b2cd3c22823d15e7a4",
+   "frozen_commit_note": "commit of the code and protocol being frozen (the freeze commit itself adds this file)",
+   "machine": {
+    "cpu_model": "13th Gen Intel(R) Core(TM) i7-1355U",
+    "logical_cores": 12
+   }
+  }
+ }
+}
