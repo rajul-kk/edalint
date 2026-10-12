@@ -1,0 +1,14 @@
+{
+ "dataset": "iccad23",
+ "code_hash": "750d252f863b119518b660db061d1e5b814a84ad9ca68672a28a1c62ad5e5f8e",
+ "protocol_file": "protocol/protocol_iccad23.md",
+ "protocol_sha256": "efffaed85a5f2b04de518541b9bde9c3ef07871dd74db428c57302c671caf0d5",
+ "protocol_sha256_note": "sha256 of the file with CRLF normalised to LF",
+ "frozen_at": "2026-10-12T20:38:41+0800",
+ "frozen_commit": "79779855b0d09ffa8569f7b2cd3c22823d15e7a4",
+ "frozen_commit_note": "commit of the code and protocol being frozen (the freeze commit itself adds this file)",
+ "machine": {
+  "cpu_model": "13th Gen Intel(R) Core(TM) i7-1355U",
+  "logical_cores": 12
+ }
+}
