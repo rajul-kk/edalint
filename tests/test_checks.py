@@ -263,3 +263,15 @@ def test_report_text_markdown_json(clean):
     assert 'E001' in rep.text() and rep.markdown().startswith('# edalint report')
     d = rep.to_dict()
     assert d['label'] == 'development (train only)' and len(d['checks']) == 6
+
+
+def test_e002_rounding_noise_is_not_a_negative_label_and_slices_count_once():
+    rng = np.random.default_rng(0)
+    L = rng.random((20, 20))
+    L[0, 0] = -8.9e-16                                   # log10/resize rounding in CircuitNet authors mode
+    ok = Sample('a', 'train', 'd', {'power_t': np.zeros((20, 20, 20)), 'power_all': rng.random((20, 20))}, L)
+    zl = Sample('b', 'train', 'e', {'power_t': np.zeros((20, 20, 20)), 'power_all': rng.random((20, 20))}, np.full((20, 20), -8.9e-16))
+    r = e002_degenerate(ListDataset([ok, zl], hotspot={'kind': 'abs', 'value': 0.5}), OPT)
+    assert r.metrics['n_negative_label'] == 0
+    assert r.metrics['n_zero_label'] == 1                # a constant at rounding noise is an all-zero label
+    assert r.metrics['channel_all_zero_counts'] == {'power_t': 2}          # per sample, not per slice

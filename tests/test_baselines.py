@@ -106,3 +106,9 @@ def test_spice_baseline_on_fixture(tmp_path):
     pred = b.predict(d.get(sid))
     assert np.abs(pred - label).max() < 1e-12 and 'seconds_solve' in b.last_info
     assert np.isfinite(pred).all() and pred.max() > 0
+
+
+def test_summarise_excludes_non_finite_and_reports_count():
+    s = summarise([{'nrms': float('inf'), 'f1': 0.5, 'seconds': 1.0}, {'nrms': 0.2, 'f1': float('nan'), 'seconds': 1.0}, {'nrms': 0.4, 'f1': 1.0, 'seconds': 1.0}])
+    assert s['mean_nrms'] == pytest.approx(0.3) and s['n_excluded_nrms'] == 1
+    assert s['mean_f1'] == pytest.approx(0.75) and s['n_excluded_f1'] == 1

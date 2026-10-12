@@ -41,11 +41,16 @@ def evaluate(b: Baseline, ds: MapDataset, split: str, max_n: Optional[int] = Non
 
 
 def summarise(rows: Sequence[dict]) -> Dict[str, float]:
+    """Mean of each float metric over the FINITE values; the number of excluded (NaN / inf) cases is reported as n_excluded_<metric>.
+    (An undefined metric, e.g. NRMS of a constant label or F1 of a map without hotspot, is not silently averaged in.)"""
     keys = [k for k in rows[0] if isinstance(rows[0][k], float) and k != 'seconds'] if rows else []
-    import warnings
-    with warnings.catch_warnings():
-        warnings.simplefilter('ignore', RuntimeWarning)
-        out = {f'mean_{k}': float(np.nanmean([r[k] for r in rows])) for k in keys}
+    out: Dict[str, float] = {}
+    for k in keys:
+        v = np.array([r[k] for r in rows], float)
+        fin = np.isfinite(v)
+        out[f'mean_{k}'] = float(v[fin].mean()) if fin.any() else float('nan')
+        if (~fin).any():
+            out[f'n_excluded_{k}'] = int((~fin).sum())
     out['mean_seconds'] = float(np.mean([r['seconds'] for r in rows])) if rows else float('nan')
     out['n'] = len(rows)
     return out

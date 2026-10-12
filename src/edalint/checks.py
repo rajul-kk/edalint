@@ -57,7 +57,7 @@ def _accessible(ds: MapDataset, opt: Options) -> List[str]:
     """Split names the data checks may read: opt.split, or all (non-test unless frozen) when opt.split == 'all'."""
     if opt.split != 'all':
         return [opt.split]
-    names = [s for s in ds.splits if s not in ds.test_splits and s not in ('fake', 'visible')]
+    names = [s for s in ds.splits if s not in ds.test_splits and s not in ds.aux_splits]
     try:
         from .protocol import require_frozen
         require_frozen(ds.protocol_dir, what='checks on the test split')
@@ -154,20 +154,23 @@ def e002_degenerate(ds: MapDataset, opt: Options) -> CheckResult:
             n += 1
             L = s.label
             if np.all(L == L.flat[0]):
-                (zero_label if L.flat[0] == 0 else const_label).append(sid)
-            if np.nanmin(L) < -opt.neg_tol:
+                (zero_label if abs(L.flat[0]) < 1e-6 * (hi if hi else 1.0) else const_label).append(sid)
+            tol = max(opt.neg_tol, 1e-12, 1e-6 * (hi if hi else float(np.nanmax(np.abs(L)))))        # rounding noise of log/resize is not a negative label
+            if np.nanmin(L) < -tol:
                 neg.append(sid)
-            if (hi is not None and np.nanmax(L) > hi) or (lo is not None and lo > 0 and np.nanmin(L) < lo):
+            if (hi is not None and np.nanmax(L) > hi + tol) or (lo is not None and lo > 0 and np.nanmin(L) < lo - tol):
                 oor.append(sid)
-            zero_ch = []
+            groups = defaultdict(list)                                           # channel group -> arrays (power_t has 20 slices)
             for nm, a in s.channels():
-                base = nm.split('[')[0]
-                if np.all(a == 0):
+                groups[nm.split('[')[0]].append(a)
+            zero_ch = []
+            for base, arrs in groups.items():
+                if all(np.all(a == 0) for a in arrs):
                     chan_zero[base] += 1
                     zero_ch.append(base)
-                elif np.all(a == a.flat[0]):
+                elif all(np.all(a == a.flat[0]) for a in arrs):
                     chan_const_nonzero[base].append(sid)
-            if len(zero_ch) == len(s.channels()):
+            if len(zero_ch) == len(groups):
                 all_in_zero.append(sid)
             bb = [nm for nm in s.inputs if nm in BBOX_CHANNELS]
             if bb and all(np.all(s.inputs[nm] == 0) for nm in bb):
@@ -268,7 +271,8 @@ def e003_duplicates(ds: MapDataset, opt: Options) -> CheckResult:
     ch = [(k, v) for k, v in chan_hash.items() if len(v) > 1]
     if ch:
         names = sorted({k[0] for k, _ in ch})
-        res.add('info', f'{len(ch)} channel-level exact duplicates across samples (channels {names}); e.g. ICCAD twin cases share a current map',
+        res.add('info', f'{len(ch)} channel-level exact duplicates across samples (channels {names}); expected when samples share a configuration '
+                '(ICCAD twin cases share a current map, CircuitNet runs with the same macro placement share macro_region)',
                 [i for _, v in ch[:1] for i in v], n_groups=len(ch), channels=names)
     # near duplicates
     ok = [i for i in items if np.any(i[4] != 0)]
@@ -318,7 +322,7 @@ def e004_leakage(ds: MapDataset, opt: Options) -> CheckResult:
     Does NOT apply: datasets without design metadata (a single split) are skipped.
     """
     res = CheckResult('E004', 'leakage')
-    names = [s for s in ds.splits if s not in ('fake', 'visible') and ds.splits[s]]
+    names = [s for s in ds.splits if s not in ds.aux_splits and ds.splits[s]]
     if len(names) < 2:
         return skipped('E004', 'leakage', f'needs at least two splits, have {names}')
     des = {s: {ds.meta(i).get('design', '') for i in ds.splits[s]} for s in names}
@@ -371,7 +375,7 @@ def e004_leakage(ds: MapDataset, opt: Options) -> CheckResult:
 def _split_gap(ds: MapDataset, opt: Options, res: CheckResult) -> dict:
     from .baselines.zoo import PixelRidge, ScalarMean
     from .baselines.base import SampleStream
-    pool = [s for s in ds.splits if s not in ds.test_splits and s not in ('fake', 'visible')]
+    pool = [s for s in ds.splits if s not in ds.test_splits and s not in ds.aux_splits]
     ids = [i for s in pool for i in ds.ids(s)]
     if len(ids) > opt.gap_max_samples:
         ids = [ids[j] for j in np.unique(np.linspace(0, len(ids) - 1, opt.gap_max_samples).round().astype(int))]

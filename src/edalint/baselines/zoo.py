@@ -86,7 +86,7 @@ class PixelRidge(_PixelModel):
         X, y = self._collect(train)
         X = np.c_[X.astype(np.float64), np.ones(len(X))]
         A = X.T @ X
-        A[np.diag_indices(A.shape[0] - 1)] += self.alpha * len(X) * 1e-6
+        A[np.diag_indices(A.shape[0] - 1)] += self.alpha * len(X)
         self.w_ = np.linalg.solve(A, X.T @ y)
         return self
 
