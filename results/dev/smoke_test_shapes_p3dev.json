@@ -1,0 +1,442 @@
+{
+ "iccad23_hidden": {
+  "hidden/testcase7": {
+   "shape": [
+    601,
+    601
+   ],
+   "inputs": {
+    "current": [
+     601,
+     601
+    ],
+    "eff_dist": [
+     601,
+     601
+    ],
+    "pdn_density": [
+     601,
+     601
+    ]
+   },
+   "dtype": "float64",
+   "design_id": "real_601x601_24988src",
+   "twin_of": "hidden/testcase8"
+  },
+  "hidden/testcase8": {
+   "shape": [
+    601,
+    601
+   ],
+   "inputs": {
+    "current": [
+     601,
+     601
+    ],
+    "eff_dist": [
+     601,
+     601
+    ],
+    "pdn_density": [
+     601,
+     601
+    ]
+   },
+   "dtype": "float64",
+   "design_id": "real_601x601_24988src",
+   "twin_of": "hidden/testcase7"
+  },
+  "hidden/testcase9": {
+   "shape": [
+    835,
+    835
+   ],
+   "inputs": {
+    "current": [
+     835,
+     835
+    ],
+    "eff_dist": [
+     835,
+     835
+    ],
+    "pdn_density": [
+     835,
+     835
+    ]
+   },
+   "dtype": "float64",
+   "design_id": "real_835x835_64064src",
+   "twin_of": "hidden/testcase10"
+  },
+  "hidden/testcase10": {
+   "shape": [
+    835,
+    835
+   ],
+   "inputs": {
+    "current": [
+     835,
+     835
+    ],
+    "eff_dist": [
+     835,
+     835
+    ],
+    "pdn_density": [
+     835,
+     835
+    ]
+   },
+   "dtype": "float64",
+   "design_id": "real_835x835_64064src",
+   "twin_of": "hidden/testcase9"
+  },
+  "hidden/testcase13": {
+   "shape": [
+    257,
+    257
+   ],
+   "inputs": {
+    "current": [
+     257,
+     257
+    ],
+    "eff_dist": [
+     257,
+     257
+    ],
+    "pdn_density": [
+     257,
+     257
+    ]
+   },
+   "dtype": "float64",
+   "design_id": "real_257x257_11864src",
+   "twin_of": "hidden/testcase14"
+  },
+  "hidden/testcase14": {
+   "shape": [
+    257,
+    257
+   ],
+   "inputs": {
+    "current": [
+     257,
+     257
+    ],
+    "eff_dist": [
+     257,
+     257
+    ],
+    "pdn_density": [
+     257,
+     257
+    ]
+   },
+   "dtype": "float64",
+   "design_id": "real_257x257_11864src",
+   "twin_of": "hidden/testcase13"
+  },
+  "hidden/testcase15": {
+   "shape": [
+    489,
+    489
+   ],
+   "inputs": {
+    "current": [
+     489,
+     489
+    ],
+    "eff_dist": [
+     489,
+     489
+    ],
+    "pdn_density": [
+     489,
+     489
+    ]
+   },
+   "dtype": "float64",
+   "design_id": "real_489x489_44117src",
+   "twin_of": "hidden/testcase16"
+  },
+  "hidden/testcase16": {
+   "shape": [
+    489,
+    489
+   ],
+   "inputs": {
+    "current": [
+     489,
+     489
+    ],
+    "eff_dist": [
+     489,
+     489
+    ],
+    "pdn_density": [
+     489,
+     489
+    ]
+   },
+   "dtype": "float64",
+   "design_id": "real_489x489_44117src",
+   "twin_of": "hidden/testcase15"
+  },
+  "hidden/testcase19": {
+   "shape": [
+    870,
+    870
+   ],
+   "inputs": {
+    "current": [
+     870,
+     870
+    ],
+    "eff_dist": [
+     870,
+     870
+    ],
+    "pdn_density": [
+     870,
+     870
+    ]
+   },
+   "dtype": "float64",
+   "design_id": "real_870x870_63347src",
+   "twin_of": "hidden/testcase20"
+  },
+  "hidden/testcase20": {
+   "shape": [
+    870,
+    870
+   ],
+   "inputs": {
+    "current": [
+     870,
+     870
+    ],
+    "eff_dist": [
+     870,
+     870
+    ],
+    "pdn_density": [
+     870,
+     870
+    ]
+   },
+   "dtype": "float64",
+   "design_id": "real_870x870_63347src",
+   "twin_of": "hidden/testcase19"
+  }
+ },
+ "n14_drc_test_designs": [
+  {
+   "design": "Vortex-large",
+   "shapes": {
+    "eGR_horizontal_overflow": [
+     2363,
+     2362
+    ],
+    "eGR_vertical_overflow": [
+     2363,
+     2362
+    ],
+    "GR_horizontal_overflow": [
+     1316,
+     1301
+    ],
+    "GR_vertical_overflow": [
+     1316,
+     1301
+    ],
+    "cell_density": [
+     1316,
+     1301
+    ],
+    "macro_region": [
+     1316,
+     1301
+    ],
+    "RUDY_long": [
+     1316,
+     1301
+    ],
+    "RUDY_pin_long": [
+     1316,
+     1301
+    ],
+    "RUDY_short": [
+     1316,
+     1301
+    ],
+    "DRC_all": [
+     1316,
+     1301
+    ]
+   },
+   "n_members": {
+    "macro_region": 74,
+    "cell_density": 74,
+    "RUDY_long": 74,
+    "RUDY_short": 74,
+    "RUDY_pin_long": 74,
+    "eGR_horizontal_overflow": 74,
+    "eGR_vertical_overflow": 74,
+    "GR_horizontal_overflow": 74,
+    "GR_vertical_overflow": 74,
+    "DRC_all": 73
+   }
+  },
+  {
+   "design": "openc910-1",
+   "shapes": {
+    "eGR_horizontal_overflow": [
+     1457,
+     1457
+    ],
+    "eGR_vertical_overflow": [
+     1457,
+     1457
+    ],
+    "GR_horizontal_overflow": [
+     800,
+     802
+    ],
+    "GR_vertical_overflow": [
+     800,
+     802
+    ],
+    "cell_density": [
+     800,
+     802
+    ],
+    "macro_region": [
+     800,
+     802
+    ],
+    "RUDY_long": [
+     800,
+     802
+    ],
+    "RUDY_pin_long": [
+     800,
+     802
+    ],
+    "RUDY_short": [
+     800,
+     802
+    ],
+    "DRC_all": [
+     800,
+     802
+    ]
+   },
+   "n_members": {
+    "macro_region": 96,
+    "cell_density": 96,
+    "RUDY_long": 96,
+    "RUDY_short": 96,
+    "RUDY_pin_long": 96,
+    "eGR_horizontal_overflow": 96,
+    "eGR_vertical_overflow": 96,
+    "GR_horizontal_overflow": 96,
+    "GR_vertical_overflow": 96,
+    "DRC_all": 96
+   }
+  },
+  {
+   "design": "zero-riscy",
+   "shapes": {
+    "eGR_horizontal_overflow": [
+     504,
+     502
+    ],
+    "eGR_vertical_overflow": [
+     504,
+     502
+    ],
+    "GR_horizontal_overflow": [
+     277,
+     276
+    ],
+    "GR_vertical_overflow": [
+     277,
+     276
+    ],
+    "cell_density": [
+     277,
+     276
+    ],
+    "macro_region": [
+     277,
+     276
+    ],
+    "RUDY_long": [
+     277,
+     276
+    ],
+    "RUDY_pin_long": [
+     277,
+     276
+    ],
+    "RUDY_short": [
+     277,
+     276
+    ],
+    "DRC_all": [
+     277,
+     276
+    ]
+   },
+   "n_members": {
+    "macro_region": 3456,
+    "cell_density": 3456,
+    "RUDY_long": 3456,
+    "RUDY_short": 3456,
+    "RUDY_pin_long": 3456,
+    "eGR_horizontal_overflow": 3456,
+    "eGR_vertical_overflow": 3456,
+    "GR_horizontal_overflow": 3456,
+    "GR_vertical_overflow": 3456,
+    "DRC_all": 3456
+   }
+  }
+ ],
+ "n14_drc_skipped": [
+  {
+   "design": "RISCY",
+   "split": "train",
+   "n_samples": 3162,
+   "reason": "tarball unusable: tarball missing (E:\\edalint_data\\circuitnet_n14\\CircuitNet-N14\\routability_features\\RISCY.tar.gz)"
+  },
+  {
+   "design": "RISCY-FPU",
+   "split": "train",
+   "n_samples": 3449,
+   "reason": "tarball unusable: tarball missing (E:\\edalint_data\\circuitnet_n14\\CircuitNet-N14\\routability_features\\RISCY-FPU.tar.gz)"
+  }
+ ],
+ "provenance": {
+  "started": "2026-10-12T19:49:00+0800",
+  "git_head": "7f340c022f3c64734e8bba2f25157b95d64e261a",
+  "git_dirty_tracked": "M manifests/n14_inventory.json",
+  "code_hash": "35c03d1a9417b6128471b5dca3e694d718a996936001f67d60e46bef72b4ab37",
+  "versions": {
+   "python": "3.10.0",
+   "numpy": "2.2.6",
+   "scipy": "1.15.3",
+   "pandas": "2.3.3",
+   "platform": "Windows-10-10.0.26200-SP0",
+   "sklearn": "1.6.1",
+   "pyamg": "5.3.0",
+   "edalint": "0.1.0"
+  },
+  "argv": [
+   "scripts/p3_smoke_test_shapes.py",
+   "results/dev/smoke_test_shapes_p3dev.json"
+  ],
+  "frozen_protocol": null
+ }
+}

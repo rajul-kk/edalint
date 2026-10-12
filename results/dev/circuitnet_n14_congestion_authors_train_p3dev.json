@@ -1,0 +1,227 @@
+{
+ "tool": "edalint",
+ "dataset": "circuitnet_n14_congestion_authors",
+ "split": "train",
+ "label": "development (train only)",
+ "n_samples": 80,
+ "worst_severity": "info",
+ "exit_code": 0,
+ "seconds": 4.31,
+ "checks": [
+  {
+   "code": "E001",
+   "name": "integrity",
+   "status": "ok",
+   "severity": "none",
+   "findings": [],
+   "summary": "80 samples checked, 0 failed to load, 0 with non-finite values",
+   "metrics": {
+    "n_checked": 80
+   },
+   "skip_reason": ""
+  },
+  {
+   "code": "E002",
+   "name": "degenerate",
+   "status": "ok",
+   "severity": "info",
+   "findings": [
+    {
+     "code": "E002",
+     "severity": "info",
+     "message": "input channel 'macro_region' is all-zero in 40/80 samples",
+     "metrics": {
+      "channel": "macro_region",
+      "count": 40
+     },
+     "samples": []
+    },
+    {
+     "code": "E002",
+     "severity": "info",
+     "message": "archive members not listed in the split CSVs (per design): {'Vortex-small': 1, 'nvdla-small': 12}",
+     "metrics": {},
+     "samples": []
+    }
+   ],
+   "summary": "80 samples: 0 zero label, 0 negative, 0 out of range, 0 all-zero bbox, 0 count mismatches",
+   "metrics": {
+    "n_checked": 80,
+    "n_zero_label": 0,
+    "n_const_label": 0,
+    "n_negative_label": 0,
+    "n_out_of_range_label": 0,
+    "n_all_zero_inputs": 0,
+    "n_all_zero_bbox": 0,
+    "channel_all_zero_counts": {
+     "macro_region": 40
+    }
+   },
+   "skip_reason": ""
+  },
+  {
+   "code": "E003",
+   "name": "duplicates",
+   "status": "ok",
+   "severity": "info",
+   "findings": [
+    {
+     "code": "E003",
+     "severity": "info",
+     "message": "14 channel-level exact duplicates across samples (channels ['macro_region']); expected when samples share a configuration (ICCAD twin cases share a current map, CircuitNet runs with the same macro placement share macro_region)",
+     "metrics": {
+      "n_groups": 14,
+      "channels": [
+       "macro_region"
+      ]
+     },
+     "samples": [
+      "nvdla-small_freq_200_mp_1_fpu_55_fpa_1.0_p_1_fi_ar",
+      "nvdla-small_freq_200_mp_1_fpu_55_fpa_1.0_p_4_fi_ap"
+     ]
+    }
+   ],
+   "summary": "80 samples: 0 exact input-duplicate groups, 0 exact label-duplicate groups, 0 near-duplicate pairs",
+   "metrics": {
+    "n_checked": 80,
+    "exact_input_groups": 0,
+    "exact_label_groups": 0,
+    "n_near_dup_pairs": 0,
+    "n_same_input_different_label_pairs": 0,
+    "max_input_corr_offdiag": 0.9808400675873372,
+    "max_label_corr_offdiag": 0.582771366602664
+   },
+   "skip_reason": ""
+  },
+  {
+   "code": "E004",
+   "name": "leakage",
+   "status": "skipped",
+   "severity": "none",
+   "findings": [],
+   "summary": "skipped: needs at least two splits, have ['train']",
+   "metrics": {},
+   "skip_reason": "needs at least two splits, have ['train']"
+  },
+  {
+   "code": "E005",
+   "name": "orientation",
+   "status": "ok",
+   "severity": "none",
+   "findings": [],
+   "summary": "40 samples; RUDY: stored 0.33",
+   "metrics": {
+    "n_checked": 40,
+    "median_abs_corr": {
+     "RUDY": {
+      "stored": 0.3284889997975674,
+      "flip_ud": 0.2217029553193135,
+      "flip_lr": 0.20313621467707021,
+      "rot180": 0.1820048807115115,
+      "transpose": 0.2433555644428762,
+      "rot90": 0.22997837628762746,
+      "rot270": 0.19445725528690727,
+      "antitranspose": 0.24863719978853077
+     },
+     "RUDY_pin": {
+      "stored": 0.8395850281739683,
+      "flip_ud": 0.33472938915763956,
+      "flip_lr": 0.34204226769007184,
+      "rot180": 0.1849922944560533,
+      "transpose": 0.34609315663928264,
+      "rot90": 0.17975602693414583,
+      "rot270": 0.19796754138148834,
+      "antitranspose": 0.23949828389052197
+     },
+     "macro_region": {
+      "stored": 0.5940445682764426,
+      "flip_ud": 0.2448640339591917,
+      "flip_lr": 0.3710912876339877,
+      "rot180": 0.2015188555907771,
+      "transpose": 0.27270953800580655,
+      "rot90": 0.08200800066703338,
+      "rot270": 0.10277818661642574,
+      "antitranspose": 0.1211625196082961
+     }
+    },
+    "primary": {
+     "channel": "RUDY",
+     "stored": 0.3284889997975674,
+     "best_alternative": 0.24863719978853077
+    }
+   },
+   "skip_reason": ""
+  },
+  {
+   "code": "E006",
+   "name": "metric-sanity",
+   "status": "ok",
+   "severity": "info",
+   "findings": [
+    {
+     "code": "E006",
+     "severity": "info",
+     "message": "hotspot base rate (rule {'kind': 'top_frac', 'value': 0.05}): min 5.00e-02, median 5.00e-02, max 5.01e-02; hotspot pixels per case: median 3277",
+     "metrics": {},
+     "samples": []
+    }
+   ],
+   "summary": "80 cases; hotspot base rate median 5.00e-02; 0 without hotspot",
+   "metrics": {
+    "n_checked": 80,
+    "rule": {
+     "kind": "top_frac",
+     "value": 0.05
+    },
+    "hotspot_base_rate": {
+     "min": 0.0500030517578125,
+     "median": 0.0500030517578125,
+     "max": 0.05010986328125
+    },
+    "hotspot_pixels": {
+     "min": 3277,
+     "median": 3277.0,
+     "max": 3284
+    }
+   },
+   "skip_reason": ""
+  }
+ ],
+ "loader": {
+  "skipped": []
+ },
+ "provenance": {
+  "started": "2026-10-12T18:56:23+0800",
+  "git_head": "b159f208d546e7b195ad68accdfa35c40ba51e75",
+  "git_dirty_tracked": "M manifests/n14_inventory.json\n M src/edalint/checks.py\n M src/edalint/core.py\n M src/edalint/datasets/circuitnet.py\n M src/edalint/datasets/iccad23.py\n M tests/test_checks.py",
+  "code_hash": "2aecb6352466d73e4502174d884b55975a6d8fb4b8ec854813b3d46988a2cade",
+  "versions": {
+   "python": "3.10.0",
+   "numpy": "2.2.6",
+   "scipy": "1.15.3",
+   "pandas": "2.3.3",
+   "platform": "Windows-10-10.0.26200-SP0",
+   "sklearn": "1.6.1",
+   "pyamg": "5.3.0",
+   "edalint": "0.1.0"
+  },
+  "argv": [
+   "D:\\Work\\edalint\\src\\edalint\\cli.py",
+   "lint",
+   "n14-congestion",
+   "--split",
+   "train",
+   "--designs",
+   "Vortex-small,nvdla-small",
+   "--max-per-design",
+   "40",
+   "--cache-dir",
+   "E:/edalint_data/dev_cache/n14_congestion",
+   "--out",
+   "results/dev",
+   "--tag",
+   "p3dev"
+  ],
+  "frozen_protocol": null
+ }
+}

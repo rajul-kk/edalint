@@ -1,0 +1,67 @@
+{
+ "tool": "edalint",
+ "dataset": "iccad23",
+ "split": "all",
+ "label": "development (train only)",
+ "n_samples": 120,
+ "worst_severity": "none",
+ "exit_code": 0,
+ "seconds": 0.0,
+ "checks": [
+  {
+   "code": "E004",
+   "name": "leakage",
+   "status": "ok",
+   "severity": "none",
+   "findings": [],
+   "summary": "splits ['train', 'test']; designs per split {'train': 105, 'test': 5}; 0 cross-split twin links",
+   "metrics": {
+    "designs_per_split": {
+     "train": 105,
+     "test": 5
+    },
+    "n_samples_with_twin": 20,
+    "twin_links_across_splits": 0,
+    "independent_designs_with_twins": {
+     "train": 5,
+     "test": 5
+    },
+    "random_vs_design_gap": "not computed (run_gap is off: the gap is computed only when the protocol runs it)"
+   },
+   "skip_reason": ""
+  }
+ ],
+ "loader": {
+  "skipped": []
+ },
+ "provenance": {
+  "started": "2026-10-12T19:16:58+0800",
+  "git_head": "b159f208d546e7b195ad68accdfa35c40ba51e75",
+  "git_dirty_tracked": "M manifests/n14_inventory.json\n M src/edalint/baselines/evaluate.py\n M src/edalint/baselines/zoo.py\n M src/edalint/checks.py\n M src/edalint/core.py\n M src/edalint/datasets/circuitnet.py\n M src/edalint/datasets/iccad23.py\n M tests/test_baselines.py\n M tests/test_checks.py",
+  "code_hash": "35c03d1a9417b6128471b5dca3e694d718a996936001f67d60e46bef72b4ab37",
+  "versions": {
+   "python": "3.10.0",
+   "numpy": "2.2.6",
+   "scipy": "1.15.3",
+   "pandas": "2.3.3",
+   "platform": "Windows-10-10.0.26200-SP0",
+   "sklearn": "1.6.1",
+   "pyamg": "5.3.0",
+   "edalint": "0.1.0"
+  },
+  "argv": [
+   "D:\\Work\\edalint\\src\\edalint\\cli.py",
+   "lint",
+   "iccad23",
+   "--split",
+   "all",
+   "--checks",
+   "E004",
+   "--out",
+   "results/dev",
+   "--tag",
+   "p3dev_metadata_only"
+  ],
+  "frozen_protocol": null
+ }
+}

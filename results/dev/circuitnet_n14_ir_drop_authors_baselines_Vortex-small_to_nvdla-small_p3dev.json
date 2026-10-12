@@ -1,0 +1,5544 @@
+{
+ "dataset": "circuitnet_n14_ir_drop_authors",
+ "fit": "Vortex-small",
+ "eval": "nvdla-small",
+ "label": "development (train only)",
+ "results": {
+  "zero": {
+   "rows": [
+    {
+     "id": "nvdla-small_freq_200_mp_1_fpu_50_fpa_1.0_p_1_fi_ap",
+     "design": "nvdla-small",
+     "group": "",
+     "shape": [
+      256,
+      256
+     ],
+     "seconds": 0.0,
+     "finite": true,
+     "nrms": 0.6813635376008346,
+     "nmae": 0.5996711919266839,
+     "ssim": 0.00019749202931628804,
+     "pearson": null,
+     "spearman": null,
+     "kendall": null,
+     "roc_auc": 0.5,
+     "pr_auc": 0.001068115234375
+    },
+    {
+     "id": "nvdla-small_freq_200_mp_1_fpu_55_fpa_1.0_p_1_fi_ar",
+     "design": "nvdla-small",
+     "group": "",
+     "shape": [
+      256,
+      256
+     ],
+     "seconds": 0.0,
+     "finite": true,
+     "nrms": null,
+     "nmae": null,
+     "ssim": 0.9999999999999999,
+     "pearson": null,
+     "spearman": null,
+     "kendall": null,
+     "roc_auc": null,
+     "pr_auc": null
+    },
+    {
+     "id": "nvdla-small_freq_200_mp_1_fpu_55_fpa_1.0_p_4_fi_ap",
+     "design": "nvdla-small",
+     "group": "",
+     "shape": [
+      256,
+      256
+     ],
+     "seconds": 0.0,
+     "finite": true,
+     "nrms": 0.7073784327381522,
+     "nmae": 0.596201279484517,
+     "ssim": 0.0046084801852306345,
+     "pearson": null,
+     "spearman": null,
+     "kendall": null,
+     "roc_auc": 0.5,
+     "pr_auc": 0.005889892578125
+    },
+    {
+     "id": "nvdla-small_freq_200_mp_1_fpu_60_fpa_1.0_p_1_fi_ap",
+     "design": "nvdla-small",
+     "group": "",
+     "shape": [
+      256,
+      256
+     ],
+     "seconds": 0.0,
+     "finite": true,
+     "nrms": 0.6961893792711494,
+     "nmae": 0.6012562618535975,
+     "ssim": 0.00016598789959793584,
+     "pearson": null,
+     "spearman": null,
+     "kendall": null,
+     "roc_auc": 0.5,
+     "pr_auc": 0.0006103515625
+    },
+    {
+     "id": "nvdla-small_freq_200_mp_1_fpu_60_fpa_1.0_p_2_fi_ar",
+     "design": "nvdla-small",
+     "group": "",
+     "shape": [
+      256,
+      256
+     ],
+     "seconds": 0.0,
+     "finite": true,
+     "nrms": 0.6730365098224448,
+     "nmae": 0.5519132626209546,
+     "ssim": 0.001871167269581548,
+     "pearson": null,
+     "spearman": null,
+     "kendall": null,
+     "roc_auc": 0.5,
+     "pr_auc": 0.0003814697265625
+    },
+    {
+     "id": "nvdla-small_freq_200_mp_1_fpu_60_fpa_1.0_p_4_fi_ar",
+     "design": "nvdla-small",
+     "group": "",
+     "shape": [
+      256,
+      256
+     ],
+     "seconds": 0.0,
+     "finite": true,
+     "nrms": 0.6885045611926479,
+     "nmae": 0.5616359768025586,
+     "ssim": 0.0060461143674162944,
+     "pearson": null,
+     "spearman": null,
+     "kendall": null,
+     "roc_auc": 0.5,
+     "pr_auc": 0.0031585693359375
+    },
+    {
+     "id": "nvdla-small_freq_200_mp_1_fpu_65_fpa_1.0_p_1_fi_ar",
+     "design": "nvdla-small",
+     "group": "",
+     "shape": [
+      256,
+      256
+     ],
+     "seconds": 0.0,
+     "finite": true,
+     "nrms": 0.667225232846568,
+     "nmae": 0.5550232104123832,
+     "ssim": 0.0003761120782667259,
+     "pearson": null,
+     "spearman": null,
+     "kendall": null,
+     "roc_auc": 0.5,
+     "pr_auc": 0.0005035400390625
+    },
+    {
+     "id": "nvdla-small_freq_200_mp_1_fpu_65_fpa_1.0_p_2_fi_ar",
+     "design": "nvdla-small",
+     "group": "",
+     "shape": [
+      256,
+      256
+     ],
+     "seconds": 0.0,
+     "finite": true,
+     "nrms": 0.6855105128565636,
+     "nmae": 0.5652124520675735,
+     "ssim": 0.0023170798907518257,
+     "pearson": null,
+     "spearman": null,
+     "kendall": null,
+     "roc_auc": 0.5,
+     "pr_auc": 0.000274658203125
+    },
+    {
+     "id": "nvdla-small_freq_200_mp_2_fpu_50_fpa_1.0_p_1_fi_ar",
+     "design": "nvdla-small",
+     "group": "",
+     "shape": [
+      256,
+      256
+     ],
+     "seconds": 0.0,
+     "finite": true,
+     "nrms": 0.6103955615422901,
+     "nmae": 0.4740462760451604,
+     "ssim": 0.000713705360914995,
+     "pearson": null,
+     "spearman": null,
+     "kendall": null,
+     "roc_auc": 0.5,
+     "pr_auc": 9.1552734375e-05
+    },
+    {
+     "id": "nvdla-small_freq_200_mp_2_fpu_50_fpa_1.0_p_4_fi_ap",
+     "design": "nvdla-small",
+     "group": "",
+     "shape": [
+      256,
+      256
+     ],
+     "seconds": 0.0,
+     "finite": true,
+     "nrms": 0.6923682623564035,
+     "nmae": 0.590104690462228,
+     "ssim": 0.009624048275138946,
+     "pearson": null,
+     "spearman": null,
+     "kendall": null,
+     "roc_auc": 0.5,
+     "pr_auc": 0.0049591064453125
+    },
+    {
+     "id": "nvdla-small_freq_200_mp_2_fpu_55_fpa_1.0_p_1_fi_ar",
+     "design": "nvdla-small",
+     "group": "",
+     "shape": [
+      256,
+      256
+     ],
+     "seconds": 0.0,
+     "finite": true,
+     "nrms": 0.6408798556277941,
+     "nmae": 0.510391857938643,
+     "ssim": 0.0007295670995929944,
+     "pearson": null,
+     "spearman": null,
+     "kendall": null,
+     "roc_auc": 0.5,
+     "pr_auc": 3.0517578125e-05
+    },
+    {
+     "id": "nvdla-small_freq_200_mp_2_fpu_55_fpa_1.0_p_2_fi_ar",
+     "design": "nvdla-small",
+     "group": "",
+     "shape": [
+      256,
+      256
+     ],
+     "seconds": 0.0,
+     "finite": true,
+     "nrms": 0.650631267070247,
+     "nmae": 0.5209033495949436,
+     "ssim": 0.002085031147084236,
+     "pearson": null,
+     "spearman": null,
+     "kendall": null,
+     "roc_auc": 0.5,
+     "pr_auc": 0.0005645751953125
+    },
+    {
+     "id": "nvdla-small_freq_200_mp_2_fpu_60_fpa_1.0_p_1_fi_ar",
+     "design": "nvdla-small",
+     "group": "",
+     "shape": [
+      256,
+      256
+     ],
+     "seconds": 0.0,
+     "finite": true,
+     "nrms": 0.6579908193802118,
+     "nmae": 0.538409952121391,
+     "ssim": 0.000956119395384128,
+     "pearson": null,
+     "spearman": null,
+     "kendall": null,
+     "roc_auc": 0.5,
+     "pr_auc": 0.0001373291015625
+    },
+    {
+     "id": "nvdla-small_freq_200_mp_2_fpu_60_fpa_1.0_p_2_fi_ar",
+     "design": "nvdla-small",
+     "group": "",
+     "shape": [
+      256,
+      256
+     ],
+     "seconds": 0.0,
+     "finite": true,
+     "nrms": 0.6752639986900225,
+     "nmae": 0.55122075900963,
+     "ssim": 0.002509713515426769,
+     "pearson": null,
+     "spearman": null,
+     "kendall": null,
+     "roc_auc": 0.5,
+     "pr_auc": 0.000335693359375
+    },
+    {
+     "id": "nvdla-small_freq_200_mp_2_fpu_60_fpa_1.0_p_4_fi_ar",
+     "design": "nvdla-small",
+     "group": "",
+     "shape": [
+      256,
+      256
+     ],
+     "seconds": 0.0,
+     "finite": true,
+     "nrms": 0.6852262830748269,
+     "nmae": 0.5528744938026429,
+     "ssim": 0.0064445478774153905,
+     "pearson": null,
+     "spearman": null,
+     "kendall": null,
+     "roc_auc": 0.5,
+     "pr_auc": 0.0046539306640625
+    },
+    {
+     "id": "nvdla-small_freq_200_mp_2_fpu_65_fpa_1.0_p_2_fi_ap",
+     "design": "nvdla-small",
+     "group": "",
+     "shape": [
+      256,
+      256
+     ],
+     "seconds": 0.0,
+     "finite": true,
+     "nrms": 0.6973420050675936,
+     "nmae": 0.585691549008468,
+     "ssim": 0.002727993886350961,
+     "pearson": null,
+     "spearman": null,
+     "kendall": null,
+     "roc_auc": 0.5,
+     "pr_auc": 0.0013275146484375
+    },
+    {
+     "id": "nvdla-small_freq_200_mp_2_fpu_65_fpa_1.0_p_4_fi_ap",
+     "design": "nvdla-small",
+     "group": "",
+     "shape": [
+      256,
+      256
+     ],
+     "seconds": 0.0,
+     "finite": true,
+     "nrms": 0.712975392798992,
+     "nmae": 0.5877446972168162,
+     "ssim": 0.01804448214993822,
+     "pearson": null,
+     "spearman": null,
+     "kendall": null,
+     "roc_auc": 0.5,
+     "pr_auc": 0.0164031982421875
+    },
+    {
+     "id": "nvdla-small_freq_500_mp_1_fpu_50_fpa_1.0_p_1_fi_ap",
+     "design": "nvdla-small",
+     "group": "",
+     "shape": [
+      256,
+      256
+     ],
+     "seconds": 0.0,
+     "finite": true,
+     "nrms": 0.6843348398969819,
+     "nmae": 0.6019339059009313,
+     "ssim": 0.0001430881427872721,
+     "pearson": null,
+     "spearman": null,
+     "kendall": null,
+     "roc_auc": 0.5,
+     "pr_auc": 0.0009918212890625
+    },
+    {
+     "id": "nvdla-small_freq_500_mp_1_fpu_50_fpa_1.0_p_2_fi_ap",
+     "design": "nvdla-small",
+     "group": "",
+     "shape": [
+      256,
+      256
+     ],
+     "seconds": 0.0,
+     "finite": true,
+     "nrms": 0.7030264475402067,
+     "nmae": 0.6203784898781343,
+     "ssim": 0.0004638170772910457,
+     "pearson": null,
+     "spearman": null,
+     "kendall": null,
+     "roc_auc": 0.5,
+     "pr_auc": 0.0032958984375
+    },
+    {
+     "id": "nvdla-small_freq_500_mp_1_fpu_50_fpa_1.0_p_4_fi_ap",
+     "design": "nvdla-small",
+     "group": "",
+     "shape": [
+      256,
+      256
+     ],
+     "seconds": 0.0,
+     "finite": true,
+     "nrms": 0.7122749761510069,
+     "nmae": 0.621124638235993,
+     "ssim": 0.001314724133897144,
+     "pearson": null,
+     "spearman": null,
+     "kendall": null,
+     "roc_auc": 0.5,
+     "pr_auc": 0.0045013427734375
+    },
+    {
+     "id": "nvdla-small_freq_500_mp_1_fpu_55_fpa_1.0_p_1_fi_ar",
+     "design": "nvdla-small",
+     "group": "",
+     "shape": [
+      256,
+      256
+     ],
+     "seconds": 0.0,
+     "finite": true,
+     "nrms": 0.6508857417904602,
+     "nmae": 0.5211659964492513,
+     "ssim": 0.0037610674792632783,
+     "pearson": null,
+     "spearman": null,
+     "kendall": null,
+     "roc_auc": null,
+     "pr_auc": null
+    },
+    {
+     "id": "nvdla-small_freq_500_mp_1_fpu_55_fpa_1.0_p_2_fi_ar",
+     "design": "nvdla-small",
+     "group": "",
+     "shape": [
+      256,
+      256
+     ],
+     "seconds": 0.0,
+     "finite": true,
+     "nrms": 0.6521363254980281,
+     "nmae": 0.5204851997402842,
+     "ssim": 0.005135192034383252,
+     "pearson": null,
+     "spearman": null,
+     "kendall": null,
+     "roc_auc": 0.5,
+     "pr_auc": 0.0009918212890625
+    },
+    {
+     "id": "nvdla-small_freq_500_mp_1_fpu_55_fpa_1.0_p_4_fi_ar",
+     "design": "nvdla-small",
+     "group": "",
+     "shape": [
+      256,
+      256
+     ],
+     "seconds": 0.0,
+     "finite": true,
+     "nrms": 0.6590752305349817,
+     "nmae": 0.5158007297862026,
+     "ssim": 0.008669983163681429,
+     "pearson": null,
+     "spearman": null,
+     "kendall": null,
+     "roc_auc": 0.5,
+     "pr_auc": 0.0028533935546875
+    },
+    {
+     "id": "nvdla-small_freq_500_mp_1_fpu_60_fpa_1.0_p_1_fi_ar",
+     "design": "nvdla-small",
+     "group": "",
+     "shape": [
+      256,
+      256
+     ],
+     "seconds": 0.0,
+     "finite": true,
+     "nrms": 0.6604058289756021,
+     "nmae": 0.5450264870102034,
+     "ssim": 0.0014762003561690318,
+     "pearson": null,
+     "spearman": null,
+     "kendall": null,
+     "roc_auc": 0.5,
+     "pr_auc": 0.0002899169921875
+    },
+    {
+     "id": "nvdla-small_freq_500_mp_1_fpu_60_fpa_1.0_p_2_fi_ar",
+     "design": "nvdla-small",
+     "group": "",
+     "shape": [
+      256,
+      256
+     ],
+     "seconds": 0.0,
+     "finite": true,
+     "nrms": 0.6780306670680142,
+     "nmae": 0.5583651666334337,
+     "ssim": 0.0016883202799859057,
+     "pearson": null,
+     "spearman": null,
+     "kendall": null,
+     "roc_auc": 0.5,
+     "pr_auc": 0.0012359619140625
+    },
+    {
+     "id": "nvdla-small_freq_500_mp_1_fpu_60_fpa_1.0_p_4_fi_ar",
+     "design": "nvdla-small",
+     "group": "",
+     "shape": [
+      256,
+      256
+     ],
+     "seconds": 0.0,
+     "finite": true,
+     "nrms": 0.6902448776399761,
+     "nmae": 0.5626155813099618,
+     "ssim": 0.006164808896237115,
+     "pearson": null,
+     "spearman": null,
+     "kendall": null,
+     "roc_auc": 0.5,
+     "pr_auc": 0.0048828125
+    },
+    {
+     "id": "nvdla-small_freq_500_mp_1_fpu_65_fpa_1.0_p_1_fi_ar",
+     "design": "nvdla-small",
+     "group": "",
+     "shape": [
+      256,
+      256
+     ],
+     "seconds": 0.0,
+     "finite": true,
+     "nrms": 0.6725870920838516,
+     "nmae": 0.5571778093373084,
+     "ssim": 0.0003699208914348628,
+     "pearson": null,
+     "spearman": null,
+     "kendall": null,
+     "roc_auc": 0.5,
+     "pr_auc": 0.0004119873046875
+    },
+    {
+     "id": "nvdla-small_freq_500_mp_1_fpu_65_fpa_1.0_p_2_fi_ar",
+     "design": "nvdla-small",
+     "group": "",
+     "shape": [
+      256,
+      256
+     ],
+     "seconds": 0.0010733604431152344,
+     "finite": true,
+     "nrms": 0.6816571793396614,
+     "nmae": 0.5595263697820713,
+     "ssim": 0.0028941870682032598,
+     "pearson": null,
+     "spearman": null,
+     "kendall": null,
+     "roc_auc": 0.5,
+     "pr_auc": 0.0013885498046875
+    },
+    {
+     "id": "nvdla-small_freq_500_mp_2_fpu_50_fpa_1.0_p_1_fi_ap",
+     "design": "nvdla-small",
+     "group": "",
+     "shape": [
+      256,
+      256
+     ],
+     "seconds": 0.0,
+     "finite": true,
+     "nrms": 0.6942523113343387,
+     "nmae": 0.6072603346606879,
+     "ssim": 0.0005421175000682246,
+     "pearson": null,
+     "spearman": null,
+     "kendall": null,
+     "roc_auc": 0.5,
+     "pr_auc": 0.0001220703125
+    },
+    {
+     "id": "nvdla-small_freq_500_mp_2_fpu_50_fpa_1.0_p_2_fi_ap",
+     "design": "nvdla-small",
+     "group": "",
+     "shape": [
+      256,
+      256
+     ],
+     "seconds": 0.0,
+     "finite": true,
+     "nrms": 0.7085022973065085,
+     "nmae": 0.6183788656493124,
+     "ssim": 0.0011335375284743702,
+     "pearson": null,
+     "spearman": null,
+     "kendall": null,
+     "roc_auc": 0.5,
+     "pr_auc": 0.0013885498046875
+    },
+    {
+     "id": "nvdla-small_freq_500_mp_2_fpu_50_fpa_1.0_p_4_fi_ap",
+     "design": "nvdla-small",
+     "group": "",
+     "shape": [
+      256,
+      256
+     ],
+     "seconds": 0.0,
+     "finite": true,
+     "nrms": 0.7091809757274139,
+     "nmae": 0.607951167384947,
+     "ssim": 0.00539430034142695,
+     "pearson": null,
+     "spearman": null,
+     "kendall": null,
+     "roc_auc": 0.5,
+     "pr_auc": 0.007568359375
+    },
+    {
+     "id": "nvdla-small_freq_500_mp_2_fpu_55_fpa_1.0_p_1_fi_ap",
+     "design": "nvdla-small",
+     "group": "",
+     "shape": [
+      256,
+      256
+     ],
+     "seconds": 0.0,
+     "finite": true,
+     "nrms": 0.682147600225482,
+     "nmae": 0.5781294743627188,
+     "ssim": 0.00110876538501211,
+     "pearson": null,
+     "spearman": null,
+     "kendall": null,
+     "roc_auc": 0.5,
+     "pr_auc": 0.0003204345703125
+    },
+    {
+     "id": "nvdla-small_freq_500_mp_2_fpu_55_fpa_1.0_p_2_fi_ap",
+     "design": "nvdla-small",
+     "group": "",
+     "shape": [
+      256,
+      256
+     ],
+     "seconds": 0.0,
+     "finite": true,
+     "nrms": 0.7065340187313609,
+     "nmae": 0.6053655611266598,
+     "ssim": 0.0018705507380899129,
+     "pearson": null,
+     "spearman": null,
+     "kendall": null,
+     "roc_auc": 0.5,
+     "pr_auc": 0.002593994140625
+    },
+    {
+     "id": "nvdla-small_freq_500_mp_2_fpu_55_fpa_1.0_p_4_fi_ap",
+     "design": "nvdla-small",
+     "group": "",
+     "shape": [
+      256,
+      256
+     ],
+     "seconds": 0.0005209445953369141,
+     "finite": true,
+     "nrms": 0.710186689409845,
+     "nmae": 0.5977294734897701,
+     "ssim": 0.011228161590482432,
+     "pearson": null,
+     "spearman": null,
+     "kendall": null,
+     "roc_auc": 0.5,
+     "pr_auc": 0.010040283203125
+    },
+    {
+     "id": "nvdla-small_freq_500_mp_2_fpu_60_fpa_1.0_p_1_fi_ap",
+     "design": "nvdla-small",
+     "group": "",
+     "shape": [
+      256,
+      256
+     ],
+     "seconds": 0.0,
+     "finite": true,
+     "nrms": 0.6890376276034617,
+     "nmae": 0.5855484706184853,
+     "ssim": 0.0006443004561030268,
+     "pearson": null,
+     "spearman": null,
+     "kendall": null,
+     "roc_auc": 0.5,
+     "pr_auc": 0.0014801025390625
+    },
+    {
+     "id": "nvdla-small_freq_500_mp_2_fpu_60_fpa_1.0_p_2_fi_ap",
+     "design": "nvdla-small",
+     "group": "",
+     "shape": [
+      256,
+      256
+     ],
+     "seconds": 0.0,
+     "finite": true,
+     "nrms": 0.7034796557576097,
+     "nmae": 0.5923215250845424,
+     "ssim": 0.0028170713944900665,
+     "pearson": null,
+     "spearman": null,
+     "kendall": null,
+     "roc_auc": 0.5,
+     "pr_auc": 0.0031280517578125
+    },
+    {
+     "id": "nvdla-small_freq_500_mp_2_fpu_60_fpa_1.0_p_4_fi_ar",
+     "design": "nvdla-small",
+     "group": "",
+     "shape": [
+      256,
+      256
+     ],
+     "seconds": 0.0,
+     "finite": true,
+     "nrms": 0.6862410018078134,
+     "nmae": 0.5513044132380229,
+     "ssim": 0.014788904367001629,
+     "pearson": null,
+     "spearman": null,
+     "kendall": null,
+     "roc_auc": 0.5,
+     "pr_auc": 0.0052337646484375
+    },
+    {
+     "id": "nvdla-small_freq_500_mp_2_fpu_65_fpa_1.0_p_1_fi_ar",
+     "design": "nvdla-small",
+     "group": "",
+     "shape": [
+      256,
+      256
+     ],
+     "seconds": 0.0,
+     "finite": true,
+     "nrms": 0.665153289506603,
+     "nmae": 0.5422671869180206,
+     "ssim": 0.0010507826150788783,
+     "pearson": null,
+     "spearman": null,
+     "kendall": null,
+     "roc_auc": 0.5,
+     "pr_auc": 0.000762939453125
+    },
+    {
+     "id": "nvdla-small_freq_500_mp_2_fpu_65_fpa_1.0_p_2_fi_ar",
+     "design": "nvdla-small",
+     "group": "",
+     "shape": [
+      256,
+      256
+     ],
+     "seconds": 0.0,
+     "finite": true,
+     "nrms": 0.6843934736342671,
+     "nmae": 0.5621363438669631,
+     "ssim": 0.0022608950548421414,
+     "pearson": null,
+     "spearman": null,
+     "kendall": null,
+     "roc_auc": 0.5,
+     "pr_auc": 0.002227783203125
+    },
+    {
+     "id": "nvdla-small_freq_500_mp_2_fpu_65_fpa_1.0_p_4_fi_ar",
+     "design": "nvdla-small",
+     "group": "",
+     "shape": [
+      256,
+      256
+     ],
+     "seconds": 0.0,
+     "finite": true,
+     "nrms": 0.6912026202740543,
+     "nmae": 0.5531729970417987,
+     "ssim": 0.014625199973301261,
+     "pearson": null,
+     "spearman": null,
+     "kendall": null,
+     "roc_auc": 0.5,
+     "pr_auc": 0.008544921875
+    }
+   ],
+   "summary": {
+    "mean_nrms": 0.6819808302506224,
+    "n_excluded_nrms": 1,
+    "mean_nmae": 0.5673709602018948,
+    "n_excluded_nmae": 1,
+    "mean_ssim": 0.028724088472377812,
+    "mean_pearson": null,
+    "n_excluded_pearson": 40,
+    "mean_spearman": null,
+    "n_excluded_spearman": 40,
+    "mean_kendall": null,
+    "n_excluded_kendall": 40,
+    "mean_roc_auc": 0.5,
+    "n_excluded_roc_auc": 2,
+    "mean_pr_auc": 0.002753809878700658,
+    "n_excluded_pr_auc": 2,
+    "mean_seconds": 3.9857625961303714e-05,
+    "n": 40
+   },
+   "fit_seconds": 0.0
+  },
+  "mean_map": {
+   "rows": [
+    {
+     "id": "nvdla-small_freq_200_mp_1_fpu_50_fpa_1.0_p_1_fi_ap",
+     "design": "nvdla-small",
+     "group": "",
+     "shape": [
+      256,
+      256
+     ],
+     "seconds": 0.0025174617767333984,
+     "finite": true,
+     "nrms": 0.3327256156430022,
+     "nmae": 0.26308794443896943,
+     "ssim": 0.21150742309332676,
+     "pearson": 0.29844105720328395,
+     "spearman": 0.31738465530381055,
+     "kendall": 0.21573570088829466,
+     "roc_auc": 0.462761477058975,
+     "pr_auc": 0.0009243753264683135
+    },
+    {
+     "id": "nvdla-small_freq_200_mp_1_fpu_55_fpa_1.0_p_1_fi_ar",
+     "design": "nvdla-small",
+     "group": "",
+     "shape": [
+      256,
+      256
+     ],
+     "seconds": 0.010055780410766602,
+     "finite": true,
+     "nrms": null,
+     "nmae": null,
+     "ssim": 0.00020177131406811397,
+     "pearson": null,
+     "spearman": null,
+     "kendall": null,
+     "roc_auc": null,
+     "pr_auc": null
+    },
+    {
+     "id": "nvdla-small_freq_200_mp_1_fpu_55_fpa_1.0_p_4_fi_ap",
+     "design": "nvdla-small",
+     "group": "",
+     "shape": [
+      256,
+      256
+     ],
+     "seconds": 0.0,
+     "finite": true,
+     "nrms": 0.3702279392201139,
+     "nmae": 0.297108869915896,
+     "ssim": 0.18417962285392744,
+     "pearson": 0.33656239599359694,
+     "spearman": 0.3466158417807895,
+     "kendall": 0.2453209640473094,
+     "roc_auc": 0.7006019588116702,
+     "pr_auc": 0.009585125702821697
+    },
+    {
+     "id": "nvdla-small_freq_200_mp_1_fpu_60_fpa_1.0_p_1_fi_ap",
+     "design": "nvdla-small",
+     "group": "",
+     "shape": [
+      256,
+      256
+     ],
+     "seconds": 0.0038344860076904297,
+     "finite": true,
+     "nrms": 0.4183211701695463,
+     "nmae": 0.3399849749471813,
+     "ssim": 0.15012640066240268,
+     "pearson": -0.020605922962220767,
+     "spearman": -0.13839087525109214,
+     "kendall": -0.09685249220520244,
+     "roc_auc": 0.5862067912544278,
+     "pr_auc": 0.0006929817503988478
+    },
+    {
+     "id": "nvdla-small_freq_200_mp_1_fpu_60_fpa_1.0_p_2_fi_ar",
+     "design": "nvdla-small",
+     "group": "",
+     "shape": [
+      256,
+      256
+     ],
+     "seconds": 0.0,
+     "finite": true,
+     "nrms": 0.4451142044237533,
+     "nmae": 0.3693035858747649,
+     "ssim": 0.11044166594713122,
+     "pearson": -0.01192560692771007,
+     "spearman": -0.11689278604361242,
+     "kendall": -0.08297892911831344,
+     "roc_auc": 0.24592450122880127,
+     "pr_auc": 0.0002481376323118374
+    },
+    {
+     "id": "nvdla-small_freq_200_mp_1_fpu_60_fpa_1.0_p_4_fi_ar",
+     "design": "nvdla-small",
+     "group": "",
+     "shape": [
+      256,
+      256
+     ],
+     "seconds": 0.004544496536254883,
+     "finite": true,
+     "nrms": 0.4517993927198539,
+     "nmae": 0.37803736963697354,
+     "ssim": 0.09090624070127597,
+     "pearson": 0.010907069010065632,
+     "spearman": -0.08343353362633679,
+     "kendall": -0.058944416250690114,
+     "roc_auc": 0.3676463160858865,
+     "pr_auc": 0.002273254674405729
+    },
+    {
+     "id": "nvdla-small_freq_200_mp_1_fpu_65_fpa_1.0_p_1_fi_ar",
+     "design": "nvdla-small",
+     "group": "",
+     "shape": [
+      256,
+      256
+     ],
+     "seconds": 0.0,
+     "finite": true,
+     "nrms": 0.43538102025851994,
+     "nmae": 0.3574593688465263,
+     "ssim": 0.12681830963538082,
+     "pearson": -0.029957838536799532,
+     "spearman": -0.1106210369121941,
+     "kendall": -0.07557929936432144,
+     "roc_auc": 0.6759209270544629,
+     "pr_auc": 0.0007422732914379161
+    },
+    {
+     "id": "nvdla-small_freq_200_mp_1_fpu_65_fpa_1.0_p_2_fi_ar",
+     "design": "nvdla-small",
+     "group": "",
+     "shape": [
+      256,
+      256
+     ],
+     "seconds": 0.0016379356384277344,
+     "finite": true,
+     "nrms": 0.45135186938293753,
+     "nmae": 0.37560394142438497,
+     "ssim": 0.10593775639951906,
+     "pearson": -0.03138174475842381,
+     "spearman": -0.1357070202315027,
+     "kendall": -0.09539595677044034,
+     "roc_auc": 0.2323169883763919,
+     "pr_auc": 0.00017778560598387535
+    },
+    {
+     "id": "nvdla-small_freq_200_mp_2_fpu_50_fpa_1.0_p_1_fi_ar",
+     "design": "nvdla-small",
+     "group": "",
+     "shape": [
+      256,
+      256
+     ],
+     "seconds": 0.0,
+     "finite": true,
+     "nrms": 0.4357157001366706,
+     "nmae": 0.35649626028280956,
+     "ssim": 0.10512142108975572,
+     "pearson": 0.09157351643218925,
+     "spearman": 0.0690683570752348,
+     "kendall": 0.05066276386278971,
+     "roc_auc": 0.46856401648100104,
+     "pr_auc": 9.757553417231502e-05
+    },
+    {
+     "id": "nvdla-small_freq_200_mp_2_fpu_50_fpa_1.0_p_4_fi_ap",
+     "design": "nvdla-small",
+     "group": "",
+     "shape": [
+      256,
+      256
+     ],
+     "seconds": 0.0040891170501708984,
+     "finite": true,
+     "nrms": 0.3726272557324227,
+     "nmae": 0.3107913418857578,
+     "ssim": 0.19624636795796696,
+     "pearson": 0.25339581928711896,
+     "spearman": 0.1824122822645824,
+     "kendall": 0.12297234721741089,
+     "roc_auc": 0.6250590096290976,
+     "pr_auc": 0.005984637065378753
+    },
+    {
+     "id": "nvdla-small_freq_200_mp_2_fpu_55_fpa_1.0_p_1_fi_ar",
+     "design": "nvdla-small",
+     "group": "",
+     "shape": [
+      256,
+      256
+     ],
+     "seconds": 0.004044771194458008,
+     "finite": true,
+     "nrms": 0.39345110000560746,
+     "nmae": 0.31197045559702963,
+     "ssim": 0.12098320693657158,
+     "pearson": 0.2837346795868429,
+     "spearman": 0.28979148481507977,
+     "kendall": 0.20380942476867692,
+     "roc_auc": 0.5908993804742576,
+     "pr_auc": 5.588655921573521e-05
+    },
+    {
+     "id": "nvdla-small_freq_200_mp_2_fpu_55_fpa_1.0_p_2_fi_ar",
+     "design": "nvdla-small",
+     "group": "",
+     "shape": [
+      256,
+      256
+     ],
+     "seconds": 0.004738569259643555,
+     "finite": true,
+     "nrms": 0.39643140707981317,
+     "nmae": 0.31538290883775966,
+     "ssim": 0.10969557006025364,
+     "pearson": 0.263938906971964,
+     "spearman": 0.2553476063667178,
+     "kendall": 0.18011403493614264,
+     "roc_auc": 0.42673727636856845,
+     "pr_auc": 0.00047651311448167937
+    },
+    {
+     "id": "nvdla-small_freq_200_mp_2_fpu_60_fpa_1.0_p_1_fi_ar",
+     "design": "nvdla-small",
+     "group": "",
+     "shape": [
+      256,
+      256
+     ],
+     "seconds": 0.0050661563873291016,
+     "finite": true,
+     "nrms": 0.3804890652248608,
+     "nmae": 0.29953544522755104,
+     "ssim": 0.13363890183095403,
+     "pearson": 0.28407658116694645,
+     "spearman": 0.25641559270753733,
+     "kendall": 0.17977110413655925,
+     "roc_auc": 0.10100670970236188,
+     "pr_auc": 8.394236244178809e-05
+    },
+    {
+     "id": "nvdla-small_freq_200_mp_2_fpu_60_fpa_1.0_p_2_fi_ar",
+     "design": "nvdla-small",
+     "group": "",
+     "shape": [
+      256,
+      256
+     ],
+     "seconds": 0.0030248165130615234,
+     "finite": true,
+     "nrms": 0.39015813372170405,
+     "nmae": 0.31060887171873486,
+     "ssim": 0.12690813203579276,
+     "pearson": 0.2808788655405521,
+     "spearman": 0.2526291752982479,
+     "kendall": 0.17757953734217866,
+     "roc_auc": 0.7769768848851183,
+     "pr_auc": 0.0007511787146387809
+    },
+    {
+     "id": "nvdla-small_freq_200_mp_2_fpu_60_fpa_1.0_p_4_fi_ar",
+     "design": "nvdla-small",
+     "group": "",
+     "shape": [
+      256,
+      256
+     ],
+     "seconds": 0.003041982650756836,
+     "finite": true,
+     "nrms": 0.40470078323764974,
+     "nmae": 0.3275700191861502,
+     "ssim": 0.11618651520072901,
+     "pearson": 0.2712178951506688,
+     "spearman": 0.24705451100806394,
+     "kendall": 0.17384946990033337,
+     "roc_auc": 0.5262833144554875,
+     "pr_auc": 0.0066105399367476555
+    },
+    {
+     "id": "nvdla-small_freq_200_mp_2_fpu_65_fpa_1.0_p_2_fi_ap",
+     "design": "nvdla-small",
+     "group": "",
+     "shape": [
+      256,
+      256
+     ],
+     "seconds": 0.003037691116333008,
+     "finite": true,
+     "nrms": 0.3912924831902576,
+     "nmae": 0.3095229575315024,
+     "ssim": 0.15699304007734638,
+     "pearson": 0.22851078054123258,
+     "spearman": 0.16956391760012032,
+     "kendall": 0.12023143279804284,
+     "roc_auc": 0.5713596776150879,
+     "pr_auc": 0.009619632096753632
+    },
+    {
+     "id": "nvdla-small_freq_200_mp_2_fpu_65_fpa_1.0_p_4_fi_ap",
+     "design": "nvdla-small",
+     "group": "",
+     "shape": [
+      256,
+      256
+     ],
+     "seconds": 0.002023458480834961,
+     "finite": true,
+     "nrms": 0.40869731857413033,
+     "nmae": 0.3312449283894834,
+     "ssim": 0.16766060869541421,
+     "pearson": 0.2471881964426566,
+     "spearman": 0.21371816298052687,
+     "kendall": 0.15088918501969384,
+     "roc_auc": 0.5992517126815096,
+     "pr_auc": 0.037807749485549894
+    },
+    {
+     "id": "nvdla-small_freq_500_mp_1_fpu_50_fpa_1.0_p_1_fi_ap",
+     "design": "nvdla-small",
+     "group": "",
+     "shape": [
+      256,
+      256
+     ],
+     "seconds": 0.0030281543731689453,
+     "finite": true,
+     "nrms": 0.32059497439579476,
+     "nmae": 0.24469338409104055,
+     "ssim": 0.22415099699342958,
+     "pearson": 0.3628862017423857,
+     "spearman": 0.46083905579815126,
+     "kendall": 0.3199107346665988,
+     "roc_auc": 0.5407993909223461,
+     "pr_auc": 0.00100163922544312
+    },
+    {
+     "id": "nvdla-small_freq_500_mp_1_fpu_50_fpa_1.0_p_2_fi_ap",
+     "design": "nvdla-small",
+     "group": "",
+     "shape": [
+      256,
+      256
+     ],
+     "seconds": 0.002591848373413086,
+     "finite": true,
+     "nrms": 0.32623397296556433,
+     "nmae": 0.25354851274914836,
+     "ssim": 0.2233473288834284,
+     "pearson": 0.3653910189868501,
+     "spearman": 0.45815530580511493,
+     "kendall": 0.3172552062577927,
+     "roc_auc": 0.542271311038534,
+     "pr_auc": 0.003339336081496105
+    },
+    {
+     "id": "nvdla-small_freq_500_mp_1_fpu_50_fpa_1.0_p_4_fi_ap",
+     "design": "nvdla-small",
+     "group": "",
+     "shape": [
+      256,
+      256
+     ],
+     "seconds": 0.002040863037109375,
+     "finite": true,
+     "nrms": 0.3377890333187258,
+     "nmae": 0.2662823115892074,
+     "ssim": 0.2123751668465092,
+     "pearson": 0.37671560599690834,
+     "spearman": 0.45878320138624346,
+     "kendall": 0.3161890981846479,
+     "roc_auc": 0.6604138138152181,
+     "pr_auc": 0.006486946043697103
+    },
+    {
+     "id": "nvdla-small_freq_500_mp_1_fpu_55_fpa_1.0_p_1_fi_ar",
+     "design": "nvdla-small",
+     "group": "",
+     "shape": [
+      256,
+      256
+     ],
+     "seconds": 0.0,
+     "finite": true,
+     "nrms": 0.3882171179198089,
+     "nmae": 0.3048968136040389,
+     "ssim": 0.1210853276450016,
+     "pearson": 0.3159493348919652,
+     "spearman": 0.3118139447148309,
+     "kendall": 0.22405253860946236,
+     "roc_auc": null,
+     "pr_auc": null
+    },
+    {
+     "id": "nvdla-small_freq_500_mp_1_fpu_55_fpa_1.0_p_2_fi_ar",
+     "design": "nvdla-small",
+     "group": "",
+     "shape": [
+      256,
+      256
+     ],
+     "seconds": 0.003249645233154297,
+     "finite": true,
+     "nrms": 0.3876764225391082,
+     "nmae": 0.3090991281153353,
+     "ssim": 0.10981945042421658,
+     "pearson": 0.31632578537550315,
+     "spearman": 0.3148186926861919,
+     "kendall": 0.22720366177623685,
+     "roc_auc": 0.6054661899631428,
+     "pr_auc": 0.0015518267119517544
+    },
+    {
+     "id": "nvdla-small_freq_500_mp_1_fpu_55_fpa_1.0_p_4_fi_ar",
+     "design": "nvdla-small",
+     "group": "",
+     "shape": [
+      256,
+      256
+     ],
+     "seconds": 0.002015829086303711,
+     "finite": true,
+     "nrms": 0.40124452087117557,
+     "nmae": 0.3258566621263764,
+     "ssim": 0.08757411249553816,
+     "pearson": 0.3239772451581538,
+     "spearman": 0.3112050574838833,
+     "kendall": 0.22279232542278374,
+     "roc_auc": 0.6177093733580038,
+     "pr_auc": 0.0035743912186231167
+    },
+    {
+     "id": "nvdla-small_freq_500_mp_1_fpu_60_fpa_1.0_p_1_fi_ar",
+     "design": "nvdla-small",
+     "group": "",
+     "shape": [
+      256,
+      256
+     ],
+     "seconds": 0.005568265914916992,
+     "finite": true,
+     "nrms": 0.399877829763353,
+     "nmae": 0.317179529720697,
+     "ssim": 0.13864536214344256,
+     "pearson": 0.1677855754425854,
+     "spearman": 0.12480694110093059,
+     "kendall": 0.08730934589567436,
+     "roc_auc": 0.4824838551344247,
+     "pr_auc": 0.0002743309156796045
+    },
+    {
+     "id": "nvdla-small_freq_500_mp_1_fpu_60_fpa_1.0_p_2_fi_ar",
+     "design": "nvdla-small",
+     "group": "",
+     "shape": [
+      256,
+      256
+     ],
+     "seconds": 0.0020203590393066406,
+     "finite": true,
+     "nrms": 0.40321189303096194,
+     "nmae": 0.32321519517905656,
+     "ssim": 0.12395310904610883,
+     "pearson": 0.1964253845682675,
+     "spearman": 0.1344291347281351,
+     "kendall": 0.09181330332604977,
+     "roc_auc": 0.37112274854744237,
+     "pr_auc": 0.0010246998842161248
+    },
+    {
+     "id": "nvdla-small_freq_500_mp_1_fpu_60_fpa_1.0_p_4_fi_ar",
+     "design": "nvdla-small",
+     "group": "",
+     "shape": [
+      256,
+      256
+     ],
+     "seconds": 0.004483222961425781,
+     "finite": true,
+     "nrms": 0.4200062417178597,
+     "nmae": 0.342050755844969,
+     "ssim": 0.11161489249889181,
+     "pearson": 0.1775744659802258,
+     "spearman": 0.12045227778130192,
+     "kendall": 0.0834582595687359,
+     "roc_auc": 0.5423352302349117,
+     "pr_auc": 0.005458504649129914
+    },
+    {
+     "id": "nvdla-small_freq_500_mp_1_fpu_65_fpa_1.0_p_1_fi_ar",
+     "design": "nvdla-small",
+     "group": "",
+     "shape": [
+      256,
+      256
+     ],
+     "seconds": 0.0020210742950439453,
+     "finite": true,
+     "nrms": 0.43719741986424443,
+     "nmae": 0.3585188849063785,
+     "ssim": 0.1271791817948209,
+     "pearson": -0.006592792798569835,
+     "spearman": -0.08765807040625918,
+     "kendall": -0.0604138885192044,
+     "roc_auc": 0.5698419725194672,
+     "pr_auc": 0.0004932657585148205
+    },
+    {
+     "id": "nvdla-small_freq_500_mp_1_fpu_65_fpa_1.0_p_2_fi_ar",
+     "design": "nvdla-small",
+     "group": "",
+     "shape": [
+      256,
+      256
+     ],
+     "seconds": 0.005701780319213867,
+     "finite": true,
+     "nrms": 0.4499277825019932,
+     "nmae": 0.37454440789701504,
+     "ssim": 0.10651238772137386,
+     "pearson": -0.020021792329383944,
+     "spearman": -0.10470291581187435,
+     "kendall": -0.07201317096296583,
+     "roc_auc": 0.38801577366784795,
+     "pr_auc": 0.001038646041613689
+    },
+    {
+     "id": "nvdla-small_freq_500_mp_2_fpu_50_fpa_1.0_p_1_fi_ap",
+     "design": "nvdla-small",
+     "group": "",
+     "shape": [
+      256,
+      256
+     ],
+     "seconds": 0.0,
+     "finite": true,
+     "nrms": 0.35460288777899446,
+     "nmae": 0.28410252460944824,
+     "ssim": 0.2079687495897619,
+     "pearson": 0.2468833928791346,
+     "spearman": 0.15475632530052327,
+     "kendall": 0.10181734472299621,
+     "roc_auc": 0.41066032840922967,
+     "pr_auc": 0.0001134195063241169
+    },
+    {
+     "id": "nvdla-small_freq_500_mp_2_fpu_50_fpa_1.0_p_2_fi_ap",
+     "design": "nvdla-small",
+     "group": "",
+     "shape": [
+      256,
+      256
+     ],
+     "seconds": 0.008827447891235352,
+     "finite": true,
+     "nrms": 0.3632704466990939,
+     "nmae": 0.29446817207400194,
+     "ssim": 0.19438472085137062,
+     "pearson": 0.24627269206797406,
+     "spearman": 0.16429099373552478,
+     "kendall": 0.10837007222263154,
+     "roc_auc": 0.47101777434117564,
+     "pr_auc": 0.0013823120716602295
+    },
+    {
+     "id": "nvdla-small_freq_500_mp_2_fpu_50_fpa_1.0_p_4_fi_ap",
+     "design": "nvdla-small",
+     "group": "",
+     "shape": [
+      256,
+      256
+     ],
+     "seconds": 0.0030295848846435547,
+     "finite": true,
+     "nrms": 0.3829680197076211,
+     "nmae": 0.3175437058703443,
+     "ssim": 0.183926714138313,
+     "pearson": 0.22187944973833956,
+     "spearman": 0.1467499909195204,
+     "kendall": 0.09795995395305589,
+     "roc_auc": 0.6831293335614808,
+     "pr_auc": 0.012415269375645563
+    },
+    {
+     "id": "nvdla-small_freq_500_mp_2_fpu_55_fpa_1.0_p_1_fi_ap",
+     "design": "nvdla-small",
+     "group": "",
+     "shape": [
+      256,
+      256
+     ],
+     "seconds": 0.00460505485534668,
+     "finite": true,
+     "nrms": 0.3455916659694052,
+     "nmae": 0.2704795873385856,
+     "ssim": 0.20338101211734388,
+     "pearson": 0.3746838106534405,
+     "spearman": 0.34707644968277485,
+     "kendall": 0.24133774203815064,
+     "roc_auc": 0.6196210973132289,
+     "pr_auc": 0.0004762712332070626
+    },
+    {
+     "id": "nvdla-small_freq_500_mp_2_fpu_55_fpa_1.0_p_2_fi_ap",
+     "design": "nvdla-small",
+     "group": "",
+     "shape": [
+      256,
+      256
+     ],
+     "seconds": 0.0020096302032470703,
+     "finite": true,
+     "nrms": 0.35181636539143346,
+     "nmae": 0.2789481605217369,
+     "ssim": 0.19680164897497215,
+     "pearson": 0.3618680873420018,
+     "spearman": 0.3292393113230361,
+     "kendall": 0.22876155873787826,
+     "roc_auc": 0.457485812915871,
+     "pr_auc": 0.002444351102178852
+    },
+    {
+     "id": "nvdla-small_freq_500_mp_2_fpu_55_fpa_1.0_p_4_fi_ap",
+     "design": "nvdla-small",
+     "group": "",
+     "shape": [
+      256,
+      256
+     ],
+     "seconds": 0.0,
+     "finite": true,
+     "nrms": 0.3626149905873845,
+     "nmae": 0.2928137636461052,
+     "ssim": 0.19423137626997725,
+     "pearson": 0.3809114562130729,
+     "spearman": 0.35956072252602433,
+     "kendall": 0.25053687038587286,
+     "roc_auc": 0.6788485444412805,
+     "pr_auc": 0.017206059715183786
+    },
+    {
+     "id": "nvdla-small_freq_500_mp_2_fpu_60_fpa_1.0_p_1_fi_ap",
+     "design": "nvdla-small",
+     "group": "",
+     "shape": [
+      256,
+      256
+     ],
+     "seconds": 0.008616447448730469,
+     "finite": true,
+     "nrms": 0.32819975025766907,
+     "nmae": 0.255311605345209,
+     "ssim": 0.21097033151573835,
+     "pearson": 0.4536543632640426,
+     "spearman": 0.4362827305039969,
+     "kendall": 0.30404277415085373,
+     "roc_auc": 0.32819279401309126,
+     "pr_auc": 0.0009997913745926265
+    },
+    {
+     "id": "nvdla-small_freq_500_mp_2_fpu_60_fpa_1.0_p_2_fi_ap",
+     "design": "nvdla-small",
+     "group": "",
+     "shape": [
+      256,
+      256
+     ],
+     "seconds": 0.002012014389038086,
+     "finite": true,
+     "nrms": 0.3421524439199112,
+     "nmae": 0.27169353853150613,
+     "ssim": 0.21125090538656538,
+     "pearson": 0.4523365374989661,
+     "spearman": 0.43626433087739,
+     "kendall": 0.3040536762344336,
+     "roc_auc": 0.3473278102391163,
+     "pr_auc": 0.0022571193809182554
+    },
+    {
+     "id": "nvdla-small_freq_500_mp_2_fpu_60_fpa_1.0_p_4_fi_ar",
+     "design": "nvdla-small",
+     "group": "",
+     "shape": [
+      256,
+      256
+     ],
+     "seconds": 0.002010345458984375,
+     "finite": true,
+     "nrms": 0.38093231590379556,
+     "nmae": 0.3106465058010489,
+     "ssim": 0.12347365912770357,
+     "pearson": 0.3916666301627051,
+     "spearman": 0.4100669982408014,
+     "kendall": 0.2888716703204679,
+     "roc_auc": 0.5588056347067972,
+     "pr_auc": 0.005782852256503244
+    },
+    {
+     "id": "nvdla-small_freq_500_mp_2_fpu_65_fpa_1.0_p_1_fi_ar",
+     "design": "nvdla-small",
+     "group": "",
+     "shape": [
+      256,
+      256
+     ],
+     "seconds": 0.004532575607299805,
+     "finite": true,
+     "nrms": 0.3807060136297046,
+     "nmae": 0.30184058941009295,
+     "ssim": 0.16302957040656246,
+     "pearson": 0.30817865953641155,
+     "spearman": 0.31921187068294427,
+     "kendall": 0.2234501731660887,
+     "roc_auc": 0.6834230217145649,
+     "pr_auc": 0.0012581903196243606
+    },
+    {
+     "id": "nvdla-small_freq_500_mp_2_fpu_65_fpa_1.0_p_2_fi_ar",
+     "design": "nvdla-small",
+     "group": "",
+     "shape": [
+      256,
+      256
+     ],
+     "seconds": 0.0,
+     "finite": true,
+     "nrms": 0.38632802724457194,
+     "nmae": 0.30841839142640093,
+     "ssim": 0.13612088630605015,
+     "pearson": 0.297684196792028,
+     "spearman": 0.3117330072361447,
+     "kendall": 0.21855816602650804,
+     "roc_auc": 0.6373143646026894,
+     "pr_auc": 0.003084353583012714
+    },
+    {
+     "id": "nvdla-small_freq_500_mp_2_fpu_65_fpa_1.0_p_4_fi_ar",
+     "design": "nvdla-small",
+     "group": "",
+     "shape": [
+      256,
+      256
+     ],
+     "seconds": 0.00473785400390625,
+     "finite": true,
+     "nrms": 0.40506854524797387,
+     "nmae": 0.3319840607847503,
+     "ssim": 0.14527302379268717,
+     "pearson": 0.3069969968553093,
+     "spearman": 0.3210789739342638,
+     "kendall": 0.22656475746712143,
+     "roc_auc": 0.6382171878847575,
+     "pr_auc": 0.01195607041616838
+    }
+   ],
+   "summary": {
+    "mean_nrms": 0.3880695676909485,
+    "n_excluded_nrms": 1,
+    "mean_nmae": 0.3126114214083069,
+    "n_excluded_nmae": 1,
+    "mean_ssim": 0.1492655717365406,
+    "mean_pearson": 0.24040992195282768,
+    "n_excluded_pearson": 1,
+    "mean_spearman": 0.21164642731706584,
+    "n_excluded_spearman": 1,
+    "mean_kendall": 0.14777094986821374,
+    "n_excluded_kendall": 1,
+    "mean_roc_auc": 0.5208426396186243,
+    "n_excluded_roc_auc": 2,
+    "mean_pr_auc": 0.004203979887331393,
+    "n_excluded_pr_auc": 2,
+    "mean_seconds": 0.0031189680099487304,
+    "n": 40
+   },
+   "fit_seconds": 2.0577969551086426
+  },
+  "scalar": {
+   "rows": [
+    {
+     "id": "nvdla-small_freq_200_mp_1_fpu_50_fpa_1.0_p_1_fi_ap",
+     "design": "nvdla-small",
+     "group": "",
+     "shape": [
+      256,
+      256
+     ],
+     "seconds": 0.0,
+     "finite": true,
+     "nrms": 0.3250654765244575,
+     "nmae": 0.27681392022334694,
+     "ssim": 0.261399830983235,
+     "pearson": null,
+     "spearman": null,
+     "kendall": null,
+     "roc_auc": 0.5,
+     "pr_auc": 0.001068115234375
+    },
+    {
+     "id": "nvdla-small_freq_200_mp_1_fpu_55_fpa_1.0_p_1_fi_ar",
+     "design": "nvdla-small",
+     "group": "",
+     "shape": [
+      256,
+      256
+     ],
+     "seconds": 0.0,
+     "finite": true,
+     "nrms": null,
+     "nmae": null,
+     "ssim": 0.000310098194875331,
+     "pearson": null,
+     "spearman": null,
+     "kendall": null,
+     "roc_auc": null,
+     "pr_auc": null
+    },
+    {
+     "id": "nvdla-small_freq_200_mp_1_fpu_55_fpa_1.0_p_4_fi_ap",
+     "design": "nvdla-small",
+     "group": "",
+     "shape": [
+      256,
+      256
+     ],
+     "seconds": 0.0,
+     "finite": true,
+     "nrms": 0.38175366149684403,
+     "nmae": 0.3484006508394035,
+     "ssim": 0.23988232568085002,
+     "pearson": null,
+     "spearman": null,
+     "kendall": null,
+     "roc_auc": 0.5,
+     "pr_auc": 0.005889892578125
+    },
+    {
+     "id": "nvdla-small_freq_200_mp_1_fpu_60_fpa_1.0_p_1_fi_ap",
+     "design": "nvdla-small",
+     "group": "",
+     "shape": [
+      256,
+      256
+     ],
+     "seconds": 0.0,
+     "finite": true,
+     "nrms": 0.35214785713703606,
+     "nmae": 0.3080402424461016,
+     "ssim": 0.25146041875624925,
+     "pearson": null,
+     "spearman": null,
+     "kendall": null,
+     "roc_auc": 0.5,
+     "pr_auc": 0.0006103515625
+    },
+    {
+     "id": "nvdla-small_freq_200_mp_1_fpu_60_fpa_1.0_p_2_fi_ar",
+     "design": "nvdla-small",
+     "group": "",
+     "shape": [
+      256,
+      256
+     ],
+     "seconds": 0.0,
+     "finite": true,
+     "nrms": 0.38552462827502776,
+     "nmae": 0.34546334148831254,
+     "ssim": 0.15615924757031865,
+     "pearson": null,
+     "spearman": null,
+     "kendall": null,
+     "roc_auc": 0.5,
+     "pr_auc": 0.0003814697265625
+    },
+    {
+     "id": "nvdla-small_freq_200_mp_1_fpu_60_fpa_1.0_p_4_fi_ar",
+     "design": "nvdla-small",
+     "group": "",
+     "shape": [
+      256,
+      256
+     ],
+     "seconds": 0.001585245132446289,
+     "finite": true,
+     "nrms": 0.39829806817831404,
+     "nmae": 0.3626976556153841,
+     "ssim": 0.13787556351125071,
+     "pearson": null,
+     "spearman": null,
+     "kendall": null,
+     "roc_auc": 0.5,
+     "pr_auc": 0.0031585693359375
+    },
+    {
+     "id": "nvdla-small_freq_200_mp_1_fpu_65_fpa_1.0_p_1_fi_ar",
+     "design": "nvdla-small",
+     "group": "",
+     "shape": [
+      256,
+      256
+     ],
+     "seconds": 0.0,
+     "finite": true,
+     "nrms": 0.3705422640994014,
+     "nmae": 0.32626407940707625,
+     "ssim": 0.193133177994744,
+     "pearson": null,
+     "spearman": null,
+     "kendall": null,
+     "roc_auc": 0.5,
+     "pr_auc": 0.0005035400390625
+    },
+    {
+     "id": "nvdla-small_freq_200_mp_1_fpu_65_fpa_1.0_p_2_fi_ar",
+     "design": "nvdla-small",
+     "group": "",
+     "shape": [
+      256,
+      256
+     ],
+     "seconds": 0.0,
+     "finite": true,
+     "nrms": 0.3879339933276513,
+     "nmae": 0.3486063831852847,
+     "ssim": 0.1829680979994087,
+     "pearson": null,
+     "spearman": null,
+     "kendall": null,
+     "roc_auc": 0.5,
+     "pr_auc": 0.000274658203125
+    },
+    {
+     "id": "nvdla-small_freq_200_mp_2_fpu_50_fpa_1.0_p_1_fi_ar",
+     "design": "nvdla-small",
+     "group": "",
+     "shape": [
+      256,
+      256
+     ],
+     "seconds": 0.0,
+     "finite": true,
+     "nrms": 0.3960442904033644,
+     "nmae": 0.35046691003391733,
+     "ssim": 0.13536149733371677,
+     "pearson": null,
+     "spearman": null,
+     "kendall": null,
+     "roc_auc": 0.5,
+     "pr_auc": 9.1552734375e-05
+    },
+    {
+     "id": "nvdla-small_freq_200_mp_2_fpu_50_fpa_1.0_p_4_fi_ap",
+     "design": "nvdla-small",
+     "group": "",
+     "shape": [
+      256,
+      256
+     ],
+     "seconds": 0.0,
+     "finite": true,
+     "nrms": 0.36283399181532106,
+     "nmae": 0.3216308045838854,
+     "ssim": 0.2626421106448032,
+     "pearson": null,
+     "spearman": null,
+     "kendall": null,
+     "roc_auc": 0.5,
+     "pr_auc": 0.0049591064453125
+    },
+    {
+     "id": "nvdla-small_freq_200_mp_2_fpu_55_fpa_1.0_p_1_fi_ar",
+     "design": "nvdla-small",
+     "group": "",
+     "shape": [
+      256,
+      256
+     ],
+     "seconds": 0.0,
+     "finite": true,
+     "nrms": 0.39274403203543046,
+     "nmae": 0.3484225291667432,
+     "ssim": 0.16299538816452083,
+     "pearson": null,
+     "spearman": null,
+     "kendall": null,
+     "roc_auc": 0.5,
+     "pr_auc": 3.0517578125e-05
+    },
+    {
+     "id": "nvdla-small_freq_200_mp_2_fpu_55_fpa_1.0_p_2_fi_ar",
+     "design": "nvdla-small",
+     "group": "",
+     "shape": [
+      256,
+      256
+     ],
+     "seconds": 0.0,
+     "finite": true,
+     "nrms": 0.3926556814889677,
+     "nmae": 0.35097951001860744,
+     "ssim": 0.1395978240880413,
+     "pearson": null,
+     "spearman": null,
+     "kendall": null,
+     "roc_auc": 0.5,
+     "pr_auc": 0.0005645751953125
+    },
+    {
+     "id": "nvdla-small_freq_200_mp_2_fpu_60_fpa_1.0_p_1_fi_ar",
+     "design": "nvdla-small",
+     "group": "",
+     "shape": [
+      256,
+      256
+     ],
+     "seconds": 0.0,
+     "finite": true,
+     "nrms": 0.3793803377829157,
+     "nmae": 0.33815130523426074,
+     "ssim": 0.17918280039112627,
+     "pearson": null,
+     "spearman": null,
+     "kendall": null,
+     "roc_auc": 0.5,
+     "pr_auc": 0.0001373291015625
+    },
+    {
+     "id": "nvdla-small_freq_200_mp_2_fpu_60_fpa_1.0_p_2_fi_ar",
+     "design": "nvdla-small",
+     "group": "",
+     "shape": [
+      256,
+      256
+     ],
+     "seconds": 0.0,
+     "finite": true,
+     "nrms": 0.390399108031603,
+     "nmae": 0.35359423184454236,
+     "ssim": 0.16900854687158665,
+     "pearson": null,
+     "spearman": null,
+     "kendall": null,
+     "roc_auc": 0.5,
+     "pr_auc": 0.000335693359375
+    },
+    {
+     "id": "nvdla-small_freq_200_mp_2_fpu_60_fpa_1.0_p_4_fi_ar",
+     "design": "nvdla-small",
+     "group": "",
+     "shape": [
+      256,
+      256
+     ],
+     "seconds": 0.0,
+     "finite": true,
+     "nrms": 0.4050766944155043,
+     "nmae": 0.3718739477463294,
+     "ssim": 0.1463097836520465,
+     "pearson": null,
+     "spearman": null,
+     "kendall": null,
+     "roc_auc": 0.5,
+     "pr_auc": 0.0046539306640625
+    },
+    {
+     "id": "nvdla-small_freq_200_mp_2_fpu_65_fpa_1.0_p_2_fi_ap",
+     "design": "nvdla-small",
+     "group": "",
+     "shape": [
+      256,
+      256
+     ],
+     "seconds": 0.0,
+     "finite": true,
+     "nrms": 0.37890893861309105,
+     "nmae": 0.3402464522640221,
+     "ssim": 0.23075149468144443,
+     "pearson": null,
+     "spearman": null,
+     "kendall": null,
+     "roc_auc": 0.5,
+     "pr_auc": 0.0013275146484375
+    },
+    {
+     "id": "nvdla-small_freq_200_mp_2_fpu_65_fpa_1.0_p_4_fi_ap",
+     "design": "nvdla-small",
+     "group": "",
+     "shape": [
+      256,
+      256
+     ],
+     "seconds": 0.0,
+     "finite": true,
+     "nrms": 0.404089761787516,
+     "nmae": 0.3723660696089427,
+     "ssim": 0.23028898426327948,
+     "pearson": null,
+     "spearman": null,
+     "kendall": null,
+     "roc_auc": 0.5,
+     "pr_auc": 0.0164031982421875
+    },
+    {
+     "id": "nvdla-small_freq_500_mp_1_fpu_50_fpa_1.0_p_1_fi_ap",
+     "design": "nvdla-small",
+     "group": "",
+     "shape": [
+      256,
+      256
+     ],
+     "seconds": 0.0,
+     "finite": true,
+     "nrms": 0.3273469168034744,
+     "nmae": 0.2800082930360821,
+     "ssim": 0.2754484817749267,
+     "pearson": null,
+     "spearman": null,
+     "kendall": null,
+     "roc_auc": 0.5,
+     "pr_auc": 0.0009918212890625
+    },
+    {
+     "id": "nvdla-small_freq_500_mp_1_fpu_50_fpa_1.0_p_2_fi_ap",
+     "design": "nvdla-small",
+     "group": "",
+     "shape": [
+      256,
+      256
+     ],
+     "seconds": 0.0,
+     "finite": true,
+     "nrms": 0.3348775298696442,
+     "nmae": 0.28945765693325154,
+     "ssim": 0.2591897450453002,
+     "pearson": null,
+     "spearman": null,
+     "kendall": null,
+     "roc_auc": 0.5,
+     "pr_auc": 0.0032958984375
+    },
+    {
+     "id": "nvdla-small_freq_500_mp_1_fpu_50_fpa_1.0_p_4_fi_ap",
+     "design": "nvdla-small",
+     "group": "",
+     "shape": [
+      256,
+      256
+     ],
+     "seconds": 0.0,
+     "finite": true,
+     "nrms": 0.35268273907230635,
+     "nmae": 0.31188302349844005,
+     "ssim": 0.2526025285166946,
+     "pearson": null,
+     "spearman": null,
+     "kendall": null,
+     "roc_auc": 0.5,
+     "pr_auc": 0.0045013427734375
+    },
+    {
+     "id": "nvdla-small_freq_500_mp_1_fpu_55_fpa_1.0_p_1_fi_ar",
+     "design": "nvdla-small",
+     "group": "",
+     "shape": [
+      256,
+      256
+     ],
+     "seconds": 0.0,
+     "finite": true,
+     "nrms": 0.3943635806687921,
+     "nmae": 0.3504590522683978,
+     "ssim": 0.15877531667573042,
+     "pearson": null,
+     "spearman": null,
+     "kendall": null,
+     "roc_auc": null,
+     "pr_auc": null
+    },
+    {
+     "id": "nvdla-small_freq_500_mp_1_fpu_55_fpa_1.0_p_2_fi_ar",
+     "design": "nvdla-small",
+     "group": "",
+     "shape": [
+      256,
+      256
+     ],
+     "seconds": 0.0,
+     "finite": true,
+     "nrms": 0.3957449464386338,
+     "nmae": 0.3577270869384724,
+     "ssim": 0.13836328417372698,
+     "pearson": null,
+     "spearman": null,
+     "kendall": null,
+     "roc_auc": 0.5,
+     "pr_auc": 0.0009918212890625
+    },
+    {
+     "id": "nvdla-small_freq_500_mp_1_fpu_55_fpa_1.0_p_4_fi_ar",
+     "design": "nvdla-small",
+     "group": "",
+     "shape": [
+      256,
+      256
+     ],
+     "seconds": 0.0,
+     "finite": true,
+     "nrms": 0.41356010875694826,
+     "nmae": 0.38016820064126816,
+     "ssim": 0.1058531405481969,
+     "pearson": null,
+     "spearman": null,
+     "kendall": null,
+     "roc_auc": 0.5,
+     "pr_auc": 0.0028533935546875
+    },
+    {
+     "id": "nvdla-small_freq_500_mp_1_fpu_60_fpa_1.0_p_1_fi_ar",
+     "design": "nvdla-small",
+     "group": "",
+     "shape": [
+      256,
+      256
+     ],
+     "seconds": 0.0,
+     "finite": true,
+     "nrms": 0.3736306519182437,
+     "nmae": 0.3302681886072518,
+     "ssim": 0.18520162969517734,
+     "pearson": null,
+     "spearman": null,
+     "kendall": null,
+     "roc_auc": 0.5,
+     "pr_auc": 0.0002899169921875
+    },
+    {
+     "id": "nvdla-small_freq_500_mp_1_fpu_60_fpa_1.0_p_2_fi_ar",
+     "design": "nvdla-small",
+     "group": "",
+     "shape": [
+      256,
+      256
+     ],
+     "seconds": 0.0,
+     "finite": true,
+     "nrms": 0.3847630818713836,
+     "nmae": 0.3456226444411705,
+     "ssim": 0.16790619837326387,
+     "pearson": null,
+     "spearman": null,
+     "kendall": null,
+     "roc_auc": 0.5,
+     "pr_auc": 0.0012359619140625
+    },
+    {
+     "id": "nvdla-small_freq_500_mp_1_fpu_60_fpa_1.0_p_4_fi_ar",
+     "design": "nvdla-small",
+     "group": "",
+     "shape": [
+      256,
+      256
+     ],
+     "seconds": 0.0,
+     "finite": true,
+     "nrms": 0.3999104963680035,
+     "nmae": 0.3642548508237648,
+     "ssim": 0.145800812209896,
+     "pearson": null,
+     "spearman": null,
+     "kendall": null,
+     "roc_auc": 0.5,
+     "pr_auc": 0.0048828125
+    },
+    {
+     "id": "nvdla-small_freq_500_mp_1_fpu_65_fpa_1.0_p_1_fi_ar",
+     "design": "nvdla-small",
+     "group": "",
+     "shape": [
+      256,
+      256
+     ],
+     "seconds": 0.0,
+     "finite": true,
+     "nrms": 0.3769775299232715,
+     "nmae": 0.33373172663734435,
+     "ssim": 0.19578167774983396,
+     "pearson": null,
+     "spearman": null,
+     "kendall": null,
+     "roc_auc": 0.5,
+     "pr_auc": 0.0004119873046875
+    },
+    {
+     "id": "nvdla-small_freq_500_mp_1_fpu_65_fpa_1.0_p_2_fi_ar",
+     "design": "nvdla-small",
+     "group": "",
+     "shape": [
+      256,
+      256
+     ],
+     "seconds": 0.0,
+     "finite": true,
+     "nrms": 0.38942897955621975,
+     "nmae": 0.3507407599079864,
+     "ssim": 0.18420615663053833,
+     "pearson": null,
+     "spearman": null,
+     "kendall": null,
+     "roc_auc": 0.5,
+     "pr_auc": 0.0013885498046875
+    },
+    {
+     "id": "nvdla-small_freq_500_mp_2_fpu_50_fpa_1.0_p_1_fi_ap",
+     "design": "nvdla-small",
+     "group": "",
+     "shape": [
+      256,
+      256
+     ],
+     "seconds": 0.0,
+     "finite": true,
+     "nrms": 0.3383883853082709,
+     "nmae": 0.29274945683615033,
+     "ssim": 0.2787639583594394,
+     "pearson": null,
+     "spearman": null,
+     "kendall": null,
+     "roc_auc": 0.5,
+     "pr_auc": 0.0001220703125
+    },
+    {
+     "id": "nvdla-small_freq_500_mp_2_fpu_50_fpa_1.0_p_2_fi_ap",
+     "design": "nvdla-small",
+     "group": "",
+     "shape": [
+      256,
+      256
+     ],
+     "seconds": 0.0,
+     "finite": true,
+     "nrms": 0.34948960815223545,
+     "nmae": 0.30712446629822343,
+     "ssim": 0.2645804360727261,
+     "pearson": null,
+     "spearman": null,
+     "kendall": null,
+     "roc_auc": 0.5,
+     "pr_auc": 0.0013885498046875
+    },
+    {
+     "id": "nvdla-small_freq_500_mp_2_fpu_50_fpa_1.0_p_4_fi_ap",
+     "design": "nvdla-small",
+     "group": "",
+     "shape": [
+      256,
+      256
+     ],
+     "seconds": 0.0,
+     "finite": true,
+     "nrms": 0.36735062945643937,
+     "nmae": 0.3258309549661286,
+     "ssim": 0.24810913842218538,
+     "pearson": null,
+     "spearman": null,
+     "kendall": null,
+     "roc_auc": 0.5,
+     "pr_auc": 0.007568359375
+    },
+    {
+     "id": "nvdla-small_freq_500_mp_2_fpu_55_fpa_1.0_p_1_fi_ap",
+     "design": "nvdla-small",
+     "group": "",
+     "shape": [
+      256,
+      256
+     ],
+     "seconds": 0.0,
+     "finite": true,
+     "nrms": 0.36220419991820496,
+     "nmae": 0.32131629847387566,
+     "ssim": 0.26654855140167727,
+     "pearson": null,
+     "spearman": null,
+     "kendall": null,
+     "roc_auc": 0.5,
+     "pr_auc": 0.0003204345703125
+    },
+    {
+     "id": "nvdla-small_freq_500_mp_2_fpu_55_fpa_1.0_p_2_fi_ap",
+     "design": "nvdla-small",
+     "group": "",
+     "shape": [
+      256,
+      256
+     ],
+     "seconds": 0.0,
+     "finite": true,
+     "nrms": 0.3662448317999707,
+     "nmae": 0.3287780915589605,
+     "ssim": 0.2574384834831987,
+     "pearson": null,
+     "spearman": null,
+     "kendall": null,
+     "roc_auc": 0.5,
+     "pr_auc": 0.002593994140625
+    },
+    {
+     "id": "nvdla-small_freq_500_mp_2_fpu_55_fpa_1.0_p_4_fi_ap",
+     "design": "nvdla-small",
+     "group": "",
+     "shape": [
+      256,
+      256
+     ],
+     "seconds": 0.0,
+     "finite": true,
+     "nrms": 0.3846834782524356,
+     "nmae": 0.3484404313286938,
+     "ssim": 0.24387552721951805,
+     "pearson": null,
+     "spearman": null,
+     "kendall": null,
+     "roc_auc": 0.5,
+     "pr_auc": 0.010040283203125
+    },
+    {
+     "id": "nvdla-small_freq_500_mp_2_fpu_60_fpa_1.0_p_1_fi_ap",
+     "design": "nvdla-small",
+     "group": "",
+     "shape": [
+      256,
+      256
+     ],
+     "seconds": 0.0,
+     "finite": true,
+     "nrms": 0.36362266024206885,
+     "nmae": 0.3235336366735021,
+     "ssim": 0.26694322485724586,
+     "pearson": null,
+     "spearman": null,
+     "kendall": null,
+     "roc_auc": 0.5,
+     "pr_auc": 0.0014801025390625
+    },
+    {
+     "id": "nvdla-small_freq_500_mp_2_fpu_60_fpa_1.0_p_2_fi_ap",
+     "design": "nvdla-small",
+     "group": "",
+     "shape": [
+      256,
+      256
+     ],
+     "seconds": 0.0,
+     "finite": true,
+     "nrms": 0.38031691683451124,
+     "nmae": 0.34376719955985274,
+     "ssim": 0.2528465627713043,
+     "pearson": null,
+     "spearman": null,
+     "kendall": null,
+     "roc_auc": 0.5,
+     "pr_auc": 0.0031280517578125
+    },
+    {
+     "id": "nvdla-small_freq_500_mp_2_fpu_60_fpa_1.0_p_4_fi_ar",
+     "design": "nvdla-small",
+     "group": "",
+     "shape": [
+      256,
+      256
+     ],
+     "seconds": 0.0,
+     "finite": true,
+     "nrms": 0.4089764213642818,
+     "nmae": 0.376163265983563,
+     "ssim": 0.14438923815297353,
+     "pearson": null,
+     "spearman": null,
+     "kendall": null,
+     "roc_auc": 0.5,
+     "pr_auc": 0.0052337646484375
+    },
+    {
+     "id": "nvdla-small_freq_500_mp_2_fpu_65_fpa_1.0_p_1_fi_ar",
+     "design": "nvdla-small",
+     "group": "",
+     "shape": [
+      256,
+      256
+     ],
+     "seconds": 0.0,
+     "finite": true,
+     "nrms": 0.3860392119566727,
+     "nmae": 0.3461514679930719,
+     "ssim": 0.1990239081609841,
+     "pearson": null,
+     "spearman": null,
+     "kendall": null,
+     "roc_auc": 0.5,
+     "pr_auc": 0.000762939453125
+    },
+    {
+     "id": "nvdla-small_freq_500_mp_2_fpu_65_fpa_1.0_p_2_fi_ar",
+     "design": "nvdla-small",
+     "group": "",
+     "shape": [
+      256,
+      256
+     ],
+     "seconds": 0.0,
+     "finite": true,
+     "nrms": 0.3904216270478633,
+     "nmae": 0.3531251319918844,
+     "ssim": 0.18717044462709018,
+     "pearson": null,
+     "spearman": null,
+     "kendall": null,
+     "roc_auc": 0.5,
+     "pr_auc": 0.002227783203125
+    },
+    {
+     "id": "nvdla-small_freq_500_mp_2_fpu_65_fpa_1.0_p_4_fi_ar",
+     "design": "nvdla-small",
+     "group": "",
+     "shape": [
+      256,
+      256
+     ],
+     "seconds": 0.0,
+     "finite": true,
+     "nrms": 0.41469767452940454,
+     "nmae": 0.38359124184661547,
+     "ssim": 0.17339581689585756,
+     "pearson": null,
+     "spearman": null,
+     "kendall": null,
+     "roc_auc": 0.5,
+     "pr_auc": 0.008544921875
+    }
+   ],
+   "summary": {
+    "mean_nrms": 0.3784389997826084,
+    "n_excluded_nrms": 1,
+    "mean_nmae": 0.3386900297679516,
+    "n_excluded_nmae": 1,
+    "mean_ssim": 0.19828853631497456,
+    "mean_pearson": null,
+    "n_excluded_pearson": 40,
+    "mean_spearman": null,
+    "n_excluded_spearman": 40,
+    "mean_kendall": null,
+    "n_excluded_kendall": 40,
+    "mean_roc_auc": 0.5,
+    "n_excluded_roc_auc": 2,
+    "mean_pr_auc": 0.002753809878700658,
+    "n_excluded_pr_auc": 2,
+    "mean_seconds": 3.9631128311157225e-05,
+    "n": 40
+   },
+   "fit_seconds": 1.4371769428253174
+  },
+  "ridge": {
+   "rows": [
+    {
+     "id": "nvdla-small_freq_200_mp_1_fpu_50_fpa_1.0_p_1_fi_ap",
+     "design": "nvdla-small",
+     "group": "",
+     "shape": [
+      256,
+      256
+     ],
+     "seconds": 0.12109899520874023,
+     "finite": true,
+     "nrms": 0.27673249831907987,
+     "nmae": 0.24359141916083607,
+     "ssim": 0.3236945767861079,
+     "pearson": 0.569735762384829,
+     "spearman": 0.8186347785769855,
+     "kendall": 0.6443887425913399,
+     "roc_auc": 0.8859549777201688,
+     "pr_auc": 0.005851059983923478
+    },
+    {
+     "id": "nvdla-small_freq_200_mp_1_fpu_55_fpa_1.0_p_1_fi_ar",
+     "design": "nvdla-small",
+     "group": "",
+     "shape": [
+      256,
+      256
+     ],
+     "seconds": 0.12693262100219727,
+     "finite": true,
+     "nrms": null,
+     "nmae": null,
+     "ssim": 0.00023268546330101607,
+     "pearson": null,
+     "spearman": null,
+     "kendall": null,
+     "roc_auc": null,
+     "pr_auc": null
+    },
+    {
+     "id": "nvdla-small_freq_200_mp_1_fpu_55_fpa_1.0_p_4_fi_ap",
+     "design": "nvdla-small",
+     "group": "",
+     "shape": [
+      256,
+      256
+     ],
+     "seconds": 0.11618328094482422,
+     "finite": true,
+     "nrms": 0.30350734859009204,
+     "nmae": 0.268823307338502,
+     "ssim": 0.2729894459892873,
+     "pearson": 0.6121015613685585,
+     "spearman": 0.8333954268346793,
+     "kendall": 0.6652629925414549,
+     "roc_auc": 0.9575469522306037,
+     "pr_auc": 0.18122682421409286
+    },
+    {
+     "id": "nvdla-small_freq_200_mp_1_fpu_60_fpa_1.0_p_1_fi_ap",
+     "design": "nvdla-small",
+     "group": "",
+     "shape": [
+      256,
+      256
+     ],
+     "seconds": 0.13370060920715332,
+     "finite": true,
+     "nrms": 0.3053089061857558,
+     "nmae": 0.26550451469725866,
+     "ssim": 0.25512649721510694,
+     "pearson": 0.6077623399542401,
+     "spearman": 0.8592086750681475,
+     "kendall": 0.6821276306037757,
+     "roc_auc": 0.9240961280078173,
+     "pr_auc": 0.0040954678653034446
+    },
+    {
+     "id": "nvdla-small_freq_200_mp_1_fpu_60_fpa_1.0_p_2_fi_ar",
+     "design": "nvdla-small",
+     "group": "",
+     "shape": [
+      256,
+      256
+     ],
+     "seconds": 0.12937021255493164,
+     "finite": true,
+     "nrms": 0.31561315980281346,
+     "nmae": 0.27830847609510045,
+     "ssim": 0.2182223725288426,
+     "pearson": 0.6430428418612341,
+     "spearman": 0.835244654965743,
+     "kendall": 0.6571264643628483,
+     "roc_auc": 0.8890793912472714,
+     "pr_auc": 0.03472364439045082
+    },
+    {
+     "id": "nvdla-small_freq_200_mp_1_fpu_60_fpa_1.0_p_4_fi_ar",
+     "design": "nvdla-small",
+     "group": "",
+     "shape": [
+      256,
+      256
+     ],
+     "seconds": 0.13834285736083984,
+     "finite": true,
+     "nrms": 0.3309070466815384,
+     "nmae": 0.29131559540823343,
+     "ssim": 0.21331736619095293,
+     "pearson": 0.645149462663749,
+     "spearman": 0.833046282121469,
+     "kendall": 0.6543794662970034,
+     "roc_auc": 0.9473801981690149,
+     "pr_auc": 0.07240346236873325
+    },
+    {
+     "id": "nvdla-small_freq_200_mp_1_fpu_65_fpa_1.0_p_1_fi_ar",
+     "design": "nvdla-small",
+     "group": "",
+     "shape": [
+      256,
+      256
+     ],
+     "seconds": 0.1328883171081543,
+     "finite": true,
+     "nrms": 0.3245582385968078,
+     "nmae": 0.28140755279464724,
+     "ssim": 0.22367917296633064,
+     "pearson": 0.6403283506355636,
+     "spearman": 0.8523904115334553,
+     "kendall": 0.677740201781422,
+     "roc_auc": 0.9277192485747819,
+     "pr_auc": 0.006326834877287027
+    },
+    {
+     "id": "nvdla-small_freq_200_mp_1_fpu_65_fpa_1.0_p_2_fi_ar",
+     "design": "nvdla-small",
+     "group": "",
+     "shape": [
+      256,
+      256
+     ],
+     "seconds": 0.1392192840576172,
+     "finite": true,
+     "nrms": 0.32849210640101023,
+     "nmae": 0.2891867849495897,
+     "ssim": 0.21740595664217965,
+     "pearson": 0.639880949206191,
+     "spearman": 0.8380791313280003,
+     "kendall": 0.6596935189406953,
+     "roc_auc": 0.7392624927500839,
+     "pr_auc": 0.0006060935974843637
+    },
+    {
+     "id": "nvdla-small_freq_200_mp_2_fpu_50_fpa_1.0_p_1_fi_ar",
+     "design": "nvdla-small",
+     "group": "",
+     "shape": [
+      256,
+      256
+     ],
+     "seconds": 0.12850642204284668,
+     "finite": true,
+     "nrms": 0.30274101655048374,
+     "nmae": 0.26610456536767313,
+     "ssim": 0.2061098038087178,
+     "pearson": 0.6858351201539534,
+     "spearman": 0.823185228142066,
+     "kendall": 0.6584091459762806,
+     "roc_auc": 0.9856706851823592,
+     "pr_auc": 0.008359416724981044
+    },
+    {
+     "id": "nvdla-small_freq_200_mp_2_fpu_50_fpa_1.0_p_4_fi_ap",
+     "design": "nvdla-small",
+     "group": "",
+     "shape": [
+      256,
+      256
+     ],
+     "seconds": 0.11298274993896484,
+     "finite": true,
+     "nrms": 0.29870147441891215,
+     "nmae": 0.258726742599771,
+     "ssim": 0.2833832440659471,
+     "pearson": 0.6289537126900019,
+     "spearman": 0.854048470350722,
+     "kendall": 0.6914479828188229,
+     "roc_auc": 0.9671831675401625,
+     "pr_auc": 0.0957522590348145
+    },
+    {
+     "id": "nvdla-small_freq_200_mp_2_fpu_55_fpa_1.0_p_1_fi_ar",
+     "design": "nvdla-small",
+     "group": "",
+     "shape": [
+      256,
+      256
+     ],
+     "seconds": 0.1192476749420166,
+     "finite": true,
+     "nrms": 0.3079648321458064,
+     "nmae": 0.2691702257910869,
+     "ssim": 0.2229957543280449,
+     "pearson": 0.6826985041163567,
+     "spearman": 0.8456488215956102,
+     "kendall": 0.675595959593023,
+     "roc_auc": 0.9372997222815638,
+     "pr_auc": 0.0003608167680021632
+    },
+    {
+     "id": "nvdla-small_freq_200_mp_2_fpu_55_fpa_1.0_p_2_fi_ar",
+     "design": "nvdla-small",
+     "group": "",
+     "shape": [
+      256,
+      256
+     ],
+     "seconds": 0.1200568675994873,
+     "finite": true,
+     "nrms": 0.3017306441101768,
+     "nmae": 0.26671792781982034,
+     "ssim": 0.22519673620430003,
+     "pearson": 0.6716008061928285,
+     "spearman": 0.8379058944515881,
+     "kendall": 0.6695951222024749,
+     "roc_auc": 0.9785872530341911,
+     "pr_auc": 0.04409840814874876
+    },
+    {
+     "id": "nvdla-small_freq_200_mp_2_fpu_60_fpa_1.0_p_1_fi_ar",
+     "design": "nvdla-small",
+     "group": "",
+     "shape": [
+      256,
+      256
+     ],
+     "seconds": 0.10257625579833984,
+     "finite": true,
+     "nrms": 0.31840474913627476,
+     "nmae": 0.2735186755194685,
+     "ssim": 0.23311203304408512,
+     "pearson": 0.6905052572636308,
+     "spearman": 0.8499005666843217,
+     "kendall": 0.6741947854453954,
+     "roc_auc": 0.8434758869541478,
+     "pr_auc": 0.000451469012482075
+    },
+    {
+     "id": "nvdla-small_freq_200_mp_2_fpu_60_fpa_1.0_p_2_fi_ar",
+     "design": "nvdla-small",
+     "group": "",
+     "shape": [
+      256,
+      256
+     ],
+     "seconds": 0.12749099731445312,
+     "finite": true,
+     "nrms": 0.30962618285386306,
+     "nmae": 0.2693674952320418,
+     "ssim": 0.23397496510662075,
+     "pearson": 0.6984125516426911,
+     "spearman": 0.8442337259215744,
+     "kendall": 0.6653317376580923,
+     "roc_auc": 0.9484537656073511,
+     "pr_auc": 0.005274960699298458
+    },
+    {
+     "id": "nvdla-small_freq_200_mp_2_fpu_60_fpa_1.0_p_4_fi_ar",
+     "design": "nvdla-small",
+     "group": "",
+     "shape": [
+      256,
+      256
+     ],
+     "seconds": 0.11707663536071777,
+     "finite": true,
+     "nrms": 0.3206209845330188,
+     "nmae": 0.2775302635252475,
+     "ssim": 0.22993188778585244,
+     "pearson": 0.7056712103640729,
+     "spearman": 0.8422398181825875,
+     "kendall": 0.6671935170976664,
+     "roc_auc": 0.9171164972100412,
+     "pr_auc": 0.04374666383817869
+    },
+    {
+     "id": "nvdla-small_freq_200_mp_2_fpu_65_fpa_1.0_p_2_fi_ap",
+     "design": "nvdla-small",
+     "group": "",
+     "shape": [
+      256,
+      256
+     ],
+     "seconds": 0.12972140312194824,
+     "finite": true,
+     "nrms": 0.3140698165523053,
+     "nmae": 0.2786044893472897,
+     "ssim": 0.23372763734612612,
+     "pearson": 0.6370746503365077,
+     "spearman": 0.8571728049419576,
+     "kendall": 0.6834160250221837,
+     "roc_auc": 0.7804897838327395,
+     "pr_auc": 0.0027866432664564946
+    },
+    {
+     "id": "nvdla-small_freq_200_mp_2_fpu_65_fpa_1.0_p_4_fi_ap",
+     "design": "nvdla-small",
+     "group": "",
+     "shape": [
+      256,
+      256
+     ],
+     "seconds": 0.10293078422546387,
+     "finite": true,
+     "nrms": 0.3190741042759811,
+     "nmae": 0.2831705315822976,
+     "ssim": 0.21189032676364208,
+     "pearson": 0.6579257704965228,
+     "spearman": 0.8526279047769755,
+     "kendall": 0.6773780923797028,
+     "roc_auc": 0.8741640718040077,
+     "pr_auc": 0.09017825950882377
+    },
+    {
+     "id": "nvdla-small_freq_500_mp_1_fpu_50_fpa_1.0_p_1_fi_ap",
+     "design": "nvdla-small",
+     "group": "",
+     "shape": [
+      256,
+      256
+     ],
+     "seconds": 0.11702513694763184,
+     "finite": true,
+     "nrms": 0.2727781124688068,
+     "nmae": 0.23968438592923716,
+     "ssim": 0.3269159688272443,
+     "pearson": 0.5778981866194406,
+     "spearman": 0.8190294519347452,
+     "kendall": 0.6356759714077884,
+     "roc_auc": 0.9171160925036687,
+     "pr_auc": 0.0853910332564605
+    },
+    {
+     "id": "nvdla-small_freq_500_mp_1_fpu_50_fpa_1.0_p_2_fi_ap",
+     "design": "nvdla-small",
+     "group": "",
+     "shape": [
+      256,
+      256
+     ],
+     "seconds": 0.11812949180603027,
+     "finite": true,
+     "nrms": 0.28006111917826804,
+     "nmae": 0.24792357401112763,
+     "ssim": 0.3138200354734917,
+     "pearson": 0.5766331442200469,
+     "spearman": 0.8202967645361611,
+     "kendall": 0.6394542320177592,
+     "roc_auc": 0.8417732643850219,
+     "pr_auc": 0.018479003270281305
+    },
+    {
+     "id": "nvdla-small_freq_500_mp_1_fpu_50_fpa_1.0_p_4_fi_ap",
+     "design": "nvdla-small",
+     "group": "",
+     "shape": [
+      256,
+      256
+     ],
+     "seconds": 0.12754273414611816,
+     "finite": true,
+     "nrms": 0.2929434669183478,
+     "nmae": 0.2595899719936443,
+     "ssim": 0.3085677206710704,
+     "pearson": 0.5813969268625878,
+     "spearman": 0.8065317946389972,
+     "kendall": 0.6276547468773336,
+     "roc_auc": 0.9600924239436623,
+     "pr_auc": 0.17499668326689316
+    },
+    {
+     "id": "nvdla-small_freq_500_mp_1_fpu_55_fpa_1.0_p_1_fi_ar",
+     "design": "nvdla-small",
+     "group": "",
+     "shape": [
+      256,
+      256
+     ],
+     "seconds": 0.12569022178649902,
+     "finite": true,
+     "nrms": 0.2921981145322756,
+     "nmae": 0.25835293683678856,
+     "ssim": 0.23416891983379873,
+     "pearson": 0.6821707232314883,
+     "spearman": 0.8300567136877063,
+     "kendall": 0.65233186659406,
+     "roc_auc": null,
+     "pr_auc": null
+    },
+    {
+     "id": "nvdla-small_freq_500_mp_1_fpu_55_fpa_1.0_p_2_fi_ar",
+     "design": "nvdla-small",
+     "group": "",
+     "shape": [
+      256,
+      256
+     ],
+     "seconds": 0.12233328819274902,
+     "finite": true,
+     "nrms": 0.293499309694089,
+     "nmae": 0.26053132603490636,
+     "ssim": 0.22138939486847664,
+     "pearson": 0.680937299279599,
+     "spearman": 0.8179931216086739,
+     "kendall": 0.6408256299528269,
+     "roc_auc": 0.9363638393040724,
+     "pr_auc": 0.10095159714416654
+    },
+    {
+     "id": "nvdla-small_freq_500_mp_1_fpu_55_fpa_1.0_p_4_fi_ar",
+     "design": "nvdla-small",
+     "group": "",
+     "shape": [
+      256,
+      256
+     ],
+     "seconds": 0.13727712631225586,
+     "finite": true,
+     "nrms": 0.3091526223444462,
+     "nmae": 0.27604665531411793,
+     "ssim": 0.20001074950107342,
+     "pearson": 0.6752743497691203,
+     "spearman": 0.8018308596383247,
+     "kendall": 0.6268522517460473,
+     "roc_auc": 0.9457218719433452,
+     "pr_auc": 0.05565928376570611
+    },
+    {
+     "id": "nvdla-small_freq_500_mp_1_fpu_60_fpa_1.0_p_1_fi_ar",
+     "design": "nvdla-small",
+     "group": "",
+     "shape": [
+      256,
+      256
+     ],
+     "seconds": 0.13348054885864258,
+     "finite": true,
+     "nrms": 0.2817516510539608,
+     "nmae": 0.2492326158471436,
+     "ssim": 0.22145461211590373,
+     "pearson": 0.659443879618765,
+     "spearman": 0.8426564167125358,
+     "kendall": 0.6619110856073895,
+     "roc_auc": 0.8006383236813587,
+     "pr_auc": 0.0006986318840072066
+    },
+    {
+     "id": "nvdla-small_freq_500_mp_1_fpu_60_fpa_1.0_p_2_fi_ar",
+     "design": "nvdla-small",
+     "group": "",
+     "shape": [
+      256,
+      256
+     ],
+     "seconds": 0.16410422325134277,
+     "finite": true,
+     "nrms": 0.28990879849160656,
+     "nmae": 0.2569162010933574,
+     "ssim": 0.22149210051046617,
+     "pearson": 0.6591055716554775,
+     "spearman": 0.8336162550904341,
+     "kendall": 0.6509420626777286,
+     "roc_auc": 0.7780005300031781,
+     "pr_auc": 0.004235640418314849
+    },
+    {
+     "id": "nvdla-small_freq_500_mp_1_fpu_60_fpa_1.0_p_4_fi_ar",
+     "design": "nvdla-small",
+     "group": "",
+     "shape": [
+      256,
+      256
+     ],
+     "seconds": 0.13405847549438477,
+     "finite": true,
+     "nrms": 0.2990061697765225,
+     "nmae": 0.26672570596282275,
+     "ssim": 0.2057303548923499,
+     "pearson": 0.6688993037105461,
+     "spearman": 0.8262943338467161,
+     "kendall": 0.6458675373517847,
+     "roc_auc": 0.8877450510610893,
+     "pr_auc": 0.045346980711699
+    },
+    {
+     "id": "nvdla-small_freq_500_mp_1_fpu_65_fpa_1.0_p_1_fi_ar",
+     "design": "nvdla-small",
+     "group": "",
+     "shape": [
+      256,
+      256
+     ],
+     "seconds": 0.14087390899658203,
+     "finite": true,
+     "nrms": 0.2899043124640155,
+     "nmae": 0.25862283006952225,
+     "ssim": 0.22518858142221782,
+     "pearson": 0.6438754876794095,
+     "spearman": 0.8470762636893672,
+     "kendall": 0.6724162082753576,
+     "roc_auc": 0.9204231479644018,
+     "pr_auc": 0.0029417634973052578
+    },
+    {
+     "id": "nvdla-small_freq_500_mp_1_fpu_65_fpa_1.0_p_2_fi_ar",
+     "design": "nvdla-small",
+     "group": "",
+     "shape": [
+      256,
+      256
+     ],
+     "seconds": 0.1393892765045166,
+     "finite": true,
+     "nrms": 0.2996685101185573,
+     "nmae": 0.26777580864216677,
+     "ssim": 0.2134414339738678,
+     "pearson": 0.6485724065723014,
+     "spearman": 0.8329493516450839,
+     "kendall": 0.6542545209811813,
+     "roc_auc": 0.7563875043132435,
+     "pr_auc": 0.002594880461278567
+    },
+    {
+     "id": "nvdla-small_freq_500_mp_2_fpu_50_fpa_1.0_p_1_fi_ap",
+     "design": "nvdla-small",
+     "group": "",
+     "shape": [
+      256,
+      256
+     ],
+     "seconds": 0.13047456741333008,
+     "finite": true,
+     "nrms": 0.28347388226571374,
+     "nmae": 0.2549355758978301,
+     "ssim": 0.30127196814896656,
+     "pearson": 0.57770941248313,
+     "spearman": 0.8539786571094297,
+     "kendall": 0.6815380339057627,
+     "roc_auc": 0.915992018679038,
+     "pr_auc": 0.0007661318996514768
+    },
+    {
+     "id": "nvdla-small_freq_500_mp_2_fpu_50_fpa_1.0_p_2_fi_ap",
+     "design": "nvdla-small",
+     "group": "",
+     "shape": [
+      256,
+      256
+     ],
+     "seconds": 0.13501954078674316,
+     "finite": true,
+     "nrms": 0.2939078780685484,
+     "nmae": 0.2650320405384623,
+     "ssim": 0.2815202040354598,
+     "pearson": 0.5824361424993867,
+     "spearman": 0.8391812269069722,
+     "kendall": 0.6627450149508644,
+     "roc_auc": 0.8738867214228204,
+     "pr_auc": 0.005608548278373424
+    },
+    {
+     "id": "nvdla-small_freq_500_mp_2_fpu_50_fpa_1.0_p_4_fi_ap",
+     "design": "nvdla-small",
+     "group": "",
+     "shape": [
+      256,
+      256
+     ],
+     "seconds": 0.1324324607849121,
+     "finite": true,
+     "nrms": 0.300889741020151,
+     "nmae": 0.2732142245760095,
+     "ssim": 0.28877857019905384,
+     "pearson": 0.6075367635332471,
+     "spearman": 0.8415650390642226,
+     "kendall": 0.6724600378530173,
+     "roc_auc": 0.9250738999325477,
+     "pr_auc": 0.09284297723982679
+    },
+    {
+     "id": "nvdla-small_freq_500_mp_2_fpu_55_fpa_1.0_p_1_fi_ap",
+     "design": "nvdla-small",
+     "group": "",
+     "shape": [
+      256,
+      256
+     ],
+     "seconds": 0.13699078559875488,
+     "finite": true,
+     "nrms": 0.28149221767451404,
+     "nmae": 0.2497625024500088,
+     "ssim": 0.30306122052703877,
+     "pearson": 0.6334556105077899,
+     "spearman": 0.8511036271544511,
+     "kendall": 0.6775683840219874,
+     "roc_auc": 0.954217681883102,
+     "pr_auc": 0.006009375049537177
+    },
+    {
+     "id": "nvdla-small_freq_500_mp_2_fpu_55_fpa_1.0_p_2_fi_ap",
+     "design": "nvdla-small",
+     "group": "",
+     "shape": [
+      256,
+      256
+     ],
+     "seconds": 0.11222243309020996,
+     "finite": true,
+     "nrms": 0.2937263298461228,
+     "nmae": 0.26593627194122976,
+     "ssim": 0.29436595243047614,
+     "pearson": 0.6227431636086481,
+     "spearman": 0.8556370344470693,
+     "kendall": 0.6794812068938465,
+     "roc_auc": 0.9001321068157397,
+     "pr_auc": 0.022088316053963483
+    },
+    {
+     "id": "nvdla-small_freq_500_mp_2_fpu_55_fpa_1.0_p_4_fi_ap",
+     "design": "nvdla-small",
+     "group": "",
+     "shape": [
+      256,
+      256
+     ],
+     "seconds": 0.12896275520324707,
+     "finite": true,
+     "nrms": 0.2994320696079066,
+     "nmae": 0.2703386832432468,
+     "ssim": 0.2860410012422502,
+     "pearson": 0.642277387234863,
+     "spearman": 0.8497754959345116,
+     "kendall": 0.679238461650681,
+     "roc_auc": 0.9284096097693206,
+     "pr_auc": 0.1506388206324392
+    },
+    {
+     "id": "nvdla-small_freq_500_mp_2_fpu_60_fpa_1.0_p_1_fi_ap",
+     "design": "nvdla-small",
+     "group": "",
+     "shape": [
+      256,
+      256
+     ],
+     "seconds": 0.14467763900756836,
+     "finite": true,
+     "nrms": 0.2745939901924298,
+     "nmae": 0.24223596706309283,
+     "ssim": 0.26687683101042853,
+     "pearson": 0.6554418052216759,
+     "spearman": 0.866347351332248,
+     "kendall": 0.6914396827593363,
+     "roc_auc": 0.7782806463499572,
+     "pr_auc": 0.0034552982383752526
+    },
+    {
+     "id": "nvdla-small_freq_500_mp_2_fpu_60_fpa_1.0_p_2_fi_ap",
+     "design": "nvdla-small",
+     "group": "",
+     "shape": [
+      256,
+      256
+     ],
+     "seconds": 0.1315746307373047,
+     "finite": true,
+     "nrms": 0.2885764636030915,
+     "nmae": 0.2576065990108085,
+     "ssim": 0.254161068088013,
+     "pearson": 0.6549928679336348,
+     "spearman": 0.855985203056024,
+     "kendall": 0.6772559340959864,
+     "roc_auc": 0.8059689289550286,
+     "pr_auc": 0.03811165008974285
+    },
+    {
+     "id": "nvdla-small_freq_500_mp_2_fpu_60_fpa_1.0_p_4_fi_ar",
+     "design": "nvdla-small",
+     "group": "",
+     "shape": [
+      256,
+      256
+     ],
+     "seconds": 0.13178634643554688,
+     "finite": true,
+     "nrms": 0.2997237681667284,
+     "nmae": 0.2669628341749227,
+     "ssim": 0.20668027877412093,
+     "pearson": 0.6878859404796053,
+     "spearman": 0.8442731802456919,
+     "kendall": 0.6716452326223984,
+     "roc_auc": 0.9120112029770855,
+     "pr_auc": 0.05177436667777421
+    },
+    {
+     "id": "nvdla-small_freq_500_mp_2_fpu_65_fpa_1.0_p_1_fi_ar",
+     "design": "nvdla-small",
+     "group": "",
+     "shape": [
+      256,
+      256
+     ],
+     "seconds": 0.12760472297668457,
+     "finite": true,
+     "nrms": 0.2882555804463159,
+     "nmae": 0.256151881104145,
+     "ssim": 0.2251901914937124,
+     "pearson": 0.6738952177087651,
+     "spearman": 0.8519751261341528,
+     "kendall": 0.6769012019191555,
+     "roc_auc": 0.8889686345173015,
+     "pr_auc": 0.0035061297945626927
+    },
+    {
+     "id": "nvdla-small_freq_500_mp_2_fpu_65_fpa_1.0_p_2_fi_ar",
+     "design": "nvdla-small",
+     "group": "",
+     "shape": [
+      256,
+      256
+     ],
+     "seconds": 0.12691497802734375,
+     "finite": true,
+     "nrms": 0.2904381930367165,
+     "nmae": 0.2587175592725408,
+     "ssim": 0.22145053552047758,
+     "pearson": 0.6709680681519845,
+     "spearman": 0.8478151973241672,
+     "kendall": 0.6716277870461987,
+     "roc_auc": 0.8401225942553321,
+     "pr_auc": 0.008318019186807288
+    },
+    {
+     "id": "nvdla-small_freq_500_mp_2_fpu_65_fpa_1.0_p_4_fi_ar",
+     "design": "nvdla-small",
+     "group": "",
+     "shape": [
+      256,
+      256
+     ],
+     "seconds": 0.14371919631958008,
+     "finite": true,
+     "nrms": 0.3056153955664784,
+     "nmae": 0.27485776290364405,
+     "ssim": 0.2148534812556959,
+     "pearson": 0.6859264587161561,
+     "spearman": 0.8387599127003196,
+     "kendall": 0.6645700007660169,
+     "roc_auc": 0.9048970004309284,
+     "pr_auc": 0.0964023398252578
+    }
+   ],
+   "summary": {
+    "mean_nrms": 0.29946284117152655,
+    "n_excluded_nrms": 1,
+    "mean_nmae": 0.2650821149010164,
+    "n_excluded_nmae": 1,
+    "mean_ssim": 0.2410355409262775,
+    "mean_pearson": 0.645286024836631,
+    "n_excluded_pearson": 1,
+    "mean_spearman": 0.8397869480490743,
+    "n_excluded_spearman": 1,
+    "mean_kendall": 0.6645625250586331,
+    "n_excluded_kendall": 1,
+    "mean_roc_auc": 0.8914658767694095,
+    "n_excluded_roc_auc": 2,
+    "mean_pr_auc": 0.0412384146037233,
+    "n_excluded_pr_auc": 2,
+    "mean_seconds": 0.12851526141166686,
+    "n": 40
+   },
+   "fit_seconds": 13.323408365249634
+  },
+  "gbm": {
+   "rows": [
+    {
+     "id": "nvdla-small_freq_200_mp_1_fpu_50_fpa_1.0_p_1_fi_ap",
+     "design": "nvdla-small",
+     "group": "",
+     "shape": [
+      256,
+      256
+     ],
+     "seconds": 0.5927345752716064,
+     "finite": true,
+     "nrms": 0.1858646222943279,
+     "nmae": 0.12799200599261418,
+     "ssim": 0.5338903847648998,
+     "pearson": 0.8217411238112302,
+     "spearman": 0.8867485989648348,
+     "kendall": 0.7158399687085621,
+     "roc_auc": 0.8963178269199715,
+     "pr_auc": 0.005311072905155857
+    },
+    {
+     "id": "nvdla-small_freq_200_mp_1_fpu_55_fpa_1.0_p_1_fi_ar",
+     "design": "nvdla-small",
+     "group": "",
+     "shape": [
+      256,
+      256
+     ],
+     "seconds": 0.48093390464782715,
+     "finite": true,
+     "nrms": null,
+     "nmae": null,
+     "ssim": 0.0007194092635085018,
+     "pearson": null,
+     "spearman": null,
+     "kendall": null,
+     "roc_auc": null,
+     "pr_auc": null
+    },
+    {
+     "id": "nvdla-small_freq_200_mp_1_fpu_55_fpa_1.0_p_4_fi_ap",
+     "design": "nvdla-small",
+     "group": "",
+     "shape": [
+      256,
+      256
+     ],
+     "seconds": 0.608574390411377,
+     "finite": true,
+     "nrms": 0.20386081333355327,
+     "nmae": 0.14050678074002773,
+     "ssim": 0.5414759748388444,
+     "pearson": 0.8494653927869815,
+     "spearman": 0.8988795704960575,
+     "kendall": 0.7326055586286544,
+     "roc_auc": 0.9539582629165855,
+     "pr_auc": 0.08606342402733717
+    },
+    {
+     "id": "nvdla-small_freq_200_mp_1_fpu_60_fpa_1.0_p_1_fi_ap",
+     "design": "nvdla-small",
+     "group": "",
+     "shape": [
+      256,
+      256
+     ],
+     "seconds": 0.5802021026611328,
+     "finite": true,
+     "nrms": 0.19751026259794927,
+     "nmae": 0.13972415443611286,
+     "ssim": 0.5414741201218775,
+     "pearson": 0.8300626769271283,
+     "spearman": 0.8940231674420706,
+     "kendall": 0.7175343830280844,
+     "roc_auc": 0.8933421506656896,
+     "pr_auc": 0.0032213580793096475
+    },
+    {
+     "id": "nvdla-small_freq_200_mp_1_fpu_60_fpa_1.0_p_2_fi_ar",
+     "design": "nvdla-small",
+     "group": "",
+     "shape": [
+      256,
+      256
+     ],
+     "seconds": 0.41170525550842285,
+     "finite": true,
+     "nrms": 0.23355013982594558,
+     "nmae": 0.16500958542840377,
+     "ssim": 0.4446850885978197,
+     "pearson": 0.7981489215402259,
+     "spearman": 0.8583817361584556,
+     "kendall": 0.6782170190826365,
+     "roc_auc": 0.8738309596861595,
+     "pr_auc": 0.004258301923885255
+    },
+    {
+     "id": "nvdla-small_freq_200_mp_1_fpu_60_fpa_1.0_p_4_fi_ar",
+     "design": "nvdla-small",
+     "group": "",
+     "shape": [
+      256,
+      256
+     ],
+     "seconds": 0.43790173530578613,
+     "finite": true,
+     "nrms": 0.23999449117626565,
+     "nmae": 0.16621712275261313,
+     "ssim": 0.4538102062268435,
+     "pearson": 0.7992933960469563,
+     "spearman": 0.8624741524823993,
+     "kendall": 0.6856514568906041,
+     "roc_auc": 0.9222645128118894,
+     "pr_auc": 0.025180775989922747
+    },
+    {
+     "id": "nvdla-small_freq_200_mp_1_fpu_65_fpa_1.0_p_1_fi_ar",
+     "design": "nvdla-small",
+     "group": "",
+     "shape": [
+      256,
+      256
+     ],
+     "seconds": 0.46030688285827637,
+     "finite": true,
+     "nrms": 0.2222334492951952,
+     "nmae": 0.16485477774551635,
+     "ssim": 0.4581762357595094,
+     "pearson": 0.8059703976429609,
+     "spearman": 0.8783379084732603,
+     "kendall": 0.7026352755414204,
+     "roc_auc": 0.8994466596255827,
+     "pr_auc": 0.005521853947284789
+    },
+    {
+     "id": "nvdla-small_freq_200_mp_1_fpu_65_fpa_1.0_p_2_fi_ar",
+     "design": "nvdla-small",
+     "group": "",
+     "shape": [
+      256,
+      256
+     ],
+     "seconds": 0.5513260364532471,
+     "finite": true,
+     "nrms": 0.23076761902521503,
+     "nmae": 0.16386406215383678,
+     "ssim": 0.4521284287388843,
+     "pearson": 0.8059005802580402,
+     "spearman": 0.8705327208606022,
+     "kendall": 0.692618011473232,
+     "roc_auc": 0.7659701659594819,
+     "pr_auc": 0.0006486699566921727
+    },
+    {
+     "id": "nvdla-small_freq_200_mp_2_fpu_50_fpa_1.0_p_1_fi_ar",
+     "design": "nvdla-small",
+     "group": "",
+     "shape": [
+      256,
+      256
+     ],
+     "seconds": 0.46820497512817383,
+     "finite": true,
+     "nrms": 0.21976987466489945,
+     "nmae": 0.16864754745272842,
+     "ssim": 0.39781676242154307,
+     "pearson": 0.8268295764877543,
+     "spearman": 0.8472749196338442,
+     "kendall": 0.6854448470106724,
+     "roc_auc": 0.9559298540108856,
+     "pr_auc": 0.0011504262419706967
+    },
+    {
+     "id": "nvdla-small_freq_200_mp_2_fpu_50_fpa_1.0_p_4_fi_ap",
+     "design": "nvdla-small",
+     "group": "",
+     "shape": [
+      256,
+      256
+     ],
+     "seconds": 0.5280871391296387,
+     "finite": true,
+     "nrms": 0.1834680916787504,
+     "nmae": 0.12478184810308808,
+     "ssim": 0.5408109043436455,
+     "pearson": 0.86863167422139,
+     "spearman": 0.9080188678888487,
+     "kendall": 0.749933811825954,
+     "roc_auc": 0.950995242661986,
+     "pr_auc": 0.05365111186045092
+    },
+    {
+     "id": "nvdla-small_freq_200_mp_2_fpu_55_fpa_1.0_p_1_fi_ar",
+     "design": "nvdla-small",
+     "group": "",
+     "shape": [
+      256,
+      256
+     ],
+     "seconds": 0.49813008308410645,
+     "finite": true,
+     "nrms": 0.21876191711164455,
+     "nmae": 0.16665451022213992,
+     "ssim": 0.42970543168479575,
+     "pearson": 0.8304907689144809,
+     "spearman": 0.8612969987758685,
+     "kendall": 0.6907151540386527,
+     "roc_auc": 0.9218382824182867,
+     "pr_auc": 0.0002948463670547898
+    },
+    {
+     "id": "nvdla-small_freq_200_mp_2_fpu_55_fpa_1.0_p_2_fi_ar",
+     "design": "nvdla-small",
+     "group": "",
+     "shape": [
+      256,
+      256
+     ],
+     "seconds": 0.47376418113708496,
+     "finite": true,
+     "nrms": 0.2251572319689224,
+     "nmae": 0.16373561617608262,
+     "ssim": 0.42134040628128006,
+     "pearson": 0.8183646151882266,
+     "spearman": 0.8615996138217089,
+     "kendall": 0.6949508644490766,
+     "roc_auc": 0.937394340247819,
+     "pr_auc": 0.0061893459486052635
+    },
+    {
+     "id": "nvdla-small_freq_200_mp_2_fpu_60_fpa_1.0_p_1_fi_ar",
+     "design": "nvdla-small",
+     "group": "",
+     "shape": [
+      256,
+      256
+     ],
+     "seconds": 0.5045485496520996,
+     "finite": true,
+     "nrms": 0.2170123646814533,
+     "nmae": 0.1593885796005019,
+     "ssim": 0.44832596722194873,
+     "pearson": 0.8240839772651576,
+     "spearman": 0.8710647721112146,
+     "kendall": 0.6978968371054289,
+     "roc_auc": 0.8356182269225747,
+     "pr_auc": 0.00044335299932238097
+    },
+    {
+     "id": "nvdla-small_freq_200_mp_2_fpu_60_fpa_1.0_p_2_fi_ar",
+     "design": "nvdla-small",
+     "group": "",
+     "shape": [
+      256,
+      256
+     ],
+     "seconds": 0.5705571174621582,
+     "finite": true,
+     "nrms": 0.2289577297772886,
+     "nmae": 0.16295031395458984,
+     "ssim": 0.4240419398157142,
+     "pearson": 0.8137662001111162,
+     "spearman": 0.8630089692675441,
+     "kendall": 0.6869900242604122,
+     "roc_auc": 0.9071745941880569,
+     "pr_auc": 0.0024701846678810845
+    },
+    {
+     "id": "nvdla-small_freq_200_mp_2_fpu_60_fpa_1.0_p_4_fi_ar",
+     "design": "nvdla-small",
+     "group": "",
+     "shape": [
+      256,
+      256
+     ],
+     "seconds": 0.5148565769195557,
+     "finite": true,
+     "nrms": 0.22895998865199796,
+     "nmae": 0.15847188103601206,
+     "ssim": 0.43674538556199743,
+     "pearson": 0.8250977047739719,
+     "spearman": 0.8657098774005285,
+     "kendall": 0.6928499759274915,
+     "roc_auc": 0.9115284872851613,
+     "pr_auc": 0.03257711498742277
+    },
+    {
+     "id": "nvdla-small_freq_200_mp_2_fpu_65_fpa_1.0_p_2_fi_ap",
+     "design": "nvdla-small",
+     "group": "",
+     "shape": [
+      256,
+      256
+     ],
+     "seconds": 0.5453794002532959,
+     "finite": true,
+     "nrms": 0.2062257054547905,
+     "nmae": 0.14092665000856344,
+     "ssim": 0.5076074392113016,
+     "pearson": 0.8389257336753841,
+     "spearman": 0.8897540595583511,
+     "kendall": 0.7166441085842042,
+     "roc_auc": 0.8014325623021733,
+     "pr_auc": 0.003076863440086361
+    },
+    {
+     "id": "nvdla-small_freq_200_mp_2_fpu_65_fpa_1.0_p_4_fi_ap",
+     "design": "nvdla-small",
+     "group": "",
+     "shape": [
+      256,
+      256
+     ],
+     "seconds": 0.5978114604949951,
+     "finite": true,
+     "nrms": 0.21058748704816316,
+     "nmae": 0.1445692158216174,
+     "ssim": 0.5272732856760506,
+     "pearson": 0.8564491578321778,
+     "spearman": 0.8868839164903234,
+     "kendall": 0.714785889351651,
+     "roc_auc": 0.8795535862138383,
+     "pr_auc": 0.07350636456331065
+    },
+    {
+     "id": "nvdla-small_freq_500_mp_1_fpu_50_fpa_1.0_p_1_fi_ap",
+     "design": "nvdla-small",
+     "group": "",
+     "shape": [
+      256,
+      256
+     ],
+     "seconds": 0.5355432033538818,
+     "finite": true,
+     "nrms": 0.19615888277866309,
+     "nmae": 0.1399813982838255,
+     "ssim": 0.5448888806251326,
+     "pearson": 0.815545718513788,
+     "spearman": 0.889549187854636,
+     "kendall": 0.7131092518889337,
+     "roc_auc": 0.921312783228746,
+     "pr_auc": 0.013638514497146141
+    },
+    {
+     "id": "nvdla-small_freq_500_mp_1_fpu_50_fpa_1.0_p_2_fi_ap",
+     "design": "nvdla-small",
+     "group": "",
+     "shape": [
+      256,
+      256
+     ],
+     "seconds": 0.5035035610198975,
+     "finite": true,
+     "nrms": 0.19736255371530295,
+     "nmae": 0.1357421121944387,
+     "ssim": 0.5398250033110193,
+     "pearson": 0.809754532517975,
+     "spearman": 0.8850181793658073,
+     "kendall": 0.7079203360252888,
+     "roc_auc": 0.8366810616112131,
+     "pr_auc": 0.0188347853862182
+    },
+    {
+     "id": "nvdla-small_freq_500_mp_1_fpu_50_fpa_1.0_p_4_fi_ap",
+     "design": "nvdla-small",
+     "group": "",
+     "shape": [
+      256,
+      256
+     ],
+     "seconds": 0.5277130603790283,
+     "finite": true,
+     "nrms": 0.21492646277189253,
+     "nmae": 0.148035183031178,
+     "ssim": 0.5458825057303344,
+     "pearson": 0.7944624424931291,
+     "spearman": 0.8838713124566234,
+     "kendall": 0.7133945474621569,
+     "roc_auc": 0.9553588403257908,
+     "pr_auc": 0.09700649491440104
+    },
+    {
+     "id": "nvdla-small_freq_500_mp_1_fpu_55_fpa_1.0_p_1_fi_ar",
+     "design": "nvdla-small",
+     "group": "",
+     "shape": [
+      256,
+      256
+     ],
+     "seconds": 0.5498907566070557,
+     "finite": true,
+     "nrms": 0.22508332361410552,
+     "nmae": 0.17035760659728855,
+     "ssim": 0.44857525060927644,
+     "pearson": 0.822456553107976,
+     "spearman": 0.8589507548055038,
+     "kendall": 0.6867313383406013,
+     "roc_auc": null,
+     "pr_auc": null
+    },
+    {
+     "id": "nvdla-small_freq_500_mp_1_fpu_55_fpa_1.0_p_2_fi_ar",
+     "design": "nvdla-small",
+     "group": "",
+     "shape": [
+      256,
+      256
+     ],
+     "seconds": 0.5150365829467773,
+     "finite": true,
+     "nrms": 0.22718034518736496,
+     "nmae": 0.16382916569900954,
+     "ssim": 0.42723316387395965,
+     "pearson": 0.8176945776831328,
+     "spearman": 0.8535108665961646,
+     "kendall": 0.680911030796863,
+     "roc_auc": 0.940663452873439,
+     "pr_auc": 0.0318150582382758
+    },
+    {
+     "id": "nvdla-small_freq_500_mp_1_fpu_55_fpa_1.0_p_4_fi_ar",
+     "design": "nvdla-small",
+     "group": "",
+     "shape": [
+      256,
+      256
+     ],
+     "seconds": 0.38561463356018066,
+     "finite": true,
+     "nrms": 0.236775791081357,
+     "nmae": 0.16804629516353842,
+     "ssim": 0.4296271985824866,
+     "pearson": 0.8192950305097428,
+     "spearman": 0.8447954850079515,
+     "kendall": 0.675519739585932,
+     "roc_auc": 0.9483458743891191,
+     "pr_auc": 0.04553164780233561
+    },
+    {
+     "id": "nvdla-small_freq_500_mp_1_fpu_60_fpa_1.0_p_1_fi_ar",
+     "design": "nvdla-small",
+     "group": "",
+     "shape": [
+      256,
+      256
+     ],
+     "seconds": 0.40175819396972656,
+     "finite": true,
+     "nrms": 0.21581464475270828,
+     "nmae": 0.1597251749258372,
+     "ssim": 0.4555619186884547,
+     "pearson": 0.8196734119660412,
+     "spearman": 0.8745191017696307,
+     "kendall": 0.6980531602918242,
+     "roc_auc": 0.8319335359324177,
+     "pr_auc": 0.0008517260933376744
+    },
+    {
+     "id": "nvdla-small_freq_500_mp_1_fpu_60_fpa_1.0_p_2_fi_ar",
+     "design": "nvdla-small",
+     "group": "",
+     "shape": [
+      256,
+      256
+     ],
+     "seconds": 0.4776630401611328,
+     "finite": true,
+     "nrms": 0.22811669600098147,
+     "nmae": 0.16281874649870648,
+     "ssim": 0.44833155282835174,
+     "pearson": 0.8067886968460618,
+     "spearman": 0.8624575444710458,
+     "kendall": 0.6816221505691468,
+     "roc_auc": 0.7890174288055785,
+     "pr_auc": 0.004414157412336864
+    },
+    {
+     "id": "nvdla-small_freq_500_mp_1_fpu_60_fpa_1.0_p_4_fi_ar",
+     "design": "nvdla-small",
+     "group": "",
+     "shape": [
+      256,
+      256
+     ],
+     "seconds": 0.5520100593566895,
+     "finite": true,
+     "nrms": 0.23307912543113687,
+     "nmae": 0.16368645443814195,
+     "ssim": 0.4414867111731307,
+     "pearson": 0.8126519660500601,
+     "spearman": 0.8622076949719917,
+     "kendall": 0.6864464749791417,
+     "roc_auc": 0.8981018365891805,
+     "pr_auc": 0.039304722989874426
+    },
+    {
+     "id": "nvdla-small_freq_500_mp_1_fpu_65_fpa_1.0_p_1_fi_ar",
+     "design": "nvdla-small",
+     "group": "",
+     "shape": [
+      256,
+      256
+     ],
+     "seconds": 0.3957376480102539,
+     "finite": true,
+     "nrms": 0.22822830827831087,
+     "nmae": 0.16895597227179535,
+     "ssim": 0.46399386113525626,
+     "pearson": 0.7989956594335913,
+     "spearman": 0.873235994419738,
+     "kendall": 0.697534306849544,
+     "roc_auc": 0.8560508790706168,
+     "pr_auc": 0.0013875870341542025
+    },
+    {
+     "id": "nvdla-small_freq_500_mp_1_fpu_65_fpa_1.0_p_2_fi_ar",
+     "design": "nvdla-small",
+     "group": "",
+     "shape": [
+      256,
+      256
+     ],
+     "seconds": 0.4244272708892822,
+     "finite": true,
+     "nrms": 0.23357520790330197,
+     "nmae": 0.1680051247922263,
+     "ssim": 0.45266775951465815,
+     "pearson": 0.8010969503743793,
+     "spearman": 0.8643228075012946,
+     "kendall": 0.6853674526280913,
+     "roc_auc": 0.7633377242361886,
+     "pr_auc": 0.002654807044778526
+    },
+    {
+     "id": "nvdla-small_freq_500_mp_2_fpu_50_fpa_1.0_p_1_fi_ap",
+     "design": "nvdla-small",
+     "group": "",
+     "shape": [
+      256,
+      256
+     ],
+     "seconds": 0.5878229141235352,
+     "finite": true,
+     "nrms": 0.18386872973486726,
+     "nmae": 0.1266274415191147,
+     "ssim": 0.5369944253059542,
+     "pearson": 0.8463982321999197,
+     "spearman": 0.8977321968098293,
+     "kendall": 0.7244646088658347,
+     "roc_auc": 0.8904876541325846,
+     "pr_auc": 0.0005946054266390867
+    },
+    {
+     "id": "nvdla-small_freq_500_mp_2_fpu_50_fpa_1.0_p_2_fi_ap",
+     "design": "nvdla-small",
+     "group": "",
+     "shape": [
+      256,
+      256
+     ],
+     "seconds": 0.5424349308013916,
+     "finite": true,
+     "nrms": 0.1922828137197891,
+     "nmae": 0.127528625300163,
+     "ssim": 0.5148487265689062,
+     "pearson": 0.8345128793691559,
+     "spearman": 0.8904595656969642,
+     "kendall": 0.713925832970332,
+     "roc_auc": 0.8537644645827089,
+     "pr_auc": 0.004538336952600777
+    },
+    {
+     "id": "nvdla-small_freq_500_mp_2_fpu_50_fpa_1.0_p_4_fi_ap",
+     "design": "nvdla-small",
+     "group": "",
+     "shape": [
+      256,
+      256
+     ],
+     "seconds": 0.4553029537200928,
+     "finite": true,
+     "nrms": 0.2004850451533183,
+     "nmae": 0.13651591328846513,
+     "ssim": 0.5299291787886262,
+     "pearson": 0.8436187647774575,
+     "spearman": 0.898760387856786,
+     "kendall": 0.7328151265764844,
+     "roc_auc": 0.9155368718505733,
+     "pr_auc": 0.06943490335823908
+    },
+    {
+     "id": "nvdla-small_freq_500_mp_2_fpu_55_fpa_1.0_p_1_fi_ap",
+     "design": "nvdla-small",
+     "group": "",
+     "shape": [
+      256,
+      256
+     ],
+     "seconds": 0.5073177814483643,
+     "finite": true,
+     "nrms": 0.18917808068146186,
+     "nmae": 0.13354424330366668,
+     "ssim": 0.5449500762107163,
+     "pearson": 0.8654457494315361,
+     "spearman": 0.8963573644866124,
+     "kendall": 0.7220549521045329,
+     "roc_auc": 0.948675148911736,
+     "pr_auc": 0.004793015958436831
+    },
+    {
+     "id": "nvdla-small_freq_500_mp_2_fpu_55_fpa_1.0_p_2_fi_ap",
+     "design": "nvdla-small",
+     "group": "",
+     "shape": [
+      256,
+      256
+     ],
+     "seconds": 0.490922212600708,
+     "finite": true,
+     "nrms": 0.19461596193073316,
+     "nmae": 0.13194057220923416,
+     "ssim": 0.5266685336047823,
+     "pearson": 0.84825233091689,
+     "spearman": 0.8978320628131538,
+     "kendall": 0.7218019243202027,
+     "roc_auc": 0.9023120042619747,
+     "pr_auc": 0.019780911753088687
+    },
+    {
+     "id": "nvdla-small_freq_500_mp_2_fpu_55_fpa_1.0_p_4_fi_ap",
+     "design": "nvdla-small",
+     "group": "",
+     "shape": [
+      256,
+      256
+     ],
+     "seconds": 0.5062313079833984,
+     "finite": true,
+     "nrms": 0.20425648620328357,
+     "nmae": 0.14000388480272835,
+     "ssim": 0.5383190134910631,
+     "pearson": 0.8534512459620721,
+     "spearman": 0.9015713488901202,
+     "kendall": 0.7340830388648915,
+     "roc_auc": 0.9231353896783216,
+     "pr_auc": 0.1253258867202621
+    },
+    {
+     "id": "nvdla-small_freq_500_mp_2_fpu_60_fpa_1.0_p_1_fi_ap",
+     "design": "nvdla-small",
+     "group": "",
+     "shape": [
+      256,
+      256
+     ],
+     "seconds": 0.5336387157440186,
+     "finite": true,
+     "nrms": 0.1891314850279882,
+     "nmae": 0.13531423273932483,
+     "ssim": 0.5382182497299142,
+     "pearson": 0.8596006976018851,
+     "spearman": 0.8874197287648223,
+     "kendall": 0.7078894963504309,
+     "roc_auc": 0.7459277019300102,
+     "pr_auc": 0.0029407862623098465
+    },
+    {
+     "id": "nvdla-small_freq_500_mp_2_fpu_60_fpa_1.0_p_2_fi_ap",
+     "design": "nvdla-small",
+     "group": "",
+     "shape": [
+      256,
+      256
+     ],
+     "seconds": 0.5282413959503174,
+     "finite": true,
+     "nrms": 0.20361797189435496,
+     "nmae": 0.13853175312056687,
+     "ssim": 0.517072744748104,
+     "pearson": 0.8468356834459717,
+     "spearman": 0.8827049553931186,
+     "kendall": 0.7022705669371678,
+     "roc_auc": 0.7990952638552422,
+     "pr_auc": 0.01682981071571281
+    },
+    {
+     "id": "nvdla-small_freq_500_mp_2_fpu_60_fpa_1.0_p_4_fi_ar",
+     "design": "nvdla-small",
+     "group": "",
+     "shape": [
+      256,
+      256
+     ],
+     "seconds": 0.4687995910644531,
+     "finite": true,
+     "nrms": 0.222010901769093,
+     "nmae": 0.15575853606625217,
+     "ssim": 0.4334566007842659,
+     "pearson": 0.8403756338667264,
+     "spearman": 0.8741096373938139,
+     "kendall": 0.7045110370488584,
+     "roc_auc": 0.9077522631948314,
+     "pr_auc": 0.03636326931201704
+    },
+    {
+     "id": "nvdla-small_freq_500_mp_2_fpu_65_fpa_1.0_p_1_fi_ar",
+     "design": "nvdla-small",
+     "group": "",
+     "shape": [
+      256,
+      256
+     ],
+     "seconds": 0.6243200302124023,
+     "finite": true,
+     "nrms": 0.21919327045359827,
+     "nmae": 0.16218341685359608,
+     "ssim": 0.45491029983690395,
+     "pearson": 0.8257434308839443,
+     "spearman": 0.8706622738138264,
+     "kendall": 0.695575855143482,
+     "roc_auc": 0.8778609168371866,
+     "pr_auc": 0.0030174014600405927
+    },
+    {
+     "id": "nvdla-small_freq_500_mp_2_fpu_65_fpa_1.0_p_2_fi_ar",
+     "design": "nvdla-small",
+     "group": "",
+     "shape": [
+      256,
+      256
+     ],
+     "seconds": 0.5631380081176758,
+     "finite": true,
+     "nrms": 0.2303157668807864,
+     "nmae": 0.1642074387149004,
+     "ssim": 0.4319407539807287,
+     "pearson": 0.8088765055019373,
+     "spearman": 0.8662425044400485,
+     "kendall": 0.6901093228797497,
+     "roc_auc": 0.824372207220324,
+     "pr_auc": 0.006244541750371141
+    },
+    {
+     "id": "nvdla-small_freq_500_mp_2_fpu_65_fpa_1.0_p_4_fi_ar",
+     "design": "nvdla-small",
+     "group": "",
+     "shape": [
+      256,
+      256
+     ],
+     "seconds": 0.5279264450073242,
+     "finite": true,
+     "nrms": 0.23249121815868756,
+     "nmae": 0.16362257575715092,
+     "ssim": 0.4396712351418785,
+     "pearson": 0.8280157351206541,
+     "spearman": 0.8623759437333379,
+     "kendall": 0.6896882172714325,
+     "roc_auc": 0.8969365062264748,
+     "pr_auc": 0.08018841304591576
+    }
+   ],
+   "summary": {
+    "mean_nrms": 0.21411361183870378,
+    "n_excluded_nrms": 1,
+    "mean_nmae": 0.15187837228706658,
+    "n_excluded_nmae": 1,
+    "mean_ssim": 0.46912702536985923,
+    "mean_pearson": 0.8264811365655694,
+    "n_excluded_pearson": 1,
+    "mean_spearman": 0.8764783781830443,
+    "n_excluded_spearman": 1,
+    "mean_kendall": 0.7031054603758374,
+    "n_excluded_kendall": 1,
+    "mean_roc_auc": 0.8824540927521157,
+    "n_excluded_roc_auc": 2,
+    "mean_pr_auc": 0.0244488540008996,
+    "n_excluded_pr_auc": 2,
+    "mean_seconds": 0.5107504665851593,
+    "n": 40
+   },
+   "fit_seconds": 16.10812211036682
+  },
+  "knn": {
+   "rows": [
+    {
+     "id": "nvdla-small_freq_200_mp_1_fpu_50_fpa_1.0_p_1_fi_ap",
+     "design": "nvdla-small",
+     "group": "",
+     "shape": [
+      256,
+      256
+     ],
+     "seconds": 0.03200483322143555,
+     "finite": true,
+     "nrms": 0.37793790905341695,
+     "nmae": 0.2724515385943679,
+     "ssim": 0.16404296411026928,
+     "pearson": 0.3347314401045077,
+     "spearman": 0.3228543370633669,
+     "kendall": 0.2236206639247151,
+     "roc_auc": 0.7408563223658082,
+     "pr_auc": 0.0018790728838119415
+    },
+    {
+     "id": "nvdla-small_freq_200_mp_1_fpu_55_fpa_1.0_p_1_fi_ar",
+     "design": "nvdla-small",
+     "group": "",
+     "shape": [
+      256,
+      256
+     ],
+     "seconds": 0.032079458236694336,
+     "finite": true,
+     "nrms": null,
+     "nmae": null,
+     "ssim": 0.0036167495654266663,
+     "pearson": null,
+     "spearman": null,
+     "kendall": null,
+     "roc_auc": null,
+     "pr_auc": null
+    },
+    {
+     "id": "nvdla-small_freq_200_mp_1_fpu_55_fpa_1.0_p_4_fi_ap",
+     "design": "nvdla-small",
+     "group": "",
+     "shape": [
+      256,
+      256
+     ],
+     "seconds": 0.02472376823425293,
+     "finite": true,
+     "nrms": 0.41706688012790216,
+     "nmae": 0.3209128244017245,
+     "ssim": 0.07953244274911928,
+     "pearson": 0.2316349805341277,
+     "spearman": 0.25746424052516903,
+     "kendall": 0.18312657971254917,
+     "roc_auc": 0.6828025004075887,
+     "pr_auc": 0.011519834179278345
+    },
+    {
+     "id": "nvdla-small_freq_200_mp_1_fpu_60_fpa_1.0_p_1_fi_ap",
+     "design": "nvdla-small",
+     "group": "",
+     "shape": [
+      256,
+      256
+     ],
+     "seconds": 0.024547100067138672,
+     "finite": true,
+     "nrms": 0.46464350809671706,
+     "nmae": 0.36372769191114124,
+     "ssim": 0.08166707660704922,
+     "pearson": -0.008793567580759103,
+     "spearman": -0.08284818961769493,
+     "kendall": -0.058047788040485576,
+     "roc_auc": 0.6440748289971907,
+     "pr_auc": 0.004779977002440228
+    },
+    {
+     "id": "nvdla-small_freq_200_mp_1_fpu_60_fpa_1.0_p_2_fi_ar",
+     "design": "nvdla-small",
+     "group": "",
+     "shape": [
+      256,
+      256
+     ],
+     "seconds": 0.02736186981201172,
+     "finite": true,
+     "nrms": 0.48559316107611433,
+     "nmae": 0.38338997800261887,
+     "ssim": 0.06326416277683783,
+     "pearson": 0.015168643711568874,
+     "spearman": -0.05782413606714442,
+     "kendall": -0.04249411522093041,
+     "roc_auc": 0.37688418738837753,
+     "pr_auc": 0.0002902761621781073
+    },
+    {
+     "id": "nvdla-small_freq_200_mp_1_fpu_60_fpa_1.0_p_4_fi_ar",
+     "design": "nvdla-small",
+     "group": "",
+     "shape": [
+      256,
+      256
+     ],
+     "seconds": 0.02626204490661621,
+     "finite": true,
+     "nrms": 0.4684199589474196,
+     "nmae": 0.3808910312696371,
+     "ssim": 0.0599609575536024,
+     "pearson": 0.0632121415461588,
+     "spearman": 0.027138147383148105,
+     "kendall": 0.017739918874409916,
+     "roc_auc": 0.5309388311247796,
+     "pr_auc": 0.003372461566940995
+    },
+    {
+     "id": "nvdla-small_freq_200_mp_1_fpu_65_fpa_1.0_p_1_fi_ar",
+     "design": "nvdla-small",
+     "group": "",
+     "shape": [
+      256,
+      256
+     ],
+     "seconds": 0.03520560264587402,
+     "finite": true,
+     "nrms": 0.48395043246844177,
+     "nmae": 0.38435958207324483,
+     "ssim": 0.06019641851402,
+     "pearson": -0.02454086732932815,
+     "spearman": -0.05878290858812835,
+     "kendall": -0.04100654864464209,
+     "roc_auc": 0.7072648534718974,
+     "pr_auc": 0.001492667892251115
+    },
+    {
+     "id": "nvdla-small_freq_200_mp_1_fpu_65_fpa_1.0_p_2_fi_ar",
+     "design": "nvdla-small",
+     "group": "",
+     "shape": [
+      256,
+      256
+     ],
+     "seconds": 0.02401566505432129,
+     "finite": true,
+     "nrms": 0.49103854800004076,
+     "nmae": 0.3929338051645801,
+     "ssim": 0.05795204615827853,
+     "pearson": -0.005425337093746269,
+     "spearman": -0.06827984461057322,
+     "kendall": -0.049149553057285675,
+     "roc_auc": 0.17823982213539283,
+     "pr_auc": 0.0001645567354383143
+    },
+    {
+     "id": "nvdla-small_freq_200_mp_2_fpu_50_fpa_1.0_p_1_fi_ar",
+     "design": "nvdla-small",
+     "group": "",
+     "shape": [
+      256,
+      256
+     ],
+     "seconds": 0.02485513687133789,
+     "finite": true,
+     "nrms": 0.47355570596627206,
+     "nmae": 0.3778825766748492,
+     "ssim": 0.053083697200924734,
+     "pearson": 0.08662399325602296,
+     "spearman": 0.10098037972620329,
+     "kendall": 0.07301678615109902,
+     "roc_auc": 0.40819980670430844,
+     "pr_auc": 8.661660142117584e-05
+    },
+    {
+     "id": "nvdla-small_freq_200_mp_2_fpu_50_fpa_1.0_p_4_fi_ap",
+     "design": "nvdla-small",
+     "group": "",
+     "shape": [
+      256,
+      256
+     ],
+     "seconds": 0.02780437469482422,
+     "finite": true,
+     "nrms": 0.41507353624756826,
+     "nmae": 0.3305140913677756,
+     "ssim": 0.11265408562416196,
+     "pearson": 0.2629662688405609,
+     "spearman": 0.22796031405167894,
+     "kendall": 0.15396091484960397,
+     "roc_auc": 0.6501459522520386,
+     "pr_auc": 0.006847029594411848
+    },
+    {
+     "id": "nvdla-small_freq_200_mp_2_fpu_55_fpa_1.0_p_1_fi_ar",
+     "design": "nvdla-small",
+     "group": "",
+     "shape": [
+      256,
+      256
+     ],
+     "seconds": 0.023427248001098633,
+     "finite": true,
+     "nrms": 0.4167112486623922,
+     "nmae": 0.3258688171549761,
+     "ssim": 0.09632950911372452,
+     "pearson": 0.26974364601100675,
+     "spearman": 0.2746491942675527,
+     "kendall": 0.1924447179547209,
+     "roc_auc": 0.4434644611957152,
+     "pr_auc": 4.107538798818859e-05
+    },
+    {
+     "id": "nvdla-small_freq_200_mp_2_fpu_55_fpa_1.0_p_2_fi_ar",
+     "design": "nvdla-small",
+     "group": "",
+     "shape": [
+      256,
+      256
+     ],
+     "seconds": 0.018296241760253906,
+     "finite": true,
+     "nrms": 0.4165083943887248,
+     "nmae": 0.3246134015385068,
+     "ssim": 0.08781692384218738,
+     "pearson": 0.2608015077812761,
+     "spearman": 0.2668170175954135,
+     "kendall": 0.18863160947786545,
+     "roc_auc": 0.6686299728941602,
+     "pr_auc": 0.0008127205382018186
+    },
+    {
+     "id": "nvdla-small_freq_200_mp_2_fpu_60_fpa_1.0_p_1_fi_ar",
+     "design": "nvdla-small",
+     "group": "",
+     "shape": [
+      256,
+      256
+     ],
+     "seconds": 0.03285980224609375,
+     "finite": true,
+     "nrms": 0.4696384309883208,
+     "nmae": 0.35050798963090507,
+     "ssim": 0.07575312504287167,
+     "pearson": 0.1581209658486803,
+     "spearman": 0.14388382484617415,
+     "kendall": 0.1021385271382557,
+     "roc_auc": 0.06988891771500468,
+     "pr_auc": 9.53974847373278e-05
+    },
+    {
+     "id": "nvdla-small_freq_200_mp_2_fpu_60_fpa_1.0_p_2_fi_ar",
+     "design": "nvdla-small",
+     "group": "",
+     "shape": [
+      256,
+      256
+     ],
+     "seconds": 0.02541065216064453,
+     "finite": true,
+     "nrms": 0.4471604797403264,
+     "nmae": 0.3418610102279839,
+     "ssim": 0.07786984926658264,
+     "pearson": 0.18544366988867586,
+     "spearman": 0.16222889842793278,
+     "kendall": 0.11379911767796833,
+     "roc_auc": 0.7282648816214161,
+     "pr_auc": 0.0037581000145041807
+    },
+    {
+     "id": "nvdla-small_freq_200_mp_2_fpu_60_fpa_1.0_p_4_fi_ar",
+     "design": "nvdla-small",
+     "group": "",
+     "shape": [
+      256,
+      256
+     ],
+     "seconds": 0.032111167907714844,
+     "finite": true,
+     "nrms": 0.4612897939549025,
+     "nmae": 0.35487752698592673,
+     "ssim": 0.06757825065194671,
+     "pearson": 0.17913394969581234,
+     "spearman": 0.16436140950062603,
+     "kendall": 0.11494789046052156,
+     "roc_auc": 0.46775899319719,
+     "pr_auc": 0.00424736075848938
+    },
+    {
+     "id": "nvdla-small_freq_200_mp_2_fpu_65_fpa_1.0_p_2_fi_ap",
+     "design": "nvdla-small",
+     "group": "",
+     "shape": [
+      256,
+      256
+     ],
+     "seconds": 0.030569076538085938,
+     "finite": true,
+     "nrms": 0.4208038247069583,
+     "nmae": 0.3348746298632514,
+     "ssim": 0.07059095223503045,
+     "pearson": 0.21937512719367125,
+     "spearman": 0.19115833832466078,
+     "kendall": 0.13272471132125901,
+     "roc_auc": 0.556026513932143,
+     "pr_auc": 0.0017260848167591808
+    },
+    {
+     "id": "nvdla-small_freq_200_mp_2_fpu_65_fpa_1.0_p_4_fi_ap",
+     "design": "nvdla-small",
+     "group": "",
+     "shape": [
+      256,
+      256
+     ],
+     "seconds": 0.027387142181396484,
+     "finite": true,
+     "nrms": 0.4587114379708949,
+     "nmae": 0.35438357436020684,
+     "ssim": 0.09610226006586775,
+     "pearson": 0.18443833580077007,
+     "spearman": 0.18091723682383837,
+     "kendall": 0.126068183436221,
+     "roc_auc": 0.6027695707842817,
+     "pr_auc": 0.022064078945573676
+    },
+    {
+     "id": "nvdla-small_freq_500_mp_1_fpu_50_fpa_1.0_p_1_fi_ap",
+     "design": "nvdla-small",
+     "group": "",
+     "shape": [
+      256,
+      256
+     ],
+     "seconds": 0.024782657623291016,
+     "finite": true,
+     "nrms": 0.3466021450908892,
+     "nmae": 0.25821714020488123,
+     "ssim": 0.1695999057609888,
+     "pearson": 0.30334259656601087,
+     "spearman": 0.38113190473789066,
+     "kendall": 0.26400797819877886,
+     "roc_auc": 0.45593903583853335,
+     "pr_auc": 0.0008384367632441212
+    },
+    {
+     "id": "nvdla-small_freq_500_mp_1_fpu_50_fpa_1.0_p_2_fi_ap",
+     "design": "nvdla-small",
+     "group": "",
+     "shape": [
+      256,
+      256
+     ],
+     "seconds": 0.028671741485595703,
+     "finite": true,
+     "nrms": 0.3515500345620614,
+     "nmae": 0.26550407742619603,
+     "ssim": 0.16275790854308778,
+     "pearson": 0.3032057675184976,
+     "spearman": 0.37912027205193405,
+     "kendall": 0.26284575597277665,
+     "roc_auc": 0.5350901402780612,
+     "pr_auc": 0.0032379226807258427
+    },
+    {
+     "id": "nvdla-small_freq_500_mp_1_fpu_50_fpa_1.0_p_4_fi_ap",
+     "design": "nvdla-small",
+     "group": "",
+     "shape": [
+      256,
+      256
+     ],
+     "seconds": 0.027285099029541016,
+     "finite": true,
+     "nrms": 0.3729384626036327,
+     "nmae": 0.27432774757583905,
+     "ssim": 0.15039057782115342,
+     "pearson": 0.3415891382240753,
+     "spearman": 0.4114983794359666,
+     "kendall": 0.2862361841054236,
+     "roc_auc": 0.7452528421999371,
+     "pr_auc": 0.009235575166681779
+    },
+    {
+     "id": "nvdla-small_freq_500_mp_1_fpu_55_fpa_1.0_p_1_fi_ar",
+     "design": "nvdla-small",
+     "group": "",
+     "shape": [
+      256,
+      256
+     ],
+     "seconds": 0.024393796920776367,
+     "finite": true,
+     "nrms": 0.42383297242160795,
+     "nmae": 0.3238777710487514,
+     "ssim": 0.05384851566686971,
+     "pearson": 0.2625435551763724,
+     "spearman": 0.26662969966928857,
+     "kendall": 0.18959606657345388,
+     "roc_auc": null,
+     "pr_auc": null
+    },
+    {
+     "id": "nvdla-small_freq_500_mp_1_fpu_55_fpa_1.0_p_2_fi_ar",
+     "design": "nvdla-small",
+     "group": "",
+     "shape": [
+      256,
+      256
+     ],
+     "seconds": 0.03442215919494629,
+     "finite": true,
+     "nrms": 0.4013495309223824,
+     "nmae": 0.2975408995154207,
+     "ssim": 0.08383645282851362,
+     "pearson": 0.3488166541657605,
+     "spearman": 0.34307612378201785,
+     "kendall": 0.24519365355751394,
+     "roc_auc": 0.5489641332686345,
+     "pr_auc": 0.0011989534568542103
+    },
+    {
+     "id": "nvdla-small_freq_500_mp_1_fpu_55_fpa_1.0_p_4_fi_ar",
+     "design": "nvdla-small",
+     "group": "",
+     "shape": [
+      256,
+      256
+     ],
+     "seconds": 0.02545905113220215,
+     "finite": true,
+     "nrms": 0.4342476704244559,
+     "nmae": 0.3348158179353922,
+     "ssim": 0.04036855341318705,
+     "pearson": 0.267846736233618,
+     "spearman": 0.25420636052794476,
+     "kendall": 0.1818838859585727,
+     "roc_auc": 0.6373813722339691,
+     "pr_auc": 0.0070797368996531745
+    },
+    {
+     "id": "nvdla-small_freq_500_mp_1_fpu_60_fpa_1.0_p_1_fi_ar",
+     "design": "nvdla-small",
+     "group": "",
+     "shape": [
+      256,
+      256
+     ],
+     "seconds": 0.026277542114257812,
+     "finite": true,
+     "nrms": 0.429521928502403,
+     "nmae": 0.32728055426558883,
+     "ssim": 0.0894495366073656,
+     "pearson": 0.15373771827770508,
+     "spearman": 0.152009471308647,
+     "kendall": 0.10608057628124841,
+     "roc_auc": 0.7348161144194797,
+     "pr_auc": 0.001473028688152387
+    },
+    {
+     "id": "nvdla-small_freq_500_mp_1_fpu_60_fpa_1.0_p_2_fi_ar",
+     "design": "nvdla-small",
+     "group": "",
+     "shape": [
+      256,
+      256
+     ],
+     "seconds": 0.02496933937072754,
+     "finite": true,
+     "nrms": 0.42264601140146807,
+     "nmae": 0.32452268405414275,
+     "ssim": 0.08938774801503328,
+     "pearson": 0.19843289482167048,
+     "spearman": 0.17055474780997304,
+     "kendall": 0.11912796621926608,
+     "roc_auc": 0.3993085438964287,
+     "pr_auc": 0.0009869539772702426
+    },
+    {
+     "id": "nvdla-small_freq_500_mp_1_fpu_60_fpa_1.0_p_4_fi_ar",
+     "design": "nvdla-small",
+     "group": "",
+     "shape": [
+      256,
+      256
+     ],
+     "seconds": 0.029840946197509766,
+     "finite": true,
+     "nrms": 0.44609375954718045,
+     "nmae": 0.3426165484162657,
+     "ssim": 0.06984559783998912,
+     "pearson": 0.16319636408542862,
+     "spearman": 0.15033297739900733,
+     "kendall": 0.10567741382563414,
+     "roc_auc": 0.539185935966634,
+     "pr_auc": 0.005169415733729802
+    },
+    {
+     "id": "nvdla-small_freq_500_mp_1_fpu_65_fpa_1.0_p_1_fi_ar",
+     "design": "nvdla-small",
+     "group": "",
+     "shape": [
+      256,
+      256
+     ],
+     "seconds": 0.027093172073364258,
+     "finite": true,
+     "nrms": 0.4642982242202751,
+     "nmae": 0.3699037283299194,
+     "ssim": 0.06763266688229808,
+     "pearson": 0.02915157148566846,
+     "spearman": 0.023299778916170074,
+     "kendall": 0.016340067238608837,
+     "roc_auc": 0.4972655722171056,
+     "pr_auc": 0.00040584938762492826
+    },
+    {
+     "id": "nvdla-small_freq_500_mp_1_fpu_65_fpa_1.0_p_2_fi_ar",
+     "design": "nvdla-small",
+     "group": "",
+     "shape": [
+      256,
+      256
+     ],
+     "seconds": 0.02460789680480957,
+     "finite": true,
+     "nrms": 0.4704065452537965,
+     "nmae": 0.3852960867727116,
+     "ssim": 0.05397359213316017,
+     "pearson": -0.01698317282447828,
+     "spearman": -0.04563450335837121,
+     "kendall": -0.031046986244030267,
+     "roc_auc": 0.5075957582031384,
+     "pr_auc": 0.0013236378477206152
+    },
+    {
+     "id": "nvdla-small_freq_500_mp_2_fpu_50_fpa_1.0_p_1_fi_ap",
+     "design": "nvdla-small",
+     "group": "",
+     "shape": [
+      256,
+      256
+     ],
+     "seconds": 0.028055667877197266,
+     "finite": true,
+     "nrms": 0.40248699722238024,
+     "nmae": 0.3087609741423175,
+     "ssim": 0.10827186489381968,
+     "pearson": 0.23462824392629872,
+     "spearman": 0.21499823600492066,
+     "kendall": 0.14860316670062398,
+     "roc_auc": 0.5045095226468075,
+     "pr_auc": 0.00014410773343096435
+    },
+    {
+     "id": "nvdla-small_freq_500_mp_2_fpu_50_fpa_1.0_p_2_fi_ap",
+     "design": "nvdla-small",
+     "group": "",
+     "shape": [
+      256,
+      256
+     ],
+     "seconds": 0.02060103416442871,
+     "finite": true,
+     "nrms": 0.3747949902993763,
+     "nmae": 0.29246690049817525,
+     "ssim": 0.13354424215455735,
+     "pearson": 0.27167227851476666,
+     "spearman": 0.21551431193103776,
+     "kendall": 0.1458918970058237,
+     "roc_auc": 0.5219200083284429,
+     "pr_auc": 0.0015774243042565633
+    },
+    {
+     "id": "nvdla-small_freq_500_mp_2_fpu_50_fpa_1.0_p_4_fi_ap",
+     "design": "nvdla-small",
+     "group": "",
+     "shape": [
+      256,
+      256
+     ],
+     "seconds": 0.034307003021240234,
+     "finite": true,
+     "nrms": 0.42595366276202257,
+     "nmae": 0.33033935713904783,
+     "ssim": 0.09633704916531338,
+     "pearson": 0.21790715796461124,
+     "spearman": 0.20549615462361595,
+     "kendall": 0.14243014022138206,
+     "roc_auc": 0.625362416552593,
+     "pr_auc": 0.010831208197368183
+    },
+    {
+     "id": "nvdla-small_freq_500_mp_2_fpu_55_fpa_1.0_p_1_fi_ap",
+     "design": "nvdla-small",
+     "group": "",
+     "shape": [
+      256,
+      256
+     ],
+     "seconds": 0.024689435958862305,
+     "finite": true,
+     "nrms": 0.41091997465130664,
+     "nmae": 0.3059730036967872,
+     "ssim": 0.10614624524710808,
+     "pearson": 0.2544166519603848,
+     "spearman": 0.27013784504162425,
+     "kendall": 0.19147966949740297,
+     "roc_auc": 0.5933915533701842,
+     "pr_auc": 0.0006497318899974765
+    },
+    {
+     "id": "nvdla-small_freq_500_mp_2_fpu_55_fpa_1.0_p_2_fi_ap",
+     "design": "nvdla-small",
+     "group": "",
+     "shape": [
+      256,
+      256
+     ],
+     "seconds": 0.028079986572265625,
+     "finite": true,
+     "nrms": 0.4162905434070062,
+     "nmae": 0.31123820686435794,
+     "ssim": 0.09331750070262587,
+     "pearson": 0.24983725707053298,
+     "spearman": 0.257885203369854,
+     "kendall": 0.18164616507269757,
+     "roc_auc": 0.345160462985794,
+     "pr_auc": 0.0019758774717649518
+    },
+    {
+     "id": "nvdla-small_freq_500_mp_2_fpu_55_fpa_1.0_p_4_fi_ap",
+     "design": "nvdla-small",
+     "group": "",
+     "shape": [
+      256,
+      256
+     ],
+     "seconds": 0.02404189109802246,
+     "finite": true,
+     "nrms": 0.4208209962413557,
+     "nmae": 0.31598284886844624,
+     "ssim": 0.10266165005962104,
+     "pearson": 0.27917863058729064,
+     "spearman": 0.29034139139879517,
+     "kendall": 0.20467903513022187,
+     "roc_auc": 0.6114644357972424,
+     "pr_auc": 0.013993260035011966
+    },
+    {
+     "id": "nvdla-small_freq_500_mp_2_fpu_60_fpa_1.0_p_1_fi_ap",
+     "design": "nvdla-small",
+     "group": "",
+     "shape": [
+      256,
+      256
+     ],
+     "seconds": 0.029641389846801758,
+     "finite": true,
+     "nrms": 0.37499358574353464,
+     "nmae": 0.27594780323108775,
+     "ssim": 0.15065190827510183,
+     "pearson": 0.3670231518334659,
+     "spearman": 0.3940108033113555,
+     "kendall": 0.27277062020237575,
+     "roc_auc": 0.3462377727081316,
+     "pr_auc": 0.0010357369365270074
+    },
+    {
+     "id": "nvdla-small_freq_500_mp_2_fpu_60_fpa_1.0_p_2_fi_ap",
+     "design": "nvdla-small",
+     "group": "",
+     "shape": [
+      256,
+      256
+     ],
+     "seconds": 0.03221583366394043,
+     "finite": true,
+     "nrms": 0.38359413419243266,
+     "nmae": 0.2823376303528616,
+     "ssim": 0.1541035546537431,
+     "pearson": 0.3754025398822713,
+     "spearman": 0.3954747183526512,
+     "kendall": 0.2739033130091337,
+     "roc_auc": 0.49023759310468157,
+     "pr_auc": 0.005837372655469573
+    },
+    {
+     "id": "nvdla-small_freq_500_mp_2_fpu_60_fpa_1.0_p_4_fi_ar",
+     "design": "nvdla-small",
+     "group": "",
+     "shape": [
+      256,
+      256
+     ],
+     "seconds": 0.024244308471679688,
+     "finite": true,
+     "nrms": 0.4343958624650839,
+     "nmae": 0.32968929177738066,
+     "ssim": 0.08511372171045647,
+     "pearson": 0.2666536873924458,
+     "spearman": 0.3139548749654407,
+     "kendall": 0.21916127392521056,
+     "roc_auc": 0.6483672454236465,
+     "pr_auc": 0.007678748189717381
+    },
+    {
+     "id": "nvdla-small_freq_500_mp_2_fpu_65_fpa_1.0_p_1_fi_ar",
+     "design": "nvdla-small",
+     "group": "",
+     "shape": [
+      256,
+      256
+     ],
+     "seconds": 0.019848346710205078,
+     "finite": true,
+     "nrms": 0.4403994371682351,
+     "nmae": 0.3319248708931288,
+     "ssim": 0.10881963663791949,
+     "pearson": 0.22953131970962581,
+     "spearman": 0.2728848355088663,
+     "kendall": 0.18944966986784112,
+     "roc_auc": 0.7405802767003634,
+     "pr_auc": 0.0016896555286469354
+    },
+    {
+     "id": "nvdla-small_freq_500_mp_2_fpu_65_fpa_1.0_p_2_fi_ar",
+     "design": "nvdla-small",
+     "group": "",
+     "shape": [
+      256,
+      256
+     ],
+     "seconds": 0.0196533203125,
+     "finite": true,
+     "nrms": 0.4231534181396882,
+     "nmae": 0.3305743224633294,
+     "ssim": 0.09211083649913455,
+     "pearson": 0.27091157264743304,
+     "spearman": 0.31215530894106563,
+     "kendall": 0.2166480567634107,
+     "roc_auc": 0.5950743903282099,
+     "pr_auc": 0.0031202774030109916
+    },
+    {
+     "id": "nvdla-small_freq_500_mp_2_fpu_65_fpa_1.0_p_4_fi_ar",
+     "design": "nvdla-small",
+     "group": "",
+     "shape": [
+      256,
+      256
+     ],
+     "seconds": 0.02282571792602539,
+     "finite": true,
+     "nrms": 0.4403205710327297,
+     "nmae": 0.34711298372830185,
+     "ssim": 0.09055691074950989,
+     "pearson": 0.270682934740502,
+     "spearman": 0.3178799306562723,
+     "kendall": 0.22347858069793228,
+     "roc_auc": 0.6753841528300559,
+     "pr_auc": 0.014565451908574133
+    }
+   ],
+   "summary": {
+    "mean_nrms": 0.42768499253004405,
+    "n_excluded_nrms": 1,
+    "mean_nmae": 0.32975131585697504,
+    "n_excluded_nmae": 1,
+    "mean_ssim": 0.09151844118346146,
+    "mean_pearson": 0.20654769610689655,
+    "n_excluded_pearson": 1,
+    "mean_spearman": 0.20511889964200491,
+    "n_excluded_spearman": 1,
+    "mean_kendall": 0.1432719427127474,
+    "n_excluded_kendall": 1,
+    "mean_roc_auc": 0.5461763077759307,
+    "n_excluded_roc_auc": 2,
+    "mean_pr_auc": 0.004137517721575239,
+    "n_excluded_pr_auc": 2,
+    "mean_seconds": 0.026873213052749634,
+    "n": 40
+   },
+   "fit_seconds": 2.1555862426757812
+  },
+  "effdist": {
+   "skipped": "missing input channel(s) ['eff_dist']"
+  },
+  "effdist_deg2": {
+   "skipped": "missing input channel(s) ['eff_dist']"
+  },
+  "green": {
+   "rows": [
+    {
+     "id": "nvdla-small_freq_200_mp_1_fpu_50_fpa_1.0_p_1_fi_ap",
+     "design": "nvdla-small",
+     "group": "",
+     "shape": [
+      256,
+      256
+     ],
+     "seconds": 0.020763397216796875,
+     "finite": true,
+     "nrms": 0.360701024698174,
+     "nmae": 0.3361227144232508,
+     "ssim": 0.3024317542749051,
+     "pearson": 0.5329685728062968,
+     "spearman": 0.727909338900743,
+     "kendall": 0.5343473299408478,
+     "roc_auc": 0.8605869568063684,
+     "pr_auc": 0.003997483579978459
+    },
+    {
+     "id": "nvdla-small_freq_200_mp_1_fpu_55_fpa_1.0_p_1_fi_ar",
+     "design": "nvdla-small",
+     "group": "",
+     "shape": [
+      256,
+      256
+     ],
+     "seconds": 0.01815032958984375,
+     "finite": true,
+     "nrms": null,
+     "nmae": null,
+     "ssim": 0.0008573643260817443,
+     "pearson": null,
+     "spearman": null,
+     "kendall": null,
+     "roc_auc": null,
+     "pr_auc": null
+    },
+    {
+     "id": "nvdla-small_freq_200_mp_1_fpu_55_fpa_1.0_p_4_fi_ap",
+     "design": "nvdla-small",
+     "group": "",
+     "shape": [
+      256,
+      256
+     ],
+     "seconds": 0.02736639976501465,
+     "finite": true,
+     "nrms": 0.3515620729844119,
+     "nmae": 0.3238225924771789,
+     "ssim": 0.29057401932009597,
+     "pearson": 0.6228412725233275,
+     "spearman": 0.7855565117176578,
+     "kendall": 0.5998107039833938,
+     "roc_auc": 0.9431405007972833,
+     "pr_auc": 0.20856104774806106
+    },
+    {
+     "id": "nvdla-small_freq_200_mp_1_fpu_60_fpa_1.0_p_1_fi_ap",
+     "design": "nvdla-small",
+     "group": "",
+     "shape": [
+      256,
+      256
+     ],
+     "seconds": 0.022871017456054688,
+     "finite": true,
+     "nrms": 0.3039345558530481,
+     "nmae": 0.27499259729012315,
+     "ssim": 0.2945732404826794,
+     "pearson": 0.5850418297353125,
+     "spearman": 0.7799064220926547,
+     "kendall": 0.5860526221597241,
+     "roc_auc": 0.9276642848418224,
+     "pr_auc": 0.004682476229069658
+    },
+    {
+     "id": "nvdla-small_freq_200_mp_1_fpu_60_fpa_1.0_p_2_fi_ar",
+     "design": "nvdla-small",
+     "group": "",
+     "shape": [
+      256,
+      256
+     ],
+     "seconds": 0.024893522262573242,
+     "finite": true,
+     "nrms": 0.30725346636512224,
+     "nmae": 0.2781283395554091,
+     "ssim": 0.22275734941552308,
+     "pearson": 0.620832548003696,
+     "spearman": 0.7724060943875323,
+     "kendall": 0.5820580017896485,
+     "roc_auc": 0.8189055273160233,
+     "pr_auc": 0.0055538352759229555
+    },
+    {
+     "id": "nvdla-small_freq_200_mp_1_fpu_60_fpa_1.0_p_4_fi_ar",
+     "design": "nvdla-small",
+     "group": "",
+     "shape": [
+      256,
+      256
+     ],
+     "seconds": 0.018355131149291992,
+     "finite": true,
+     "nrms": 0.31536775367309944,
+     "nmae": 0.28608629632980764,
+     "ssim": 0.2119907103261243,
+     "pearson": 0.6225533055308254,
+     "spearman": 0.7801944948713652,
+     "kendall": 0.5891475577243498,
+     "roc_auc": 0.9298873195005614,
+     "pr_auc": 0.0332973198856051
+    },
+    {
+     "id": "nvdla-small_freq_200_mp_1_fpu_65_fpa_1.0_p_1_fi_ar",
+     "design": "nvdla-small",
+     "group": "",
+     "shape": [
+      256,
+      256
+     ],
+     "seconds": 0.022321224212646484,
+     "finite": true,
+     "nrms": 0.3067013308936409,
+     "nmae": 0.2779624644197438,
+     "ssim": 0.24085508198369301,
+     "pearson": 0.6020875965854885,
+     "spearman": 0.7703351745035041,
+     "kendall": 0.5772110350784957,
+     "roc_auc": 0.9228848643989935,
+     "pr_auc": 0.01320367679499871
+    },
+    {
+     "id": "nvdla-small_freq_200_mp_1_fpu_65_fpa_1.0_p_2_fi_ar",
+     "design": "nvdla-small",
+     "group": "",
+     "shape": [
+      256,
+      256
+     ],
+     "seconds": 0.025662660598754883,
+     "finite": true,
+     "nrms": 0.3112493693613787,
+     "nmae": 0.27976817564350837,
+     "ssim": 0.23423299703848957,
+     "pearson": 0.6067388639253851,
+     "spearman": 0.7606868209961596,
+     "kendall": 0.570958702093839,
+     "roc_auc": 0.6179514705034409,
+     "pr_auc": 0.00047307061062353423
+    },
+    {
+     "id": "nvdla-small_freq_200_mp_2_fpu_50_fpa_1.0_p_1_fi_ar",
+     "design": "nvdla-small",
+     "group": "",
+     "shape": [
+      256,
+      256
+     ],
+     "seconds": 0.03117823600769043,
+     "finite": true,
+     "nrms": 0.2873817216780653,
+     "nmae": 0.2629769450177178,
+     "ssim": 0.20192848766403892,
+     "pearson": 0.6944867092034125,
+     "spearman": 0.7938607349735836,
+     "kendall": 0.6110114113041334,
+     "roc_auc": 0.9567729792970141,
+     "pr_auc": 0.0013972699652275006
+    },
+    {
+     "id": "nvdla-small_freq_200_mp_2_fpu_50_fpa_1.0_p_4_fi_ap",
+     "design": "nvdla-small",
+     "group": "",
+     "shape": [
+      256,
+      256
+     ],
+     "seconds": 0.02015852928161621,
+     "finite": true,
+     "nrms": 0.31364619242894126,
+     "nmae": 0.2843422328892072,
+     "ssim": 0.3172930371857378,
+     "pearson": 0.6707905888668336,
+     "spearman": 0.8353087288306982,
+     "kendall": 0.6555858748692576,
+     "roc_auc": 0.9614148627591145,
+     "pr_auc": 0.07533079129722552
+    },
+    {
+     "id": "nvdla-small_freq_200_mp_2_fpu_55_fpa_1.0_p_1_fi_ar",
+     "design": "nvdla-small",
+     "group": "",
+     "shape": [
+      256,
+      256
+     ],
+     "seconds": 0.024517059326171875,
+     "finite": true,
+     "nrms": 0.2967745509977136,
+     "nmae": 0.27172925497252004,
+     "ssim": 0.22106485569275888,
+     "pearson": 0.6821559385033195,
+     "spearman": 0.8081141596241351,
+     "kendall": 0.6205305525800011,
+     "roc_auc": 0.9334543900875881,
+     "pr_auc": 0.0003346648709621352
+    },
+    {
+     "id": "nvdla-small_freq_200_mp_2_fpu_55_fpa_1.0_p_2_fi_ar",
+     "design": "nvdla-small",
+     "group": "",
+     "shape": [
+      256,
+      256
+     ],
+     "seconds": 0.022983312606811523,
+     "finite": true,
+     "nrms": 0.3107072781436361,
+     "nmae": 0.28585262781783444,
+     "ssim": 0.2128995613219936,
+     "pearson": 0.6681256008722383,
+     "spearman": 0.7984258949216329,
+     "kendall": 0.6134900414326094,
+     "roc_auc": 0.967617413593688,
+     "pr_auc": 0.010641014266316346
+    },
+    {
+     "id": "nvdla-small_freq_200_mp_2_fpu_60_fpa_1.0_p_1_fi_ar",
+     "design": "nvdla-small",
+     "group": "",
+     "shape": [
+      256,
+      256
+     ],
+     "seconds": 0.02875685691833496,
+     "finite": true,
+     "nrms": 0.2824525286912497,
+     "nmae": 0.2535133981104781,
+     "ssim": 0.23585165556889306,
+     "pearson": 0.671961729230514,
+     "spearman": 0.7996879032711259,
+     "kendall": 0.607298054752523,
+     "roc_auc": 0.7452720930981801,
+     "pr_auc": 0.0002841932358794269
+    },
+    {
+     "id": "nvdla-small_freq_200_mp_2_fpu_60_fpa_1.0_p_2_fi_ar",
+     "design": "nvdla-small",
+     "group": "",
+     "shape": [
+      256,
+      256
+     ],
+     "seconds": 0.0221402645111084,
+     "finite": true,
+     "nrms": 0.3060242922047988,
+     "nmae": 0.2778514905593285,
+     "ssim": 0.23215886089638266,
+     "pearson": 0.674315875248475,
+     "spearman": 0.7967711361152425,
+     "kendall": 0.6032205094380798,
+     "roc_auc": 0.9537392424103661,
+     "pr_auc": 0.006487496303449726
+    },
+    {
+     "id": "nvdla-small_freq_200_mp_2_fpu_60_fpa_1.0_p_4_fi_ar",
+     "design": "nvdla-small",
+     "group": "",
+     "shape": [
+      256,
+      256
+     ],
+     "seconds": 0.026262283325195312,
+     "finite": true,
+     "nrms": 0.2977811534213728,
+     "nmae": 0.2666589829767689,
+     "ssim": 0.22198177516805975,
+     "pearson": 0.6821421385909383,
+     "spearman": 0.7989774012846279,
+     "kendall": 0.6084515029238725,
+     "roc_auc": 0.8743744739690548,
+     "pr_auc": 0.0455798978832102
+    },
+    {
+     "id": "nvdla-small_freq_200_mp_2_fpu_65_fpa_1.0_p_2_fi_ap",
+     "design": "nvdla-small",
+     "group": "",
+     "shape": [
+      256,
+      256
+     ],
+     "seconds": 0.023824214935302734,
+     "finite": true,
+     "nrms": 0.30551513234489797,
+     "nmae": 0.2775949286804579,
+     "ssim": 0.26326715123230665,
+     "pearson": 0.638324281929278,
+     "spearman": 0.8064859474102306,
+     "kendall": 0.6163230814439797,
+     "roc_auc": 0.7227355931959306,
+     "pr_auc": 0.0022340989175059253
+    },
+    {
+     "id": "nvdla-small_freq_200_mp_2_fpu_65_fpa_1.0_p_4_fi_ap",
+     "design": "nvdla-small",
+     "group": "",
+     "shape": [
+      256,
+      256
+     ],
+     "seconds": 0.02486562728881836,
+     "finite": true,
+     "nrms": 0.3452493960782162,
+     "nmae": 0.3197096685220941,
+     "ssim": 0.24607899554188825,
+     "pearson": 0.6660852108868733,
+     "spearman": 0.8130466093254858,
+     "kendall": 0.6228161377700222,
+     "roc_auc": 0.8525062819667778,
+     "pr_auc": 0.06370369166102131
+    },
+    {
+     "id": "nvdla-small_freq_500_mp_1_fpu_50_fpa_1.0_p_1_fi_ap",
+     "design": "nvdla-small",
+     "group": "",
+     "shape": [
+      256,
+      256
+     ],
+     "seconds": 0.02456808090209961,
+     "finite": true,
+     "nrms": 0.30341730905162856,
+     "nmae": 0.27827976507764074,
+     "ssim": 0.32992616949375425,
+     "pearson": 0.5533773243987765,
+     "spearman": 0.7620887817329147,
+     "kendall": 0.5652514007296993,
+     "roc_auc": 0.8564134678536475,
+     "pr_auc": 0.08604308185834217
+    },
+    {
+     "id": "nvdla-small_freq_500_mp_1_fpu_50_fpa_1.0_p_2_fi_ap",
+     "design": "nvdla-small",
+     "group": "",
+     "shape": [
+      256,
+      256
+     ],
+     "seconds": 0.021268129348754883,
+     "finite": true,
+     "nrms": 0.3103600164529861,
+     "nmae": 0.2845262120511256,
+     "ssim": 0.32425988668750266,
+     "pearson": 0.5529857524945531,
+     "spearman": 0.7644730113212189,
+     "kendall": 0.5664725304974946,
+     "roc_auc": 0.8149065994193826,
+     "pr_auc": 0.01468243946321489
+    },
+    {
+     "id": "nvdla-small_freq_500_mp_1_fpu_50_fpa_1.0_p_4_fi_ap",
+     "design": "nvdla-small",
+     "group": "",
+     "shape": [
+      256,
+      256
+     ],
+     "seconds": 0.031939029693603516,
+     "finite": true,
+     "nrms": 0.33388595315412417,
+     "nmae": 0.3077204284724727,
+     "ssim": 0.3153772423075973,
+     "pearson": 0.5675598239483679,
+     "spearman": 0.7618265278690787,
+     "kendall": 0.5685730122642854,
+     "roc_auc": 0.9421541876417008,
+     "pr_auc": 0.18402089719227793
+    },
+    {
+     "id": "nvdla-small_freq_500_mp_1_fpu_55_fpa_1.0_p_1_fi_ar",
+     "design": "nvdla-small",
+     "group": "",
+     "shape": [
+      256,
+      256
+     ],
+     "seconds": 0.026276826858520508,
+     "finite": true,
+     "nrms": 0.29596925242732436,
+     "nmae": 0.26835340855912526,
+     "ssim": 0.22492145441352468,
+     "pearson": 0.6559360805502181,
+     "spearman": 0.7812563792368612,
+     "kendall": 0.5909413118404292,
+     "roc_auc": null,
+     "pr_auc": null
+    },
+    {
+     "id": "nvdla-small_freq_500_mp_1_fpu_55_fpa_1.0_p_2_fi_ar",
+     "design": "nvdla-small",
+     "group": "",
+     "shape": [
+      256,
+      256
+     ],
+     "seconds": 0.030966520309448242,
+     "finite": true,
+     "nrms": 0.2996076034821146,
+     "nmae": 0.26571995034572965,
+     "ssim": 0.21994203419397074,
+     "pearson": 0.651851480939011,
+     "spearman": 0.7686585891646422,
+     "kendall": 0.5807874076990729,
+     "roc_auc": 0.9099093785504563,
+     "pr_auc": 0.10744482415660016
+    },
+    {
+     "id": "nvdla-small_freq_500_mp_1_fpu_55_fpa_1.0_p_4_fi_ar",
+     "design": "nvdla-small",
+     "group": "",
+     "shape": [
+      256,
+      256
+     ],
+     "seconds": 0.025640487670898438,
+     "finite": true,
+     "nrms": 0.3097850813128329,
+     "nmae": 0.2786972621629737,
+     "ssim": 0.19749911318960975,
+     "pearson": 0.6560799799942424,
+     "spearman": 0.7591593359864536,
+     "kendall": 0.5747907613850167,
+     "roc_auc": 0.9306375812042671,
+     "pr_auc": 0.06327927456306101
+    },
+    {
+     "id": "nvdla-small_freq_500_mp_1_fpu_60_fpa_1.0_p_1_fi_ar",
+     "design": "nvdla-small",
+     "group": "",
+     "shape": [
+      256,
+      256
+     ],
+     "seconds": 0.02362990379333496,
+     "finite": true,
+     "nrms": 0.29970644716059325,
+     "nmae": 0.2702108467174795,
+     "ssim": 0.22395866185433036,
+     "pearson": 0.6341835629912651,
+     "spearman": 0.7824102343161746,
+     "kendall": 0.588861740373861,
+     "roc_auc": 0.7425433174033578,
+     "pr_auc": 0.0005452989079486332
+    },
+    {
+     "id": "nvdla-small_freq_500_mp_1_fpu_60_fpa_1.0_p_2_fi_ar",
+     "design": "nvdla-small",
+     "group": "",
+     "shape": [
+      256,
+      256
+     ],
+     "seconds": 0.03038763999938965,
+     "finite": true,
+     "nrms": 0.30358357819427695,
+     "nmae": 0.27293476243010417,
+     "ssim": 0.2203593193655969,
+     "pearson": 0.6359916322404163,
+     "spearman": 0.7799232837322652,
+     "kendall": 0.5870153152432815,
+     "roc_auc": 0.7361427274038992,
+     "pr_auc": 0.003110654762481511
+    },
+    {
+     "id": "nvdla-small_freq_500_mp_1_fpu_60_fpa_1.0_p_4_fi_ar",
+     "design": "nvdla-small",
+     "group": "",
+     "shape": [
+      256,
+      256
+     ],
+     "seconds": 0.02932262420654297,
+     "finite": true,
+     "nrms": 0.3089508204210696,
+     "nmae": 0.2779022904267432,
+     "ssim": 0.20628104288225665,
+     "pearson": 0.6439958620845732,
+     "spearman": 0.7794217396280727,
+     "kendall": 0.5893161691419511,
+     "roc_auc": 0.8547602869694554,
+     "pr_auc": 0.051875018657153195
+    },
+    {
+     "id": "nvdla-small_freq_500_mp_1_fpu_65_fpa_1.0_p_1_fi_ar",
+     "design": "nvdla-small",
+     "group": "",
+     "shape": [
+      256,
+      256
+     ],
+     "seconds": 0.02338576316833496,
+     "finite": true,
+     "nrms": 0.30811915949328117,
+     "nmae": 0.27813293924389343,
+     "ssim": 0.22585694125480726,
+     "pearson": 0.5949056395724941,
+     "spearman": 0.7689491980210985,
+     "kendall": 0.5765136920592491,
+     "roc_auc": 0.8818816526765053,
+     "pr_auc": 0.001970979831659339
+    },
+    {
+     "id": "nvdla-small_freq_500_mp_1_fpu_65_fpa_1.0_p_2_fi_ar",
+     "design": "nvdla-small",
+     "group": "",
+     "shape": [
+      256,
+      256
+     ],
+     "seconds": 0.023472309112548828,
+     "finite": true,
+     "nrms": 0.32244382504832086,
+     "nmae": 0.2863482538283478,
+     "ssim": 0.22058654120945756,
+     "pearson": 0.6024191220636849,
+     "spearman": 0.7631707654261289,
+     "kendall": 0.5704975532981417,
+     "roc_auc": 0.7155252418144923,
+     "pr_auc": 0.0022155693568444786
+    },
+    {
+     "id": "nvdla-small_freq_500_mp_2_fpu_50_fpa_1.0_p_1_fi_ap",
+     "design": "nvdla-small",
+     "group": "",
+     "shape": [
+      256,
+      256
+     ],
+     "seconds": 0.027872800827026367,
+     "finite": true,
+     "nrms": 0.31793292200906526,
+     "nmae": 0.29113831472258506,
+     "ssim": 0.30948320831894593,
+     "pearson": 0.6079389939074618,
+     "spearman": 0.8319986306496358,
+     "kendall": 0.6446559358090438,
+     "roc_auc": 0.8795114302282994,
+     "pr_auc": 0.0005378891461770713
+    },
+    {
+     "id": "nvdla-small_freq_500_mp_2_fpu_50_fpa_1.0_p_2_fi_ap",
+     "design": "nvdla-small",
+     "group": "",
+     "shape": [
+      256,
+      256
+     ],
+     "seconds": 0.02896428108215332,
+     "finite": true,
+     "nrms": 0.3420586122904901,
+     "nmae": 0.31278389275883994,
+     "ssim": 0.28946234182551794,
+     "pearson": 0.6068211142776058,
+     "spearman": 0.8207237390366146,
+     "kendall": 0.6309305877312201,
+     "roc_auc": 0.8295611028134521,
+     "pr_auc": 0.004573211026127138
+    },
+    {
+     "id": "nvdla-small_freq_500_mp_2_fpu_50_fpa_1.0_p_4_fi_ap",
+     "design": "nvdla-small",
+     "group": "",
+     "shape": [
+      256,
+      256
+     ],
+     "seconds": 0.024865388870239258,
+     "finite": true,
+     "nrms": 0.36594945049710276,
+     "nmae": 0.3354534358482504,
+     "ssim": 0.2880580827450941,
+     "pearson": 0.6331790089893707,
+     "spearman": 0.8206099534646638,
+     "kendall": 0.6324971266620618,
+     "roc_auc": 0.9273894414851407,
+     "pr_auc": 0.12282698039402863
+    },
+    {
+     "id": "nvdla-small_freq_500_mp_2_fpu_55_fpa_1.0_p_1_fi_ap",
+     "design": "nvdla-small",
+     "group": "",
+     "shape": [
+      256,
+      256
+     ],
+     "seconds": 0.027521371841430664,
+     "finite": true,
+     "nrms": 0.2863928407990283,
+     "nmae": 0.2584459296115295,
+     "ssim": 0.31598071826849633,
+     "pearson": 0.6491164388176286,
+     "spearman": 0.8200599464808198,
+     "kendall": 0.6328984723453427,
+     "roc_auc": 0.9177323986146393,
+     "pr_auc": 0.0037609647036788096
+    },
+    {
+     "id": "nvdla-small_freq_500_mp_2_fpu_55_fpa_1.0_p_2_fi_ap",
+     "design": "nvdla-small",
+     "group": "",
+     "shape": [
+      256,
+      256
+     ],
+     "seconds": 0.02412724494934082,
+     "finite": true,
+     "nrms": 0.3303388054361861,
+     "nmae": 0.30206558527113253,
+     "ssim": 0.3019694032690018,
+     "pearson": 0.6342730873538811,
+     "spearman": 0.8206854597761095,
+     "kendall": 0.6283317837436895,
+     "roc_auc": 0.8493601638556472,
+     "pr_auc": 0.0208821117122202
+    },
+    {
+     "id": "nvdla-small_freq_500_mp_2_fpu_55_fpa_1.0_p_4_fi_ap",
+     "design": "nvdla-small",
+     "group": "",
+     "shape": [
+      256,
+      256
+     ],
+     "seconds": 0.027734041213989258,
+     "finite": true,
+     "nrms": 0.33806612956634513,
+     "nmae": 0.3091486100887868,
+     "ssim": 0.2932290705209976,
+     "pearson": 0.6590798390175655,
+     "spearman": 0.8260666730317807,
+     "kendall": 0.6390903745519411,
+     "roc_auc": 0.9110840819678291,
+     "pr_auc": 0.16647077522718104
+    },
+    {
+     "id": "nvdla-small_freq_500_mp_2_fpu_60_fpa_1.0_p_1_fi_ap",
+     "design": "nvdla-small",
+     "group": "",
+     "shape": [
+      256,
+      256
+     ],
+     "seconds": 0.026510238647460938,
+     "finite": true,
+     "nrms": 0.27619896725656395,
+     "nmae": 0.24844889733319356,
+     "ssim": 0.28228187754999984,
+     "pearson": 0.6651916674876802,
+     "spearman": 0.8334724926941042,
+     "kendall": 0.6400522409652996,
+     "roc_auc": 0.722564951100285,
+     "pr_auc": 0.002492982110848379
+    },
+    {
+     "id": "nvdla-small_freq_500_mp_2_fpu_60_fpa_1.0_p_2_fi_ap",
+     "design": "nvdla-small",
+     "group": "",
+     "shape": [
+      256,
+      256
+     ],
+     "seconds": 0.026929378509521484,
+     "finite": true,
+     "nrms": 0.29238441800866516,
+     "nmae": 0.2645942608250685,
+     "ssim": 0.2708972593682465,
+     "pearson": 0.657511653994505,
+     "spearman": 0.8179779086637491,
+     "kendall": 0.6223414805159222,
+     "roc_auc": 0.7430191695497338,
+     "pr_auc": 0.017547894888555203
+    },
+    {
+     "id": "nvdla-small_freq_500_mp_2_fpu_60_fpa_1.0_p_4_fi_ar",
+     "design": "nvdla-small",
+     "group": "",
+     "shape": [
+      256,
+      256
+     ],
+     "seconds": 0.024657011032104492,
+     "finite": true,
+     "nrms": 0.2976959409697608,
+     "nmae": 0.2672043486461343,
+     "ssim": 0.2065376745643979,
+     "pearson": 0.6862446156427776,
+     "spearman": 0.8176314182209053,
+     "kendall": 0.6293950336146249,
+     "roc_auc": 0.8780892294728918,
+     "pr_auc": 0.0467272489050712
+    },
+    {
+     "id": "nvdla-small_freq_500_mp_2_fpu_65_fpa_1.0_p_1_fi_ar",
+     "design": "nvdla-small",
+     "group": "",
+     "shape": [
+      256,
+      256
+     ],
+     "seconds": 0.02974081039428711,
+     "finite": true,
+     "nrms": 0.29124977548423436,
+     "nmae": 0.2635810464337223,
+     "ssim": 0.2314543849296366,
+     "pearson": 0.6576849165414301,
+     "spearman": 0.806591247537883,
+     "kendall": 0.6186046225677055,
+     "roc_auc": 0.8625077115719391,
+     "pr_auc": 0.002948599974629865
+    },
+    {
+     "id": "nvdla-small_freq_500_mp_2_fpu_65_fpa_1.0_p_2_fi_ar",
+     "design": "nvdla-small",
+     "group": "",
+     "shape": [
+      256,
+      256
+     ],
+     "seconds": 0.024725914001464844,
+     "finite": true,
+     "nrms": 0.30012216480489434,
+     "nmae": 0.27294582747071344,
+     "ssim": 0.2225754524194954,
+     "pearson": 0.6484804834951454,
+     "spearman": 0.8044598107398555,
+     "kendall": 0.6141434754633169,
+     "roc_auc": 0.8281588655632066,
+     "pr_auc": 0.006060349678606491
+    },
+    {
+     "id": "nvdla-small_freq_500_mp_2_fpu_65_fpa_1.0_p_4_fi_ar",
+     "design": "nvdla-small",
+     "group": "",
+     "shape": [
+      256,
+      256
+     ],
+     "seconds": 0.023443937301635742,
+     "finite": true,
+     "nrms": 0.316891544880916,
+     "nmae": 0.2876708739174729,
+     "ssim": 0.2142754478095254,
+     "pearson": 0.6665279422951735,
+     "spearman": 0.8031217134220557,
+     "kendall": 0.6178627832338036,
+     "roc_auc": 0.8839769134537587,
+     "pr_auc": 0.09449620112296409
+    }
+   ],
+   "summary": {
+    "mean_nrms": 0.31162595994921977,
+    "n_excluded_nrms": 1,
+    "mean_nmae": 0.2830620474853461,
+    "n_excluded_nmae": 1,
+    "mean_ssim": 0.24714925564703538,
+    "mean_pearson": 0.6349432842446163,
+    "n_excluded_pearson": 1,
+    "mean_spearman": 0.7928823131635762,
+    "n_excluded_spearman": 1,
+    "mean_kendall": 0.6027727674620827,
+    "n_excluded_kendall": 1,
+    "mean_roc_auc": 0.8580720567146368,
+    "n_excluded_roc_auc": 2,
+    "mean_pr_auc": 0.038954612530650766,
+    "n_excluded_pr_auc": 2,
+    "mean_seconds": 0.02532549500465393,
+    "n": 40
+   },
+   "fit_seconds": 17.378053188323975
+  },
+  "spice": {
+   "skipped": "sample has no SPICE netlist"
+  }
+ },
+ "loader": {
+  "skipped": []
+ },
+ "provenance": {
+  "started": "2026-10-12T19:01:24+0800",
+  "git_head": "b159f208d546e7b195ad68accdfa35c40ba51e75",
+  "git_dirty_tracked": "M manifests/n14_inventory.json\n M src/edalint/baselines/evaluate.py\n M src/edalint/baselines/zoo.py\n M src/edalint/checks.py\n M src/edalint/core.py\n M src/edalint/datasets/circuitnet.py\n M src/edalint/datasets/iccad23.py\n M tests/test_baselines.py\n M tests/test_checks.py",
+  "code_hash": "35c03d1a9417b6128471b5dca3e694d718a996936001f67d60e46bef72b4ab37",
+  "versions": {
+   "python": "3.10.0",
+   "numpy": "2.2.6",
+   "scipy": "1.15.3",
+   "pandas": "2.3.3",
+   "platform": "Windows-10-10.0.26200-SP0",
+   "sklearn": "1.6.1",
+   "pyamg": "5.3.0",
+   "edalint": "0.1.0"
+  },
+  "argv": [
+   "D:\\Work\\edalint\\src\\edalint\\cli.py",
+   "baselines",
+   "n14-ir_drop",
+   "--fit",
+   "Vortex-small",
+   "--eval",
+   "nvdla-small",
+   "--designs",
+   "Vortex-small,nvdla-small",
+   "--max-per-design",
+   "40",
+   "--cache-dir",
+   "E:/edalint_data/dev_cache/n14_ir_drop",
+   "--out",
+   "results/dev",
+   "--tag",
+   "p3dev"
+  ],
+  "frozen_protocol": null
+ }
+}
