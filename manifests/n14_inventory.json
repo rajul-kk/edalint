@@ -152,5 +152,34 @@
   "n_test_csv": 56,
   "n_label_in_neither_csv": 40,
   "n_csv_names_not_in_label_dir": 0
+ },
+ "routability_features/zero-riscy.tar.gz": {
+  "design": "zero-riscy",
+  "files_per_dir": {
+   "zero-riscy/congestion/congestion_early_global_routing/overflow_based/congestion_eGR_horizontal_overflow": 3456,
+   "zero-riscy/congestion/congestion_early_global_routing/overflow_based/congestion_eGR_vertical_overflow": 3456,
+   "zero-riscy/congestion/congestion_early_global_routing/utilization_based/congestion_eGR_horizontal_util": 3456,
+   "zero-riscy/congestion/congestion_early_global_routing/utilization_based/congestion_eGR_vertical_util": 3456,
+   "zero-riscy/congestion/congestion_global_routing/overflow_based/congestion_GR_horizontal_overflow": 3456,
+   "zero-riscy/congestion/congestion_global_routing/overflow_based/congestion_GR_vertical_overflow": 3456,
+   "zero-riscy/congestion/congestion_global_routing/utilization_based/congestion_GR_horizontal_util": 3456,
+   "zero-riscy/congestion/congestion_global_routing/utilization_based/congestion_GR_vertical_util": 3456,
+   "zero-riscy/cell_density": 3456,
+   "zero-riscy/macro_region": 3456,
+   "zero-riscy/RUDY/RUDY": 3456,
+   "zero-riscy/RUDY/RUDY_long": 3456,
+   "zero-riscy/RUDY/RUDY_pin": 3456,
+   "zero-riscy/RUDY/RUDY_pin_long": 3456,
+   "zero-riscy/RUDY/RUDY_short": 3456,
+   "zero-riscy/DRC/DRC_all": 3456
+  },
+  "n_DRC_seperated_types": 31,
+  "label_dir": "zero-riscy/DRC/DRC_all",
+  "n_label": 3456,
+  "n_union_of_feature_dirs": 3456,
+  "n_train_csv": 0,
+  "n_test_csv": 3441,
+  "n_label_in_neither_csv": 15,
+  "n_csv_names_not_in_label_dir": 0
  }
 }
