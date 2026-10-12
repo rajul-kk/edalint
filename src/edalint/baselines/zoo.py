@@ -79,7 +79,7 @@ class PixelRidge(_PixelModel):
     """Per-pixel ridge on the input channels plus 3x3 and 9x9 box means of each channel (features standardised on the train
     pixel subsample; closed-form normal equations; alpha is in units of rows)."""
 
-    def __init__(self, alpha: float = 1.0):
+    def __init__(self, alpha: float = 0.01):
         self.alpha = alpha
 
     def fit(self, train):
@@ -101,8 +101,10 @@ class PixelGBM(_PixelModel):
     needs_sklearn = True
     max_rows = 300_000
 
-    def __init__(self, max_iter: int = 150, learning_rate: float = 0.1, max_leaf_nodes: int = 31):
-        self.kw = dict(max_iter=max_iter, learning_rate=learning_rate, max_leaf_nodes=max_leaf_nodes, random_state=0)
+    def __init__(self, max_iter: int = 300, learning_rate: float = 0.1, max_leaf_nodes: Optional[int] = None,
+                 max_depth: Optional[int] = 6):
+        self.kw = dict(max_iter=max_iter, learning_rate=learning_rate, max_leaf_nodes=max_leaf_nodes, max_depth=max_depth,
+                       random_state=0)
 
     def fit(self, train):
         from sklearn.ensemble import HistGradientBoostingRegressor
@@ -192,6 +194,12 @@ class EffDistQuadratic(EffDistRegression):
 
 
 _EDGES = np.array([0, 0.5, 1, 2, 3, 4, 6, 8, 12, 16, 24, 32, 48, 64, 96, 128, 192], float)
+# ring-bin edge sets for the Green baseline (P4 development grid; the frozen choice is the class default)
+GREEN_EDGES = {
+    'coarse': np.array([0, 1, 2, 4, 8, 16, 32, 64, 128, 192], float),
+    'medium': _EDGES,
+    'fine': np.array([0, 0.5, 1, 1.5, 2, 3, 4, 5, 6, 8, 10, 12, 16, 20, 24, 32, 40, 48, 64, 80, 96, 128, 160, 192], float),
+}
 
 
 @register('green')

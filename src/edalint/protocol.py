@@ -76,6 +76,24 @@ def git_dirty(cwd: Optional[Path] = None) -> str:
         return ''
 
 
+def cpu_info() -> Dict[str, Any]:
+    """CPU model string (registry on Windows, /proc/cpuinfo on Linux), logical core count."""
+    name = ''
+    try:
+        import winreg
+        with winreg.OpenKey(winreg.HKEY_LOCAL_MACHINE, r'HARDWARE\DESCRIPTION\System\CentralProcessor\0') as k:
+            name = str(winreg.QueryValueEx(k, 'ProcessorNameString')[0]).strip()
+    except Exception:                                                # noqa: BLE001 - not Windows
+        try:
+            for line in open('/proc/cpuinfo', encoding='utf-8'):
+                if line.lower().startswith('model name'):
+                    name = line.split(':', 1)[1].strip()
+                    break
+        except OSError:
+            name = platform.processor()
+    return {'cpu_model': name or platform.processor(), 'logical_cores': os.cpu_count()}
+
+
 def versions() -> Dict[str, str]:
     import numpy
     import pandas
@@ -94,6 +112,7 @@ def versions() -> Dict[str, str]:
         out['pyamg'] = 'absent'
     from . import __version__
     out['edalint'] = __version__
+    out.update(cpu_info())
     return out
 
 
