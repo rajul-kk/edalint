@@ -40,7 +40,7 @@ def test_evaluating_test_split_refuses_without_freeze(tmp_path):
     # train evaluation is fine
     assert len(evaluate(z, ds, 'train')) == 12
     # after a valid freeze the test split opens
-    (tmp_path / 'FROZEN.json').write_text(json.dumps({'code_hash': code_hash()}))
+    (tmp_path / 'FROZEN_synthetic.json').write_text(json.dumps({'code_hash': code_hash()}))
     assert len(evaluate(z, ds, 'test')) == 4
 
 
@@ -87,3 +87,27 @@ def test_cli_freeze_status_and_hash(capsys, tmp_path, monkeypatch):
     assert cli.main(['code-hash']) == 0
     assert capsys.readouterr().out.strip() == code_hash()
     assert frozen_info() is None and provenance()['code_hash'] == code_hash()
+
+
+def test_freeze_is_per_dataset(tmp_path):
+    """The legacy FROZEN.json (ICCAD'23) and FROZEN_<key>.json each unlock only their own dataset."""
+    ch = code_hash()
+    (tmp_path / 'FROZEN.json').write_text(json.dumps({'dataset': 'iccad23', 'code_hash': ch}))
+    assert require_frozen(str(tmp_path), dataset='iccad23')['dataset'] == 'iccad23'
+    for other in ('circuitnet_n14_ir_drop_authors', 'circuitnet_n14_drc_authors', 'synthetic'):
+        with pytest.raises(ProtocolError, match='belongs to another dataset'):
+            require_frozen(str(tmp_path), dataset=other)
+    (tmp_path / 'FROZEN_n14.json').write_text(json.dumps({'dataset': 'n14', 'code_hash': ch}))
+    assert require_frozen(str(tmp_path), dataset='circuitnet_n14_congestion_authors')['dataset'] == 'n14'
+    (tmp_path / 'FROZEN_n14.json').write_text(json.dumps({'dataset': 'n14', 'code_hash': 'abc'}))
+    with pytest.raises(ProtocolError, match='differs'):
+        require_frozen(str(tmp_path), dataset='circuitnet_n14_drc_authors')
+    assert require_frozen(str(tmp_path), dataset='iccad23')            # ICCAD'23 freeze still valid
+
+
+def test_real_repo_iccad23_freeze_is_recognised_and_n14_is_not(monkeypatch):
+    from edalint.protocol import REPO_DIR
+    monkeypatch.delenv('EDALINT_PROTOCOL_DIR', raising=False)
+    d = str(REPO_DIR / 'protocol')
+    assert frozen_info(d, 'iccad23') is not None
+    assert frozen_info(d, 'circuitnet_n14_ir_drop_authors') is None

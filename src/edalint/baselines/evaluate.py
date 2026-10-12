@@ -22,7 +22,7 @@ def case_metrics(ds: MapDataset, pred: np.ndarray, gold: np.ndarray) -> Dict[str
 def guard_eval(ds: MapDataset, split: str):
     """Raise ProtocolError if evaluating on `split` would touch a test sample and no frozen protocol exists."""
     if ds.is_test_split(split):
-        require_frozen(ds.protocol_dir, what=f'evaluating baselines on split {split!r}')
+        require_frozen(ds.protocol_dir, what=f'evaluating baselines on split {split!r}', dataset=ds.name)
 
 
 def evaluate(b: Baseline, ds: MapDataset, split: str, max_n: Optional[int] = None) -> List[dict]:

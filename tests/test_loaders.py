@@ -53,9 +53,9 @@ def test_iccad_test_split_is_guarded_but_smoke_loadable(iccad):
 def test_iccad_frozen_file_opens_the_guard(iccad, tmp_path):
     from edalint.protocol import code_hash
     (tmp_path / 'protocol').mkdir()
-    (tmp_path / 'protocol' / 'FROZEN.json').write_text(json.dumps({'code_hash': code_hash()}))
+    (tmp_path / 'protocol' / 'FROZEN.json').write_text(json.dumps({'dataset': 'iccad23', 'code_hash': code_hash()}))
     assert iccad.get('hidden/testcase7') is not None
-    (tmp_path / 'protocol' / 'FROZEN.json').write_text(json.dumps({'code_hash': 'deadbeef'}))
+    (tmp_path / 'protocol' / 'FROZEN.json').write_text(json.dumps({'dataset': 'iccad23', 'code_hash': 'deadbeef'}))
     iccad._cache.clear()
     with pytest.raises(ProtocolError):
         iccad.get('hidden/testcase8')

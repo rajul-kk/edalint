@@ -215,7 +215,7 @@ class MapDataset:
     def _guard(self, sid: str):
         if self.is_test(sid):
             from .protocol import require_frozen
-            require_frozen(self.protocol_dir, what=f'reading test sample {sid!r}')
+            require_frozen(self.protocol_dir, what=f'reading test sample {sid!r}', dataset=self.name)
 
     def _load(self, sid: str) -> Sample:                                       # pragma: no cover - abstract
         raise NotImplementedError

@@ -103,7 +103,7 @@ H2_WINNER_RUNTIME_S = 14.77
 
 # -- guards ---------------------------------------------------------------------------------------------------------------------
 def _preflight(stage: str):
-    info = require_frozen(None, what=f'registered stage {stage}')
+    info = require_frozen(None, what=f'registered stage {stage}', dataset='iccad23')
     # only code, protocol, scripts and tests must match HEAD (other tracked files, e.g. download manifests written by unrelated jobs, may differ;
     # provenance records every tracked difference anyway)
     r = subprocess.run(['git', 'status', '--porcelain', '--untracked-files=no', '--', 'src', 'protocol', 'scripts', 'tests'],

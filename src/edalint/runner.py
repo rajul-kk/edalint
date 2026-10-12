@@ -45,7 +45,7 @@ def _jsonable(o: Any):
     return o
 
 
-def write_once(path, payload: Dict[str, Any], with_provenance: bool = True) -> Path:
+def write_once(path, payload: Dict[str, Any], with_provenance: bool = True, dataset: Optional[str] = None) -> Path:
     """Write JSON to `path`; raise ResultExists if it exists (no overwrite, no append). Adds provenance (git HEAD, code hash,
     versions, argv, frozen protocol if any)."""
     p = Path(path)
@@ -53,7 +53,7 @@ def write_once(path, payload: Dict[str, Any], with_provenance: bool = True) -> P
     body = dict(payload)
     if with_provenance:
         body['provenance'] = provenance()
-        fz = frozen_info()
+        fz = frozen_info(None, dataset)
         body['provenance']['frozen_protocol'] = fz if fz is not None else None
     try:
         with open(p, 'x', encoding='utf-8') as fh:
@@ -142,7 +142,7 @@ def run_checks(ds: MapDataset, codes: Optional[Iterable[str]] = None, opt: Optio
     named_test = opt.split != 'all' and ds.is_test_split(opt.split)
     if named_test or (opt.eval_split and ds.is_test_split(opt.eval_split) and 'E007' in (codes or [])):
         from .protocol import require_frozen
-        require_frozen(ds.protocol_dir, what=f'running checks on split {opt.split!r}')
+        require_frozen(ds.protocol_dir, what=f'running checks on split {opt.split!r}', dataset=ds.name)
     # split 'all' without a freeze silently means "every non-test split" (E004 reads metadata of all splits regardless)
     codes = list(codes) if codes else [c for c in CHECKS if c != 'E007']
     codes = sorted(codes)

@@ -1,9 +1,11 @@
 """Frozen-protocol guard and provenance helpers.
 
-Nothing may read a TEST split (ICCAD'23 hidden cases, CircuitNet test designs) until `protocol/FROZEN.json` exists and its
-`code_hash` equals the hash of the installed edalint source. P4 creates the file; this module only checks it.
+Nothing may read a TEST split (ICCAD'23 hidden cases, CircuitNet test designs) until that dataset's freeze file exists and its
+`code_hash` equals the hash of the installed edalint source. Freeze state is per dataset/protocol: `protocol/FROZEN_<key>.json`
+(key 'n14' for CircuitNet-N14) or, for the ICCAD'23 freeze made before this split, `protocol/FROZEN.json` with "dataset": "iccad23".
+P4 creates the files; this module only checks them.
 
-FROZEN.json (written in P4) must contain at least: {"code_hash": "<sha256 from edalint.protocol.code_hash()>", ...}.
+A freeze file must contain at least: {"code_hash": "<sha256 from edalint.protocol.code_hash()>", ...}.
 """
 from __future__ import annotations
 
@@ -38,19 +40,45 @@ def protocol_dir(path: Optional[str] = None) -> Path:
     return Path(path or os.environ.get('EDALINT_PROTOCOL_DIR') or REPO_DIR / 'protocol')
 
 
-def frozen_info(path: Optional[str] = None) -> Optional[Dict[str, Any]]:
-    f = protocol_dir(path) / 'FROZEN.json'
+def protocol_key(dataset: str) -> str:
+    """Freeze key of a dataset name: all CircuitNet-N14 tasks/modes share the key 'n14'; every other name is its own key."""
+    return 'n14' if dataset.startswith('circuitnet_n14') else dataset
+
+
+def frozen_file(path: Optional[str] = None, dataset: Optional[str] = None) -> Path:
+    """The freeze file that governs `dataset`: protocol/FROZEN_<key>.json, or the legacy protocol/FROZEN.json (see frozen_info)."""
+    d = protocol_dir(path)
+    if dataset is None:
+        return d / 'FROZEN.json'
+    new = d / f'FROZEN_{protocol_key(dataset)}.json'
+    return new if new.is_file() else d / 'FROZEN.json'
+
+
+def frozen_info(path: Optional[str] = None, dataset: Optional[str] = None) -> Optional[Dict[str, Any]]:
+    """Freeze record for `dataset` (None = the legacy protocol/FROZEN.json, whatever it covers).
+
+    Per-dataset freezes: protocol/FROZEN_<key>.json. The legacy protocol/FROZEN.json (the ICCAD'23 freeze) counts for a dataset only if
+    its "dataset" field equals the dataset's key, so one protocol's freeze never unlocks another dataset's test split."""
+    if dataset is None:
+        f = protocol_dir(path) / 'FROZEN.json'
+        return json.loads(f.read_text(encoding='utf-8')) if f.is_file() else None
+    f = frozen_file(path, dataset)
     if not f.is_file():
         return None
-    return json.loads(f.read_text(encoding='utf-8'))
+    info = json.loads(f.read_text(encoding='utf-8'))
+    if f.name == 'FROZEN.json' and info.get('dataset') != protocol_key(dataset):
+        return None
+    return info
 
 
-def require_frozen(path: Optional[str] = None, what: str = 'this operation') -> Dict[str, Any]:
-    """Return the FROZEN.json content, or raise ProtocolError (missing file, no code_hash, or hash mismatch)."""
-    f = protocol_dir(path) / 'FROZEN.json'
-    info = frozen_info(path)
+def require_frozen(path: Optional[str] = None, what: str = 'this operation', dataset: Optional[str] = None) -> Dict[str, Any]:
+    """Return the freeze record, or raise ProtocolError (missing file, no code_hash, or hash mismatch).
+    With `dataset`, the record must belong to that dataset's protocol (see frozen_info)."""
+    f = frozen_file(path, dataset)
+    info = frozen_info(path, dataset)
     if info is None:
-        raise ProtocolError(f'refused: {what} touches a test split, but {f} does not exist (no frozen protocol).')
+        why = 'belongs to another dataset' if f.is_file() else 'does not exist'
+        raise ProtocolError(f'refused: {what} touches a test split, but {f} {why} (no frozen protocol for {dataset or "this dataset"}).')
     want = info.get('code_hash')
     if not want:
         raise ProtocolError(f'refused: {f} has no "code_hash" field.')

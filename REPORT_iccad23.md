@@ -77,6 +77,7 @@ Both dev expectations stated in the protocol (H1 FALSE, H2 TRUE) were borne out.
 - **Uncommitted file at run time.** The result files record `git_dirty_tracked` = `manifests/n14_inventory.json`, the CircuitNet-N14 inventory being rewritten by the concurrent download. It is not read by any ICCAD'23 stage and is outside the code hash; it was committed separately afterwards.
 - **Misleading key.** In `results/iccad23/h3.json`, `checks_train_vs_hidden` holds a train-only development check (120 cases, info-level within-train channel duplicates). The cross-split E003 result is in `verdicts.json` and is empty. The H3 verdict is unaffected.
 - **Tests.** After the freeze, 4 of 96 tests in `tests/test_checks.py` fail because they assume no `protocol/FROZEN.json` exists. The results are unaffected; the tests will be fixed in a separate commit labelled post hoc.
+- **Post hoc code change (after the freeze at 7707b20).** The tests were fixed afterwards, and the freeze guard was made per dataset (`protocol/FROZEN_<key>.json`; `protocol/FROZEN.json` with `"dataset": "iccad23"` is still recognised) so that this freeze cannot unlock CircuitNet-N14. This edits `src/` and `tests/`, so the code hash changes; the ICCAD'23 results stay tied to the hash recorded in `protocol/FROZEN.json` (750d252f..., code at 7707b20), and no registered stage was re-run.
 - **Independent check.** Every number in sections 1 to 4 was checked against the result files by a separate verification pass; all matched.
 
 ## Appendix: tables (verbatim from `results/iccad23/tables.md`)

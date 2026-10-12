@@ -60,7 +60,7 @@ def _accessible(ds: MapDataset, opt: Options) -> List[str]:
     names = [s for s in ds.splits if s not in ds.test_splits and s not in ds.aux_splits]
     try:
         from .protocol import require_frozen
-        require_frozen(ds.protocol_dir, what='checks on the test split')
+        require_frozen(ds.protocol_dir, what='checks on the test split', dataset=ds.name)
         names += [s for s in ds.test_splits if s in ds.splits]
     except ProtocolError:
         pass

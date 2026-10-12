@@ -17,7 +17,7 @@ from pathlib import Path
 from . import __version__
 from .checks import Options
 from .core import ProtocolError
-from .protocol import code_hash, frozen_info, protocol_dir
+from .protocol import code_hash, protocol_dir
 from .runner import ResultExists, parse_codes, run_checks, write_once, write_text_once
 
 
@@ -74,10 +74,14 @@ def main(argv=None) -> int:
         print(code_hash())
         return 0
     if a.cmd == 'freeze-status':
-        info = frozen_info()
         print(f'protocol dir: {protocol_dir()}')
-        print('FROZEN.json: ' + ('absent (no test split can be read)' if info is None else
-              f"present, code_hash {'matches' if info.get('code_hash') == code_hash() else 'DIFFERS from'} this code"))
+        files = [f for f in [protocol_dir() / 'FROZEN.json'] + sorted(protocol_dir().glob('FROZEN_*.json')) if f.is_file()]
+        if not files:
+            print('freeze files: absent (no test split can be read)')
+        for f in files:
+            info = json.loads(f.read_text(encoding='utf-8'))
+            print(f"{f.name}: dataset {info.get('dataset', '?')}, code_hash "
+                  f"{'matches' if info.get('code_hash') == code_hash() else 'DIFFERS from'} this code")
         return 0
     try:
         ds = _dataset(a)

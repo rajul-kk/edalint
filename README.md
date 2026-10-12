@@ -20,7 +20,7 @@ edalint freeze-status
 * `edalint.baselines`: zero, mean map, scalar, ridge, kNN, effective-distance regression, Green's-function superposition,
   gradient boosting, exact sparse solve of the SPICE PDN (runtime reference, ICCAD only).
 * `edalint.spice`: netlist parser, DC solver, node-voltage to pixel-grid mapping.
-* Test splits are guarded: nothing reads or scores a test split unless `protocol/FROZEN.json` exists and its `code_hash`
+* Test splits are guarded: nothing reads or scores a test split unless that dataset's freeze file (`protocol/FROZEN_<key>.json`; the ICCAD'23 freeze is `protocol/FROZEN.json` with `"dataset": "iccad23"`) exists and its `code_hash`
   equals `edalint code-hash`. Result files written with `--out` are run-once (never overwritten) and record the git HEAD,
   code hash and library versions.
 
