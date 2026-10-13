@@ -1,0 +1,379 @@
+{
+ "label": "development (train only), P4 N14",
+ "criterion": "(set before the run, protocol_n14.md section 5.2): best design-macro mean over the 4 held-out designs of the task's PRIMARY metric\n(congestion NRMS lower, DRC SSIM higher, IR drop official ROC area higher); ties go to the first listed option.",
+ "tasks": {
+  "ir_drop": {
+   "task": "ir_drop",
+   "metric": "roc_auc",
+   "higher_is_better": true,
+   "folds": [
+    "RISCY",
+    "RISCY-FPU",
+    "Vortex-small",
+    "nvdla-small"
+   ],
+   "k_per_design": 100,
+   "n_per_design": {
+    "RISCY": 100,
+    "RISCY-FPU": 100,
+    "Vortex-small": 95,
+    "nvdla-small": 84
+   },
+   "summary": {
+    "ridge": {
+     "alpha=0.0001": {
+      "design_macro": 0.8089613763547188,
+      "per_design": {
+       "RISCY": 0.8097996448122917,
+       "RISCY-FPU": 0.7866241743255161,
+       "Vortex-small": 0.8064856864429965,
+       "nvdla-small": 0.8329359998380707
+      }
+     },
+     "alpha=0.01": {
+      "design_macro": 0.8159306706637705,
+      "per_design": {
+       "RISCY": 0.8192636599556714,
+       "RISCY-FPU": 0.8146394141353038,
+       "Vortex-small": 0.8314667262442844,
+       "nvdla-small": 0.798352882319822
+      }
+     },
+     "alpha=1": {
+      "design_macro": 0.8444380358221996,
+      "per_design": {
+       "RISCY": 0.8518935624505692,
+       "RISCY-FPU": 0.8313018179803974,
+       "Vortex-small": 0.8502718400432103,
+       "nvdla-small": 0.8442849228146212
+      }
+     }
+    },
+    "knn": {
+     "k=1": {
+      "design_macro": 0.6116861548548956,
+      "per_design": {
+       "RISCY": 0.6602374626350733,
+       "RISCY-FPU": 0.6589564523608014,
+       "Vortex-small": 0.583035770287035,
+       "nvdla-small": 0.5445149341366728
+      }
+     },
+     "k=3": {
+      "design_macro": 0.6091115934742188,
+      "per_design": {
+       "RISCY": 0.679832988122693,
+       "RISCY-FPU": 0.6714984020645237,
+       "Vortex-small": 0.5816693944292777,
+       "nvdla-small": 0.503445589280381
+      }
+     },
+     "k=5": {
+      "design_macro": 0.6113443363096475,
+      "per_design": {
+       "RISCY": 0.6880323746790763,
+       "RISCY-FPU": 0.6863344636970163,
+       "Vortex-small": 0.5866742064517881,
+       "nvdla-small": 0.48433630041070924
+      }
+     }
+    },
+    "gbm": {
+     "iter100_depth3": {
+      "design_macro": 0.8557146602355994,
+      "per_design": {
+       "RISCY": 0.8507245500668404,
+       "RISCY-FPU": 0.84341517515315,
+       "Vortex-small": 0.8577523573902383,
+       "nvdla-small": 0.8709665583321687
+      }
+     },
+     "iter300_depth6": {
+      "design_macro": 0.8436486068711468,
+      "per_design": {
+       "RISCY": 0.8463138481296466,
+       "RISCY-FPU": 0.8194960374631297,
+       "Vortex-small": 0.8514417776240502,
+       "nvdla-small": 0.8573427642677613
+      }
+     }
+    },
+    "green": {
+     "edges=coarse": {
+      "design_macro": 0.813174098252406,
+      "per_design": {
+       "RISCY": 0.843295022592535,
+       "RISCY-FPU": 0.8245913425465318,
+       "Vortex-small": 0.7703185335238334,
+       "nvdla-small": 0.8144914943467241
+      }
+     },
+     "edges=medium": {
+      "design_macro": 0.812921477310524,
+      "per_design": {
+       "RISCY": 0.8433806991120606,
+       "RISCY-FPU": 0.8243559482544673,
+       "Vortex-small": 0.7701226899440539,
+       "nvdla-small": 0.8138265719315145
+      }
+     }
+    }
+   },
+   "choice": {
+    "ridge": "alpha=1",
+    "knn": "k=1",
+    "gbm": "iter100_depth3",
+    "green": "edges=coarse"
+   },
+   "fit_seconds_total": 3104.0081181526184
+  },
+  "congestion": {
+   "task": "congestion",
+   "metric": "nrms",
+   "higher_is_better": false,
+   "folds": [
+    "RISCY",
+    "RISCY-FPU",
+    "Vortex-small",
+    "nvdla-small"
+   ],
+   "k_per_design": 100,
+   "n_per_design": {
+    "RISCY": 100,
+    "RISCY-FPU": 100,
+    "Vortex-small": 95,
+    "nvdla-small": 84
+   },
+   "summary": {
+    "ridge": {
+     "alpha=0.0001": {
+      "design_macro": 0.034738724608785736,
+      "per_design": {
+       "RISCY": 0.03427575871580349,
+       "RISCY-FPU": 0.03621559903186426,
+       "Vortex-small": 0.028913627181960264,
+       "nvdla-small": 0.03954991350551493
+      }
+     },
+     "alpha=0.01": {
+      "design_macro": 0.03472658831772448,
+      "per_design": {
+       "RISCY": 0.03427550154202753,
+       "RISCY-FPU": 0.036196207133938466,
+       "Vortex-small": 0.02890705097764224,
+       "nvdla-small": 0.03952759361728969
+      }
+     },
+     "alpha=1": {
+      "design_macro": 0.03455449023613304,
+      "per_design": {
+       "RISCY": 0.03427912415382418,
+       "RISCY-FPU": 0.035808549052924896,
+       "Vortex-small": 0.02867019874005351,
+       "nvdla-small": 0.03946008899772955
+      }
+     }
+    },
+    "knn": {
+     "k=1": {
+      "design_macro": 0.04357671717545905,
+      "per_design": {
+       "RISCY": 0.037433365262877244,
+       "RISCY-FPU": 0.045327939940243304,
+       "Vortex-small": 0.04449986894931775,
+       "nvdla-small": 0.04704569454939787
+      }
+     },
+     "k=3": {
+      "design_macro": 0.03897441697329415,
+      "per_design": {
+       "RISCY": 0.0365523305061609,
+       "RISCY-FPU": 0.04334865766611848,
+       "Vortex-small": 0.03385425751342881,
+       "nvdla-small": 0.0421424222074684
+      }
+     },
+     "k=5": {
+      "design_macro": 0.03789664426388995,
+      "per_design": {
+       "RISCY": 0.03628271663196543,
+       "RISCY-FPU": 0.04109396399524422,
+       "Vortex-small": 0.03236615147415071,
+       "nvdla-small": 0.04184374495419946
+      }
+     }
+    },
+    "gbm": {
+     "iter100_depth3": {
+      "design_macro": 0.03598423456220709,
+      "per_design": {
+       "RISCY": 0.03432454232478397,
+       "RISCY-FPU": 0.03785496486871576,
+       "Vortex-small": 0.031004294778235127,
+       "nvdla-small": 0.04075313627709351
+      }
+     },
+     "iter300_depth6": {
+      "design_macro": 0.03754159270962515,
+      "per_design": {
+       "RISCY": 0.035970265224354196,
+       "RISCY-FPU": 0.04027748395763659,
+       "Vortex-small": 0.03205131853215594,
+       "nvdla-small": 0.04186730312435388
+      }
+     }
+    }
+   },
+   "choice": {
+    "ridge": "alpha=1",
+    "knn": "k=5",
+    "gbm": "iter100_depth3"
+   },
+   "fit_seconds_total": 1084.3799369335175
+  },
+  "drc": {
+   "task": "drc",
+   "metric": "ssim",
+   "higher_is_better": true,
+   "folds": [
+    "RISCY",
+    "RISCY-FPU",
+    "Vortex-small",
+    "nvdla-small"
+   ],
+   "k_per_design": 100,
+   "n_per_design": {
+    "RISCY": 100,
+    "RISCY-FPU": 100,
+    "Vortex-small": 95,
+    "nvdla-small": 84
+   },
+   "summary": {
+    "ridge": {
+     "alpha=0.0001": {
+      "design_macro": 0.9992601192277744,
+      "per_design": {
+       "RISCY": 0.9995763760204619,
+       "RISCY-FPU": 0.9981528495825915,
+       "Vortex-small": 0.9999725897142064,
+       "nvdla-small": 0.9993386615938376
+      }
+     },
+     "alpha=0.01": {
+      "design_macro": 0.9992887088424527,
+      "per_design": {
+       "RISCY": 0.9995770508103987,
+       "RISCY-FPU": 0.9981531593545718,
+       "Vortex-small": 0.9999728630149015,
+       "nvdla-small": 0.9994517621899389
+      }
+     },
+     "alpha=1": {
+      "design_macro": 0.9993101527514276,
+      "per_design": {
+       "RISCY": 0.9995778737862553,
+       "RISCY-FPU": 0.9981582372575427,
+       "Vortex-small": 0.9999744162816377,
+       "nvdla-small": 0.9995300836802751
+      }
+     }
+    },
+    "knn": {
+     "k=1": {
+      "design_macro": 0.9989330756863946,
+      "per_design": {
+       "RISCY": 0.9991950555653331,
+       "RISCY-FPU": 0.9979763254479848,
+       "Vortex-small": 0.999773493131717,
+       "nvdla-small": 0.9987874286005438
+      }
+     },
+     "k=3": {
+      "design_macro": 0.9991002071916678,
+      "per_design": {
+       "RISCY": 0.9993684455266788,
+       "RISCY-FPU": 0.998069808659023,
+       "Vortex-small": 0.9998785641654232,
+       "nvdla-small": 0.9990840104155464
+      }
+     },
+     "k=5": {
+      "design_macro": 0.9991720591015404,
+      "per_design": {
+       "RISCY": 0.9994363066095047,
+       "RISCY-FPU": 0.9981115029784888,
+       "Vortex-small": 0.9999131900097659,
+       "nvdla-small": 0.999227236808402
+      }
+     }
+    },
+    "gbm": {
+     "iter100_depth3": {
+      "design_macro": 0.9991558296718608,
+      "per_design": {
+       "RISCY": 0.9995720274640877,
+       "RISCY-FPU": 0.9980965923038286,
+       "Vortex-small": 0.9999758821518481,
+       "nvdla-small": 0.9989788167676785
+      }
+     },
+     "iter300_depth6": {
+      "design_macro": 0.9984780508880124,
+      "per_design": {
+       "RISCY": 0.9995678652647502,
+       "RISCY-FPU": 0.9980414577327831,
+       "Vortex-small": 0.9999735331490638,
+       "nvdla-small": 0.9963293474054525
+      }
+     }
+    }
+   },
+   "choice": {
+    "ridge": "alpha=1",
+    "knn": "k=5",
+    "gbm": "iter100_depth3"
+   },
+   "fit_seconds_total": 342.60614490509033
+  }
+ },
+ "provenance": {
+  "started": "2026-10-13T14:01:20+0800",
+  "git_head": "d66f5250c61f2c267bd78320a073019c82b4d0fc",
+  "git_dirty_tracked": "M protocol/protocol_n14.md",
+  "code_hash": "188a17b6f2a80b8dd2dc5b107a8352d61df3f2b78bb9d8ef1241bc95845795ec",
+  "versions": {
+   "python": "3.10.0",
+   "numpy": "2.2.6",
+   "scipy": "1.15.3",
+   "pandas": "2.3.3",
+   "platform": "Windows-10-10.0.26200-SP0",
+   "sklearn": "1.6.1",
+   "pyamg": "5.3.0",
+   "edalint": "0.1.0",
+   "cpu_model": "13th Gen Intel(R) Core(TM) i7-1355U",
+   "logical_cores": 12
+  },
+  "argv": [
+   "scripts/p4_dev_n14_hparams.py",
+   "--merge",
+   "C:/Users/rajul/AppData/Local/Temp/claude/d--Work-3D-ICE-Thermal-modelling-Thermo/7f6b7d72-6072-4d1c-b3a6-41b1ce88b1c3/scratchpad/cv_ir.json",
+   "C:/Users/rajul/AppData/Local/Temp/claude/d--Work-3D-ICE-Thermal-modelling-Thermo/7f6b7d72-6072-4d1c-b3a6-41b1ce88b1c3/scratchpad/cv_cd.json",
+   "--out",
+   "results/dev/n14_hparam_cv.json"
+  ],
+  "frozen_protocol": {
+   "dataset": "iccad23",
+   "code_hash": "750d252f863b119518b660db061d1e5b814a84ad9ca68672a28a1c62ad5e5f8e",
+   "protocol_file": "protocol/protocol_iccad23.md",
+   "protocol_sha256": "efffaed85a5f2b04de518541b9bde9c3ef07871dd74db428c57302c671caf0d5",
+   "protocol_sha256_note": "sha256 of the file with CRLF normalised to LF",
+   "frozen_at": "2026-10-12T20:38:41+0800",
+   "frozen_commit": "79779855b0d09ffa8569f7b2cd3c22823d15e7a4",
+   "frozen_commit_note": "commit of the code and protocol being frozen (the freeze commit itself adds this file)",
+   "machine": {
+    "cpu_model": "13th Gen Intel(R) Core(TM) i7-1355U",
+    "logical_cores": 12
+   }
+  }
+ }
+}
