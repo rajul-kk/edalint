@@ -54,15 +54,16 @@ PUBLISHED_REF = {                                                       # best p
     'drc': {'value': 0.7136, 'model': 'CLDRoute LDM', 'source': 'CLDRoute 2607.16674 Table 5, N14 SSIM (split 10368/169/250)', 'weak_reference': True},
     'ir_drop': {'value': 0.8671, 'model': 'MAVIREC', 'source': 'CircuitNet 2.0 App. B.2, N14 ROC-AUC (FPR<=5%, split unstated)', 'weak_reference': True},
 }
+SATURATION = 0.99                # an SSIM-primary pair is not evaluable if the mean_map SSIM is at least this
 H1_FRACTION, H2_Y_POOLED, H2_Y_DESIGN, H3_RATE, R1_RATE, C1_GAP = 0.8, 0.01, 0.05, 0.05, 0.5, 0.10
 BASELINES = {'ir_drop': ['zero', 'mean_map', 'scalar', 'ridge', 'knn', 'green', 'gbm'],
              'congestion': ['zero', 'mean_map', 'scalar', 'ridge', 'knn', 'gbm'],
              'drc': ['zero', 'mean_map', 'scalar', 'ridge', 'knn', 'gbm']}
-# Frozen hyperparameters: chosen by results/dev/n14_hparam_cv.json (leave-one-design-out on train, K=100 per design).
+# Frozen hyperparameters: chosen by results/dev/n14_hparam_cv_round2.json (round 1: n14_hparam_cv.json; leave-one-design-out on train, K=100 per design).
 FROZEN_HPARAMS: Dict[str, Dict[str, Dict[str, Any]]] = {
-    'ir_drop': {'ridge': {'alpha': 1.0}, 'knn': {'k': 1}, 'gbm': {'max_iter': 100, 'max_depth': 3}, 'green': {'edges': 'coarse'}},
-    'congestion': {'ridge': {'alpha': 1.0}, 'knn': {'k': 5}, 'gbm': {'max_iter': 100, 'max_depth': 3}},
-    'drc': {'ridge': {'alpha': 1.0}, 'knn': {'k': 5}, 'gbm': {'max_iter': 100, 'max_depth': 3}},
+    'ir_drop': {'ridge': {'alpha': 100.0}, 'knn': {'k': 1}, 'gbm': {'max_iter': 100, 'max_depth': 3}, 'green': {'edges': 'coarse'}},
+    'congestion': {'ridge': {'alpha': 10.0}, 'knn': {'k': 5}, 'gbm': {'max_iter': 100, 'max_depth': 3}},
+    'drc': {'ridge': {'alpha': 0.0001}, 'knn': {'k': 5}, 'gbm': {'max_iter': 100, 'max_depth': 3}},
 }
 SCAN_FEATURES = {IRD: ['power_i', 'power_s', 'power_sca', 'power_all', 'power_t', 'IR_drop'],
                  ROUT: ['macro_region', 'RUDY', 'RUDY_pin', 'cell_density', 'RUDY_long', 'RUDY_short', 'RUDY_pin_long',
@@ -240,15 +241,15 @@ class PrimaryAcc:
         self.task, self.nrms, self.ssim, self.roc = task, [], [], RocAcc()
 
     def add(self, pred, gold):
-        self.nrms.append(M.nrms(pred, gold))
-        self.ssim.append(M.ssim(pred, gold))
+        self.nrms.append(M.nrms_official(pred, gold))         # the authors' pipeline: clamp to [0, 1], quantise to uint8 (metrics.to_u8)
+        self.ssim.append(M.ssim_official(pred, gold))
         if self.task in LABEL_THRESHOLD:
             self.roc.add(pred, gold, LABEL_THRESHOLD[self.task])
 
-    def value(self) -> float:
+    def value(self, anchored: bool = False) -> float:
         m = PRIMARY[self.task][0]
         if m == 'roc_auc':
-            return self.roc.area()
+            return self.roc.area(anchored=anchored)
         v = np.array(self.nrms if m == 'nrms' else self.ssim, float)
         v = v[np.isfinite(v)]
         return float(v.mean()) if v.size else float('nan')
@@ -435,8 +436,9 @@ def _score_rows(task: str, ds, ids_by_design: Dict[str, List[str]], baselines: D
                 t0 = time.perf_counter()
                 pred = np.nan_to_num(b.predict(s))
                 dt = time.perf_counter() - t0
-                row = {'id': sid, 'design': des, 'seconds': dt, 'nrms': M.nrms(pred, s.label), 'nmae': M.nmae(pred, s.label),
-                       'ssim': M.ssim(pred, s.label), 'pearson': M.pearson_r(pred, s.label)}
+                row = {'id': sid, 'design': des, 'seconds': dt, 'nrms': M.nrms_official(pred, s.label), 'ssim': M.ssim_official(pred, s.label),
+                       'nrms_float': M.nrms(pred, s.label), 'ssim_float': M.ssim(pred, s.label), 'nmae': M.nmae(pred, s.label),
+                       'pearson': M.pearson_r(pred, s.label)}
                 if thr is not None:
                     row['roc_auc_sample'] = M.roc_auc(pred, s.label, thr)
                     acc[n][des].add(pred, s.label, thr)
@@ -471,7 +473,7 @@ def stage_models(run: Run, task: str):
 
 
 # -- stage: gap (C1) --------------------------------------------------------------------------------------------------------------
-def _fold_skill(ds, task: str, fit_ids: Sequence[str], eval_ids: Sequence[str], alpha: float) -> float:
+def _fold_skill(ds, task: str, fit_ids: Sequence[str], eval_ids: Sequence[str], alpha: float, anchored: bool = False) -> float:
     if not fit_ids or not eval_ids:
         return float('nan')
     r = PixelRidge(alpha=alpha).fit(stream(ds, fit_ids))
@@ -481,7 +483,7 @@ def _fold_skill(ds, task: str, fit_ids: Sequence[str], eval_ids: Sequence[str], 
         s = ds.get(sid)
         a_r.add(np.nan_to_num(r.predict(s)), s.label)
         a_s.add(sc.predict(s), s.label)
-    return skill(task, a_r.value(), a_s.value())
+    return skill(task, a_r.value(anchored), a_s.value(anchored))
 
 
 def _capped(ds, split: str, k: int, seed: int) -> List[str]:
@@ -518,6 +520,12 @@ def stage_gap(run: Run, task: str):
         p = np.random.default_rng(rep).permutation(len(pool))
         reps.append(_fold_skill(ds, task, [pool[j] for j in p[:n_tr]], [pool[j] for j in p[n_tr:]], alpha))
     c1b = {'n_pool': len(pool), 'n_fit': n_tr, 'skill_random_reps': reps, 'skill_random': float(np.nanmean(reps))}
+    if PRIMARY[task][0] == 'roc_auc':                     # declared sensitivity analysis: the same C1b with the (0, 0)-anchored ROC area
+        reps_a = []
+        for rep in range(5):
+            p = np.random.default_rng(rep).permutation(len(pool))
+            reps_a.append(_fold_skill(ds, task, [pool[j] for j in p[:n_tr]], [pool[j] for j in p[n_tr:]], alpha, anchored=True))
+        c1b.update(skill_random_reps_anchored=reps_a, skill_random_anchored=float(np.nanmean(reps_a)))
     write_once(Path(run.out_dir) / f'gap_{task}.json', {'label': 'DRY RUN' if run.dry_run else 'REGISTERED', 'task': task, 'C1a': c1a, 'C1b': c1b,
                                                         'seconds': time.perf_counter() - t0}, dataset='n14')
 
@@ -527,13 +535,13 @@ def _load(d: Path, name: str):
     return json.loads((Path(d) / name).read_text(encoding='utf-8'))
 
 
-def design_values(task: str, bres: dict) -> Dict[str, float]:
+def design_values(task: str, bres: dict, anchored: bool = False) -> Dict[str, float]:
     """Primary metric per test design for one baseline's result block (official ROC area, or the mean of the finite per-sample values)."""
     m = PRIMARY[task][0]
     out = {}
     if m == 'roc_auc':
         for d, a in bres['official_roc'].items():
-            out[d] = RocAcc.from_dict(a).area()
+            out[d] = RocAcc.from_dict(a).area(anchored=anchored or bool(bres.get('anchored')))
     else:
         for d in sorted({r['design'] for r in bres['rows']}):
             v = np.array([r[m] for r in bres['rows'] if r['design'] == d], float)
@@ -542,13 +550,13 @@ def design_values(task: str, bres: dict) -> Dict[str, float]:
     return out
 
 
-def pooled_value(task: str, bres: dict) -> float:
+def pooled_value(task: str, bres: dict, anchored: bool = False) -> float:
     m = PRIMARY[task][0]
     if m == 'roc_auc':
         tot = RocAcc()
         for a in bres['official_roc'].values():
             tot.merge(RocAcc.from_dict(a))
-        return tot.area()
+        return tot.area(anchored=anchored or bool(bres.get('anchored')))
     v = np.array([r[m] for r in bres['rows']], float)
     v = v[np.isfinite(v)]
     return float(v.mean()) if v.size else float('nan')
@@ -575,6 +583,11 @@ def h1_task(task: str, models: dict) -> dict:
            'design_values': dv, 'design_macro': mac, 'sample_pooled': pooled}
     base = mac['mean_map']
     undefined = [n for n in ('mean_map',) if not np.isfinite(mac[n])] + [d for d, v in dv['mean_map'].items() if not np.isfinite(v)]
+    if task in LABEL_THRESHOLD and PRIMARY[task][0] != 'roc_auc':       # the authors' ROC-type metric as a secondary (rows without a positive pixel are skipped)
+        out['secondary_roc_official_design_macro'] = {n: macro({d: RocAcc.from_dict(a).area() for d, a in r['official_roc'].items()}) for n, r in res.items()}
+    if PRIMARY[task][0] == 'ssim' and np.isfinite(mac['mean_map']) and mac['mean_map'] >= SATURATION:
+        out.update(verdict='not evaluable', reason=f'metric saturated: the mean_map SSIM is {mac["mean_map"]:.4f} >= {SATURATION}')
+        return out
     if not np.isfinite(base) or all(not np.isfinite(v) for v in mac.values()):
         out.update(verdict='not evaluable', reason='the primary metric is undefined on the test split by the official procedure', undefined=undefined)
         return out
@@ -588,6 +601,15 @@ def h1_task(task: str, models: dict) -> dict:
     else:
         out.update(verdict=bool(gains[best] > 0 and gains[best] >= H1_FRACTION * g_pub), degenerate=False, ratio=gains[best] / g_pub)
     return out
+
+
+def _anchored_view(models: dict) -> dict:
+    """The same result block with the ROC area replaced by the anchored one (every other number untouched)."""
+    import copy
+    m = copy.deepcopy(models)
+    for r in m['results'].values():
+        r['anchored'] = True
+    return m
 
 
 def h2_h3_r1(faults: dict, models: Optional[Dict[str, dict]] = None) -> dict:
@@ -649,6 +671,11 @@ def c1_verdict(gaps: Dict[str, dict], models: Dict[str, dict]) -> dict:
         gap = g['C1b']['skill_random'] - sk_off
         out[t] = {'skill_official': sk_off, 'skill_random': g['C1b']['skill_random'], 'gap_C1b': gap, 'C1a_gap': g['C1a']['gap'],
                   'material': bool(np.isfinite(gap) and gap >= C1_GAP)}
+        if 'skill_random_anchored' in g['C1b']:
+            ar, as_ = (macro({d: RocAcc.from_dict(a).area(anchored=True) for d, a in res[n]['official_roc'].items()}) for n in ('ridge', 'scalar'))
+            gap_a = g['C1b']['skill_random_anchored'] - skill(t, ar, as_)
+            out[t]['sensitivity_anchored'] = {'gap_C1b': gap_a, 'material': bool(np.isfinite(gap_a) and gap_a >= C1_GAP),
+                                              'agrees_with_official': bool(np.isfinite(gap_a) and gap_a >= C1_GAP) == out[t]['material']}
         n += out[t]['material']
     out['verdict_materially_optimistic'] = bool(n >= 2)
     return out
@@ -656,9 +683,17 @@ def c1_verdict(gaps: Dict[str, dict], models: Dict[str, dict]) -> dict:
 
 def compute_verdicts(faults: dict, models: Dict[str, dict], gaps: Dict[str, dict]) -> dict:
     h1 = {t: h1_task(t, models[t]) for t in models}
+    for t, h in h1.items():                                   # declared sensitivity analysis: the same rule with the anchored ROC area
+        if PRIMARY[t][0] == 'roc_auc':
+            alt = h1_task(t, _anchored_view(models[t]))
+            h['sensitivity_anchored'] = {'verdict': alt['verdict'], 'ratio': alt.get('ratio'), 'design_macro': alt.get('design_macro'),
+                                         'agrees_with_official': alt['verdict'] == h['verdict']}
     n_true = sum(v['verdict'] is True for v in h1.values())
     out = {'H1': {'tasks': h1, 'n_true': n_true, 'overall': bool(n_true >= 2),
                   'rule': 'per-task: best baseline gain >= 0.8 x published gain (design-macro); overall TRUE if >= 2 of 3 tasks'},
+           'E006_roc_anchor': ({n: {'official_design_macro': macro(design_values('ir_drop', models['ir_drop']['results'][n])),
+                                    'anchored_design_macro': macro(design_values('ir_drop', models['ir_drop']['results'][n], anchored=True))}
+                               for n in ('zero', 'scalar', 'mean_map') if n in models['ir_drop']['results']} if 'ir_drop' in models else None),
            **h2_h3_r1(faults, models), 'C1': c1_verdict(gaps, {t: models[t] for t in gaps}) if gaps else None}
     return out
 

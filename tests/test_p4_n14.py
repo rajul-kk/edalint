@@ -165,3 +165,30 @@ def test_h1_rule_and_not_evaluable():
     und.add(np.zeros((6, 6)), np.zeros((6, 6)), 0.9)
     blk = {'rows': [], 'official_roc': {'a': und.to_dict()}}
     assert P.h1_task('ir_drop', {'results': {'mean_map': blk, 'ridge': blk}})['verdict'] == 'not evaluable'
+
+
+def test_ssim_primary_is_not_evaluable_when_mean_map_is_saturated():
+    def mk(v):
+        return {'rows': [{'id': f'{d}{i}', 'design': d, 'nrms': v, 'ssim': v, 'nmae': v, 'pearson': v, 'seconds': 0.0} for d in 'ab' for i in range(2)],
+                'official_roc': {}}
+    r = P.h1_task('drc', {'results': {'mean_map': mk(0.9995), 'ridge': mk(0.9999)}})
+    assert r['verdict'] == 'not evaluable' and 'saturated' in r['reason']
+    r2 = P.h1_task('drc', {'results': {'mean_map': mk(0.30), 'ridge': mk(0.95)}})          # not saturated: the usual rule (reference 0.7136)
+    assert r2['verdict'] is True
+
+
+def test_anchored_sensitivity_is_reported_and_flags_disagreement():
+    # one design, predictions that reach high values only for 'good': the unanchored area of a weak predictor is far below its anchored area
+    rng = np.random.default_rng(0)
+    golds = [rng.random((16, 16)) for _ in range(4)]
+
+    def block(scale):
+        acc = P.RocAcc()
+        for g in golds:
+            acc.add(g * scale, g, 0.9)
+        return {'rows': [], 'official_roc': {'d': acc.to_dict()}}
+    models = {'results': {'mean_map': block(0.3), 'ridge': block(1.0)}}
+    h = P.compute_verdicts({'tasks': {t: {'designs': {}} for t in P.TASK_LIST}, 'duplicates': {t: {'cross_split_exact': []} for t in P.TASK_LIST}},
+                           {'ir_drop': models}, {})
+    s = h['H1']['tasks']['ir_drop']['sensitivity_anchored']
+    assert set(s) >= {'verdict', 'agrees_with_official'}
