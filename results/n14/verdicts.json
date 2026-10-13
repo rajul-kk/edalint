@@ -1,0 +1,1349 @@
+{
+ "label": "REGISTERED",
+ "H1": {
+  "tasks": {
+   "ir_drop": {
+    "task": "ir_drop",
+    "metric": "roc_auc",
+    "higher_is_better": true,
+    "secondary_roc_anchored_design_macro": {
+     "zero": 0.5,
+     "mean_map": 0.6301175016724176,
+     "scalar": 0.5,
+     "ridge": 0.8509752186570329,
+     "knn": 0.6572161895732727,
+     "green": 0.8412044017439612,
+     "gbm": 0.8399790621637155
+    },
+    "weak_reference": true,
+    "reference": {
+     "value": 0.8671,
+     "model": "MAVIREC",
+     "source": "CircuitNet 2.0 App. B.2, N14 ROC-AUC (FPR<=5%, split unstated)",
+     "weak_reference": true
+    },
+    "design_values": {
+     "zero": {
+      "Vortex-large": 0.0,
+      "openc910-1": 0.0,
+      "zero-riscy": 0.0
+     },
+     "mean_map": {
+      "Vortex-large": 0.617198691298818,
+      "openc910-1": 0.6277491245084653,
+      "zero-riscy": 0.6454046888176856
+     },
+     "scalar": {
+      "Vortex-large": 0.0,
+      "openc910-1": 0.0,
+      "zero-riscy": 0.0
+     },
+     "ridge": {
+      "Vortex-large": 0.8846836007843132,
+      "openc910-1": 0.7967087559724898,
+      "zero-riscy": 0.8715331647177074
+     },
+     "knn": {
+      "Vortex-large": 0.5994156193270712,
+      "openc910-1": 0.638352615909264,
+      "zero-riscy": 0.7336759084298833
+     },
+     "green": {
+      "Vortex-large": 0.8302283566504722,
+      "openc910-1": 0.7019946361253635,
+      "zero-riscy": 0.8589698454624816
+     },
+     "gbm": {
+      "Vortex-large": 0.8731464102747848,
+      "openc910-1": 0.7738082716059839,
+      "zero-riscy": 0.8729824847339787
+     }
+    },
+    "design_macro": {
+     "zero": 0.0,
+     "mean_map": 0.6301175015416564,
+     "scalar": 0.0,
+     "ridge": 0.8509751738248368,
+     "knn": 0.6571480478887395,
+     "green": 0.7970642794127724,
+     "gbm": 0.8399790555382491
+    },
+    "sample_pooled": {
+     "zero": 0.0,
+     "mean_map": 0.6446298983715717,
+     "scalar": 0.0,
+     "ridge": 0.8684504555556014,
+     "knn": 0.7299526422445272,
+     "green": 0.8527115696196393,
+     "gbm": 0.8563742972689601
+    },
+    "gains": {
+     "zero": -0.6301175015416564,
+     "mean_map": 0.0,
+     "scalar": -0.6301175015416564,
+     "ridge": 0.22085767228318043,
+     "knn": 0.02703054634708313,
+     "green": 0.166946777871116,
+     "gbm": 0.2098615539965928
+    },
+    "best_baseline": "ridge",
+    "best_gain": 0.22085767228318043,
+    "published_gain": 0.23698249845834363,
+    "undefined_designs": [],
+    "sign_count_designs_beating_mean_map": {
+     "zero": 0,
+     "mean_map": 0,
+     "scalar": 0,
+     "ridge": 3,
+     "knn": 2,
+     "green": 3,
+     "gbm": 3
+    },
+    "verdict": true,
+    "degenerate": false,
+    "ratio": 0.9319577340940323,
+    "sensitivity_anchored": {
+     "verdict": true,
+     "ratio": 0.9319579232358427,
+     "design_macro": {
+      "zero": 0.5,
+      "mean_map": 0.6301175016724176,
+      "scalar": 0.5,
+      "ridge": 0.8509752186570329,
+      "knn": 0.6572161895732727,
+      "green": 0.8412044017439612,
+      "gbm": 0.8399790621637155
+     },
+     "agrees_with_official": true
+    }
+   },
+   "congestion": {
+    "task": "congestion",
+    "metric": "nrms",
+    "higher_is_better": false,
+    "secondary_roc_anchored_design_macro": null,
+    "weak_reference": true,
+    "reference": {
+     "value": 0.02,
+     "model": "Circuit GNN",
+     "source": "CircuitNet 2.0 App. B (ICLR 2024), N14 NRMSE",
+     "weak_reference": true
+    },
+    "design_values": {
+     "zero": {
+      "Vortex-large": 0.17454956334147306,
+      "openc910-1": 0.11256347255826733,
+      "zero-riscy": 0.12508983680445912
+     },
+     "mean_map": {
+      "Vortex-large": 0.08180546088232078,
+      "openc910-1": 0.046005804690402406,
+      "zero-riscy": 0.02839471713638895
+     },
+     "scalar": {
+      "Vortex-large": 0.08161347742428056,
+      "openc910-1": 0.04644044081427886,
+      "zero-riscy": 0.028228695427673825
+     },
+     "ridge": {
+      "Vortex-large": 0.08155452369793788,
+      "openc910-1": 0.04605709620773746,
+      "zero-riscy": 0.028365876883684887
+     },
+     "knn": {
+      "Vortex-large": 0.08464545911696798,
+      "openc910-1": 0.05393281161876472,
+      "zero-riscy": 0.0308229872472351
+     },
+     "gbm": {
+      "Vortex-large": 0.0820340340868905,
+      "openc910-1": 0.047495732511605195,
+      "zero-riscy": 0.028707971840055913
+     }
+    },
+    "design_macro": {
+     "zero": 0.1374009575680665,
+     "mean_map": 0.05206866090303738,
+     "scalar": 0.05209420455541108,
+     "ridge": 0.05199249892978674,
+     "knn": 0.0564670859943226,
+     "gbm": 0.052745912812850536
+    },
+    "sample_pooled": {
+     "zero": 0.12554783080825507,
+     "mean_map": 0.029381321498432842,
+     "scalar": 0.02922444669615306,
+     "ridge": 0.02935080201980702,
+     "knn": 0.031901939375531686,
+     "gbm": 0.029712046197620242
+    },
+    "gains": {
+     "zero": -0.08533229666502912,
+     "mean_map": 0.0,
+     "scalar": -2.5543652373706538e-05,
+     "ridge": 7.6161973250638e-05,
+     "knn": -0.00439842509128522,
+     "gbm": -0.0006772519098131591
+    },
+    "best_baseline": "ridge",
+    "best_gain": 7.6161973250638e-05,
+    "published_gain": 0.03206866090303738,
+    "undefined_designs": [],
+    "sign_count_designs_beating_mean_map": {
+     "zero": 0,
+     "mean_map": 0,
+     "scalar": 2,
+     "ridge": 2,
+     "knn": 0,
+     "gbm": 0
+    },
+    "verdict": false,
+    "degenerate": false,
+    "ratio": 0.0023749658110427782
+   },
+   "drc": {
+    "task": "drc",
+    "metric": "ssim",
+    "higher_is_better": true,
+    "secondary_roc_anchored_design_macro": null,
+    "weak_reference": true,
+    "reference": {
+     "value": 0.7136,
+     "model": "CLDRoute LDM",
+     "source": "CLDRoute 2607.16674 Table 5, N14 SSIM (split 10368/169/250)",
+     "weak_reference": true
+    },
+    "design_values": {
+     "zero": {
+      "Vortex-large": 0.9999657754635961,
+      "openc910-1": 0.9997587560182398,
+      "zero-riscy": 0.9992148276535416
+     },
+     "mean_map": {
+      "Vortex-large": 0.9999657754635961,
+      "openc910-1": 0.9997587560182398,
+      "zero-riscy": 0.9992148276535416
+     },
+     "scalar": {
+      "Vortex-large": 0.9999657754635961,
+      "openc910-1": 0.9997587560182398,
+      "zero-riscy": 0.9992148276535416
+     },
+     "ridge": {
+      "Vortex-large": 0.9999657754635961,
+      "openc910-1": 0.9997587560182398,
+      "zero-riscy": 0.9992148276535416
+     },
+     "knn": {
+      "Vortex-large": 0.9999195874480814,
+      "openc910-1": 0.9994384616474657,
+      "zero-riscy": 0.9983684319410362
+     },
+     "gbm": {
+      "Vortex-large": 0.9999633469502724,
+      "openc910-1": 0.9997548594636738,
+      "zero-riscy": 0.9992131515699952
+     }
+    },
+    "design_macro": {
+     "zero": 0.9996464530451258,
+     "mean_map": 0.9996464530451258,
+     "scalar": 0.9996464530451258,
+     "ridge": 0.9996464530451258,
+     "knn": 0.9992421603455277,
+     "gbm": 0.9996437859946471
+    },
+    "sample_pooled": {
+     "zero": 0.999233174700588,
+     "mean_map": 0.999233174700588,
+     "scalar": 0.999233174700588,
+     "ridge": 0.999233174700588,
+     "knn": 0.998405483822742,
+     "gbm": 0.999231453751632
+    },
+    "secondary_roc_official_design_macro": {
+     "zero": 0.0,
+     "mean_map": 0.0,
+     "scalar": 0.0,
+     "ridge": 0.13249207709264849,
+     "knn": 0.49955220385678156,
+     "gbm": 0.0
+    },
+    "verdict": "not evaluable",
+    "reason": "metric saturated: the mean_map SSIM is 0.9996 >= 0.99"
+   }
+  },
+  "n_true": 1,
+  "overall": false,
+  "rule": "per-task: best baseline gain >= 0.8 x published gain (design-macro); overall TRUE if >= 2 of 3 tasks"
+ },
+ "E006_roc_anchor": {
+  "zero": {
+   "official_design_macro": 0.0,
+   "anchored_design_macro": 0.5
+  },
+  "scalar": {
+   "official_design_macro": 0.0,
+   "anchored_design_macro": 0.5
+  },
+  "mean_map": {
+   "official_design_macro": 0.6301175015416564,
+   "anchored_design_macro": 0.6301175016724176
+  }
+ },
+ "H2": {
+  "ir_drop": {
+   "n_test_scanned": 3544,
+   "items": {
+    "zero_label": {
+     "per_design": {
+      "Vortex-large": [
+       0,
+       47
+      ],
+      "openc910-1": [
+       0,
+       56
+      ],
+      "zero-riscy": [
+       0,
+       3441
+      ]
+     },
+     "pooled_rate": 0.0,
+     "max_design_rate": 0.0,
+     "material": false,
+     "applicable": true
+    },
+    "const_label": {
+     "per_design": {
+      "Vortex-large": [
+       0,
+       47
+      ],
+      "openc910-1": [
+       0,
+       56
+      ],
+      "zero-riscy": [
+       0,
+       3441
+      ]
+     },
+     "pooled_rate": 0.0,
+     "max_design_rate": 0.0,
+     "material": false,
+     "applicable": true
+    },
+    "bbox_zero": {
+     "per_design": {
+      "Vortex-large": [
+       0,
+       47
+      ],
+      "openc910-1": [
+       0,
+       56
+      ],
+      "zero-riscy": [
+       0,
+       3441
+      ]
+     },
+     "pooled_rate": 0.0,
+     "max_design_rate": 0.0,
+     "material": false,
+     "applicable": false
+    },
+    "nonfinite": {
+     "per_design": {
+      "Vortex-large": [
+       0,
+       47
+      ],
+      "openc910-1": [
+       0,
+       56
+      ],
+      "zero-riscy": [
+       0,
+       3441
+      ]
+     },
+     "pooled_rate": 0.0,
+     "max_design_rate": 0.0,
+     "material": false,
+     "applicable": true
+    },
+    "cross_split_exact_duplicates": {
+     "n": 0,
+     "material": false,
+     "examples": []
+    }
+   },
+   "material": false
+  },
+  "congestion": {
+   "n_test_scanned": 3544,
+   "items": {
+    "zero_label": {
+     "per_design": {
+      "Vortex-large": [
+       0,
+       47
+      ],
+      "openc910-1": [
+       0,
+       56
+      ],
+      "zero-riscy": [
+       0,
+       3441
+      ]
+     },
+     "pooled_rate": 0.0,
+     "max_design_rate": 0.0,
+     "material": false,
+     "applicable": true
+    },
+    "const_label": {
+     "per_design": {
+      "Vortex-large": [
+       0,
+       47
+      ],
+      "openc910-1": [
+       0,
+       56
+      ],
+      "zero-riscy": [
+       0,
+       3441
+      ]
+     },
+     "pooled_rate": 0.0,
+     "max_design_rate": 0.0,
+     "material": false,
+     "applicable": true
+    },
+    "bbox_zero": {
+     "per_design": {
+      "Vortex-large": [
+       0,
+       47
+      ],
+      "openc910-1": [
+       0,
+       56
+      ],
+      "zero-riscy": [
+       0,
+       3441
+      ]
+     },
+     "pooled_rate": 0.0,
+     "max_design_rate": 0.0,
+     "material": false,
+     "applicable": true
+    },
+    "nonfinite": {
+     "per_design": {
+      "Vortex-large": [
+       0,
+       47
+      ],
+      "openc910-1": [
+       0,
+       56
+      ],
+      "zero-riscy": [
+       0,
+       3441
+      ]
+     },
+     "pooled_rate": 0.0,
+     "max_design_rate": 0.0,
+     "material": false,
+     "applicable": true
+    },
+    "cross_split_exact_duplicates": {
+     "n": 3,
+     "material": true,
+     "examples": [
+      {
+       "feature": "macro_region",
+       "is_label": false,
+       "members": [
+        [
+         "train",
+         "RISCY-FPU",
+         "RISCY-FPU_freq_500_mp_1_fpu_65_fpa_1.0_p_1_fi_ap"
+        ],
+        [
+         "train",
+         "RISCY-FPU",
+         "RISCY-FPU_freq_500_mp_1_fpu_65_fpa_1.0_p_2_fi_ap"
+        ],
+        [
+         "train",
+         "RISCY-FPU",
+         "RISCY-FPU_freq_500_mp_1_fpu_65_fpa_1.0_p_1_fi_ar"
+        ],
+        [
+         "train",
+         "RISCY-FPU",
+         "RISCY-FPU_freq_500_mp_1_fpu_65_fpa_1.0_p_2_fi_ar"
+        ],
+        [
+         "train",
+         "RISCY-FPU",
+         "RISCY-FPU_freq_500_mp_1_fpu_65_fpa_1.0_p_4_fi_ap"
+        ],
+        [
+         "train",
+         "RISCY-FPU",
+         "RISCY-FPU_freq_500_mp_1_fpu_65_fpa_1.0_p_4_fi_ar"
+        ],
+        [
+         "train",
+         "RISCY-FPU",
+         "RISCY-FPU_freq_500_mp_1_fpu_65_fpa_1.0_p_0_fi_ap"
+        ],
+        [
+         "train",
+         "RISCY-FPU",
+         "RISCY-FPU_freq_500_mp_1_fpu_65_fpa_1.0_p_0_fi_ar"
+        ],
+        [
+         "train",
+         "RISCY-FPU",
+         "RISCY-FPU_freq_500_mp_1_fpu_65_fpa_1.0_p_3_fi_ap"
+        ],
+        [
+         "train",
+         "RISCY-FPU",
+         "RISCY-FPU_freq_500_mp_1_fpu_65_fpa_1.0_p_3_fi_ar"
+        ],
+        [
+         "train",
+         "RISCY-FPU",
+         "RISCY-FPU_freq_500_mp_1_fpu_65_fpa_1.0_p_5_fi_ap"
+        ],
+        [
+         "train",
+         "RISCY-FPU",
+         "RISCY-FPU_freq_500_mp_1_fpu_65_fpa_1.0_p_5_fi_ar"
+        ],
+        [
+         "train",
+         "RISCY-FPU",
+         "RISCY-FPU_freq_500_mp_1_fpu_65_fpa_1.0_p_6_fi_ap"
+        ],
+        [
+         "train",
+         "RISCY-FPU",
+         "RISCY-FPU_freq_500_mp_1_fpu_65_fpa_1.0_p_6_fi_ar"
+        ],
+        [
+         "train",
+         "RISCY-FPU",
+         "RISCY-FPU_freq_500_mp_1_fpu_65_fpa_1.0_p_7_fi_ap"
+        ],
+        [
+         "train",
+         "RISCY-FPU",
+         "RISCY-FPU_freq_500_mp_1_fpu_65_fpa_1.0_p_7_fi_ar"
+        ],
+        [
+         "train",
+         "RISCY-FPU",
+         "RISCY-FPU_freq_500_mp_3_fpu_65_fpa_1.0_p_0_fi_ap"
+        ],
+        [
+         "train",
+         "RISCY-FPU",
+         "RISCY-FPU_freq_500_mp_3_fpu_65_fpa_1.0_p_0_fi_ar"
+        ],
+        [
+         "train",
+         "RISCY-FPU",
+         "RISCY-FPU_freq_500_mp_3_fpu_65_fpa_1.0_p_1_fi_ap"
+        ],
+        [
+         "train",
+         "RISCY-FPU",
+         "RISCY-FPU_freq_500_mp_3_fpu_65_fpa_1.0_p_1_fi_ar"
+        ]
+       ],
+       "n": 64
+      },
+      {
+       "feature": "macro_region",
+       "is_label": false,
+       "members": [
+        [
+         "train",
+         "RISCY-FPU",
+         "RISCY-FPU_freq_200_mp_1_fpu_70_fpa_1.5_p_0_fi_ap"
+        ],
+        [
+         "train",
+         "RISCY-FPU",
+         "RISCY-FPU_freq_200_mp_1_fpu_70_fpa_1.5_p_0_fi_ar"
+        ],
+        [
+         "train",
+         "RISCY-FPU",
+         "RISCY-FPU_freq_200_mp_1_fpu_70_fpa_1.5_p_1_fi_ap"
+        ],
+        [
+         "train",
+         "RISCY-FPU",
+         "RISCY-FPU_freq_200_mp_1_fpu_70_fpa_1.5_p_1_fi_ar"
+        ],
+        [
+         "train",
+         "RISCY-FPU",
+         "RISCY-FPU_freq_200_mp_1_fpu_70_fpa_1.5_p_2_fi_ap"
+        ],
+        [
+         "train",
+         "RISCY-FPU",
+         "RISCY-FPU_freq_200_mp_1_fpu_70_fpa_1.5_p_2_fi_ar"
+        ],
+        [
+         "train",
+         "RISCY-FPU",
+         "RISCY-FPU_freq_200_mp_1_fpu_70_fpa_1.5_p_3_fi_ap"
+        ],
+        [
+         "train",
+         "RISCY-FPU",
+         "RISCY-FPU_freq_200_mp_1_fpu_70_fpa_1.5_p_3_fi_ar"
+        ],
+        [
+         "train",
+         "RISCY-FPU",
+         "RISCY-FPU_freq_200_mp_1_fpu_70_fpa_1.5_p_4_fi_ap"
+        ],
+        [
+         "train",
+         "RISCY-FPU",
+         "RISCY-FPU_freq_200_mp_1_fpu_70_fpa_1.5_p_4_fi_ar"
+        ],
+        [
+         "train",
+         "RISCY-FPU",
+         "RISCY-FPU_freq_200_mp_1_fpu_70_fpa_1.5_p_5_fi_ap"
+        ],
+        [
+         "train",
+         "RISCY-FPU",
+         "RISCY-FPU_freq_200_mp_1_fpu_70_fpa_1.5_p_5_fi_ar"
+        ],
+        [
+         "train",
+         "RISCY-FPU",
+         "RISCY-FPU_freq_200_mp_1_fpu_70_fpa_1.5_p_6_fi_ap"
+        ],
+        [
+         "train",
+         "RISCY-FPU",
+         "RISCY-FPU_freq_200_mp_1_fpu_70_fpa_1.5_p_6_fi_ar"
+        ],
+        [
+         "train",
+         "RISCY-FPU",
+         "RISCY-FPU_freq_200_mp_1_fpu_70_fpa_1.5_p_7_fi_ap"
+        ],
+        [
+         "train",
+         "RISCY-FPU",
+         "RISCY-FPU_freq_200_mp_1_fpu_70_fpa_1.5_p_7_fi_ar"
+        ],
+        [
+         "train",
+         "RISCY-FPU",
+         "RISCY-FPU_freq_200_mp_3_fpu_70_fpa_1.5_p_0_fi_ap"
+        ],
+        [
+         "train",
+         "RISCY-FPU",
+         "RISCY-FPU_freq_200_mp_3_fpu_70_fpa_1.5_p_0_fi_ar"
+        ],
+        [
+         "train",
+         "RISCY-FPU",
+         "RISCY-FPU_freq_200_mp_3_fpu_70_fpa_1.5_p_1_fi_ap"
+        ],
+        [
+         "train",
+         "RISCY-FPU",
+         "RISCY-FPU_freq_200_mp_3_fpu_70_fpa_1.5_p_1_fi_ar"
+        ]
+       ],
+       "n": 64
+      },
+      {
+       "feature": "macro_region",
+       "is_label": false,
+       "members": [
+        [
+         "train",
+         "RISCY-FPU",
+         "RISCY-FPU_freq_500_mp_4_fpu_65_fpa_1.5_p_0_fi_ap"
+        ],
+        [
+         "train",
+         "RISCY-FPU",
+         "RISCY-FPU_freq_500_mp_4_fpu_65_fpa_1.5_p_0_fi_ar"
+        ],
+        [
+         "train",
+         "RISCY-FPU",
+         "RISCY-FPU_freq_500_mp_4_fpu_65_fpa_1.5_p_1_fi_ap"
+        ],
+        [
+         "train",
+         "RISCY-FPU",
+         "RISCY-FPU_freq_500_mp_4_fpu_65_fpa_1.5_p_1_fi_ar"
+        ],
+        [
+         "train",
+         "RISCY-FPU",
+         "RISCY-FPU_freq_500_mp_4_fpu_65_fpa_1.5_p_2_fi_ap"
+        ],
+        [
+         "train",
+         "RISCY-FPU",
+         "RISCY-FPU_freq_500_mp_4_fpu_65_fpa_1.5_p_2_fi_ar"
+        ],
+        [
+         "train",
+         "RISCY-FPU",
+         "RISCY-FPU_freq_500_mp_4_fpu_65_fpa_1.5_p_3_fi_ap"
+        ],
+        [
+         "train",
+         "RISCY-FPU",
+         "RISCY-FPU_freq_500_mp_4_fpu_65_fpa_1.5_p_3_fi_ar"
+        ],
+        [
+         "train",
+         "RISCY-FPU",
+         "RISCY-FPU_freq_500_mp_4_fpu_65_fpa_1.5_p_4_fi_ap"
+        ],
+        [
+         "train",
+         "RISCY-FPU",
+         "RISCY-FPU_freq_500_mp_4_fpu_65_fpa_1.5_p_4_fi_ar"
+        ],
+        [
+         "train",
+         "RISCY-FPU",
+         "RISCY-FPU_freq_500_mp_4_fpu_65_fpa_1.5_p_5_fi_ap"
+        ],
+        [
+         "train",
+         "RISCY-FPU",
+         "RISCY-FPU_freq_500_mp_4_fpu_65_fpa_1.5_p_5_fi_ar"
+        ],
+        [
+         "train",
+         "RISCY-FPU",
+         "RISCY-FPU_freq_500_mp_4_fpu_65_fpa_1.5_p_6_fi_ar"
+        ],
+        [
+         "train",
+         "RISCY-FPU",
+         "RISCY-FPU_freq_500_mp_4_fpu_65_fpa_1.5_p_6_fi_ap"
+        ],
+        [
+         "train",
+         "RISCY-FPU",
+         "RISCY-FPU_freq_500_mp_4_fpu_65_fpa_1.5_p_7_fi_ap"
+        ],
+        [
+         "train",
+         "RISCY-FPU",
+         "RISCY-FPU_freq_500_mp_4_fpu_65_fpa_1.5_p_7_fi_ar"
+        ],
+        [
+         "test",
+         "zero-riscy",
+         "zero-riscy_freq_200_mp_4_fpu_50_fpa_1.5_p_0_fi_ap"
+        ],
+        [
+         "test",
+         "zero-riscy",
+         "zero-riscy_freq_200_mp_4_fpu_50_fpa_1.5_p_0_fi_ar"
+        ],
+        [
+         "test",
+         "zero-riscy",
+         "zero-riscy_freq_200_mp_4_fpu_50_fpa_1.5_p_1_fi_ap"
+        ],
+        [
+         "test",
+         "zero-riscy",
+         "zero-riscy_freq_200_mp_4_fpu_50_fpa_1.5_p_1_fi_ar"
+        ]
+       ],
+       "n": 48
+      }
+     ]
+    }
+   },
+   "material": true
+  },
+  "drc": {
+   "n_test_scanned": 3543,
+   "items": {
+    "zero_label": {
+     "per_design": {
+      "Vortex-large": [
+       0,
+       46
+      ],
+      "openc910-1": [
+       2,
+       56
+      ],
+      "zero-riscy": [
+       275,
+       3441
+      ]
+     },
+     "pooled_rate": 0.07818233135760655,
+     "max_design_rate": 0.07991862830572508,
+     "material": true,
+     "applicable": true
+    },
+    "const_label": {
+     "per_design": {
+      "Vortex-large": [
+       0,
+       46
+      ],
+      "openc910-1": [
+       0,
+       56
+      ],
+      "zero-riscy": [
+       0,
+       3441
+      ]
+     },
+     "pooled_rate": 0.0,
+     "max_design_rate": 0.0,
+     "material": false,
+     "applicable": true
+    },
+    "bbox_zero": {
+     "per_design": {
+      "Vortex-large": [
+       0,
+       46
+      ],
+      "openc910-1": [
+       0,
+       56
+      ],
+      "zero-riscy": [
+       0,
+       3441
+      ]
+     },
+     "pooled_rate": 0.0,
+     "max_design_rate": 0.0,
+     "material": false,
+     "applicable": true
+    },
+    "nonfinite": {
+     "per_design": {
+      "Vortex-large": [
+       0,
+       46
+      ],
+      "openc910-1": [
+       0,
+       56
+      ],
+      "zero-riscy": [
+       0,
+       3441
+      ]
+     },
+     "pooled_rate": 0.0,
+     "max_design_rate": 0.0,
+     "material": false,
+     "applicable": true
+    },
+    "cross_split_exact_duplicates": {
+     "n": 3,
+     "material": true,
+     "examples": [
+      {
+       "feature": "macro_region",
+       "is_label": false,
+       "members": [
+        [
+         "train",
+         "RISCY-FPU",
+         "RISCY-FPU_freq_500_mp_1_fpu_65_fpa_1.0_p_1_fi_ap"
+        ],
+        [
+         "train",
+         "RISCY-FPU",
+         "RISCY-FPU_freq_500_mp_1_fpu_65_fpa_1.0_p_2_fi_ap"
+        ],
+        [
+         "train",
+         "RISCY-FPU",
+         "RISCY-FPU_freq_500_mp_1_fpu_65_fpa_1.0_p_1_fi_ar"
+        ],
+        [
+         "train",
+         "RISCY-FPU",
+         "RISCY-FPU_freq_500_mp_1_fpu_65_fpa_1.0_p_2_fi_ar"
+        ],
+        [
+         "train",
+         "RISCY-FPU",
+         "RISCY-FPU_freq_500_mp_1_fpu_65_fpa_1.0_p_4_fi_ap"
+        ],
+        [
+         "train",
+         "RISCY-FPU",
+         "RISCY-FPU_freq_500_mp_1_fpu_65_fpa_1.0_p_4_fi_ar"
+        ],
+        [
+         "train",
+         "RISCY-FPU",
+         "RISCY-FPU_freq_500_mp_1_fpu_65_fpa_1.0_p_0_fi_ap"
+        ],
+        [
+         "train",
+         "RISCY-FPU",
+         "RISCY-FPU_freq_500_mp_1_fpu_65_fpa_1.0_p_0_fi_ar"
+        ],
+        [
+         "train",
+         "RISCY-FPU",
+         "RISCY-FPU_freq_500_mp_1_fpu_65_fpa_1.0_p_3_fi_ap"
+        ],
+        [
+         "train",
+         "RISCY-FPU",
+         "RISCY-FPU_freq_500_mp_1_fpu_65_fpa_1.0_p_3_fi_ar"
+        ],
+        [
+         "train",
+         "RISCY-FPU",
+         "RISCY-FPU_freq_500_mp_1_fpu_65_fpa_1.0_p_5_fi_ap"
+        ],
+        [
+         "train",
+         "RISCY-FPU",
+         "RISCY-FPU_freq_500_mp_1_fpu_65_fpa_1.0_p_5_fi_ar"
+        ],
+        [
+         "train",
+         "RISCY-FPU",
+         "RISCY-FPU_freq_500_mp_1_fpu_65_fpa_1.0_p_6_fi_ap"
+        ],
+        [
+         "train",
+         "RISCY-FPU",
+         "RISCY-FPU_freq_500_mp_1_fpu_65_fpa_1.0_p_6_fi_ar"
+        ],
+        [
+         "train",
+         "RISCY-FPU",
+         "RISCY-FPU_freq_500_mp_1_fpu_65_fpa_1.0_p_7_fi_ap"
+        ],
+        [
+         "train",
+         "RISCY-FPU",
+         "RISCY-FPU_freq_500_mp_1_fpu_65_fpa_1.0_p_7_fi_ar"
+        ],
+        [
+         "train",
+         "RISCY-FPU",
+         "RISCY-FPU_freq_500_mp_3_fpu_65_fpa_1.0_p_0_fi_ap"
+        ],
+        [
+         "train",
+         "RISCY-FPU",
+         "RISCY-FPU_freq_500_mp_3_fpu_65_fpa_1.0_p_0_fi_ar"
+        ],
+        [
+         "train",
+         "RISCY-FPU",
+         "RISCY-FPU_freq_500_mp_3_fpu_65_fpa_1.0_p_1_fi_ap"
+        ],
+        [
+         "train",
+         "RISCY-FPU",
+         "RISCY-FPU_freq_500_mp_3_fpu_65_fpa_1.0_p_1_fi_ar"
+        ]
+       ],
+       "n": 64
+      },
+      {
+       "feature": "macro_region",
+       "is_label": false,
+       "members": [
+        [
+         "train",
+         "RISCY-FPU",
+         "RISCY-FPU_freq_200_mp_1_fpu_70_fpa_1.5_p_0_fi_ap"
+        ],
+        [
+         "train",
+         "RISCY-FPU",
+         "RISCY-FPU_freq_200_mp_1_fpu_70_fpa_1.5_p_0_fi_ar"
+        ],
+        [
+         "train",
+         "RISCY-FPU",
+         "RISCY-FPU_freq_200_mp_1_fpu_70_fpa_1.5_p_1_fi_ap"
+        ],
+        [
+         "train",
+         "RISCY-FPU",
+         "RISCY-FPU_freq_200_mp_1_fpu_70_fpa_1.5_p_1_fi_ar"
+        ],
+        [
+         "train",
+         "RISCY-FPU",
+         "RISCY-FPU_freq_200_mp_1_fpu_70_fpa_1.5_p_2_fi_ap"
+        ],
+        [
+         "train",
+         "RISCY-FPU",
+         "RISCY-FPU_freq_200_mp_1_fpu_70_fpa_1.5_p_2_fi_ar"
+        ],
+        [
+         "train",
+         "RISCY-FPU",
+         "RISCY-FPU_freq_200_mp_1_fpu_70_fpa_1.5_p_3_fi_ap"
+        ],
+        [
+         "train",
+         "RISCY-FPU",
+         "RISCY-FPU_freq_200_mp_1_fpu_70_fpa_1.5_p_3_fi_ar"
+        ],
+        [
+         "train",
+         "RISCY-FPU",
+         "RISCY-FPU_freq_200_mp_1_fpu_70_fpa_1.5_p_4_fi_ap"
+        ],
+        [
+         "train",
+         "RISCY-FPU",
+         "RISCY-FPU_freq_200_mp_1_fpu_70_fpa_1.5_p_4_fi_ar"
+        ],
+        [
+         "train",
+         "RISCY-FPU",
+         "RISCY-FPU_freq_200_mp_1_fpu_70_fpa_1.5_p_5_fi_ap"
+        ],
+        [
+         "train",
+         "RISCY-FPU",
+         "RISCY-FPU_freq_200_mp_1_fpu_70_fpa_1.5_p_5_fi_ar"
+        ],
+        [
+         "train",
+         "RISCY-FPU",
+         "RISCY-FPU_freq_200_mp_1_fpu_70_fpa_1.5_p_6_fi_ap"
+        ],
+        [
+         "train",
+         "RISCY-FPU",
+         "RISCY-FPU_freq_200_mp_1_fpu_70_fpa_1.5_p_6_fi_ar"
+        ],
+        [
+         "train",
+         "RISCY-FPU",
+         "RISCY-FPU_freq_200_mp_1_fpu_70_fpa_1.5_p_7_fi_ap"
+        ],
+        [
+         "train",
+         "RISCY-FPU",
+         "RISCY-FPU_freq_200_mp_1_fpu_70_fpa_1.5_p_7_fi_ar"
+        ],
+        [
+         "train",
+         "RISCY-FPU",
+         "RISCY-FPU_freq_200_mp_3_fpu_70_fpa_1.5_p_0_fi_ap"
+        ],
+        [
+         "train",
+         "RISCY-FPU",
+         "RISCY-FPU_freq_200_mp_3_fpu_70_fpa_1.5_p_0_fi_ar"
+        ],
+        [
+         "train",
+         "RISCY-FPU",
+         "RISCY-FPU_freq_200_mp_3_fpu_70_fpa_1.5_p_1_fi_ap"
+        ],
+        [
+         "train",
+         "RISCY-FPU",
+         "RISCY-FPU_freq_200_mp_3_fpu_70_fpa_1.5_p_1_fi_ar"
+        ]
+       ],
+       "n": 64
+      },
+      {
+       "feature": "macro_region",
+       "is_label": false,
+       "members": [
+        [
+         "train",
+         "RISCY-FPU",
+         "RISCY-FPU_freq_500_mp_4_fpu_65_fpa_1.5_p_0_fi_ap"
+        ],
+        [
+         "train",
+         "RISCY-FPU",
+         "RISCY-FPU_freq_500_mp_4_fpu_65_fpa_1.5_p_0_fi_ar"
+        ],
+        [
+         "train",
+         "RISCY-FPU",
+         "RISCY-FPU_freq_500_mp_4_fpu_65_fpa_1.5_p_1_fi_ap"
+        ],
+        [
+         "train",
+         "RISCY-FPU",
+         "RISCY-FPU_freq_500_mp_4_fpu_65_fpa_1.5_p_1_fi_ar"
+        ],
+        [
+         "train",
+         "RISCY-FPU",
+         "RISCY-FPU_freq_500_mp_4_fpu_65_fpa_1.5_p_2_fi_ap"
+        ],
+        [
+         "train",
+         "RISCY-FPU",
+         "RISCY-FPU_freq_500_mp_4_fpu_65_fpa_1.5_p_2_fi_ar"
+        ],
+        [
+         "train",
+         "RISCY-FPU",
+         "RISCY-FPU_freq_500_mp_4_fpu_65_fpa_1.5_p_3_fi_ap"
+        ],
+        [
+         "train",
+         "RISCY-FPU",
+         "RISCY-FPU_freq_500_mp_4_fpu_65_fpa_1.5_p_3_fi_ar"
+        ],
+        [
+         "train",
+         "RISCY-FPU",
+         "RISCY-FPU_freq_500_mp_4_fpu_65_fpa_1.5_p_4_fi_ap"
+        ],
+        [
+         "train",
+         "RISCY-FPU",
+         "RISCY-FPU_freq_500_mp_4_fpu_65_fpa_1.5_p_4_fi_ar"
+        ],
+        [
+         "train",
+         "RISCY-FPU",
+         "RISCY-FPU_freq_500_mp_4_fpu_65_fpa_1.5_p_5_fi_ap"
+        ],
+        [
+         "train",
+         "RISCY-FPU",
+         "RISCY-FPU_freq_500_mp_4_fpu_65_fpa_1.5_p_5_fi_ar"
+        ],
+        [
+         "train",
+         "RISCY-FPU",
+         "RISCY-FPU_freq_500_mp_4_fpu_65_fpa_1.5_p_6_fi_ar"
+        ],
+        [
+         "train",
+         "RISCY-FPU",
+         "RISCY-FPU_freq_500_mp_4_fpu_65_fpa_1.5_p_6_fi_ap"
+        ],
+        [
+         "train",
+         "RISCY-FPU",
+         "RISCY-FPU_freq_500_mp_4_fpu_65_fpa_1.5_p_7_fi_ap"
+        ],
+        [
+         "train",
+         "RISCY-FPU",
+         "RISCY-FPU_freq_500_mp_4_fpu_65_fpa_1.5_p_7_fi_ar"
+        ],
+        [
+         "test",
+         "zero-riscy",
+         "zero-riscy_freq_200_mp_4_fpu_50_fpa_1.5_p_0_fi_ap"
+        ],
+        [
+         "test",
+         "zero-riscy",
+         "zero-riscy_freq_200_mp_4_fpu_50_fpa_1.5_p_0_fi_ar"
+        ],
+        [
+         "test",
+         "zero-riscy",
+         "zero-riscy_freq_200_mp_4_fpu_50_fpa_1.5_p_1_fi_ap"
+        ],
+        [
+         "test",
+         "zero-riscy",
+         "zero-riscy_freq_200_mp_4_fpu_50_fpa_1.5_p_1_fi_ar"
+        ]
+       ],
+       "n": 48
+      }
+     ]
+    }
+   },
+   "material": true
+  }
+ },
+ "H3": {
+  "ir_drop": {
+   "shares": {
+    "no_positive": 0.1698645598194131,
+    "all_positive": 0.0,
+    "const_label_nrms_undefined": 0.0,
+    "ssim_exactly_1_mean_map": 0.0
+   },
+   "per_design_no_positive": {
+    "Vortex-large": [
+     0,
+     47
+    ],
+    "openc910-1": [
+     0,
+     56
+    ],
+    "zero-riscy": [
+     602,
+     3441
+    ]
+   },
+   "hit": true
+  },
+  "congestion": {
+   "shares": {
+    "const_label_nrms_undefined": 0.0,
+    "ssim_exactly_1_mean_map": 0.0
+   },
+   "per_design_no_positive": null,
+   "hit": false
+  },
+  "drc": {
+   "shares": {
+    "no_positive": 0.9991532599491956,
+    "all_positive": 0.0,
+    "const_label_nrms_undefined": 0.07818233135760655,
+    "ssim_exactly_1_mean_map": 0.09144792548687553
+   },
+   "per_design_no_positive": {
+    "Vortex-large": [
+     46,
+     46
+    ],
+    "openc910-1": [
+     53,
+     56
+    ],
+    "zero-riscy": [
+     3441,
+     3441
+    ]
+   },
+   "hit": true
+  }
+ },
+ "R1": {
+  "n_test": 3544,
+  "share_raw_max_above_clip": 0.9280474040632054,
+  "mean_frac_pixels_clipped": 0.014026029457872407,
+  "share_of_raw_hotspot_pixels_saturated": 0.5439624358823183,
+  "material": true
+ },
+ "R1_drc_informational": {
+  "n_test": 3543,
+  "share_raw_max_above_200": 0.0011289867344058708,
+  "mean_frac_pixels_clipped": 1.0179626092482081e-09
+ },
+ "H2_verdict": true,
+ "H3_verdict": true,
+ "C1": {
+  "ir_drop": {
+   "skill_official": 0.8509751738248368,
+   "skill_random": 0.8527742985534829,
+   "gap_C1b": 0.0017991247286460732,
+   "C1a_gap": -0.0053955889629068166,
+   "material": false,
+   "sensitivity_anchored": {
+    "gap_C1b": 0.00359816468518126,
+    "material": false,
+    "agrees_with_official": true
+   }
+  },
+  "congestion": {
+   "skill_official": 0.0019523405049052256,
+   "skill_random": 0.0015169837036306476,
+   "gap_C1b": -0.00043535680127457796,
+   "C1a_gap": -0.0008144863698471949,
+   "material": false
+  },
+  "drc": {
+   "skill_official": 0.0,
+   "skill_random": 0.0,
+   "gap_C1b": 0.0,
+   "C1a_gap": 0.0,
+   "material": false
+  },
+  "verdict_materially_optimistic": false
+ },
+ "provenance": {
+  "started": "2026-10-13T22:19:11+0800",
+  "git_head": "eba0ab472b909c1b8625a7f14d18d9369bc330ad",
+  "git_dirty_tracked": "",
+  "code_hash": "d3f6d2f67218794687d736ab2d8fe0ab095cced40ff8bd250bf36191a7f5a2b7",
+  "versions": {
+   "python": "3.10.0",
+   "numpy": "2.2.6",
+   "scipy": "1.15.3",
+   "pandas": "2.3.3",
+   "platform": "Windows-10-10.0.26200-SP0",
+   "sklearn": "1.6.1",
+   "pyamg": "5.3.0",
+   "edalint": "0.1.0",
+   "cpu_model": "13th Gen Intel(R) Core(TM) i7-1355U",
+   "logical_cores": 12
+  },
+  "argv": [
+   "D:\\Work\\edalint\\src\\edalint\\p4_n14.py",
+   "verdicts"
+  ],
+  "frozen_protocol": {
+   "dataset": "n14",
+   "code_hash": "d3f6d2f67218794687d736ab2d8fe0ab095cced40ff8bd250bf36191a7f5a2b7",
+   "protocol_file": "protocol/protocol_n14.md",
+   "protocol_sha256": "2e6dac78d3fb9952ffa181f89ee87ea92d7ef4c41d748e53c70a6f015b35a846",
+   "protocol_sha256_note": "sha256 of the file with CRLF normalised to LF",
+   "protocol_status_note": "the protocol's STATUS banner still reads DRAFT/NOT FROZEN and section 12 says 'Freeze (to happen)'; this file is the binding freeze act, the text is frozen as it stands (reviewer's nit, not edited)",
+   "frozen_at": "2026-10-13T16:09:59+0800",
+   "frozen_commit": "dee185116a3318fc4f0454c334b0c5a279db234f",
+   "frozen_commit_note": "commit of the code and protocol being frozen (the freeze commit itself adds this file)",
+   "machine": {
+    "cpu_model": "13th Gen Intel(R) Core(TM) i7-1355U",
+    "logical_cores": 12
+   }
+  }
+ }
+}

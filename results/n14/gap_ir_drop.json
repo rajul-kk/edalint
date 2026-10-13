@@ -1,0 +1,89 @@
+{
+ "label": "REGISTERED",
+ "task": "ir_drop",
+ "C1a": {
+  "n_samples": 379,
+  "skill_random_folds": [
+   0.855243965253534,
+   0.8876304040637943,
+   0.8570943759478571,
+   0.8562690056977447,
+   0.8370983143934867
+  ],
+  "skill_design_folds": [
+   0.8563125547951793,
+   0.8438208341954738,
+   0.8609153417740688,
+   0.895202477372038
+  ],
+  "skill_random": 0.8586672130712832,
+  "skill_design": 0.8640628020341901,
+  "gap": -0.0053955889629068166,
+  "design_fold_order": [
+   "RISCY",
+   "RISCY-FPU",
+   "Vortex-small",
+   "nvdla-small"
+  ]
+ },
+ "C1b": {
+  "n_pool": 1482,
+  "n_fit": 974,
+  "skill_random_reps": [
+   0.851822419123252,
+   0.8470291318307464,
+   0.8547735810335435,
+   0.8545592057972263,
+   0.8556871549826464
+  ],
+  "skill_random": 0.8527742985534829,
+  "skill_random_reps_anchored": [
+   0.7036448382465039,
+   0.6940582658857757,
+   0.709547162067087,
+   0.7091184310587768,
+   0.7113743127380916
+  ],
+  "skill_random_anchored": 0.705548601999247
+ },
+ "seconds": 3221.1316106999293,
+ "provenance": {
+  "started": "2026-10-13T19:24:50+0800",
+  "git_head": "eba0ab472b909c1b8625a7f14d18d9369bc330ad",
+  "git_dirty_tracked": "",
+  "code_hash": "d3f6d2f67218794687d736ab2d8fe0ab095cced40ff8bd250bf36191a7f5a2b7",
+  "versions": {
+   "python": "3.10.0",
+   "numpy": "2.2.6",
+   "scipy": "1.15.3",
+   "pandas": "2.3.3",
+   "platform": "Windows-10-10.0.26200-SP0",
+   "sklearn": "1.6.1",
+   "pyamg": "5.3.0",
+   "edalint": "0.1.0",
+   "cpu_model": "13th Gen Intel(R) Core(TM) i7-1355U",
+   "logical_cores": 12
+  },
+  "argv": [
+   "D:\\Work\\edalint\\src\\edalint\\p4_n14.py",
+   "gap",
+   "--task",
+   "ir_drop"
+  ],
+  "frozen_protocol": {
+   "dataset": "n14",
+   "code_hash": "d3f6d2f67218794687d736ab2d8fe0ab095cced40ff8bd250bf36191a7f5a2b7",
+   "protocol_file": "protocol/protocol_n14.md",
+   "protocol_sha256": "2e6dac78d3fb9952ffa181f89ee87ea92d7ef4c41d748e53c70a6f015b35a846",
+   "protocol_sha256_note": "sha256 of the file with CRLF normalised to LF",
+   "protocol_status_note": "the protocol's STATUS banner still reads DRAFT/NOT FROZEN and section 12 says 'Freeze (to happen)'; this file is the binding freeze act, the text is frozen as it stands (reviewer's nit, not edited)",
+   "frozen_at": "2026-10-13T16:09:59+0800",
+   "frozen_commit": "dee185116a3318fc4f0454c334b0c5a279db234f",
+   "frozen_commit_note": "commit of the code and protocol being frozen (the freeze commit itself adds this file)",
+   "machine": {
+    "cpu_model": "13th Gen Intel(R) Core(TM) i7-1355U",
+    "logical_cores": 12
+   }
+  }
+ }
+}
