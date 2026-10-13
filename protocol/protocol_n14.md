@@ -114,16 +114,17 @@ dataset has an empty test file, so no test row can be listed or read. RISCY and 
 **Selection criterion, set before the run:** best design-macro mean over the 4 held-out designs of the task's primary metric (congestion NRMS lower, DRC SSIM higher, IR drop official ROC area higher); ties go to the first listed option.
 Reduced grid (fixed): ridge penalty {1e-4, 1e-2, 1}; kNN k {1, 3, 5}; GBM {100 iterations depth 3; 300 iterations depth 6}; Green ring-bin edges {coarse, medium} (IR drop only).
 
-**Result (`results/dev/n14_hparam_cv.json`, train only; design-macro primary metric over the 4 held-out designs) and the frozen values:**
+**Round 1** (`results/dev/n14_hparam_cv.json`) used ridge alpha {1e-4, 1e-2, 1} and our float NRMS / SSIM; it picked alpha = 1, the edge of the grid, and it was found afterwards that the authors compute NRMS and SSIM on uint8-quantised maps (section 6).
+**Round 2** (`results/dev/n14_hparam_cv_round2.json`, lead decisions of 2026-10-13) re-ran congestion and DRC in full with the authors' metric definitions and the ridge grid extended to {10, 100, 1000}; for IR drop (ROC metric unchanged) only the three new ridge penalties were run and merged with round 1. Same folds, same K = 100, same criterion.
+Frozen values (design-macro primary metric over the 4 held-out designs):
 
 | task (metric) | ridge alpha | kNN k | GBM | Green edges |
 |---|---|---|---|---|
-| IR drop (official ROC area, higher better) | 1 (0.844; 0.0001: 0.809, 0.01: 0.816) | 1 (0.612; k=3 0.609, k=5 0.611) | 100 iter depth 3 (0.856; 300/6: 0.844) | coarse (0.8132; medium 0.8129) |
-| congestion (NRMS, lower better) | 1 (0.0346; 0.0347 for both smaller alphas) | 5 (0.0379; k=1 0.0436, k=3 0.0390) | 100 iter depth 3 (0.0360; 300/6: 0.0375) | n/a |
-| DRC (SSIM, higher better) | 1 (0.9993, the same to 4 digits for all three alphas) | 5 (0.9992; k=1 0.9989, k=3 0.9991) | 100 iter depth 3 (0.9992; 300/6: 0.9985) | n/a |
+| IR drop (official ROC area, higher better) | **100** (0.8641; 10: 0.8573, 1000: 0.8564, 1: 0.8444): an interior optimum | 1 (0.612; k=3 0.609, k=5 0.611) | 100 iterations, depth 3 (0.856; 300/6: 0.844) | coarse (0.8132; medium 0.8129) |
+| congestion (official NRMS, lower better) | **10** (0.0345; 100 and 1000 equal to 4 digits: a plateau, so 10 is the edge of the plateau, not of an improving trend; 1: 0.0346) | 5 (0.038; k=1 0.0437, k=3 0.0391) | 100 iterations, depth 3 (0.0361; 300/6: 0.0376) | n/a |
+| DRC (official SSIM, higher better) | 1e-4 (all six penalties equal to 4 digits, 0.9993) | 5 (0.9992) | 100 iterations, depth 3 (0.9993; 300/6: 0.9986) | n/a |
 
-Frozen in `FROZEN_HPARAMS` of `src/edalint/p4_n14.py`. Two cautions that go into the report: (i) ridge alpha = 1 is the **largest value of the grid**, so the optimum may lie beyond it (the differences are small except on IR drop);
-(ii) on DRC the SSIM of every option is 0.999 because the label is nearly empty (see H3), so this selection is close to a tie and decided by the third decimal. The kNN choice on IR drop (k = 1) is a near tie with k = 3 and 5.
+Frozen in `FROZEN_HPARAMS` of `src/edalint/p4_n14.py`. Cautions for the report: the DRC selection is a tie (the metric is saturated, section 7.2) and does not enter any verdict; the IR-drop kNN choice (k = 1) is a near tie with k = 3 and 5; the best IR-drop ridge (0.864) now beats the best GBM (0.856) in dev.
 
 ### 5.3 Fit sample and test scoring (lead decision)
 
@@ -139,11 +140,17 @@ All primary metrics are computed per sample on the 256 x 256 authors-space maps 
 
 * **NRMS** = RMSE / (max(gold) - min(gold)) (skimage min-max; `metrics.py` 111-123). A constant gold gives inf, which the authors' wrapper replaces by 0.05 (lines 122-123), or 0/0 = NaN.
   Registered primary: defined values only, with the counts of undefined and of substituted samples reported (and the 0.05-substituted variant as secondary).
-* **SSIM**: the authors' implementation (`metrics.py` 72-109), data range 1.
+* **SSIM**: the authors' implementation (`metrics.py` 72-107: 11 x 11 Gaussian window, sigma 1.5, C1 = (0.01 x 255)^2, C2 = (0.03 x 255)^2, the 5-pixel border cropped, mean over the map, no pooling over samples).
+  **The authors' SSIM and NRMS do not see the float maps:** `input_converter` (`metrics.py` 35-55) passes both arguments through `tensor2img` (339-368), which clamps to [0, 1], multiplies by 255, rounds and casts to uint8; `test.py` 53-54 calls `metric(target, prediction)` and drops values exactly equal to 1
+  while still dividing by the dataset length. Our primary NRMS and SSIM therefore use `metrics.ssim_official` / `nrms_official` (same quantisation; checked against a cv2 transcription in `tests/test_metrics.py`); the float versions are secondaries (`ssim_float`, `nrms_float`).
+  Train-only evidence (`results/dev/n14_metric_checks.json`, fit on RISCY and RISCY-FPU, scored on 179 Vortex-small and nvdla-small rows): quantisation turns 16 of 179 DRC labels into all-zero images (NRMS undefined for them) and leaves SSIM at 0.9998 for zero, scalar and mean_map predictions alike, so **the authors' own SSIM is saturated on DRC**: the gap to CLDRoute's 0.7136 is not a definition mismatch of ours.
 * **ROC-AUC / PR-AUC (IR and DRC), official procedure** (`metrics.py` 175-250, 273): 200 prediction thresholds in `linspace(0, 1, 200, endpoint=False)`, label cut with `>= threshold`; per-threshold TPR, FPR and precision are **averaged over the samples that are not skipped**, where a sample is skipped if
   `fp = tn = 0` or `tp = fn = 0` or `tp = fp = 0` (`metrics.py` 175-221), i.e. every sample **without a positive pixel is silently dropped**. Implemented as `RocAcc` in `src/edalint/p4_n14.py` and tested against a line-by-line transcription of the authors' code. The area is the authors' `roc_prc` (duplicate FPR values dropped in threshold order, sorted, the point (1, 1) appended, trapezoid).
   **Artefact found while implementing it (a metric-sanity observation, not yet adjudicated):** the authors' curve has no (0, 0) anchor and drops thresholds at which nothing is predicted positive, so a **constant predictor scores 0, not 0.5**; the official area of weak predictors therefore depends on
-  how high their predictions reach. The primary IR-drop metric stays the official procedure (lead decision); the (0, 0)-anchored area and the mean per-sample rank AUC (undefined for single-class samples) are reported as secondaries.
+  how high their predictions reach. The primary IR-drop metric stays the official procedure (lead decision, for comparability with published numbers); the (0, 0)-anchored area and the mean per-sample rank AUC (undefined for single-class samples) are secondaries.
+  **E006 metric finding, registered:** "the authors' ROC area has no (0, 0) anchor; a constant predictor scores 0". Train-only evidence (`results/dev/n14_metric_checks.json`, IR drop, 179 rows): zero, scalar and constant 0.5 predictors have official area 0.000, anchored area 0.500, per-sample rank AUC 0.500; mean_map 0.505 / 0.505 / 0.505;
+  4 of 179 rows have no positive pixel and are skipped by the authors' rule. The `verdicts` stage repeats this on the test split from the constant baselines (`zero`, `scalar`).
+  **Declared sensitivity analysis:** the IR-drop H1 verdict and the IR-drop C1 gap are recomputed with the anchored area under the same mechanical rule and reported alongside (`sensitivity_anchored` in `verdicts.json`); any disagreement with the official-area verdict is flagged in the verdict table. The official area decides.
 * Mean over samples is over defined values (not the `test.py` 53-54 running mean that skips values exactly 1 but divides by the full length; that variant, `official_running_mean`, is reported as secondary).
 * Secondary, all tasks: NMAE, Pearson. Spearman, Kendall, PR-AUC and congestion EMD are not computed (cost; not comparison quantities here).
 
@@ -181,7 +188,9 @@ They see only the authors' input channels and the train labels. No baseline sees
 
 **H1, "trivial/linear baselines reproduce most published skill", per task on the primary metric (design-macro).** Let G_b be the largest Gain_m over the registered baselines and G_pub the Gain of the reference in section 6 (both against our mean_map).
 The pair (task, primary metric) is **TRUE if G_b > 0 and G_b >= 0.8 x G_pub**; if G_pub <= 0 (the reference is not better than our mean_map) the pair is TRUE if any baseline beats mean_map, and is labelled "degenerate".
-**Not evaluable** (mechanical rule): the primary metric is undefined on the test split by the official procedure (for ROC: every test sample skipped by the authors' rule, or the metric has no finite value for mean_map). **Per-task verdicts are the primary output; H1 overall is TRUE if at least 2 of the 3 tasks are TRUE.**
+**Not evaluable** (mechanical rules): (i) the primary metric is undefined on the test split by the official procedure (for ROC: every test sample skipped by the authors' rule, or no finite value for mean_map); (ii) **metric saturated: the primary metric is SSIM and the design-macro SSIM of mean_map is >= 0.99** (`SATURATION` in `p4_n14.py`).
+Rule (ii) is expected to apply to DRC (train-only evidence in section 6: 0.9998). The DRC pair then has no verdict; H1 overall needs both other tasks to be TRUE. The authors report no N14 ROC-type DRC number (the 2022 letter's ROC-AUC 0.95 / PR-AUC 0.63 is N28 and its split is not stated), so no ROC-type DRC primary replaces SSIM; the authors' DRC ROC area (threshold 0.1) is reported as a secondary
+(`secondary_roc_official_design_macro`; dev: none of the 179 train rows scored has a pixel at 0.1, so it may be undefined). **Per-task verdicts are the primary output; H1 overall is TRUE if at least 2 of the 3 tasks are TRUE.**
 Every pair is flagged **weak reference** in the table (other split, other designs, other preprocessing or an unstated hotspot rule). 0.8 is the ICCAD'23 line.
 
 **H2, "data faults of material size exist", reported per task and per test design, from a full (uncapped) scan of every listed test row.** Items:
@@ -265,9 +274,9 @@ Decisions, with the section where each is implemented:
 10. **graph_features:** not downloaded; the all-zero-bbox proxy can only confirm GIF's claim, never refute it (7.2).
 11. **Exclusions:** samples absent from both CSVs and nvdla-large are excluded from all verdicts; counts reported per design (3).
 
-Still open, for the lead before the freeze (details in the pre-freeze report):
+Items raised in the first pre-freeze report and their resolution; nothing else is open except the freeze itself:
 
-a. **The official ROC area has no (0, 0) anchor** (a constant predictor scores 0, section 6). The primary IR-drop metric is the official one as decided; the anchored variant and the per-sample rank AUC are secondaries. Confirm, or switch the primary, before the freeze.
-b. **DRC SSIM is saturated** (about 0.999 for every option in the dev CV) and the published reference (0.7136, other split) is below any such value, so H1 on DRC will be "degenerate TRUE" by the rule in 7.2 whatever the baseline. Confirm that reading, or replace the DRC primary metric (NRMS has a defined value but no N14 published reference).
-c. **Ridge alpha at the grid edge** (5.2): accept alpha = 1, or extend the grid (another CV round).
-d. **Freeze procedure:** `protocol/FROZEN_n14.json` is created in the freeze commit only; the runner refuses everything until then.
+a. *(decided 2026-10-13)* The IR-drop primary stays the official unanchored ROC area; the anchored sensitivity analysis and the E006 finding are registered (section 6).
+b. *(decided 2026-10-13)* SSIM definition checked against the authors' code (section 6): ours differed only by the uint8 quantisation, now adopted; the metric is nevertheless saturated on DRC, so the pair is **not evaluable (rule ii)**, not "degenerate TRUE".
+c. *(decided 2026-10-13)* Ridge grid extended to {10, 100, 1000}; optima in 5.2 (IR drop interior at 100; congestion plateau from 10; DRC tied).
+d. **Freeze procedure (the only remaining step):** `protocol/FROZEN_n14.json` is created in the freeze commit only; the runner refuses everything until then.
