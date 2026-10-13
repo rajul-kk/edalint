@@ -1,0 +1,226 @@
+{
+ "label": "development (train only)",
+ "fit_designs": [
+  "RISCY",
+  "RISCY-FPU"
+ ],
+ "eval_designs": [
+  "Vortex-small",
+  "nvdla-small"
+ ],
+ "ir_drop_roc": {
+  "threshold": 0.9885,
+  "baselines": {
+   "zero": {
+    "official_area": 0.0,
+    "anchored_area": 0.5,
+    "mean_per_sample_rank_auc": 0.5,
+    "n_samples": 179,
+    "n_skipped_no_positive": 4
+   },
+   "scalar": {
+    "official_area": 0.0,
+    "anchored_area": 0.5,
+    "mean_per_sample_rank_auc": 0.5,
+    "n_samples": 179,
+    "n_skipped_no_positive": 4
+   },
+   "mean_map": {
+    "official_area": 0.5053193235417245,
+    "anchored_area": 0.5053193235417245,
+    "mean_per_sample_rank_auc": 0.5052414500607545,
+    "n_samples": 179,
+    "n_skipped_no_positive": 4
+   },
+   "constant_0.5": {
+    "official_area": 0.0,
+    "anchored_area": 0.5,
+    "mean_per_sample_rank_auc": 0.5,
+    "n_samples": 179,
+    "n_skipped_no_positive": 4
+   }
+  }
+ },
+ "drc": {
+  "n_eval": 179,
+  "labels_quantising_to_all_zero": 16,
+  "labels_with_pixel_at_threshold_0.1": 0,
+  "baselines": {
+   "zero": {
+    "ssim_official": {
+     "mean_finite": 0.9998026605551263,
+     "n_not_finite": 0,
+     "n_exactly_1": 16
+    },
+    "ssim_float": {
+     "mean_finite": 0.9997707267155305,
+     "n_not_finite": 0,
+     "n_exactly_1": 6
+    },
+    "nrms_official": {
+     "mean_finite": 0.015658973513189667,
+     "n_not_finite": 16,
+     "n_exactly_1": 0
+    },
+    "nrms_float": {
+     "mean_finite": 0.014782831606944496,
+     "n_not_finite": 6,
+     "n_exactly_1": 0
+    }
+   },
+   "scalar": {
+    "ssim_official": {
+     "mean_finite": 0.9998026605551263,
+     "n_not_finite": 0,
+     "n_exactly_1": 16
+    },
+    "ssim_float": {
+     "mean_finite": 0.9997783284229748,
+     "n_not_finite": 0,
+     "n_exactly_1": 0
+    },
+    "nrms_official": {
+     "mean_finite": 0.015658973513189667,
+     "n_not_finite": 16,
+     "n_exactly_1": 0
+    },
+    "nrms_float": {
+     "mean_finite": 0.01606973101458073,
+     "n_not_finite": 6,
+     "n_exactly_1": 0
+    }
+   },
+   "mean_map": {
+    "ssim_official": {
+     "mean_finite": 0.9998023430084467,
+     "n_not_finite": 0,
+     "n_exactly_1": 0
+    },
+    "ssim_float": {
+     "mean_finite": 0.9997343252543456,
+     "n_not_finite": 0,
+     "n_exactly_1": 0
+    },
+    "nrms_official": {
+     "mean_finite": 0.015925533100135746,
+     "n_not_finite": 16,
+     "n_exactly_1": 0
+    },
+    "nrms_float": {
+     "mean_finite": 0.022184122365015265,
+     "n_not_finite": 6,
+     "n_exactly_1": 0
+    }
+   }
+  }
+ },
+ "congestion": {
+  "n_eval": 179,
+  "labels_quantising_to_all_zero": 0,
+  "labels_with_pixel_at_threshold_0.1": null,
+  "baselines": {
+   "zero": {
+    "ssim_official": {
+     "mean_finite": 0.0065948759000261335,
+     "n_not_finite": 0,
+     "n_exactly_1": 0
+    },
+    "ssim_float": {
+     "mean_finite": 0.006592046932869514,
+     "n_not_finite": 0,
+     "n_exactly_1": 0
+    },
+    "nrms_official": {
+     "mean_finite": 0.13051186749077806,
+     "n_not_finite": 0,
+     "n_exactly_1": 0
+    },
+    "nrms_float": {
+     "mean_finite": 0.13044561334164273,
+     "n_not_finite": 0,
+     "n_exactly_1": 0
+    }
+   },
+   "scalar": {
+    "ssim_official": {
+     "mean_finite": 0.8494902146373537,
+     "n_not_finite": 0,
+     "n_exactly_1": 0
+    },
+    "ssim_float": {
+     "mean_finite": 0.8492215409382975,
+     "n_not_finite": 0,
+     "n_exactly_1": 0
+    },
+    "nrms_official": {
+     "mean_finite": 0.034077358066059764,
+     "n_not_finite": 0,
+     "n_exactly_1": 0
+    },
+    "nrms_float": {
+     "mean_finite": 0.03426153985610206,
+     "n_not_finite": 0,
+     "n_exactly_1": 0
+    }
+   },
+   "mean_map": {
+    "ssim_official": {
+     "mean_finite": 0.8473037229134779,
+     "n_not_finite": 0,
+     "n_exactly_1": 0
+    },
+    "ssim_float": {
+     "mean_finite": 0.8483334963283313,
+     "n_not_finite": 0,
+     "n_exactly_1": 0
+    },
+    "nrms_official": {
+     "mean_finite": 0.03442321974456894,
+     "n_not_finite": 0,
+     "n_exactly_1": 0
+    },
+    "nrms_float": {
+     "mean_finite": 0.03432892727596276,
+     "n_not_finite": 0,
+     "n_exactly_1": 0
+    }
+   }
+  }
+ },
+ "provenance": {
+  "started": "2026-10-13T15:57:32+0800",
+  "git_head": "75e3242d1701b6a4ac6e1c57acf9aada075392d8",
+  "git_dirty_tracked": "M scripts/p4_dev_n14_hparams.py\n M src/edalint/metrics.py\n M src/edalint/p4_n14.py\n M tests/test_metrics.py\n M tests/test_p4_n14.py",
+  "code_hash": "c2fa95e48f7ab4f4c0963293af852ef1242a900e69547f3deca8bc7d2066cf6d",
+  "versions": {
+   "python": "3.10.0",
+   "numpy": "2.2.6",
+   "scipy": "1.15.3",
+   "pandas": "2.3.3",
+   "platform": "Windows-10-10.0.26200-SP0",
+   "sklearn": "1.6.1",
+   "pyamg": "5.3.0",
+   "edalint": "0.1.0",
+   "cpu_model": "13th Gen Intel(R) Core(TM) i7-1355U",
+   "logical_cores": 12
+  },
+  "argv": [
+   "scripts/p4_dev_n14_metric_checks.py",
+   "results/dev/n14_metric_checks.json"
+  ],
+  "frozen_protocol": {
+   "dataset": "iccad23",
+   "code_hash": "750d252f863b119518b660db061d1e5b814a84ad9ca68672a28a1c62ad5e5f8e",
+   "protocol_file": "protocol/protocol_iccad23.md",
+   "protocol_sha256": "efffaed85a5f2b04de518541b9bde9c3ef07871dd74db428c57302c671caf0d5",
+   "protocol_sha256_note": "sha256 of the file with CRLF normalised to LF",
+   "frozen_at": "2026-10-12T20:38:41+0800",
+   "frozen_commit": "79779855b0d09ffa8569f7b2cd3c22823d15e7a4",
+   "frozen_commit_note": "commit of the code and protocol being frozen (the freeze commit itself adds this file)",
+   "machine": {
+    "cpu_model": "13th Gen Intel(R) Core(TM) i7-1355U",
+    "logical_cores": 12
+   }
+  }
+ }
+}

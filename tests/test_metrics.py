@@ -151,3 +151,33 @@ def test_area_resize_is_mean_preserving_and_matches_cv2():
     cv2 = pytest.importorskip('cv2')
     ref = cv2.resize(a, (16, 16), interpolation=cv2.INTER_AREA)
     assert np.allclose(r, ref, atol=1e-9)
+
+
+def _authors_ssim_u8(img1, img2):
+    """Transcription of utils/metrics.py _ssim (lines 72-94) with cv2, on uint8 images."""
+    import cv2
+    C1, C2 = (0.01 * 255) ** 2, (0.03 * 255) ** 2
+    a, b = img1.astype(np.float64), img2.astype(np.float64)
+    k = cv2.getGaussianKernel(11, 1.5)
+    w = np.outer(k, k.transpose())
+    f = lambda x: cv2.filter2D(x, -1, w)[5:-5, 5:-5]
+    mu1, mu2 = f(a), f(b)
+    s1, s2, s12 = f(a ** 2) - mu1 ** 2, f(b ** 2) - mu2 ** 2, f(a * b) - mu1 * mu2
+    return (((2 * mu1 * mu2 + C1) * (2 * s12 + C2)) / ((mu1 ** 2 + mu2 ** 2 + C1) * (s1 + s2 + C2))).mean()
+
+
+def test_ssim_official_matches_authors_uint8_pipeline():
+    pytest.importorskip('cv2')
+    rng = np.random.default_rng(3)
+    g = rng.random((40, 44)) ** 3
+    p = np.clip(g + 0.05 * rng.standard_normal(g.shape), -0.2, 1.3)         # out-of-range predictions are clamped by the authors' converter
+    ref = _authors_ssim_u8((np.clip(p, 0, 1) * 255).round().astype(np.uint8), (np.clip(g, 0, 1) * 255).round().astype(np.uint8))
+    assert abs(M.ssim_official(p, g) - ref) < 1e-12
+
+
+def test_official_metrics_quantise_small_values_to_zero():
+    g = np.full((30, 30), 0.001)                           # below 0.5/255: becomes an all-zero uint8 image
+    p = np.zeros((30, 30))
+    assert M.ssim_official(p, g) == 1.0 and M.ssim(p, g) < 1.0
+    assert np.isnan(M.nrms_official(p, g))                 # constant gold and zero error: 0/0
+    assert M.nrms_official(p + 0.3, g, official_inf=0.05) == 0.05

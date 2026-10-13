@@ -132,6 +132,24 @@ def ssim(pred: np.ndarray, gold: np.ndarray, data_range: float = 1.0) -> float:
     return float(m.mean())
 
 
+def to_u8(x: np.ndarray) -> np.ndarray:
+    """The authors' `tensor2img` (utils/metrics.py 339-368), applied by `input_converter` to the arguments of nrms, ssim and psnr: clamp to
+    [0, 1], scale by 255, round (half to even), cast to uint8. Returned as float64 so it can feed the metric code directly."""
+    a = np.asarray(x, np.float64)
+    return (np.clip(a, 0.0, 1.0) * 255.0).round()
+
+
+def ssim_official(pred: np.ndarray, gold: np.ndarray) -> float:
+    """The authors' SSIM as called by their test.py: both maps are clamped to [0, 1] and quantised to uint8 first (`input_converter`),
+    then `_ssim` with L = 255 (utils/metrics.py 72-107). `ssim()` on the float maps is the secondary, un-quantised variant."""
+    return ssim(to_u8(pred), to_u8(gold), data_range=255.0)
+
+
+def nrms_official(pred: np.ndarray, gold: np.ndarray, official_inf: Optional[float] = None) -> float:
+    """The authors' NRMS as called by their test.py: on the clamped, uint8-quantised maps (utils/metrics.py 110-124; inf replaced by 0.05 there)."""
+    return nrms(to_u8(pred), to_u8(gold), official_inf=official_inf)
+
+
 def pearson_r(pred, gold) -> float:
     p, g = np.ravel(pred).astype(np.float64), np.ravel(gold).astype(np.float64)
     if np.ptp(p) == 0 or np.ptp(g) == 0:
