@@ -1,0 +1,26 @@
+{
+ "MAVI": {
+  "same_state_dict_keys": true,
+  "same_shapes": true,
+  "n_params_orig": 17069444,
+  "n_params_port": 17069444,
+  "max_abs_forward_diff_64x64": 0.0
+ },
+ "GPDL": {
+  "same_state_dict_keys": true,
+  "same_shapes": true,
+  "n_params_orig": 119233,
+  "n_params_port": 119233,
+  "max_abs_forward_diff_64x64": 0.0
+ }
+}
+D:\Work\edalint\scripts\p7_dev_smoke.py:112: UserWarning: Converting a tensor with requires_grad=True to a scalar may lead to unexpected behavior.
+Consider using tensor.detach() first. (Triggered internally at C:\actions-runner\_work\pytorch\pytorch\pytorch\torch\csrc\autograd\generated\python_variable_methods.cpp:837.)
+  times.append(time.perf_counter() - t0); losses.append(float(loss))
+ir_drop step 0 77.52 s loss 45.6923
+ir_drop step 1 63.43 s loss 36.7199
+ir_drop step 2 76.41 s loss 39.9078
+congestion step 0 3.69 s loss 15.5425
+congestion step 1 3.04 s loss 15.1075
+congestion step 2 3.19 s loss 13.589
+wrote D:\Work\edalint\results\dev\p7_smoke_p7dev.json

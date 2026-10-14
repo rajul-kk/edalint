@@ -1,0 +1,71 @@
+{
+ "label": "DEVELOPMENT, train-only (RISCY, RISCY-FPU from the registered fit-sample cache); not a result",
+ "threads": 6,
+ "torch": "2.10.0+cpu",
+ "orig_code_commit": "41ade1d7e913a418b4495b6b13630b26b0ff7279",
+ "port_check": {
+  "MAVI": {
+   "same_state_dict_keys": true,
+   "same_shapes": true,
+   "n_params_orig": 17069444,
+   "n_params_port": 17069444,
+   "max_abs_forward_diff_64x64": 0.0
+  },
+  "GPDL": {
+   "same_state_dict_keys": true,
+   "same_shapes": true,
+   "n_params_orig": 119233,
+   "n_params_port": 119233,
+   "max_abs_forward_diff_64x64": 0.0
+  }
+ },
+ "export_size": {
+  "ir_drop_bytes_per_sample": {
+   "float32": 6553600.0,
+   "float16": 3276800.0,
+   "float16_npz_compressed": 813706.7
+  },
+  "ir_drop_nonfinite_in_inputs": 0,
+  "float16_max_abs_err_inputs": 0.000244140625
+ },
+ "n_samples": {
+  "ir_drop": 50,
+  "congestion": 50
+ },
+ "mavi": {
+  "n_params": 17063812,
+  "batch": 2,
+  "train_step_seconds": [
+   77.51563889998943,
+   63.429285099729896,
+   76.40658179996535
+  ],
+  "loss": [
+   45.692283630371094,
+   36.71988296508789,
+   39.90779113769531
+  ],
+  "sec_per_sample_train": 34.95896672492381,
+  "eval_forward_seconds_per_sample": [
+   12.629568600095809,
+   9.37891269987449
+  ]
+ },
+ "gpdl": {
+  "n_params": 119169,
+  "batch": 16,
+  "steps": 3,
+  "train_step_seconds": [
+   3.6864671004004776,
+   3.0410118997097015,
+   3.1855578999966383
+  ],
+  "loss": [
+   15.54245662689209,
+   15.107460021972656,
+   13.588955879211426
+  ],
+  "sec_per_sample_train": 0.19458030624082312,
+  "eval_forward_seconds_per_16": 1.098252299707383
+ }
+}
