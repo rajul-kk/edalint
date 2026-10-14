@@ -100,13 +100,13 @@ If the gate passes and |D| is within the band, the report may describe the regis
   `results/p7/models_<task>_<arm>_s<seed>.json` (same row format as the N14 `models_*.json`, plus `official_roc` per design), `results/p7/verdicts_p7.json`, `results/p7/tables_p7.md`. Kaggle writes the `train_*` files and checkpoints; scoring is local.
 * Training is part of the registered run (after the freeze), so the training code is covered by the code hash. Test inputs are exported and scored only after the freeze. A crash before a file is written may be re-launched once and is logged; a non-finite training loss is a result (seed reported with undefined metric; a task with fewer than 2 finite seeds has no verdict).
 * Anything not specified here is POST HOC, labelled, written to `results/posthoc/`, and cannot change a section 5 verdict. No criterion, threshold, budget, seed or hyperparameter changes after the freeze. At most 2 local CPU jobs. Stop processes by PID only.
-* **Freeze file** `protocol/FROZEN_p7.json`: `{"dataset": "p7", "protocol_file", "protocol_sha256" (CRLF normalised), "code_hash" (the field name `require_frozen` reads; must equal today's `edalint.protocol.code_hash()`, d3f6d2f6..., and be checked at run time), "p7_code_hash" (sha256 over `src/edalint_p7/**/*.py` and `scripts/p7_run_*.py`, dev scripts excluded as in section 11 D7, same recipe as `code_hash()`; implemented in `src/edalint_p7/guard.py`), "frozen_at", "frozen_commit", "budget": {...}, "seeds": [...]}`.
+* **Freeze file** `protocol/FROZEN_p7.json`: `{"dataset": "p7", "protocol_file", "protocol_sha256" (CRLF normalised), "code_hash" (the field name `require_frozen` reads; must equal today's `edalint.protocol.code_hash()`, d3f6d2f6..., and be checked at run time), "p7_code_hash" (sha256 over `src/edalint_p7/**/*.py` and `scripts/p7_run_*.py`, dev scripts excluded as in section 11 D7, same recipe as `code_hash()`; implemented in `src/edalint_p7/guard.py`), "frozen_at", "frozen_commit", "budget": {"model": "MAVI", "task": "ir_drop", "arm": "A", "iterations": 30000, "precision": "fp16", "sampler_mode": "epoch", "batch_size": 2}, "seeds": [20261101, 20261102, 20261103]}`.
 * **Does `protocol_key` need a new key? No, and it should not be edited.** `protocol_key('p7')` already returns `'p7'`, so `frozen_info(None, 'p7')` / `write_once(dataset='p7')` read `FROZEN_p7.json` with no change. Two gaps, handled outside `src/edalint`:
   (i) `code_hash()` covers `src/edalint` only, so a P7 guard in `src/edalint_p7` must check `p7_code_hash` itself; (ii) test rows are read through `N14Dataset`, whose guard keys on `circuitnet_n14_*` -> `FROZEN_n14.json`, which is **already satisfied**, so the N14 guard does not stop a pre-P7-freeze test read.
   The P7 runner must therefore call `require_frozen(dataset='p7')` plus its own hash check before touching any test shard. Editing `protocol_key` or anything else under `src/edalint` would change the hash recorded in `FROZEN_n14.json` and in every `results/n14` file and make the N14 stages refuse to run (as e541efe did for ICCAD'23); do not do that.
   The stale test `test_real_repo_iccad23_freeze_is_recognised_and_n14_is_not` (asserted N14 unfrozen) was replaced by the reviewer with `test_real_repo_freezes_are_recognised_per_dataset` (`tests/` is outside `code_hash()`, which hashes `src/edalint/**/*.py` only).
 
-## 7. Compute and feasibility (estimates; the T4 figures are unmeasured)
+## 7. Compute and feasibility (estimates; the T4 figures were measured later and are superseded by sections 12.4 and 12.5)
 
 Measured here (i7-1355U, 6 threads, torch 2.10 CPU, `results/dev/p7_smoke_p7dev.json`): MAVI train 63-77 s per batch-2 step (~35 s/sample), eval 9.4-12.6 s/sample; GPDL train 3.0-3.7 s per batch-16 step (0.195 s/sample), eval 0.069 s/sample.
 MAVI forward is ~5.3e11 MACs (1.06 TFLOP) per sample by layer count, ~3.2 TFLOP per training sample; GPDL ~3.8 GFLOP forward, ~11 GFLOP training.
@@ -114,7 +114,7 @@ MAVI forward is ~5.3e11 MACs (1.06 TFLOP) per sample by layer count, ~3.2 TFLOP 
 **Local CPU.** MAVI: 30,000 iterations = 60,000 samples x 35 s = ~24 days per seed; even 1,000 iterations is ~19 h. Test inference alone is 3,544 x ~10 s = ~10 h per model-seed. **Not viable.**
 GPDL: 10,000 iterations (5 % budget) = ~8.6 h per seed, two seeds in parallel feasible, test inference ~4 min. Viable as a fallback at a budget 5x below the T4 plan (would be a further deviation and weaker evidence).
 
-**Kaggle T4** (~30 h/week, quota unknown). Estimated, not measured: MAVI fp32 ~0.8-1.3 s/sample (effective 2.4-4 TFLOPS of 8.1 peak), fp16 autocast ~0.2-0.5 s/sample; GPDL fp32 ~5-15 ms/sample (memory bound).
+**Kaggle T4** (~30 h/week, quota unknown). Estimated before measurement (SUPERSEDED by 12.4: measured MAVI fp32 2.343 s per batch-2 step, fp16 0.587 s per step, 0.613 s per iteration end to end): MAVI fp32 ~0.8-1.3 s/sample (effective 2.4-4 TFLOPS of 8.1 peak), fp16 autocast ~0.2-0.5 s/sample; GPDL fp32 ~5-15 ms/sample (memory bound).
 
 | run | samples | per seed | 3 seeds |
 |---|---|---|---|
@@ -124,7 +124,7 @@ GPDL: 10,000 iterations (5 % budget) = ~8.6 h per seed, two seeds in parallel fe
 | GPDL 50k it, fp32 | 800,000 | 1.1-3.3 h | 3-10 h |
 | MAVI test inference, 3,544 rows, fp16 | | ~5-10 min | ~15-30 min |
 
-Plan total about 18-25 h of the weekly quota for arm A. Arm B (979 rows, same budget) would add the same again and does not fit one week. A 5-minute T4 benchmark (train-only) is needed before the freeze to fix the budget; rule: if measured MAVI fp16 exceeds 0.6 s/sample, halve the MAVI iterations (15,000); if fp32-only fits, report fp32. Kaggle sessions cap at ~12 h per run, each seed is its own run.
+Plan total about 18-25 h of the weekly quota for arm A. **SUPERSEDED by section 12.5**: the measured projection is 5.11 h per seed and 15.3 h for 3 seeds (MAVI 30,000 iterations, fp16), ladder step (1) holds, the 0.6 s/sample rule below is not used (the benchmark is per iteration, section 12.5), and the budget is 30,000 iterations, not 15,000. Arm B is out (D4 / 12.2). The original text, kept for the record: Arm B (979 rows, same budget) would add the same again and does not fit one week. A 5-minute T4 benchmark (train-only) is needed before the freeze to fix the budget; rule: if measured MAVI fp16 exceeds 0.6 s/sample, halve the MAVI iterations (15,000); if fp32-only fits, report fp32. Kaggle sessions cap at ~12 h per run, each seed is its own run.
 
 **Compact data.** Measured on 10 train IR rows (`assemble` output): float32 6.55 MB per row raw (IR 24 channels + label), float16 3.28 MB, compressed `.npz` **1.9 MB (float32)** or **0.93 MB (float16)**; float16 rounding error on the [0,1] inputs is at most 2.4e-4.
 Sizes (compressed float32 / float16): IR full train 6,790 rows ~12.9 / 6.3 GB; IR test 3,544 rows ~6.7 / 3.3 GB; IR fit sample (979) ~1.9 / 0.9 GB. Congestion (3 channels + label, ~0.14 MB per row compressed float16, ~0.27 MB float32): train ~1.8 GB (float32), test ~1.0 GB. Uncompressed float32 would be 44 GB (IR train) so the raw 51 GB feature size is avoided.
@@ -148,7 +148,14 @@ Recommend compressed float32 (no rounding deviation). Kaggle dataset size limits
 
 ## 10. Deviation log
 
-None (draft).
+Filled before the freeze (all recorded in section 12; none uses a test value):
+
+1. Congestion (GPDL) arm dropped, P7 is IR-only: **post hoc**, after the D1 / D1' failures (12.1, 12.2).
+2. Epoch sampler instead of the D2 block100 sampler: post-D2, decided before the freeze (12.9).
+3. MAVI trained with fp16 autocast + GradScaler (deviation from the authors' fp32); scoring in fp32 (12.4, 12.5).
+4. Section 12 amendment itself (A1) and the pre-freeze review fixes to it.
+5. Aggregator clarifications (12.10): exact gate constants, `G_b` definition, undefined / diverged seeds, sensitivities, H-C edge, NRMS rule, file checks.
+6. Reduced training budget (30,000 of 200,000 iterations), unchanged from section 3.3 item 1.
 
 ## 11. Reviewer decisions (independent review, 2026-10-14; this protocol stays NOT FROZEN)
 
@@ -253,4 +260,10 @@ The aggregator reads only `results/p7/models_ir_drop_A_s<seed>.json` and `result
 6. **H-C.** `|D| <= 0.03` is evaluated on `D` rounded to 12 decimals (floating-point equality at the band edge). The wording rules of D5(e) are emitted as flags: `resolved_wording_allowed` (gate passed and |D| within the band), otherwise "gate passed, retrain below published" (D < 0) or "gate passed, retrain above published band".
 7. **NRMS (12.6).** Per design and model-seed: the official `nrms` field, mean over finite rows, count and ids of non-finite rows; the design-macro is the mean over designs with a finite mean. Secondary: `inf` rows replaced by 0.05, `nan` rows still excluded. `n_no_positive` and `n_samples` come from each design's `official_roc` block, per model-seed.
 8. **Registered N14 comparison.** The registered IR verdict and ratio are copied from `results/n14/verdicts.json` unchanged, with "P7 agrees" (None when P7 has no verdict).
-9. **File checks.** Each scored file must carry task `ir_drop`, arm `A`, the seed of its file name, and `eval_ids` / scored row ids equal to the registered `eval_ids`; otherwise the aggregator aborts.
+9. **File checks.** Each scored file must carry task `ir_drop`, arm `A`, the seed of its file name, and `eval_ids` / scored row ids equal to the registered `eval_ids`; otherwise the aggregator aborts. The id check is applied to every seed that has a scored file, diverged seeds included, so a bad id set aborts the whole run. A train record whose task / arm / seed does not match its seed aborts in the same way.
+10. **Train-record consistency (undefined, not an abort).** In this order a seed with a scored file is undefined if: the divergence rule of item 3 fires; its train `iters_done` is not 30,000; its scored file's `p7_code_hash`, or its train record's, differs from the current (= frozen) `p7_code_hash`. The reason is written in `verdicts_p7.json`.
+11. **Best / worst seed** of the seed sensitivity are taken among the defined seeds only (by design-macro official ROC area).
+12. **Undefined sensitivities.** If the anchored or pooled `R_t` (or `M_t`) is not finite, that sensitivity is reported as "undefined" (verdict null), never as FALSE.
+13. **`ratio_G_b_over_G_R`** in the JSON is `G_b / G_R` with the primary (design-macro, mean-seed) values; it is reported for information, the rule being `G_b >= 0.8 x G_R`.
+14. **The `rule` string** in `verdicts_p7.json` (`H-A: R_t - M_t >= 0.5 x (0.8671 - M_t); H-B (only if H-A passes): TRUE iff G_b >= 0.8 x G_R; H-C descriptive |R_t - 0.8671| <= 0.03`) is a label for readers; the code in `src/edalint_p7/verdicts.py` is the rule.
+15. **Run-once.** Before writing, the aggregator checks that neither `verdicts_p7.json` nor `tables_p7.md` exists, and writes nothing if either does.
