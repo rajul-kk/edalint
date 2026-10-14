@@ -1,0 +1,24 @@
+{
+ "label": "DEVELOPMENT, train-only; not a result",
+ "unit": "100 x MSE (the training loss)",
+ "fit": {
+  "RISCY": {
+   "mean_map": 0.13127976987179713,
+   "scalar": 0.1317830783506323
+  },
+  "RISCY-FPU": {
+   "mean_map": 0.14448574369452313,
+   "scalar": 0.14524548810594895
+  }
+ },
+ "heldout": {
+  "Vortex-small": {
+   "mean_map": 0.096740177162481,
+   "scalar": 0.09664047574065263
+  },
+  "nvdla-small": {
+   "mean_map": 0.20714292430409637,
+   "scalar": 0.2067978743702562
+  }
+ }
+}

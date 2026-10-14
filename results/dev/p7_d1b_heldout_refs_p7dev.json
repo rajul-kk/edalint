@@ -1,0 +1,32 @@
+{
+ "label": "DEVELOPMENT, train-only; not a result",
+ "n_fit": 800,
+ "designs": {
+  "Vortex-small": {
+   "n": 95,
+   "nrms": {
+    "zero": 0.12791815341550994,
+    "scalar": 0.029014700027745977,
+    "mean_map": 0.02899267249353899,
+    "oracle_mean_map": 0.028114024373007144
+   },
+   "label_mean": 0.12614562690215755,
+   "label_std_pixels": 0.030033452425246784,
+   "label_frac_gt_0.1": 0.8910239771792763,
+   "label_row_to_row_std_of_row_mean": 0.021512057238762882
+  },
+  "nvdla-small": {
+   "n": 84,
+   "nrms": {
+    "zero": 0.13344523459971228,
+    "scalar": 0.03980298322843846,
+    "mean_map": 0.03982961425289361,
+    "oracle_mean_map": 0.03912531074720506
+   },
+   "label_mean": 0.13196714828992345,
+   "label_std_pixels": 0.04331581372843085,
+   "label_frac_gt_0.1": 0.7508939107259115,
+   "label_row_to_row_std_of_row_mean": 0.0389121085744289
+  }
+ }
+}

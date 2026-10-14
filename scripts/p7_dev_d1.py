@@ -35,6 +35,7 @@ def main():
     ap.add_argument('--iters', type=int, default=2000)
     ap.add_argument('--seed', type=int, default=20261101)
     ap.add_argument('--threads', type=int, default=6)
+    ap.add_argument('--sampler', default='block100', choices=['block100', 'epoch'])
     ap.add_argument('--out', default=str(REPO / 'results' / 'dev' / 'p7_d1_gpdl_heldout_p7dev.json'))
     a = ap.parse_args()
     torch.set_num_threads(a.threads)
@@ -46,7 +47,7 @@ def main():
     report = {'n_fit': len(fit_ids), 'n_heldout': len(held_ids), 'disjoint_from_eval_ids': True}
     src = MemorySource.from_dataset(task, ds, fit_ids)
     print('train rows', len(src), 'held-out rows', len(held_ids), flush=True)
-    rec = train(task, src, a.iters, a.seed, 'fp32', 'cpu', 'block100')
+    rec = train(task, src, a.iters, a.seed, 'fp32', 'cpu', a.sampler)
     model = rec.pop('_model')
     # held-out scoring with the P7 scorer (dev: no expected id set) and the train-only mean_map on the same rows
     held = MemorySource.from_dataset(task, ds, held_ids)
