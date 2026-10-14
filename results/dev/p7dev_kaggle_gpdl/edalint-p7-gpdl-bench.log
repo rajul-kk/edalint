@@ -1,0 +1,137 @@
+[{"stream_name":"stdout","time":11.352667656,"data":"10:05:11 gpdl: code_hash d3f6d2f67218794687d736ab2d8fe0ab095cced40ff8bd250bf36191a7f5a2b7 p7_code_hash 55a061d03b055ec4f346bb6b9121967d2315eca0e91244e5f58bd1b8d2b78375\n"}
+,{"stream_name":"stdout","time":11.652877815,"data":"10:05:12 gpu Tesla T4\n"}
+,{"stream_name":"stdout","time":32.485867355,"data":"10:05:32 manifest verified: 6790 rows, bad sha 0, 21s\n"}
+,{"stream_name":"stdout","time":45.727061764,"data":"10:05:46 gpu step fp32: 0.1183 s/iter (7.4 ms/sample), peak 1.2 GiB\n"}
+,{"stream_name":"stdout","time":50.064441872,"data":"10:05:50 gpu step fp16: 0.0615 s/iter (3.8 ms/sample), peak 1.2 GiB\n"}
+,{"stream_name":"stdout","time":50.064756687,"data":"10:05:50 check d1_2000_fp32: train 6611 rows, held out 179 rows, 2000 iterations fp32\n"}
+,{"stream_name":"stdout","time":64.914152408,"data":"10:06:05 [d1_2000_fp32] congestion iter 100/2000 loss 10.3568 lr 1.988e-04 15s\n"}
+,{"stream_name":"stdout","time":79.798459344,"data":"10:06:20 [d1_2000_fp32] congestion iter 200/2000 loss 5.9470 lr 1.952e-04 30s\n"}
+,{"stream_name":"stdout","time":94.784415484,"data":"10:06:35 [d1_2000_fp32] congestion iter 300/2000 loss 3.3504 lr 1.892e-04 45s\n"}
+,{"stream_name":"stdout","time":109.591745119,"data":"10:06:50 [d1_2000_fp32] congestion iter 400/2000 loss 1.8409 lr 1.810e-04 59s\n"}
+,{"stream_name":"stdout","time":124.722006633,"data":"10:07:05 [d1_2000_fp32] congestion iter 500/2000 loss 1.1159 lr 1.708e-04 75s\n"}
+,{"stream_name":"stdout","time":139.741551866,"data":"10:07:20 [d1_2000_fp32] congestion iter 600/2000 loss 0.6890 lr 1.589e-04 90s\n"}
+,{"stream_name":"stdout","time":154.64809917,"data":"10:07:35 [d1_2000_fp32] congestion iter 700/2000 loss 0.4775 lr 1.456e-04 105s\n"}
+,{"stream_name":"stdout","time":169.522794027,"data":"10:07:49 [d1_2000_fp32] congestion iter 800/2000 loss 0.3579 lr 1.311e-04 119s\n"}
+,{"stream_name":"stdout","time":184.277841029,"data":"10:08:04 [d1_2000_fp32] congestion iter 900/2000 loss 0.2812 lr 1.158e-04 134s\n"}
+,{"stream_name":"stdout","time":198.957624277,"data":"10:08:19 [d1_2000_fp32] congestion iter 1000/2000 loss 0.2282 lr 1.002e-04 149s\n"}
+,{"stream_name":"stdout","time":213.75399904,"data":"10:08:34 [d1_2000_fp32] congestion iter 1100/2000 loss 0.2022 lr 8.457e-05 164s\n"}
+,{"stream_name":"stdout","time":228.454156033,"data":"10:08:48 [d1_2000_fp32] congestion iter 1200/2000 loss 0.1973 lr 6.931e-05 178s\n"}
+,{"stream_name":"stdout","time":243.09038008,"data":"10:09:03 [d1_2000_fp32] congestion iter 1300/2000 loss 0.1782 lr 5.481e-05 193s\n"}
+,{"stream_name":"stdout","time":257.853936048,"data":"10:09:18 [d1_2000_fp32] congestion iter 1400/2000 loss 0.1651 lr 4.143e-05 208s\n"}
+,{"stream_name":"stdout","time":272.521241372,"data":"10:09:32 [d1_2000_fp32] congestion iter 1500/2000 loss 0.1571 lr 2.949e-05 222s\n"}
+,{"stream_name":"stdout","time":287.231833319,"data":"10:09:47 [d1_2000_fp32] congestion iter 1600/2000 loss 0.1613 lr 1.928e-05 237s\n"}
+,{"stream_name":"stdout","time":302.038529095,"data":"10:10:02 [d1_2000_fp32] congestion iter 1700/2000 loss 0.1639 lr 1.107e-05 252s\n"}
+,{"stream_name":"stdout","time":316.703203962,"data":"10:10:17 [d1_2000_fp32] congestion iter 1800/2000 loss 0.1502 lr 5.041e-06 267s\n"}
+,{"stream_name":"stdout","time":331.423914884,"data":"10:10:31 [d1_2000_fp32] congestion iter 1900/2000 loss 0.1544 lr 1.355e-06 281s\n"}
+,{"stream_name":"stdout","time":346.141495864,"data":"10:10:46 [d1_2000_fp32] congestion iter 2000/2000 loss 0.1483 lr 1.001e-07 296s\n"}
+,{"stream_name":"stdout","time":450.606442077,"data":"10:12:31 check d1_2000_fp32: {\"loss_finite\": true, \"loss_drop_ge_30pct\": true, \"heldout_nrms_below_train_only_mean_map\": false} PASS=False\n"}
+,{"stream_name":"stdout","time":450.606795874,"data":"10:12:31 check d1prime_10000_fp32: train 6611 rows, held out 179 rows, 10000 iterations fp32\n"}
+,{"stream_name":"stdout","time":465.459834215,"data":"10:12:45 [d1prime_10000_fp32] congestion iter 100/10000 loss 10.3547 lr 2.000e-04 15s\n"}
+,{"stream_name":"stdout","time":480.425647669,"data":"10:13:00 [d1prime_10000_fp32] congestion iter 200/10000 loss 5.9238 lr 1.998e-04 30s\n"}
+,{"stream_name":"stdout","time":495.653146983,"data":"10:13:16 [d1prime_10000_fp32] congestion iter 300/10000 loss 3.2910 lr 1.996e-04 45s\n"}
+,{"stream_name":"stdout","time":510.499561284,"data":"10:13:30 [d1prime_10000_fp32] congestion iter 400/10000 loss 1.7562 lr 1.992e-04 60s\n"}
+,{"stream_name":"stdout","time":525.255108125,"data":"10:13:45 [d1prime_10000_fp32] congestion iter 500/10000 loss 1.0192 lr 1.988e-04 75s\n"}
+,{"stream_name":"stdout","time":540.190019455,"data":"10:14:00 [d1prime_10000_fp32] congestion iter 600/10000 loss 0.5953 lr 1.982e-04 90s\n"}
+,{"stream_name":"stdout","time":555.203931572,"data":"10:14:15 [d1prime_10000_fp32] congestion iter 700/10000 loss 0.3926 lr 1.976e-04 105s\n"}
+,{"stream_name":"stdout","time":569.962076845,"data":"10:14:30 [d1prime_10000_fp32] congestion iter 800/10000 loss 0.2825 lr 1.969e-04 119s\n"}
+,{"stream_name":"stdout","time":584.867319455,"data":"10:14:45 [d1prime_10000_fp32] congestion iter 900/10000 loss 0.2172 lr 1.960e-04 134s\n"}
+,{"stream_name":"stdout","time":599.660616616,"data":"10:15:00 [d1prime_10000_fp32] congestion iter 1000/10000 loss 0.1754 lr 1.951e-04 149s\n"}
+,{"stream_name":"stdout","time":614.527211631,"data":"10:15:14 [d1prime_10000_fp32] congestion iter 1100/10000 loss 0.1554 lr 1.941e-04 164s\n"}
+,{"stream_name":"stdout","time":629.32235078,"data":"10:15:29 [d1prime_10000_fp32] congestion iter 1200/10000 loss 0.1549 lr 1.930e-04 179s\n"}
+,{"stream_name":"stdout","time":644.179865809,"data":"10:15:44 [d1prime_10000_fp32] congestion iter 1300/10000 loss 0.1410 lr 1.918e-04 194s\n"}
+,{"stream_name":"stdout","time":658.955955575,"data":"10:15:59 [d1prime_10000_fp32] congestion iter 1400/10000 loss 0.1353 lr 1.905e-04 208s\n"}
+,{"stream_name":"stdout","time":673.761310588,"data":"10:16:14 [d1prime_10000_fp32] congestion iter 1500/10000 loss 0.1322 lr 1.891e-04 223s\n"}
+,{"stream_name":"stdout","time":688.41128774,"data":"10:16:28 [d1prime_10000_fp32] congestion iter 1600/10000 loss 0.1366 lr 1.877e-04 238s\n"}
+,{"stream_name":"stdout","time":703.270631489,"data":"10:16:43 [d1prime_10000_fp32] congestion iter 1700/10000 loss 0.1421 lr 1.861e-04 253s\n"}
+,{"stream_name":"stdout","time":718.285176824,"data":"10:16:58 [d1prime_10000_fp32] congestion iter 1800/10000 loss 0.1271 lr 1.845e-04 268s\n"}
+,{"stream_name":"stdout","time":732.968543996,"data":"10:17:13 [d1prime_10000_fp32] congestion iter 1900/10000 loss 0.1344 lr 1.827e-04 282s\n"}
+,{"stream_name":"stdout","time":748.861540142,"data":"10:17:29 [d1prime_10000_fp32] congestion iter 2000/10000 loss 0.1295 lr 1.809e-04 298s\n"}
+,{"stream_name":"stdout","time":763.914642879,"data":"10:17:44 [d1prime_10000_fp32] congestion iter 2100/10000 loss 0.1344 lr 1.790e-04 313s\n"}
+,{"stream_name":"stdout","time":779.007758191,"data":"10:17:59 [d1prime_10000_fp32] congestion iter 2200/10000 loss 0.1319 lr 1.771e-04 328s\n"}
+,{"stream_name":"stdout","time":793.872794447,"data":"10:18:14 [d1prime_10000_fp32] congestion iter 2300/10000 loss 0.1288 lr 1.750e-04 343s\n"}
+,{"stream_name":"stdout","time":808.593449069,"data":"10:18:29 [d1prime_10000_fp32] congestion iter 2400/10000 loss 0.1303 lr 1.729e-04 358s\n"}
+,{"stream_name":"stdout","time":823.383307673,"data":"10:18:43 [d1prime_10000_fp32] congestion iter 2500/10000 loss 0.1341 lr 1.707e-04 373s\n"}
+,{"stream_name":"stdout","time":838.102380576,"data":"10:18:58 [d1prime_10000_fp32] congestion iter 2600/10000 loss 0.1334 lr 1.685e-04 387s\n"}
+,{"stream_name":"stdout","time":852.81096342,"data":"10:19:13 [d1prime_10000_fp32] congestion iter 2700/10000 loss 0.1278 lr 1.662e-04 402s\n"}
+,{"stream_name":"stdout","time":867.815531183,"data":"10:19:28 [d1prime_10000_fp32] congestion iter 2800/10000 loss 0.1289 lr 1.638e-04 417s\n"}
+,{"stream_name":"stdout","time":882.864097139,"data":"10:19:43 [d1prime_10000_fp32] congestion iter 2900/10000 loss 0.1342 lr 1.613e-04 432s\n"}
+,{"stream_name":"stdout","time":897.93539917,"data":"10:19:58 [d1prime_10000_fp32] congestion iter 3000/10000 loss 0.1293 lr 1.588e-04 447s\n"}
+,{"stream_name":"stdout","time":912.750447915,"data":"10:20:13 [d1prime_10000_fp32] congestion iter 3100/10000 loss 0.1301 lr 1.563e-04 462s\n"}
+,{"stream_name":"stdout","time":927.492530643,"data":"10:20:27 [d1prime_10000_fp32] congestion iter 3200/10000 loss 0.1320 lr 1.536e-04 477s\n"}
+,{"stream_name":"stdout","time":942.094154435,"data":"10:20:42 [d1prime_10000_fp32] congestion iter 3300/10000 loss 0.1277 lr 1.510e-04 491s\n"}
+,{"stream_name":"stdout","time":956.640616651,"data":"10:20:57 [d1prime_10000_fp32] congestion iter 3400/10000 loss 0.1323 lr 1.482e-04 506s\n"}
+,{"stream_name":"stdout","time":971.453086809,"data":"10:21:11 [d1prime_10000_fp32] congestion iter 3500/10000 loss 0.1302 lr 1.455e-04 521s\n"}
+,{"stream_name":"stdout","time":986.471601714,"data":"10:21:26 [d1prime_10000_fp32] congestion iter 3600/10000 loss 0.1238 lr 1.426e-04 536s\n"}
+,{"stream_name":"stdout","time":1001.34028997,"data":"10:21:41 [d1prime_10000_fp32] congestion iter 3700/10000 loss 0.1305 lr 1.398e-04 551s\n"}
+,{"stream_name":"stdout","time":1016.692871928,"data":"10:21:57 [d1prime_10000_fp32] congestion iter 3800/10000 loss 0.1255 lr 1.369e-04 566s\n"}
+,{"stream_name":"stdout","time":1031.840997299,"data":"10:22:12 [d1prime_10000_fp32] congestion iter 3900/10000 loss 0.1252 lr 1.339e-04 581s\n"}
+,{"stream_name":"stdout","time":1046.875758194,"data":"10:22:27 [d1prime_10000_fp32] congestion iter 4000/10000 loss 0.1298 lr 1.310e-04 596s\n"}
+,{"stream_name":"stdout","time":1061.922583629,"data":"10:22:42 [d1prime_10000_fp32] congestion iter 4100/10000 loss 0.1273 lr 1.280e-04 611s\n"}
+,{"stream_name":"stdout","time":1077.023777242,"data":"10:22:57 [d1prime_10000_fp32] congestion iter 4200/10000 loss 0.1361 lr 1.249e-04 626s\n"}
+,{"stream_name":"stdout","time":1092.055462126,"data":"10:23:12 [d1prime_10000_fp32] congestion iter 4300/10000 loss 0.1259 lr 1.219e-04 641s\n"}
+,{"stream_name":"stdout","time":1107.501341056,"data":"10:23:27 [d1prime_10000_fp32] congestion iter 4400/10000 loss 0.1285 lr 1.188e-04 657s\n"}
+,{"stream_name":"stdout","time":1122.341732329,"data":"10:23:42 [d1prime_10000_fp32] congestion iter 4500/10000 loss 0.1243 lr 1.157e-04 672s\n"}
+,{"stream_name":"stdout","time":1137.080922043,"data":"10:23:57 [d1prime_10000_fp32] congestion iter 4600/10000 loss 0.1237 lr 1.126e-04 686s\n"}
+,{"stream_name":"stdout","time":1151.951726946,"data":"10:24:12 [d1prime_10000_fp32] congestion iter 4700/10000 loss 0.1320 lr 1.095e-04 701s\n"}
+,{"stream_name":"stdout","time":1167.114584098,"data":"10:24:27 [d1prime_10000_fp32] congestion iter 4800/10000 loss 0.1244 lr 1.064e-04 716s\n"}
+,{"stream_name":"stdout","time":1182.126611711,"data":"10:24:42 [d1prime_10000_fp32] congestion iter 4900/10000 loss 0.1202 lr 1.032e-04 732s\n"}
+,{"stream_name":"stdout","time":1197.000483691,"data":"10:24:57 [d1prime_10000_fp32] congestion iter 5000/10000 loss 0.1309 lr 1.001e-04 746s\n"}
+,{"stream_name":"stdout","time":1211.758386242,"data":"10:25:12 [d1prime_10000_fp32] congestion iter 5100/10000 loss 0.1235 lr 9.694e-05 761s\n"}
+,{"stream_name":"stdout","time":1226.451774347,"data":"10:25:26 [d1prime_10000_fp32] congestion iter 5200/10000 loss 0.1200 lr 9.381e-05 776s\n"}
+,{"stream_name":"stdout","time":1241.210129596,"data":"10:25:41 [d1prime_10000_fp32] congestion iter 5300/10000 loss 0.1270 lr 9.068e-05 791s\n"}
+,{"stream_name":"stdout","time":1255.978962979,"data":"10:25:56 [d1prime_10000_fp32] congestion iter 5400/10000 loss 0.1273 lr 8.755e-05 805s\n"}
+,{"stream_name":"stdout","time":1270.635911628,"data":"10:26:11 [d1prime_10000_fp32] congestion iter 5500/10000 loss 0.1193 lr 8.445e-05 820s\n"}
+,{"stream_name":"stdout","time":1285.441978993,"data":"10:26:25 [d1prime_10000_fp32] congestion iter 5600/10000 loss 0.1237 lr 8.135e-05 835s\n"}
+,{"stream_name":"stdout","time":1300.269755335,"data":"10:26:40 [d1prime_10000_fp32] congestion iter 5700/10000 loss 0.1203 lr 7.828e-05 850s\n"}
+,{"stream_name":"stdout","time":1315.041767867,"data":"10:26:55 [d1prime_10000_fp32] congestion iter 5800/10000 loss 0.1313 lr 7.522e-05 864s\n"}
+,{"stream_name":"stdout","time":1330.018319087,"data":"10:27:10 [d1prime_10000_fp32] congestion iter 5900/10000 loss 0.1210 lr 7.219e-05 879s\n"}
+,{"stream_name":"stdout","time":1344.847972027,"data":"10:27:25 [d1prime_10000_fp32] congestion iter 6000/10000 loss 0.1225 lr 6.919e-05 894s\n"}
+,{"stream_name":"stdout","time":1359.733259141,"data":"10:27:40 [d1prime_10000_fp32] congestion iter 6100/10000 loss 0.1239 lr 6.622e-05 909s\n"}
+,{"stream_name":"stdout","time":1374.502887653,"data":"10:27:54 [d1prime_10000_fp32] congestion iter 6200/10000 loss 0.1218 lr 6.329e-05 924s\n"}
+,{"stream_name":"stdout","time":1389.246396376,"data":"10:28:09 [d1prime_10000_fp32] congestion iter 6300/10000 loss 0.1179 lr 6.038e-05 939s\n"}
+,{"stream_name":"stdout","time":1403.934585541,"data":"10:28:24 [d1prime_10000_fp32] congestion iter 6400/10000 loss 0.1214 lr 5.752e-05 953s\n"}
+,{"stream_name":"stdout","time":1418.555572906,"data":"10:28:39 [d1prime_10000_fp32] congestion iter 6500/10000 loss 0.1227 lr 5.470e-05 968s\n"}
+,{"stream_name":"stdout","time":1433.409218309,"data":"10:28:53 [d1prime_10000_fp32] congestion iter 6600/10000 loss 0.1223 lr 5.193e-05 983s\n"}
+,{"stream_name":"stdout","time":1448.097269237,"data":"10:29:08 [d1prime_10000_fp32] congestion iter 6700/10000 loss 0.1195 lr 4.920e-05 997s\n"}
+,{"stream_name":"stdout","time":1462.78374133,"data":"10:29:23 [d1prime_10000_fp32] congestion iter 6800/10000 loss 0.1227 lr 4.652e-05 1012s\n"}
+,{"stream_name":"stdout","time":1477.575090164,"data":"10:29:38 [d1prime_10000_fp32] congestion iter 6900/10000 loss 0.1155 lr 4.390e-05 1027s\n"}
+,{"stream_name":"stdout","time":1492.380278789,"data":"10:29:52 [d1prime_10000_fp32] congestion iter 7000/10000 loss 0.1211 lr 4.133e-05 1042s\n"}
+,{"stream_name":"stdout","time":1507.034849502,"data":"10:30:07 [d1prime_10000_fp32] congestion iter 7100/10000 loss 0.1244 lr 3.881e-05 1056s\n"}
+,{"stream_name":"stdout","time":1521.629865495,"data":"10:30:22 [d1prime_10000_fp32] congestion iter 7200/10000 loss 0.1182 lr 3.636e-05 1071s\n"}
+,{"stream_name":"stdout","time":1536.252315861,"data":"10:30:36 [d1prime_10000_fp32] congestion iter 7300/10000 loss 0.1217 lr 3.398e-05 1086s\n"}
+,{"stream_name":"stdout","time":1550.971422796,"data":"10:30:51 [d1prime_10000_fp32] congestion iter 7400/10000 loss 0.1208 lr 3.165e-05 1100s\n"}
+,{"stream_name":"stdout","time":1565.691243801,"data":"10:31:06 [d1prime_10000_fp32] congestion iter 7500/10000 loss 0.1126 lr 2.940e-05 1115s\n"}
+,{"stream_name":"stdout","time":1580.338004666,"data":"10:31:20 [d1prime_10000_fp32] congestion iter 7600/10000 loss 0.1186 lr 2.721e-05 1130s\n"}
+,{"stream_name":"stdout","time":1595.11886175,"data":"10:31:35 [d1prime_10000_fp32] congestion iter 7700/10000 loss 0.1205 lr 2.510e-05 1144s\n"}
+,{"stream_name":"stdout","time":1609.727890454,"data":"10:31:50 [d1prime_10000_fp32] congestion iter 7800/10000 loss 0.1204 lr 2.306e-05 1159s\n"}
+,{"stream_name":"stdout","time":1624.85392775,"data":"10:32:05 [d1prime_10000_fp32] congestion iter 7900/10000 loss 0.1177 lr 2.109e-05 1174s\n"}
+,{"stream_name":"stdout","time":1639.806655838,"data":"10:32:20 [d1prime_10000_fp32] congestion iter 8000/10000 loss 0.1200 lr 1.921e-05 1189s\n"}
+,{"stream_name":"stdout","time":1654.674365527,"data":"10:32:35 [d1prime_10000_fp32] congestion iter 8100/10000 loss 0.1193 lr 1.740e-05 1204s\n"}
+,{"stream_name":"stdout","time":1669.486261527,"data":"10:32:49 [d1prime_10000_fp32] congestion iter 8200/10000 loss 0.1145 lr 1.568e-05 1219s\n"}
+,{"stream_name":"stdout","time":1684.11499366,"data":"10:33:04 [d1prime_10000_fp32] congestion iter 8300/10000 loss 0.1188 lr 1.403e-05 1233s\n"}
+,{"stream_name":"stdout","time":1700.631447485,"data":"10:33:21 [d1prime_10000_fp32] congestion iter 8400/10000 loss 0.1203 lr 1.248e-05 1250s\n"}
+,{"stream_name":"stdout","time":1716.037869487,"data":"10:33:36 [d1prime_10000_fp32] congestion iter 8500/10000 loss 0.1174 lr 1.101e-05 1265s\n"}
+,{"stream_name":"stdout","time":1731.222100987,"data":"10:33:51 [d1prime_10000_fp32] congestion iter 8600/10000 loss 0.1118 lr 9.626e-06 1281s\n"}
+,{"stream_name":"stdout","time":1748.091959089,"data":"10:34:08 [d1prime_10000_fp32] congestion iter 8700/10000 loss 0.1160 lr 8.333e-06 1297s\n"}
+,{"stream_name":"stdout","time":1763.147932485,"data":"10:34:23 [d1prime_10000_fp32] congestion iter 8800/10000 loss 0.1172 lr 7.130e-06 1313s\n"}
+,{"stream_name":"stdout","time":1778.101891974,"data":"10:34:38 [d1prime_10000_fp32] congestion iter 8900/10000 loss 0.1162 lr 6.020e-06 1327s\n"}
+,{"stream_name":"stdout","time":1793.332431182,"data":"10:34:53 [d1prime_10000_fp32] congestion iter 9000/10000 loss 0.1181 lr 5.002e-06 1343s\n"}
+,{"stream_name":"stdout","time":1810.303018347,"data":"10:35:10 [d1prime_10000_fp32] congestion iter 9100/10000 loss 0.1151 lr 4.077e-06 1360s\n"}
+,{"stream_name":"stdout","time":1825.527518976,"data":"10:35:25 [d1prime_10000_fp32] congestion iter 9200/10000 loss 0.1191 lr 3.248e-06 1375s\n"}
+,{"stream_name":"stdout","time":1840.402697015,"data":"10:35:40 [d1prime_10000_fp32] congestion iter 9300/10000 loss 0.1205 lr 2.514e-06 1390s\n"}
+,{"stream_name":"stdout","time":1855.401845829,"data":"10:35:55 [d1prime_10000_fp32] congestion iter 9400/10000 loss 0.1133 lr 1.876e-06 1405s\n"}
+,{"stream_name":"stdout","time":1870.625772229,"data":"10:36:11 [d1prime_10000_fp32] congestion iter 9500/10000 loss 0.1134 lr 1.335e-06 1420s\n"}
+,{"stream_name":"stdout","time":1885.710402265,"data":"10:36:26 [d1prime_10000_fp32] congestion iter 9600/10000 loss 0.1170 lr 8.921e-07 1435s\n"}
+,{"stream_name":"stdout","time":1900.756097273,"data":"10:36:41 [d1prime_10000_fp32] congestion iter 9700/10000 loss 0.1159 lr 5.465e-07 1450s\n"}
+,{"stream_name":"stdout","time":1915.825365398,"data":"10:36:56 [d1prime_10000_fp32] congestion iter 9800/10000 loss 0.1155 lr 2.992e-07 1465s\n"}
+,{"stream_name":"stdout","time":1930.746342402,"data":"10:37:11 [d1prime_10000_fp32] congestion iter 9900/10000 loss 0.1145 lr 1.503e-07 1480s\n"}
+,{"stream_name":"stdout","time":1945.807172046,"data":"10:37:26 [d1prime_10000_fp32] congestion iter 10000/10000 loss 0.1213 lr 1.000e-07 1495s\n"}
+,{"stream_name":"stdout","time":2048.663122464,"data":"10:39:09 check d1prime_10000_fp32: {\"loss_finite\": true, \"loss_drop_ge_30pct\": true, \"heldout_nrms_below_train_only_mean_map\": false} PASS=False\n"}
+,{"stream_name":"stdout","time":2048.664050087,"data":"10:39:09 done\n"}
+,{"stream_name":"stderr","time":2055.709063602,"data":"/usr/local/lib/python3.13/dist-packages/mistune.py:435: SyntaxWarning: invalid escape sequence '\\|'\n"}
+,{"stream_name":"stderr","time":2055.70909202,"data":"  cells[i][c] = re.sub('\\\\\\\\\\|', '|', cell)\n"}
+,{"stream_name":"stderr","time":2056.021419669,"data":"/usr/local/lib/python3.13/dist-packages/nbconvert/filters/filter_links.py:36: SyntaxWarning: invalid escape sequence '\\_'\n"}
+,{"stream_name":"stderr","time":2056.021448063,"data":"  text = re.sub(r'_', '\\_', text) # Escape underscores in display text\n"}
+,{"stream_name":"stderr","time":2056.878132576,"data":"[NbConvertApp] Converting notebook __script__.ipynb to html\n"}
+,{"stream_name":"stderr","time":2057.886317527,"data":"[NbConvertApp] Writing 274528 bytes to __results__.html\n"}
+]
