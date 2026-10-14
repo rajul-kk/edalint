@@ -87,7 +87,7 @@ Averages as they appear in the xlsx and as recomputed:
 |---|---|---|---|---|
 | 1st | 0.1347 | 0.4549 | 14.772 | all 10 cases valid |
 | 2nd | 0.1498 | 0.4550 | 3.042 | all 10 cases valid |
-| 3rd | xlsx "inf" (failed on 19, 20); 0.1069 over the 8 valid cases | xlsx 0.4143 over 10 cases (zeros for 19, 20); 0.5186 over the 8 valid cases | none | the 0.107 / 0.52 quoted in GL-Inception are the 8-case means |
+| 3rd | xlsx "inf" (failed on 19, 20); 0.1069 over the 8 valid cases | xlsx 0.4143 over 10 cases (zeros for 19, 20); 0.5178 over the 8 valid cases (ERRATUM 2026-10-14: earlier versions printed 0.5186, a sources error; recomputed from the xlsx per-case F1) | none | the 0.107 / 0.52 quoted in GL-Inception are the 8-case means |
 
 The xlsx also lists 22 further teams. Next best by rank, mean over the 10 cases where valid (MAE mV / F1 / runtime s):
 4th cadc1032 0.2380 / 0.3576 / 7.10; 5th cadc0007 0.3161 / 0.0895 / 2.05; 6th cadc0025 0.2944 / 0.2589 / 46.17;
@@ -352,7 +352,7 @@ Fixed facts:
   the prediction side is not spelled out; the usual reading, and the one in WACA/CFIRSTNET text, applies the golden
   max-based threshold to both maps. This choice should be recorded in the protocol.
 - Reference rows (official, all 10 cases): winner 0.1347 mV / 0.455 / 14.77 s; 2nd 0.1498 / 0.455 / 3.04 s; 3rd 0.1069
-  (8 valid cases) / 0.4143 (10 cases, failures as 0) or 0.5186 (8 cases) / no runtime. Published best: CFIRSTNET 0.0533 /
+  (8 valid cases) / 0.4143 (10 cases, failures as 0) or 0.5178 (8 cases; corrected 2026-10-14 from 0.5186) / no runtime. Published best: CFIRSTNET 0.0533 /
   0.723, WACA 0.0524 / 0.778 (no code for WACA; CFIRSTNET has a repo link).
 
 Options and trade-offs:

@@ -16,7 +16,7 @@ Both dev expectations stated in the protocol (H1 FALSE, H2 TRUE) were borne out.
 
 - **Configuration.** Sparse direct LU with cubic rasterisation, chosen on 15 train cases.
 - **Accuracy.** Mean MAE 0.0030 mV, worst case 0.0065 mV (testcase 16). Mean strict F1 0.974, minimum 0.948 (testcase 19), no case with F1 = 0. The largest single-pixel difference to a label is 0.46 mV. F1 is below 1 only because a few hotspot-boundary pixels fall on the other side of the 0.9 × max threshold. Relative residual is 5.6e-15 to 7.8e-15 on every case.
-- **End-to-end runtime** (netlist parse + assembly + solve + rasterisation, excluding CSV reads): median 6.37 s, mean 7.50 s, range 1.08 s (tc14) to 13.68 s (tc20). About 80 to 83% of it is the dense-grid interpolation (0.9 to 11.4 s). Netlist parsing takes 0.14 to 1.9 s.
+- **End-to-end runtime** (netlist parse + assembly + solve + rasterisation, excluding CSV reads): median 6.37 s, mean 7.50 s, range 1.08 s (tc14) to 13.68 s (tc20). About 79 to 84% of it is the dense-grid interpolation (0.9 to 11.4 s). Netlist parsing takes 0.14 to 1.9 s.
 - **Solve-only runtime** (the sparse LU call): median 0.197 s, mean 0.247 s, max 0.717 s.
 - **Caveats.**
   - The labels come from an equivalent solver, so accuracy is expected by construction. The point is task design: the input contains the full linear system. It is not a statement about ML skill.
@@ -26,8 +26,8 @@ Both dev expectations stated in the protocol (H1 FALSE, H2 TRUE) were borne out.
 
 ## 3. Baselines against published models (H1)
 
-- **Training data.** Baselines were fitted on 110 train cases. The published models used 2,000 to 6,100 additional synthetic circuits and, in several cases, resized inputs.
-- **Baseline MAE and Skill_MAE.** green 0.603 (0.480), knn 0.797 (0.313), ridge 0.877 (0.244), gbm 0.940 (0.190), effdist 1.024 (0.118), effdist_deg2 1.026 (0.116), mean_map 1.160 (0), scalar 1.193 (−0.028), zero 1.979 (−0.705).
+- **Training data.** Baselines were fitted on 110 train cases. Most published models used 2,000 to 6,100 additional synthetic circuits (AttUNet: 100 augmented to 800) and, in several cases, resized inputs.
+- **Baseline MAE and Skill_MAE.** green 0.603 (0.480), knn 0.797 (0.313), ridge 0.877 (0.244), gbm 0.939 (0.190), effdist 1.024 (0.118), effdist_deg2 1.026 (0.116), mean_map 1.161 (0), scalar 1.193 (−0.028), zero 1.979 (−0.705).
 - **Published Skill_MAE against our mean_map:**
 
   | model | Skill_MAE |
@@ -41,7 +41,7 @@ Both dev expectations stated in the protocol (H1 FALSE, H2 TRUE) were borne out.
   | CFIRSTNET | 0.954 |
   | WACA | 0.955 |
 
-  The best baseline reaches about 53 to 55% of the weakest models' skill and 50% of WACA's.
+  The best baseline (green, Skill_MAE 0.480) reaches about 53 to 55% of the published models' skill (55% of the weakest, contest 2nd; 54% of LMM-IR; 53% of AttUNet) and 50% of WACA's.
 - **Design level** (descriptive, n = 5):
   - green beats mean_map on 5 of 5 designs and has the lowest baseline MAE on 3 of 5 (kNN is lowest on the 257 and 835 designs). Its design means range 0.177 to 1.072 mV.
   - ridge and gbm also beat mean_map on 5 of 5, and knn on 4 of 5.
@@ -75,12 +75,15 @@ Both dev expectations stated in the protocol (H1 FALSE, H2 TRUE) were borne out.
 ## 6. Post-run notes (written after the registered run)
 
 - **Uncommitted file at run time.** The result files record `git_dirty_tracked` = `manifests/n14_inventory.json`, the CircuitNet-N14 inventory being rewritten by the concurrent download. It is not read by any ICCAD'23 stage and is outside the code hash; it was committed separately afterwards.
-- **Misleading key.** In `results/iccad23/h3.json`, `checks_train_vs_hidden` holds a train-only development check (120 cases, info-level within-train channel duplicates). The cross-split E003 result is in `verdicts.json` and is empty. The H3 verdict is unaffected.
+- **Erratum: mislabelled key (found in the 2026-10-14 verification).** In `results/iccad23/h3.json`, `checks_train_vs_hidden` is labelled "development (train only)", but it covers all 120 cases (100 fake + 10 visible + 10 hidden), including the 10 hidden ones (split "all", E003 and E004). The label is a mislabel only: the block was computed inside the registered post-freeze h3 stage (`write_once`, provenance git_head 7707b20, started 2026-10-12T20:51, after the freeze at 20:38), not before the freeze. It reports info-level within-train channel duplicates; the cross-split E003 result is in `verdicts.json` and is empty. The H3 verdict is unaffected. `h3.json` is registered and was not changed.
 - **Tests.** After the freeze, 4 of 96 tests in `tests/test_checks.py` fail because they assume no `protocol/FROZEN.json` exists. The results are unaffected; the tests will be fixed in a separate commit labelled post hoc.
 - **Post hoc code change (after the freeze at 7707b20).** The tests were fixed afterwards, and the freeze guard was made per dataset (`protocol/FROZEN_<key>.json`; `protocol/FROZEN.json` with `"dataset": "iccad23"` is still recognised) so that this freeze cannot unlock CircuitNet-N14. This edits `src/` and `tests/`, so the code hash changes; the ICCAD'23 results stay tied to the hash recorded in `protocol/FROZEN.json` (750d252f..., code at 7707b20), and no registered stage was re-run.
-- **Independent check.** Every number in sections 1 to 4 was checked against the result files by a separate verification pass; all matched.
+- **Erratum: contest 3rd-place F1 (sources error).** The 8-valid-case mean F1 of contest 3rd (cadc1020) printed as 0.5186 / 0.519 is wrong; the correct value is 0.5178, recomputed from the per-case F1 in the official `ICCAD-Final-Scores-Release.xlsx` (0.86568, 0.87418, 0.47205, 0.64678, 0, 0, 0.73634, 0.54776 over cases 7-16; failed cases 19 and 20 excluded). The 10-case value 0.4143 is correct. The wrong value came from `docs/published_numbers.md` and is baked into the frozen protocol §8 and the `PUBLISHED` constant in `p4_iccad23.py`, both left unchanged (frozen); `docs/published_numbers.md` carries a dated erratum note. It affects only the contest-3rd row of the comparison table, not H1, H2 or H3 (its Skill_MAE uses MAE only).
+- **Number verification (done, 2026-10-14).** About 95 claims in sections 1 to 4 were checked independently against `results/iccad23/*.json`, the protocol and `FROZEN.json`. About 87 matched as printed. 8 were wrong and are corrected above: two rounding slips (gbm MAE, mean_map MAE), one runtime range (rasterisation share), one skill-share wording, the contest-3rd F1 sources erratum, the AttUNet training-data count, the 120-case label of `checks_train_vs_hidden`, and the earlier statement here that every number had been checked and all matched. No verdict changed: H1 FALSE (green 0.4803 vs threshold 0.7639), H2 TRUE, H3 BENIGN. The appendix equals `tables.md` (ignoring CR and trailing whitespace). `code_hash` 750d252f... matches all four result files, which are labelled REGISTERED. The commit rules pass.
 
 ## Appendix: tables (verbatim from `results/iccad23/tables.md`)
+
+> Erratum (2026-10-14, outside the copied block): in the contest_3rd row of the comparison table below, F1 0.519 should read 0.518 (8-valid-case mean 0.5178; the published value 0.5186 is a sources error, see section 6). The 10-case value 0.4143 is correct. The block below is unchanged so that it stays identical to `tables.md`.
 
 ## Per case (hidden set; MAE in mV, F1 official strict rule)
 
