@@ -1,7 +1,7 @@
 # edalint P7: retrain the authors' published CircuitNet models on our N14 split (pre-registration)
 
 **STATUS: DRAFT, NOT FROZEN.** Written 2026-10-14. Nothing here is binding until a freeze commit adds `protocol/FROZEN_p7.json` (section 9).
-No P7 model has been trained on anything but the 3-step timing smoke test of section 8; no P7 number on any test row exists.
+No P7 model has been trained on anything but the 3-step timing smoke test of section 8; no P7 number on any test row exists. **Amended 2026-10-15 by section 12 (draft amendment): the congestion arm is dropped, P7 is IR-only.**
 
 ## 1. Purpose
 
@@ -168,3 +168,64 @@ Reviewer did not write the draft. Checked: the draft against the authors' pinned
 * **D8 Kaggle plan (nothing done; user go-ahead required).** Private datasets and kernels only, named `edalint-p7-*`; no existing kernel or dataset touched. Steps: (1) user checks the weekly GPU quota in the web UI (not readable by CLI) and confirms the other planned Kaggle runs leave at least 25 h; (2) after the pre-freeze tests pass, upload **train-only** shards (IR about 12.9 GB float32, congestion about 1.8 GB, plus manifest; labels float32), no test shards and no `FROZEN_p7.json`; (3) a train-only T4 benchmark kernel (about 5 minutes plus the 500-iteration MAVI sanity run) fixes the D2/D3 ladder; (4) freeze commit; (5) upload code bundle plus `FROZEN_p7.json` as a private dataset, one kernel per seed (12 h cap), each writing `train_*.json` and a checkpoint with sha256; (6) only now export and upload test shards (IR about 6.7 GB, congestion about 1.0 GB) as a separate private dataset and run scoring inference; (7) download results and `write_once` into `results/p7/`. Kaggle per-dataset size limits are unverified: shard by design. Total 18-25 h is an unmeasured estimate.
 
 **Port fidelity (reviewer check).** Compared line by line with the local copy of the authors' `mavi.py` and `gpdl.py`: layer order, widths, padding, bias flags, normalisation, activations, skip connection, the `x_in` multiply-and-sum in MAVI and the init rules are the same; the only difference (no checkpoint-loading helper) is harmless. The smoke JSON supports "identical state_dict keys and shapes, identical counts, forward difference 0.0 at 64 x 64 with the original weights". Wording fix: the JSON counts (17,069,444 and 119,233) include BatchNorm buffers; trainable counts are 17,063,812 and 119,169 (MAVI difference 5,632 = 2 x 2,816 BN channels). Not covered by the check: initialisation statistics (same code path, no statistical test), training-mode behaviour, and the sampler, schedule and optimiser loop, which are re-implemented; the tests above cover them. Recipe constants in section 3.2 (batch, lr, weight decay, loss weight 100, 200k iterations, AdamW betas, cosine to 1e-7, checkpoint every 10k, no validation) match the fetched pinned files.
+
+## 12. Amendment A1 (draft, 2026-10-15; this protocol stays NOT FROZEN)
+
+Appended after the train-only development runs of sections 8 and 11. Sections 1-11 are left as written; where this section conflicts with them, this section governs once the freeze commit exists. No test row, no test shard and no `FROZEN_p7.json` exist or were touched. The dev runs below read only train rows.
+
+### 12.1 Development record: GPDL (congestion) held-out check, D1 / D1' (section 11, D1)
+
+Pass rule (section 11, D1, fixed before the runs): loss finite and falling by at least 30 %, **and** held-out official NRMS below the train-only mean_map on the same held-out rows (Vortex-small + nvdla-small, 179 rows; trained on 800 RISCY / RISCY-FPU rows; lower NRMS is better). D1' (10,000 iterations) was registered in f2f462e as the repeat: if it fails, the congestion arm is dropped and P7 becomes IR-only.
+
+| run | where | iterations | sampler | held-out NRMS GPDL | held-out NRMS mean_map | loss drop | pass | commit |
+|---|---|---|---|---|---|---|---|---|
+| D1 | local CPU | 2,000 | block100 | 0.03583 | 0.03408 | 98.5 % | NO | 45bd4e1 |
+| Kaggle T4 | Kaggle | 2,000 | epoch | 0.03564 | 0.03384 | 98.6 % | NO | 773ecba |
+| Kaggle T4 | Kaggle | 10,000 | epoch | 0.03706 | 0.03384 | 98.8 % | NO | 773ecba |
+| D1' | local CPU | 10,000 | epoch | 0.03722 | 0.03408 | 99.0 % | NO | 14f23d6 |
+
+The loss criterion is met in every run; the held-out criterion fails in every run, and training 5x longer makes held-out NRMS worse (local: 0.03583 -> 0.03722), mostly on nvdla-small (D1' 0.04408 for GPDL; Kaggle 10k 0.04590 against 0.03961 for mean_map). The local and Kaggle mean_map values differ slightly (0.03408 / 0.03384); the cause was not investigated and neither value enters any verdict. Train-only references: `results/dev/p7_d1b_heldout_refs_p7dev.json`, `results/dev/p7_d1c_train_loss_refs_p7dev.json`. This is a statement about the development setting (800 training rows from two designs, two unseen designs), not a verdict on GPDL.
+
+### 12.2 Decision: the congestion arm is dropped; P7 is IR-only
+
+By the rule stated above, the congestion (GPDL) arm is **removed from P7**. Consequences:
+
+* Void: section 3.1 and 3.2 GPDL rows, section 3.3 item 1 (GPDL 50,000 iterations), the congestion parts of section 5 (H-A, H-B, H-C, overall rule), the GPDL rows of section 7, and the GPDL parts of D2, D4, D5(b-e). No GPDL model is trained on the full train and no GPDL number on any test row is produced.
+* H-B overall rule: the P7 verdict is the IR drop verdict alone (TRUE, FALSE, or no verdict if the H-A gate fails). The congestion weak-reference flag of the registered N14 verdict **stays**; P7 makes no statement about it beyond the dev record of 12.1.
+* The GPDL port in `src/edalint_p7/models.py` and its dev scripts stay in the repository as development material.
+* Unchanged: IR arm A only, seeds 20261101, 20261102, 20261103.
+
+### 12.3 MAVI (IR drop) recorded dev check: 500 iterations, fp16
+
+Run: Kaggle T4, train-only, MAVI, fp16 AMP, 500 iterations (cosine compressed to 500), seed 20261101, train fold 6,611 rows (RISCY, RISCY-FPU), held-out 179 rows (Vortex-small, nvdla-small). Files: `results/dev/p7dev_kaggle_mavi/`. Run commit: **a50017e**.
+
+**Provenance of the criteria.** The four criteria were set in the instruction given to the implementing agent before the run. They are **not** in sections 1-11 (section 11 D1 requires a MAVI check inside the T4 benchmark but gives no criteria; there is no section 11b). They are mirrored on the D1 criteria and were fixed before the outcome was known. They are recorded here, after the run, as the dev check; the check only says "the run is not broken" and informs nothing else.
+
+| # | criterion | measured | met |
+|---|---|---|---|
+| a | all training losses finite | 0 non-finite losses | yes |
+| b | skipped GradScaler steps <= 5 % | 4 of 500 (0.8 %) | yes |
+| c | last 100-iteration block train loss < loss of the constant train mean_map | 22.57 < 28.43 (first block 28.65, drop 21.2 %) | yes |
+| d | held-out official ROC (0.9885) > train-only mean_map on the same rows | 0.7678 > 0.5077 (anchored 0.8184 vs 0.5077) | yes |
+
+Per design held-out ROC: Vortex-small 0.7134 (mean_map 0.5296), nvdla-small 0.8095 (mean_map 0.4816). All four met. This is not evidence about the 30,000-iteration result and is not compared with the H-A gate.
+
+### 12.4 Precision: fp16 (AMP) for MAVI training, fp32 for scoring (replaces the conditional in 3.3 item 2 and D3)
+
+Measured on the T4 (`results/dev/p7dev_kaggle_mavi/p7dev_kaggle_mavi.json`, a50017e): training step 2.343 s (fp32) against 0.587 s (fp16) per batch-2 iteration; the 500-iteration fp16 run took 0.613 s per iteration end to end. Projected for 30,000 iterations: fp16 **5.11 h per seed**, fp32 about **19.5 h per seed** (2.343 s x 30,000; a projection, not a run). Three fp32 seeds would be about 58 h, more than a weekly quota, so fp16 is required.
+
+Fixed: MAVI training uses `torch.autocast(float16)` with `GradScaler`, BatchNorm and loss in fp32 (autocast default), skipped steps counted, `"deviation": "fp16"` written to every `train_*.json` (as in D3). **Scoring (test inference) runs in fp32.** fp16 against fp32 forward on 20 train rows: max absolute difference 1.49e-3 (0.10 % of the maximum fp32 magnitude). The precision is fixed from train-only timing, not from any test score.
+
+### 12.5 Budget ladder result (section 11, D2)
+
+Train-only benchmark: MAVI 30,000 iterations x 3 seeds in fp16 projects to 5.11 h per seed, **15.3 h** in total (0.613 s end-to-end per iteration x 30,000 x 3), below the 22 h line, so ladder step (1) holds: **MAVI 30,000 iterations x 3 seeds**. The projection is from the 500-iteration run and is unmeasured at 30,000. One seed per Kaggle run (about 12 h cap) is respected. fp32 test-inference time is not yet measured and must be estimated before the freeze (D3 allows fp32 inference up to a 4 h total).
+
+### 12.6 Rule for undefined NRMS rows (IR drop, secondary metric)
+
+Finding (dev, train-only, from `E:\edalint_data\p7_export\ir_drop_train`): the held-out nvdla-small NRMS is `inf` for both the model and mean_map because **2 of the 84 nvdla-small rows have a constant label** (`y_2` and `y_14` in `nvdla-small/shard_000.npz`, every pixel -1.4242e-10, i.e. zero IR drop in effect). The other exported designs have none (Vortex-small 0 of 95, RISCY 0 of 3,162, RISCY-FPU 0 of 3,449; 2 of 6,790 in total). For these rows `max(gold) - min(gold) = 0`, so `edalint.metrics.nrms` returns `inf` for any prediction with RMSE > 0; the label also stays constant (0) after the clamp-and-quantise step of `nrms_official`. This is the same behaviour as skimage min-max NRMS and as the authors' wrapper, except that the authors replace `inf` by 0.05 (utils/metrics.py 122-123) while P7 scoring passes `official_inf=None`. The `inf` reached the dev summary only because `heldout_eval` in `scripts/p7_dev_kaggle_common.py` aggregates with `np.nanmean`, which keeps `inf`; `edalint.p4_n14.PrimaryAcc.value`, the aggregator the P7 scorer uses (section 4), already drops non-finite values. No metric code is changed.
+
+Rule (the N14 convention, protocol_n14.md section 6 NRMS paragraph, applied to P7): per-row NRMS with `official_inf=None`; aggregates use finite rows only; the count and ids of undefined rows are reported per design and per model-seed; the 0.05-substituted mean is reported as a secondary. The IR primary (official ROC area at 0.9885) does not use NRMS and is unaffected. The `inf` NRMS values in the 500-iteration dev file are not to be quoted.
+
+### 12.7 Not changed, and still open before a freeze
+
+Unchanged: IR split, exclusions, metrics, seeds, H-A/H-B/H-C for IR drop, the run-once and freeze rules (section 6), the pre-freeze tests of section 11 D7, the Kaggle plan D8 minus the congestion kernel, the code-hash recipe. Open: the freeze commit and `FROZEN_p7.json`; the D7 tests; the weekly GPU quota check and the user's go-ahead for any further Kaggle use; where MAVI test inference runs; D5 (gate factor 0.5) for IR only; whether the 12.3 criteria should become a standing rule before the freeze.
