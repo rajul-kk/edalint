@@ -154,6 +154,9 @@ def train(task: str, source, iters: int, seed: int, precision: str = 'fp32', dev
         'n_train_rows': len(source), 'excluded_nonfinite_ids': excluded, 'n_excluded_nonfinite': len(excluded), 'excluded_fraction': frac, 'rows_per_design': {d: sum(1 for x in source.designs if x == d) for d in sorted(set(source.designs))},
         'lr_first': lrs[0] if lrs else None, 'lr_last': lrs[-1] if lrs else None, 'loss_per_100_iters': curve, 'wall_seconds': wall, 'hardware': hardware(device), 'checkpoint': 'last state, no validation',
     }
+    # divergence record (protocol_p7.md 12.10): the aggregator marks a seed undefined iff last_block_loss is non-finite or final_params_finite is False
+    rec['last_block_loss'] = float('nan') if (diverged_at is not None or not curve) else float(curve[-1])
+    rec['final_params_finite'] = bool(all(torch.isfinite(v).all().item() for v in model.state_dict().values() if v.is_floating_point()))
     if ckpt_path:
         Path(ckpt_path).parent.mkdir(parents=True, exist_ok=True)
         torch.save({'state_dict': model.state_dict()}, ckpt_path)

@@ -1,6 +1,6 @@
 """P7 mechanical aggregator: H-A / H-B / H-C for IR drop (protocol_p7.md sections 5, 11 D5 and 12) from the scored row files only.
 
-Inputs: `results/p7/models_ir_drop_A_s<seed>.json` (written by scripts/p7_run_score.py, the format of `edalint_p7.score.score_predictions` plus
+Inputs: `results/p7/train_ir_drop_A_s<seed>.json` (divergence rule) and `results/p7/models_ir_drop_A_s<seed>.json` (written by scripts/p7_run_score.py, the format of `edalint_p7.score.score_predictions` plus
 `eval_ids`) and the REGISTERED N14 files `results/n14/models_ir_drop.json` (baselines, mean_map) and `results/n14/verdicts.json` (registered H1
 verdict and ratio, shown next to the P7 verdict, never edited). Nothing here opens a split or a dataset; all arithmetic reuses the N14 helpers
 (`edalint.p4_n14.design_values / pooled_value / macro`, `RocAcc`), so the metric definitions are the registered ones.
@@ -95,6 +95,29 @@ def load_seed_files(models_dir, seeds: Sequence[int] = SEEDS) -> Dict[int, Optio
     return out
 
 
+def train_path(models_dir, seed: int) -> Path:
+    return Path(models_dir) / f'train_{TASK}_{ARM}_s{seed}.json'
+
+
+def load_train_records(models_dir, seeds: Sequence[int] = SEEDS) -> Dict[int, Optional[dict]]:
+    """seed -> train result (`train_ir_drop_A_s<seed>.json`, next to the scored file), or None if absent."""
+    return {s: (_load(train_path(models_dir, s)) if train_path(models_dir, s).exists() else None) for s in seeds}
+
+
+def divergence_reason(rec: Optional[dict]) -> Optional[str]:
+    """Mechanical divergence rule (protocol_p7.md 12.10): a seed is diverged / undefined iff its train result is missing, its last-block mean
+    loss is missing or non-finite, or `final_params_finite` is not True (a record without the field counts as not finite). The skipped-step
+    fraction is reported but is not a rule. Returns the reason, or None if the seed is fine."""
+    if rec is None:
+        return 'no train result'
+    lb = rec.get('last_block_loss')
+    if not isinstance(lb, (int, float)) or isinstance(lb, bool) or not np.isfinite(lb):
+        return f'diverged: last_block_loss is not finite ({lb!r})'
+    if rec.get('final_params_finite') is not True:
+        return f'diverged: final_params_finite is {rec.get("final_params_finite")!r}'
+    return None
+
+
 def _block(payload: dict) -> dict:
     return {'rows': payload['rows'], 'official_roc': payload['official_roc']}
 
@@ -160,9 +183,12 @@ def _mean(xs: Sequence[float]) -> float:
 
 
 # -- the aggregator ------------------------------------------------------------------------------------------------------------
-def compute_p7_verdicts(seed_payloads: Dict[int, Optional[dict]], n14_models: dict, n14_verdicts: Optional[dict] = None) -> Dict[str, Any]:
+def compute_p7_verdicts(seed_payloads: Dict[int, Optional[dict]], n14_models: dict, n14_verdicts: Optional[dict] = None,
+                        train_records: Optional[Dict[int, Optional[dict]]] = None) -> Dict[str, Any]:
     """Mechanical H-A / H-B / H-C and the registered sensitivities for IR drop. `seed_payloads` maps each registered seed to its scored file
-    (or None if absent). A seed is 'defined' when its design-macro official ROC area is finite; with fewer than 2 defined seeds there is no verdict."""
+    (or None if absent) and `train_records` the matching train results (None / absent entry = missing = undefined). A seed is 'defined' when
+    its train record passes `divergence_reason` AND its design-macro official ROC area is finite; with fewer than 2 defined seeds there is no verdict."""
+    train_records = train_records if train_records is not None else {}
     base = baseline_views(n14_models)
     mm = base['mean_map']
     m_t = mm['design_macro']
@@ -172,11 +198,19 @@ def compute_p7_verdicts(seed_payloads: Dict[int, Optional[dict]], n14_models: di
     seeds: Dict[str, Any] = {}
     for s, p in seed_payloads.items():
         if p is None:
-            seeds[str(s)] = {'defined': False, 'reason': 'no scored file'}
+            seeds[str(s)] = {'defined': False, 'reason': 'no scored file' + (f'; {divergence_reason(train_records.get(s))}' if divergence_reason(train_records.get(s)) else '')}
             continue
         check_ids(p, n14_models, f'seed {s}')
         v = seed_view(p)
-        v['defined'] = bool(np.isfinite(v['design_macro']))
+        tr = train_records.get(s)
+        why = divergence_reason(tr)
+        v['defined'] = bool(np.isfinite(v['design_macro'])) and why is None
+        v['train'] = {'last_block_loss': (tr or {}).get('last_block_loss'), 'final_params_finite': (tr or {}).get('final_params_finite'),
+                      'skipped_steps': (tr or {}).get('skipped_steps'), 'iters_done': (tr or {}).get('iters_done')}
+        if why:
+            v['reason'] = why
+        elif not np.isfinite(v['design_macro']):
+            v['reason'] = 'design-macro ROC area not finite'
         seeds[str(s)] = v
     defined = {s: v for s, v in seeds.items() if v['defined']}
     thr = gate_threshold(m_t)
@@ -309,7 +343,7 @@ def run_verdicts(models_dir=None, n14_dir=None, protocol_dir=None, repo_root=Non
     od = Path(out_dir or md)
     n14_models = _load(nd / f'models_{TASK}.json')
     n14_ver = _load(nd / 'verdicts.json') if (nd / 'verdicts.json').exists() else None
-    v = compute_p7_verdicts(load_seed_files(md, seeds), n14_models, n14_ver)
+    v = compute_p7_verdicts(load_seed_files(md, seeds), n14_models, n14_ver, load_train_records(md, seeds))
     write_once(od / 'verdicts_p7.json', {'label': 'REGISTERED (post-freeze)', **v}, dataset='p7')
     write_text_once(od / 'tables_p7.md', render_tables_p7(v))
     return v
