@@ -1,0 +1,22 @@
+train rows 800 held-out rows 179
+congestion iter 100/2000 loss 10.3058 lr 1.988e-04 282s
+congestion iter 200/2000 loss 6.0100 lr 1.952e-04 565s
+congestion iter 300/2000 loss 3.3621 lr 1.892e-04 855s
+congestion iter 400/2000 loss 1.8964 lr 1.810e-04 1122s
+congestion iter 500/2000 loss 1.1222 lr 1.708e-04 1389s
+congestion iter 600/2000 loss 0.7105 lr 1.589e-04 1652s
+congestion iter 700/2000 loss 0.4860 lr 1.456e-04 1918s
+congestion iter 800/2000 loss 0.3594 lr 1.311e-04 2183s
+congestion iter 900/2000 loss 0.2846 lr 1.158e-04 2445s
+congestion iter 1000/2000 loss 0.2390 lr 1.002e-04 2718s
+congestion iter 1100/2000 loss 0.2068 lr 8.457e-05 2995s
+congestion iter 1200/2000 loss 0.1896 lr 6.931e-05 3264s
+congestion iter 1300/2000 loss 0.1786 lr 5.481e-05 3527s
+congestion iter 1400/2000 loss 0.1712 lr 4.143e-05 3794s
+congestion iter 1500/2000 loss 0.1662 lr 2.949e-05 4063s
+congestion iter 1600/2000 loss 0.1631 lr 1.928e-05 4305s
+congestion iter 1700/2000 loss 0.1611 lr 1.107e-05 4530s
+congestion iter 1800/2000 loss 0.1599 lr 5.041e-06 4768s
+congestion iter 1900/2000 loss 0.1594 lr 1.355e-06 5019s
+congestion iter 2000/2000 loss 0.1592 lr 1.001e-07 5255s
+{'loss_finite': True, 'loss_first_block': 10.30575870513916, 'loss_last_block': 0.15919121883809567, 'loss_drop_fraction': 0.9845531781411967, 'loss_drop_ge_30pct': True, 'heldout_nrms_gpdl': 0.03583225052978056, 'heldout_nrms_mean_map': 0.034078164715805964, 'gpdl_beats_mean_map': False, 'per_design_nrms_gpdl': {'Vortex-small': 0.030122732943547226, 'nvdla-small': 0.042289443038020645}, 'pass': False}

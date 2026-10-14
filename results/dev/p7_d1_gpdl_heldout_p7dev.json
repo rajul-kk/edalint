@@ -1,0 +1,120 @@
+{
+ "label": "DEVELOPMENT, train-only (D1 sanity run, protocol_p7.md section 11); not a result",
+ "held_out_designs": [
+  "Vortex-small",
+  "nvdla-small"
+ ],
+ "train_designs": [
+  "RISCY",
+  "RISCY-FPU"
+ ],
+ "train_id_report": {
+  "n_fit": 800,
+  "n_heldout": 179,
+  "disjoint_from_eval_ids": true
+ },
+ "n_heldout_rows": 179,
+ "train": {
+  "task": "congestion",
+  "model": "GPDL",
+  "seed": 20261101,
+  "iters_requested": 2000,
+  "iters_done": 2000,
+  "batch_size": 16,
+  "lr": 0.0002,
+  "weight_decay": 0.0,
+  "optimizer": "AdamW",
+  "betas": [
+   0.9,
+   0.999
+  ],
+  "schedule": "cosine 0.0002 -> 1e-07 compressed to 2000 iterations, set per iteration",
+  "loss": "100 x mean MSE",
+  "flip_augmentation": true,
+  "sampler_mode": "block100",
+  "precision": "fp32",
+  "deviation": null,
+  "skipped_steps": 0,
+  "nonfinite_losses": 0,
+  "diverged_at": null,
+  "n_train_rows": 800,
+  "rows_per_design": {
+   "RISCY": 400,
+   "RISCY-FPU": 400
+  },
+  "loss_per_100_iters": [
+   10.30575870513916,
+   6.010007338523865,
+   3.362145903110504,
+   1.8963719010353088,
+   1.1222201615571976,
+   0.7105094051361084,
+   0.4860344848036766,
+   0.3594139334559441,
+   0.2845709548890591,
+   0.23897014625370502,
+   0.20681393042206764,
+   0.18959127373993398,
+   0.17857497848570347,
+   0.1711564013361931,
+   0.16623865619301795,
+   0.16307079754769802,
+   0.1610620467364788,
+   0.15994504325091838,
+   0.15936942473053933,
+   0.15919121883809567
+  ],
+  "wall_seconds": 5254.986178900115,
+  "hardware": {
+   "device": "cpu",
+   "torch": "2.10.0+cpu",
+   "threads": 6,
+   "platform": "Windows-10-10.0.26200-SP0",
+   "cpu_model": "13th Gen Intel(R) Core(TM) i7-1355U",
+   "logical_cores": 12
+  },
+  "checkpoint": "last state, no validation"
+ },
+ "verdict": {
+  "loss_finite": true,
+  "loss_first_block": 10.30575870513916,
+  "loss_last_block": 0.15919121883809567,
+  "loss_drop_fraction": 0.9845531781411967,
+  "loss_drop_ge_30pct": true,
+  "heldout_nrms_gpdl": 0.03583225052978056,
+  "heldout_nrms_mean_map": 0.034078164715805964,
+  "gpdl_beats_mean_map": false,
+  "per_design_nrms_gpdl": {
+   "Vortex-small": 0.030122732943547226,
+   "nvdla-small": 0.042289443038020645
+  },
+  "pass": false
+ },
+ "seconds_total": 5330.425314300228,
+ "provenance": {
+  "started": "2026-10-14T12:14:11+0800",
+  "git_head": "302b8ebd91a9692d5bf3afe1e39afce26e79245c",
+  "git_dirty_tracked": "",
+  "code_hash": "d3f6d2f67218794687d736ab2d8fe0ab095cced40ff8bd250bf36191a7f5a2b7",
+  "versions": {
+   "python": "3.10.0",
+   "numpy": "2.2.6",
+   "scipy": "1.15.3",
+   "pandas": "2.3.3",
+   "platform": "Windows-10-10.0.26200-SP0",
+   "sklearn": "1.6.1",
+   "pyamg": "5.3.0",
+   "edalint": "0.1.0",
+   "cpu_model": "13th Gen Intel(R) Core(TM) i7-1355U",
+   "logical_cores": 12
+  },
+  "argv": [
+   "scripts/p7_dev_d1.py",
+   "--iters",
+   "2000",
+   "--threads",
+   "6"
+  ],
+  "frozen_protocol": null
+ }
+}
