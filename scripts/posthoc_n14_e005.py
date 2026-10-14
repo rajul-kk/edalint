@@ -88,6 +88,8 @@ def per_sample_corr(samples, channels, opt):
 
 def summarise(m, seed=BOOT_SEED):
     """m: (n, 8) |corr| per sample and orientation. Stored column 0. Returns the stored / best-orientation statistics."""
+    if m.ndim != 2:                      # channel constant in every sample of this group (e.g. macro_region of a macro-free design)
+        return {'n': 0}
     m = m[np.isfinite(m).all(axis=1)]
     n = len(m)
     if n == 0:
