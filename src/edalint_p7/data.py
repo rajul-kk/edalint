@@ -98,6 +98,7 @@ class MemorySource:
         self.ids, self._x, self._y = list(ids), list(xs), list(ys)
         self.designs = [design_of(i) for i in self.ids]
         self.nonfinite_ids = [i for i, x, y in zip(self.ids, self._x, self._y) if not (np.isfinite(x).all() and np.isfinite(y).all())]
+        self.excluded_ids: List[str] = []              # rows removed before training for being non-finite (exporter manifest)
 
     def __len__(self):
         return len(self.ids)
@@ -131,6 +132,7 @@ class SubsetSource:
         self.designs = [design_of(i) for i in self.ids]
         bad = set(source.nonfinite_ids)
         self.nonfinite_ids = [i for i in self.ids if i in bad]
+        self.excluded_ids = list(getattr(source, 'excluded_ids', []))
 
     def __len__(self):
         return len(self.ids)
@@ -171,16 +173,19 @@ class _ShardWriter:
         self.zf.close()
 
 
-def export_rows(task: str, ds, ids: Sequence[str], out_dir, shard_rows: int = SHARD_ROWS, label: str = 'train') -> Dict[str, Any]:
+def export_rows(task: str, ds, ids: Sequence[str], out_dir, shard_rows: int = SHARD_ROWS, label: str = 'train',
+                allow_exclusion: bool = True) -> Dict[str, Any]:
     """Write `ids` of `ds` as compressed float32 .npz shards, one design per shard (<= shard_rows rows each), plus manifest.json with the
-    sha256 of every shard. Rows are the exact `assemble(..., 'authors')` output (stack_inputs / label), no rounding. Member x_k / y_k of
+    sha256 of every shard. Rows are the exact `assemble(..., 'authors')` output (stack_inputs / label), no rounding. Train rows with any non-finite
+    value are NOT written: their ids and count go into the manifest (excluded_nonfinite_ids, n_excluded_nonfinite, excluded_fraction).
+    allow_exclusion=False (evaluation rows) never excludes: such rows are written and listed in nonfinite_rows_kept. Member x_k / y_k of
     a shard is row k of its 'ids'; np.load(shard)['x_k'] decompresses that one row only. Returns the manifest (also written)."""
     out = Path(out_dir)
     out.mkdir(parents=True, exist_ok=True)
     by_design: Dict[str, List[str]] = {}
     for sid in ids:
         by_design.setdefault(design_of(sid), []).append(sid)
-    shards, nonfinite, missing = [], [], []
+    shards, nonfinite, kept_nonfinite, missing = [], [], [], []
 
     def close(writer, rel, des):
         writer.close()
@@ -195,7 +200,10 @@ def export_rows(task: str, ds, ids: Sequence[str], out_dir, shard_rows: int = SH
                 continue
             x, y = stack_inputs(task, s.inputs), np.asarray(s.label, np.float32)
             if not (np.isfinite(x).all() and np.isfinite(y).all()):
-                nonfinite.append(sid)
+                if allow_exclusion:
+                    nonfinite.append(sid)              # train rows: not written, listed in the manifest
+                    continue
+                kept_nonfinite.append(sid)             # evaluation rows are never excluded (predictions go through nan_to_num)
             if writer is None or len(writer.ids) >= shard_rows:
                 if writer is not None:
                     close(writer, rel, des)
@@ -207,7 +215,8 @@ def export_rows(task: str, ds, ids: Sequence[str], out_dir, shard_rows: int = SH
             close(writer, rel, des)
     man = {'task': task, 'label': label, 'format': 'npz (deflate), members x_<k> float32 (C,H,W) and y_<k> float32 (H,W), k = index into shard ids',
            'channels': CHANNELS[task], 'n_rows': sum(len(s['ids']) for s in shards), 'shards': shards,
-           'nonfinite_ids': nonfinite, 'missing_ids': missing, 'loader_skipped': getattr(ds, 'skipped', [])}
+           'excluded_nonfinite_ids': nonfinite, 'n_excluded_nonfinite': len(nonfinite), 'nonfinite_rows_kept': kept_nonfinite,
+           'excluded_fraction': len(nonfinite) / max(len(nonfinite) + sum(len(s['ids']) for s in shards), 1), 'missing_ids': missing, 'loader_skipped': getattr(ds, 'skipped', [])}
     (out / 'manifest.json').write_text(json.dumps(man, indent=1), encoding='utf-8')
     return man
 
@@ -224,7 +233,8 @@ class ShardSource:
                 self.ids.append(sid)
                 self._loc.append((si, k))
                 self.designs.append(sh['design'])
-        self.nonfinite_ids = list(self.manifest['nonfinite_ids'])
+        self.nonfinite_ids = []                        # exported shards contain finite rows only
+        self.excluded_ids = list(self.manifest['excluded_nonfinite_ids'])
         self._verify, self._ok, self._open, self._max_open = verify, set(), OrderedDict(), max_open
 
     def __len__(self):

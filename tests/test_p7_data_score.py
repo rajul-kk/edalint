@@ -89,7 +89,7 @@ def test_export_round_trip_is_bit_exact_with_sha256_manifest(task, tmp_path):
     ds = _list_ds(task)
     ids = ds.ids('train')
     man = export_rows(task, ds, ids, tmp_path / 'a', shard_rows=3)
-    assert man['n_rows'] == 10 and man['nonfinite_ids'] == [] and man['missing_ids'] == []
+    assert man['n_rows'] == 10 and man['excluded_nonfinite_ids'] == [] and man['n_excluded_nonfinite'] == 0 and man['missing_ids'] == []
     assert [len(s['ids']) for s in man['shards']] == [3, 2, 3, 2]
     assert all(len({design_of(i) for i in s['ids']}) == 1 and s['design'] == design_of(s['ids'][0]) for s in man['shards'])     # sharded by design
     src = ShardSource(tmp_path / 'a')
@@ -118,18 +118,30 @@ def test_export_is_reproducible_and_detects_tampering(tmp_path):
         ShardSource(tmp_path / 'a').get(0)
 
 
-def test_export_records_non_finite_rows_and_subset_source(tmp_path):
+def test_export_excludes_non_finite_train_rows_and_lists_them_in_the_manifest(tmp_path):
     ds = _list_ds('congestion')
     bad = ds.ids('train')[2]
     ds._samples[bad].inputs['RUDY'][0, 0] = np.nan
     man = export_rows('congestion', ds, ds.ids('train'), tmp_path / 'a')
-    assert man['nonfinite_ids'] == [bad]
+    assert man['excluded_nonfinite_ids'] == [bad] and man['n_excluded_nonfinite'] == 1
+    assert man['n_rows'] == 9 and man['excluded_fraction'] == pytest.approx(0.1)
+    assert bad not in [i for s in man['shards'] for i in s['ids']]                # not written
+    on_disk = json.loads((tmp_path / 'a' / 'manifest.json').read_text())
+    assert on_disk['excluded_nonfinite_ids'] == [bad] and on_disk['n_excluded_nonfinite'] == 1
     src = ShardSource(tmp_path / 'a')
-    assert src.nonfinite_ids == [bad]
-    sub = SubsetSource(src, [i for i in src.ids if i != bad][:4])
-    assert len(sub) == 4 and sub.nonfinite_ids == []
+    assert bad not in src.ids and src.excluded_ids == [bad] and src.nonfinite_ids == []
+    sub = SubsetSource(src, [i for i in src.ids][:4])
+    assert len(sub) == 4 and sub.nonfinite_ids == [] and sub.excluded_ids == [bad]
     with pytest.raises(ValueError):
         SubsetSource(src, ['nope'])
+
+
+def test_evaluation_style_export_never_excludes(tmp_path):
+    ds = _list_ds('congestion')
+    bad = ds.ids('train')[2]
+    ds._samples[bad].inputs['RUDY'][0, 0] = np.nan
+    man = export_rows('congestion', ds, ds.ids('train'), tmp_path / 'a', allow_exclusion=False)
+    assert man['n_rows'] == 10 and man['excluded_nonfinite_ids'] == [] and man['nonfinite_rows_kept'] == [bad]
 
 
 # -- scorer -------------------------------------------------------------------------------------------------------------------------------

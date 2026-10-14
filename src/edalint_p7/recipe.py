@@ -18,7 +18,8 @@ BETAS = (0.9, 0.999)
 BLOCK = 100                       # train.py print_freq: one block of iterations between two loss prints
 FLIP_RATIO = 0.5
 AUTHORS_ITERS = 200000
-SAMPLER_MODES = ('block100', 'epoch')
+SAMPLER_MODES = ('epoch', 'block100')           # 'epoch' is the default (protocol_p7.md 11b); 'block100' is a sensitivity mode
+MAX_EXCLUDED_FRACTION = 0.005                   # training aborts if more than 0.5 % of the train rows were excluded as non-finite
 
 RECIPE: Dict[str, dict] = {
     'ir_drop': dict(model='MAVI', batch_size=2, lr=2e-4, weight_decay=1e-2, loss='l1', flip=False, in_channels=24),
@@ -50,7 +51,7 @@ class BlockSampler:
         does: `IterLoader.__iter__` returns self, so the `break` at print_freq in train.py does NOT restart the loader.
     """
 
-    def __init__(self, n: int, batch: int, seed: int, mode: str = 'block100', block: int = BLOCK):
+    def __init__(self, n: int, batch: int, seed: int, mode: str = 'epoch', block: int = BLOCK):
         if mode not in SAMPLER_MODES:
             raise ValueError(f'mode must be one of {SAMPLER_MODES}')
         if n < batch:

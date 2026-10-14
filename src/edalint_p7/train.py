@@ -18,7 +18,7 @@ import torch
 
 from . import models as P
 from .data import model_input, model_target
-from .recipe import BETAS, BLOCK, LOSS_WEIGHT, MIN_LR, RECIPE, BlockSampler, cosine_lr, flip_pair
+from .recipe import BETAS, BLOCK, LOSS_WEIGHT, MAX_EXCLUDED_FRACTION, MIN_LR, RECIPE, BlockSampler, cosine_lr, flip_pair
 
 MAX_CONSECUTIVE_NONFINITE = 100
 
@@ -63,20 +63,28 @@ def make_batch(task: str, source, idx, rng: np.random.Generator, flip: bool, dev
         ys.append(np.asarray(y, np.float32))
     x = torch.from_numpy(np.stack(xs)).to(device)
     y = torch.from_numpy(np.stack(ys)).to(device)
+    if not (torch.isfinite(x).all() and torch.isfinite(y).all()):
+        raise ValueError('non-finite value in a training batch that is not on the exclusion list: aborting')
     return model_input(task, x), model_target(task, y)
 
 
-def train(task: str, source, iters: int, seed: int, precision: str = 'fp32', device: str = 'cpu', sampler_mode: str = 'block100',
-          ckpt_path: Optional[str] = None, log=print, allow_nonfinite_rows: bool = False, model=None) -> Dict[str, Any]:
+def train(task: str, source, iters: int, seed: int, precision: str = 'fp32', device: str = 'cpu', sampler_mode: str = 'epoch',
+          ckpt_path: Optional[str] = None, log=print, model=None) -> Dict[str, Any]:
     """Train from scratch for `iters` iterations on `source` (len, get(k) -> (x, y), nonfinite_ids). Returns the train record
     (budget, loss per 100 iterations, hardware, wall time, checkpoint sha256, deviations); the trained model is in rec['_model'] (not JSON)."""
     if task not in RECIPE:
         raise ValueError(f'task must be one of {sorted(RECIPE)}')
     if precision not in ('fp32', 'fp16'):
         raise ValueError("precision must be 'fp32' or 'fp16'")
-    if getattr(source, 'nonfinite_ids', None) and not allow_nonfinite_rows:
-        raise ValueError(f'{len(source.nonfinite_ids)} train rows contain non-finite values (e.g. {source.nonfinite_ids[:3]}); '
-                         'the protocol has no rule for them, refusing to train')
+    excluded = list(getattr(source, 'excluded_ids', []))
+    n_all = len(source) + len(excluded)
+    frac = len(excluded) / n_all if n_all else 0.0
+    if frac > MAX_EXCLUDED_FRACTION:
+        raise ValueError(f'{len(excluded)} of {n_all} train rows ({100 * frac:.2f} %) were excluded as non-finite; the limit is '
+                         f'{100 * MAX_EXCLUDED_FRACTION:.1f} %: aborting')
+    if getattr(source, 'nonfinite_ids', None):
+        raise ValueError(f'{len(source.nonfinite_ids)} rows of the train source are non-finite and not on the exclusion list '
+                         f'(e.g. {source.nonfinite_ids[:3]}): aborting')
     cfg = RECIPE[task]
     seed_all(seed)
     if model is None:
@@ -143,7 +151,7 @@ def train(task: str, source, iters: int, seed: int, precision: str = 'fp32', dev
         'loss': f'{LOSS_WEIGHT:g} x mean {"L1" if cfg["loss"] == "l1" else "MSE"}',
         'flip_augmentation': cfg['flip'], 'sampler_mode': sampler_mode, 'precision': precision,
         'deviation': 'fp16' if fp16 else None, 'skipped_steps': skipped, 'nonfinite_losses': nonfinite, 'diverged_at': diverged_at,
-        'n_train_rows': len(source), 'rows_per_design': {d: sum(1 for x in source.designs if x == d) for d in sorted(set(source.designs))},
+        'n_train_rows': len(source), 'excluded_nonfinite_ids': excluded, 'n_excluded_nonfinite': len(excluded), 'excluded_fraction': frac, 'rows_per_design': {d: sum(1 for x in source.designs if x == d) for d in sorted(set(source.designs))},
         'lr_first': lrs[0] if lrs else None, 'lr_last': lrs[-1] if lrs else None, 'loss_per_100_iters': curve, 'wall_seconds': wall, 'hardware': hardware(device), 'checkpoint': 'last state, no validation',
     }
     if ckpt_path:

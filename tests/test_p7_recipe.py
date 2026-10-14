@@ -13,7 +13,7 @@ import p7_authors_ref as A                                           # noqa: E40
 from edalint.datasets.circuitnet import assemble                     # noqa: E402
 from edalint_p7 import models as P                                   # noqa: E402
 from edalint_p7.data import (CONGESTION_CHANNELS, IR_CHANNELS, MemorySource, model_input, stack_inputs)   # noqa: E402
-from edalint_p7.recipe import BLOCK, LOSS_WEIGHT, MIN_LR, RECIPE, BlockSampler, cosine_lr, flip_pair   # noqa: E402
+from edalint_p7.recipe import BLOCK, LOSS_WEIGHT, MIN_LR, RECIPE, SAMPLER_MODES, BlockSampler, cosine_lr, flip_pair   # noqa: E402
 from edalint_p7.train import loss_fn, make_batch, train              # noqa: E402
 
 
@@ -212,12 +212,52 @@ def test_fp32_train_record_and_schedule_endpoints():
     assert rec['iters_done'] == 4
 
 
-def test_train_refuses_rows_with_non_finite_values():
+def test_train_aborts_on_non_finite_rows_not_on_the_exclusion_list():
     src = _toy_source('congestion', 20)
     src._x[3][0, 0, 0] = np.nan
     src.nonfinite_ids = [src.ids[3]]
-    with pytest.raises(ValueError, match='non-finite'):
+    with pytest.raises(ValueError, match='not on the exclusion list'):
         train('congestion', src, iters=1, seed=0)
+
+
+def test_train_aborts_on_a_non_finite_batch_not_on_the_list():
+    src = _toy_source('congestion', 20)
+    src._x[3][0, 0, 0] = np.nan                       # nonfinite_ids left empty: the batch-level check must still catch it
+    src.nonfinite_ids = []
+    with pytest.raises(ValueError, match='non-finite value in a training batch'):
+        train('congestion', src, iters=200, seed=0)
+
+
+def test_train_aborts_when_more_than_half_a_percent_of_rows_were_excluded():
+    src = _toy_source('congestion', 20)
+    src.excluded_ids = [f'RISCY_freq_x{i}' for i in range(1)]            # 1 of 21 = 4.8 %
+    with pytest.raises(ValueError, match='excluded as non-finite'):
+        train('congestion', src, iters=1, seed=0)
+    src.excluded_ids = []
+    rec = train('congestion', src, iters=1, seed=0)
+    assert rec['n_excluded_nonfinite'] == 0 and rec['excluded_fraction'] == 0.0
+
+
+def test_train_accepts_exactly_up_to_half_a_percent_and_records_the_list():
+    src = _toy_source('congestion', 20)
+    src.excluded_ids = [f'RISCY_freq_x{i}' for i in range(1)]
+    big = MemorySource([f'RISCY_freq_{i}' for i in range(200)], [src._x[0]] * 200, [src._y[0]] * 200)
+    big.excluded_ids = ['RISCY_freq_bad']                                  # 1 of 201 = 0.4975 % <= 0.5 %
+    rec = train('congestion', big, iters=1, seed=0)
+    assert rec['excluded_nonfinite_ids'] == ['RISCY_freq_bad'] and rec['n_excluded_nonfinite'] == 1
+    assert rec['excluded_fraction'] == pytest.approx(1 / 201)
+
+
+def test_default_sampler_is_epoch_and_block100_remains_available():
+    import inspect
+    assert inspect.signature(BlockSampler).parameters['mode'].default == 'epoch'
+    assert inspect.signature(train).parameters['sampler_mode'].default == 'epoch'
+    assert 'epoch' in SAMPLER_MODES and 'block100' in SAMPLER_MODES
+    rec = train('congestion', _toy_source('congestion', 20), iters=2, seed=0)
+    rec.pop('_model')
+    assert rec['sampler_mode'] == 'epoch'
+    run_train = (Path(__file__).resolve().parents[1] / 'scripts' / 'p7_run_train.py').read_text()
+    assert "'--sampler', default='epoch'" in run_train
 
 
 # -- port equivalence (skippable: needs the authors' files, which import mmcv) -------------------------------------------------------

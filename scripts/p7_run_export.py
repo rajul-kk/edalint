@@ -37,7 +37,7 @@ def main(argv=None) -> int:
             print(exc)
             return 2
         ids = [i for v in tr.ids_by_design.values() for i in v]
-        man = export_rows(a.task, tr.ds, ids, a.out, a.shard_rows, label='POST-FREEZE evaluation rows')
+        man = export_rows(a.task, tr.ds, ids, a.out, a.shard_rows, label='POST-FREEZE evaluation rows', allow_exclusion=False)
     else:
         ds = open_train_rows(a.task, cache_dir=cache, root=a.root)
         ids = ds.ids('train')
@@ -47,7 +47,7 @@ def main(argv=None) -> int:
         man = export_rows(a.task, ds, ids, a.out, a.shard_rows, label='train only')
         man['train_id_report'] = report
         (Path(a.out) / 'manifest.json').write_text(json.dumps(man, indent=1), encoding='utf-8')
-    print(f'exported {man["n_rows"]} rows in {len(man["shards"])} shards to {a.out}; non-finite rows: {len(man["nonfinite_ids"])}')
+    print(f'exported {man["n_rows"]} rows in {len(man["shards"])} shards to {a.out}; excluded non-finite rows: {man["n_excluded_nonfinite"]}')
     return 0
 
 

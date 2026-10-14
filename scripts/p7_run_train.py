@@ -29,7 +29,7 @@ def main(argv=None) -> int:
     ap.add_argument('--arm', default='A', choices=['A', 'B'])
     ap.add_argument('--precision', default='fp32', choices=['fp32', 'fp16'])
     ap.add_argument('--device', default='cuda')
-    ap.add_argument('--sampler', default='block100', choices=['block100', 'epoch'])
+    ap.add_argument('--sampler', default='epoch', choices=['epoch', 'block100'])
     ap.add_argument('--bundle', default=str(REPO))
     ap.add_argument('--out', default=str(REPO / 'results' / 'p7'))
     ap.add_argument('--n14-dir', default=None, help='dir with models_<task>.json (eval_ids, fit_ids); default results/n14 of the bundle')
@@ -44,7 +44,8 @@ def main(argv=None) -> int:
     ids = src.ids
     check_train_ids(ids, load_eval_ids(a.task, n14), train_names(), [s['id'] for s in src.manifest['loader_skipped'] if 'id' in s])
     if a.arm == 'B':
-        ids = json.loads((Path(n14) / f'models_{a.task}.json').read_text(encoding='utf-8'))['fit_ids']
+        have = set(src.ids)
+        ids = [i for i in json.loads((Path(n14) / f'models_{a.task}.json').read_text(encoding='utf-8'))['fit_ids'] if i in have]   # excluded non-finite rows drop out
         src = SubsetSource(src, ids)
     out = Path(a.out)
     tag = f'{a.task}_{a.arm}_s{a.seed}'
