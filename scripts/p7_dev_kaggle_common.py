@@ -63,6 +63,13 @@ def const_loss(task, mm, src, idx, weight=100.0):
     return weight * tot / max(n, 1)
 
 
+def finite_mean(v):
+    """Mean of the finite entries (N14 / P7 protocol 12.6: undefined NRMS rows, inf or nan, are dropped) and the number dropped."""
+    a = np.asarray(v, float)
+    f = np.isfinite(a)
+    return (float(a[f].mean()) if f.any() else float('nan')), int((~f).sum())
+
+
 def heldout_eval(task, model, src, idx, mm, device, log):
     from edalint.baselines.base import resize_to
     from edalint.p4_n14 import PrimaryAcc
@@ -82,13 +89,15 @@ def heldout_eval(task, model, src, idx, mm, device, log):
         if (j + 1) % 200 == 0:
             log(f'held-out scored {j + 1}/{len(idx)} {time.perf_counter() - t0:.0f}s')
     res = {'n_rows': len(idx), 'seconds': time.perf_counter() - t0,
-           'nrms_model': float(np.nanmean(ag.nrms)), 'nrms_mean_map': float(np.nanmean(am.nrms))}
+           'nrms_model': finite_mean(ag.nrms)[0], 'nrms_mean_map': finite_mean(am.nrms)[0],
+           'n_nrms_undefined_model': finite_mean(ag.nrms)[1], 'n_nrms_undefined_mean_map': finite_mean(am.nrms)[1]}
     if task == 'ir_drop':
         res.update(roc_model=ag.roc.area(), roc_mean_map=am.roc.area(), roc_model_anchored=ag.roc.area(anchored=True),
                    roc_mean_map_anchored=am.roc.area(anchored=True))
     res['per_design'] = {}
     for d, (pm_, pg_) in per.items():
-        e = {'n': len(pg_.nrms), 'nrms_model': float(np.nanmean(pg_.nrms)), 'nrms_mean_map': float(np.nanmean(pm_.nrms))}
+        e = {'n': len(pg_.nrms), 'nrms_model': finite_mean(pg_.nrms)[0], 'nrms_mean_map': finite_mean(pm_.nrms)[0],
+             'n_nrms_undefined_model': finite_mean(pg_.nrms)[1], 'n_nrms_undefined_mean_map': finite_mean(pm_.nrms)[1]}
         if task == 'ir_drop':
             e.update(roc_model=pg_.roc.area(), roc_mean_map=pm_.roc.area())
         res['per_design'][d] = e
