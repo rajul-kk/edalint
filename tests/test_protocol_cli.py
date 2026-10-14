@@ -105,9 +105,13 @@ def test_freeze_is_per_dataset(tmp_path):
     assert require_frozen(str(tmp_path), dataset='iccad23')            # ICCAD'23 freeze still valid
 
 
-def test_real_repo_iccad23_freeze_is_recognised_and_n14_is_not(monkeypatch):
+def test_real_repo_freezes_are_recognised_per_dataset(monkeypatch):
+    """ICCAD'23 and N14 are both frozen in the real repo (N14 since its freeze commit); each freeze is recognised only for its own
+    dataset key, and a dataset with no freeze file (a draft protocol) is not unlocked by either."""
     from edalint.protocol import REPO_DIR
     monkeypatch.delenv('EDALINT_PROTOCOL_DIR', raising=False)
     d = str(REPO_DIR / 'protocol')
     assert frozen_info(d, 'iccad23') is not None
-    assert frozen_info(d, 'circuitnet_n14_ir_drop_authors') is None
+    n14 = frozen_info(d, 'circuitnet_n14_ir_drop_authors')
+    assert n14 is not None and n14['dataset'] == 'n14' and n14['code_hash'] == code_hash()
+    assert frozen_info(d, 'no_such_dataset_without_freeze') is None
