@@ -52,16 +52,19 @@ def payload(seed, area, **kw):
 
 
 def train_rec(**kw):
-    r = {'last_block_loss': 20.0, 'final_params_finite': True, 'skipped_steps': 4, 'iters_done': 30000, 'diverged_at': None}
+    r = {'task': 'ir_drop', 'arm': 'A', 'seed': None, 'last_block_loss': 20.0, 'final_params_finite': True, 'skipped_steps': 4, 'iters_done': 30000,
+         'diverged_at': None, 'p7_code_hash': 'x'}
     r.update(kw)
     return r
 
 
-def cpv(seeds, n14, reg=None, tr='ok'):
+def cpv(seeds, n14, reg=None, tr='ok', p7_hash=None):
     """compute_p7_verdicts with a clean train record for every seed unless `tr` is given."""
     if tr == 'ok':
-        tr = {s: train_rec() for s in V.SEEDS}
-    return compute_p7_verdicts(seeds, n14, reg, tr)
+        tr = {s: train_rec(seed=s) for s in V.SEEDS}
+    else:
+        tr = {s: (None if r is None else {**r, 'seed': r['seed'] if r.get('seed') is not None else s}) for s, r in tr.items()}
+    return compute_p7_verdicts(seeds, n14, reg, tr, p7_hash)
 
 
 def seeds_with(areas):
@@ -231,20 +234,20 @@ def test_header_mismatch_refused(tmp_path):
 
 
 # -- refusal before the freeze, write_once ------------------------------------------------------------------------------------------
-def _stage_files(tmp_path, areas=(0.80, 0.82, 0.78)):
+def _stage_files(tmp_path, areas=(0.80, 0.82, 0.78), h='x'):
     md, nd = tmp_path / 'p7', tmp_path / 'n14'
     md.mkdir()
     nd.mkdir()
     (nd / 'models_ir_drop.json').write_text(json.dumps(n14_models()))
     for s, a in zip(V.SEEDS, areas):
-        (md / f'models_ir_drop_A_s{s}.json').write_text(json.dumps(payload(s, a)))
-        (md / f'train_ir_drop_A_s{s}.json').write_text(json.dumps(train_rec()))
+        (md / f'models_ir_drop_A_s{s}.json').write_text(json.dumps({**payload(s, a), 'p7_code_hash': h}))
+        (md / f'train_ir_drop_A_s{s}.json').write_text(json.dumps(train_rec(seed=s, p7_code_hash=h)))
     return md, nd
 
 
 def test_run_verdicts_refuses_before_the_freeze_and_writes_nothing(tmp_path):
     r = make_repo(tmp_path / 'repo')
-    md, nd = _stage_files(tmp_path)
+    md, nd = _stage_files(tmp_path, h=guard.p7_code_hash(r))
     with pytest.raises(ProtocolError):
         run_verdicts(md, nd, str(r / 'protocol'), r)
     write_freeze(r, p7_code_hash='1' * 64)
@@ -256,7 +259,7 @@ def test_run_verdicts_refuses_before_the_freeze_and_writes_nothing(tmp_path):
 def test_run_verdicts_is_write_once(tmp_path):
     r = make_repo(tmp_path / 'repo')
     write_freeze(r)
-    md, nd = _stage_files(tmp_path)
+    md, nd = _stage_files(tmp_path, h=guard.p7_code_hash(r))
     v = run_verdicts(md, nd, str(r / 'protocol'), r)
     assert v['verdict'] is True
     out = json.loads((md / 'verdicts_p7.json').read_text())
@@ -277,7 +280,7 @@ def _load_script(name):
 def test_verdict_script_exits_2_before_the_freeze_and_after_a_first_run(tmp_path, capsys):
     mod = _load_script('p7_run_verdicts')
     r = make_repo(tmp_path / 'repo')
-    md, nd = _stage_files(tmp_path)
+    md, nd = _stage_files(tmp_path, h=guard.p7_code_hash(r))
     args = ['--models-dir', str(md), '--n14-dir', str(nd), '--bundle', str(r)]
     assert mod.main(args) == 2 and 'refused' in capsys.readouterr().out
     write_freeze(r)
@@ -341,26 +344,114 @@ def test_two_diverged_seeds_leave_no_verdict():
 def test_run_verdicts_reads_train_files_and_excludes_a_diverged_seed(tmp_path):
     r = make_repo(tmp_path / 'repo')
     write_freeze(r)
-    md, nd = _stage_files(tmp_path)
-    (md / f'train_ir_drop_A_s{V.SEEDS[2]}.json').write_text(json.dumps(train_rec(last_block_loss=float('nan'))))
+    md, nd = _stage_files(tmp_path, h=guard.p7_code_hash(r))
+    (md / f'train_ir_drop_A_s{V.SEEDS[2]}.json').write_text(json.dumps(train_rec(seed=V.SEEDS[2], p7_code_hash=guard.p7_code_hash(r), last_block_loss=float('nan'))))
     v = run_verdicts(md, nd, str(r / 'protocol'), r)
     assert v['seeds_defined'] == [str(V.SEEDS[0]), str(V.SEEDS[1])]
 
 
+class _Src:
+    designs = ['d'] * 32
+    excluded_ids = []
+    nonfinite_ids = []
+
+    def __len__(self):
+        return 32
+
+    def get(self, k):
+        g = np.random.default_rng(k)
+        return g.random((3, 16, 16), dtype=np.float32), g.random((16, 16), dtype=np.float32)
+
+
 def test_trainer_records_last_block_loss_and_final_params_finite():
+    from edalint_p7 import train as T
+    rec = T.train('congestion', _Src(), 100, 1, 'fp32', 'cpu', log=lambda *a: None)
+    assert rec['final_params_finite'] is True and np.isfinite(rec['last_block_loss']) and rec['last_block_loss'] == rec['loss_per_100_iters'][-1]
+    assert rec['diverged_at'] is None and V.divergence_reason({**rec, 'seed': 1}) is None
+
+
+def test_real_train_with_nan_loss_or_nan_params_trips_the_rule():
     import torch
     from edalint_p7 import train as T
-    class Src:
-        designs = ['d'] * 32
-        excluded_ids = []
-        nonfinite_ids = []
-        def __len__(self):
-            return 32
-        def get(self, k):
-            g = np.random.default_rng(k)
-            return g.random((3, 16, 16), dtype=np.float32), g.random((16, 16), dtype=np.float32)
-    rec = T.train('congestion', Src(), 100, 1, 'fp32', 'cpu', log=lambda *a: None)
-    assert rec['final_params_finite'] is True and np.isfinite(rec['last_block_loss']) and rec['last_block_loss'] == rec['loss_per_100_iters'][-1]
+
+    class NanOut(torch.nn.Module):                         # finite parameters, NaN output -> NaN loss at iteration 0 (fp32: stop at once)
+        def __init__(self):
+            super().__init__()
+            self.m = T.build_model('congestion')
+
+        def forward(self, x):
+            return self.m(x) * float('nan')
+    rec = T.train('congestion', _Src(), 100, 1, 'fp32', 'cpu', log=lambda *a: None, model=NanOut())
+    assert rec['diverged_at'] == 0 and rec['final_params_finite'] is True and np.isnan(rec['last_block_loss'])
+    assert 'last_block_loss' in V.divergence_reason(rec)
+    m = T.build_model('congestion')
     with torch.no_grad():
-        next(rec['_model'].parameters()).fill_(float('nan'))
-    assert not all(torch.isfinite(v).all() for v in rec['_model'].state_dict().values() if v.is_floating_point())
+        for p in m.parameters():
+            p.fill_(float('nan'))
+    rec = T.train('congestion', _Src(), 100, 1, 'fp32', 'cpu', log=lambda *a: None, model=m)
+    assert rec['diverged_at'] == 0 and rec['final_params_finite'] is False and np.isnan(rec['last_block_loss'])
+
+
+# -- train-record consistency, hashes, NaN sensitivities, no half-written run -----------------------------------------------------------
+def test_train_header_mismatch_aborts():
+    bad = {V.SEEDS[0]: train_rec(seed=V.SEEDS[0]), V.SEEDS[1]: train_rec(seed=V.SEEDS[1]), V.SEEDS[2]: train_rec(seed=V.SEEDS[1])}
+    with pytest.raises(ProtocolError, match='train record of seed'):
+        cpv(seeds_with([0.80, 0.82, 0.78]), n14_models(), tr=bad)
+    for kw in ({'task': 'congestion'}, {'arm': 'B'}):
+        tr = {s: train_rec(seed=s, **kw) for s in V.SEEDS}
+        with pytest.raises(ProtocolError, match='train record of seed'):
+            cpv(seeds_with([0.80, 0.82, 0.78]), n14_models(), tr=tr)
+
+
+def test_wrong_iteration_count_makes_the_seed_undefined_not_an_abort():
+    tr = {s: train_rec(seed=s) for s in V.SEEDS}
+    tr[V.SEEDS[2]] = train_rec(seed=V.SEEDS[2], iters_done=29999)
+    v = cpv(seeds_with([0.80, 0.82, 0.78]), n14_models(), tr=tr)
+    assert 'iters_done' in v['per_seed'][str(V.SEEDS[2])]['reason'] and v['seeds_defined'] == [str(V.SEEDS[0]), str(V.SEEDS[1])]
+
+
+def test_p7_code_hash_mismatch_makes_the_seed_undefined():
+    seeds = seeds_with([0.80, 0.82, 0.78])
+    ok = {s: train_rec(seed=s, p7_code_hash='H') for s in V.SEEDS}
+    for s in V.SEEDS:
+        seeds[s]['p7_code_hash'] = 'H'
+    assert cpv(seeds, n14_models(), tr=ok, p7_hash='H')['seeds_defined'] == [str(s) for s in V.SEEDS]
+    seeds[V.SEEDS[0]]['p7_code_hash'] = 'other'                                           # scored under other code
+    v = cpv(seeds, n14_models(), tr=ok, p7_hash='H')
+    assert 'scored file p7_code_hash' in v['per_seed'][str(V.SEEDS[0])]['reason'] and len(v['seeds_defined']) == 2
+    seeds[V.SEEDS[0]]['p7_code_hash'] = 'H'
+    ok[V.SEEDS[1]]['p7_code_hash'] = None                                                 # trained under other code
+    v = cpv(seeds, n14_models(), tr=ok, p7_hash='H')
+    assert 'train record p7_code_hash' in v['per_seed'][str(V.SEEDS[1])]['reason'] and len(v['seeds_defined']) == 2
+
+
+def test_nan_sensitivity_is_undefined_not_false(monkeypatch):
+    real = V.seed_view
+
+    def nan_pooled(p):
+        v = real(p)
+        v['design_macro_anchored'] = v['sample_pooled'] = float('nan')
+        return v
+    monkeypatch.setattr(V, 'seed_view', nan_pooled)
+    v = cpv(seeds_with([0.80, 0.82, 0.78]), n14_models())
+    assert v['verdict'] is True
+    for k in ('anchored_roc', 'sample_pooled'):
+        x = v['sensitivities'][k]
+        assert x['verdict'] is None and x['h_b'] is None and x['verdict_label'] == 'undefined' and x['undefined'] is True and x['agrees_with_primary'] is None
+    assert 'undefined' in render_tables_p7(v)
+    json.dumps(v)
+
+
+def test_run_verdicts_pre_checks_both_outputs_and_writes_nothing_if_either_exists(tmp_path):
+    r = make_repo(tmp_path / 'repo')
+    write_freeze(r)
+    md, nd = _stage_files(tmp_path, h=guard.p7_code_hash(r))
+    (md / 'tables_p7.md').write_text('old')
+    with pytest.raises(ResultExists):
+        run_verdicts(md, nd, str(r / 'protocol'), r)
+    assert not (md / 'verdicts_p7.json').exists() and (md / 'tables_p7.md').read_text() == 'old'
+    (md / 'tables_p7.md').unlink()
+    (md / 'verdicts_p7.json').write_text('old')
+    with pytest.raises(ResultExists):
+        run_verdicts(md, nd, str(r / 'protocol'), r)
+    assert not (md / 'tables_p7.md').exists() and (md / 'verdicts_p7.json').read_text() == 'old'

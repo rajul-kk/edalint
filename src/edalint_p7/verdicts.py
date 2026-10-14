@@ -19,7 +19,7 @@ import numpy as np
 from edalint.core import ProtocolError
 from edalint.p4_n14 import H1_FRACTION, PUBLISHED_REF, RocAcc, design_values, macro, pooled_value
 from edalint.protocol import REPO_DIR
-from edalint.runner import write_once, write_text_once
+from edalint.runner import ResultExists, write_once, write_text_once
 
 from .guard import check_p7_freeze
 
@@ -32,6 +32,7 @@ H_B_FRACTION = H1_FRACTION                         # 0.8, the registered N14 lin
 BAND_AUC = 0.03                                    # H-C band
 AUTHORS_INF = 0.05                                 # the authors' substitute for an infinite NRMS (secondary only)
 MIN_FINITE_SEEDS = 2
+ITERS = 30000                                      # registered MAVI budget (protocol_p7.md 12.5)
 
 
 # -- pure verdict logic (boundary-testable) -----------------------------------------------------------------------------------
@@ -118,6 +119,26 @@ def divergence_reason(rec: Optional[dict]) -> Optional[str]:
     return None
 
 
+def seed_exclusion_reason(seed: int, scored: dict, train: Optional[dict], p7_hash: Optional[str] = None) -> Optional[str]:
+    """Why a seed with a scored file is undefined (None = fine). A train-record header (task / arm / seed) that does not match the scored file
+    aborts (ProtocolError), like a scored-file header mismatch. Otherwise, in order: the divergence rule, `iters_done` != 30,000, and (if
+    `p7_hash` is given) a scored or train `p7_code_hash` different from it. These make the seed undefined, not the run abort."""
+    if train is not None and (train.get('task'), train.get('arm'), train.get('seed')) != (TASK, ARM, seed):
+        raise ProtocolError(f'train record of seed {seed}: header says task={train.get("task")!r} arm={train.get("arm")!r} seed={train.get("seed")!r}, '
+                            f'expected {TASK}/{ARM}/{seed}')
+    why = divergence_reason(train)
+    if why:
+        return why
+    if train.get('iters_done') != ITERS:
+        return f'iters_done is {train.get("iters_done")!r}, not {ITERS}'
+    if p7_hash is not None:
+        if scored.get('p7_code_hash') != p7_hash:
+            return 'scored file p7_code_hash differs from the frozen p7 hash'
+        if train.get('p7_code_hash') != p7_hash:
+            return 'train record p7_code_hash differs from the frozen p7 hash'
+    return None
+
+
 def _block(payload: dict) -> dict:
     return {'rows': payload['rows'], 'official_roc': payload['official_roc']}
 
@@ -184,7 +205,7 @@ def _mean(xs: Sequence[float]) -> float:
 
 # -- the aggregator ------------------------------------------------------------------------------------------------------------
 def compute_p7_verdicts(seed_payloads: Dict[int, Optional[dict]], n14_models: dict, n14_verdicts: Optional[dict] = None,
-                        train_records: Optional[Dict[int, Optional[dict]]] = None) -> Dict[str, Any]:
+                        train_records: Optional[Dict[int, Optional[dict]]] = None, p7_hash: Optional[str] = None) -> Dict[str, Any]:
     """Mechanical H-A / H-B / H-C and the registered sensitivities for IR drop. `seed_payloads` maps each registered seed to its scored file
     (or None if absent) and `train_records` the matching train results (None / absent entry = missing = undefined). A seed is 'defined' when
     its train record passes `divergence_reason` AND its design-macro official ROC area is finite; with fewer than 2 defined seeds there is no verdict."""
@@ -203,7 +224,7 @@ def compute_p7_verdicts(seed_payloads: Dict[int, Optional[dict]], n14_models: di
         check_ids(p, n14_models, f'seed {s}')
         v = seed_view(p)
         tr = train_records.get(s)
-        why = divergence_reason(tr)
+        why = seed_exclusion_reason(s, p, tr, p7_hash)
         v['defined'] = bool(np.isfinite(v['design_macro'])) and why is None
         v['train'] = {'last_block_loss': (tr or {}).get('last_block_loss'), 'final_params_finite': (tr or {}).get('final_params_finite'),
                       'skipped_steps': (tr or {}).get('skipped_steps'), 'iters_done': (tr or {}).get('iters_done')}
@@ -252,6 +273,9 @@ def compute_p7_verdicts(seed_payloads: Dict[int, Optional[dict]], n14_models: di
     def hb_alt(key_model: str, key_base: str):
         r_a = _mean([v[key_model] for v in defined.values()])
         m_a = base['mean_map'][key_base]
+        if not (np.isfinite(r_a) and np.isfinite(m_a)):
+            return {'R_t': None, 'M_t': None, 'G_b': None, 'G_R': None, 'h_b': None, 'gate_taken_from_primary': prim['gate_pass'], 'verdict': None,
+                    'verdict_label': 'undefined', 'undefined': True, 'agrees_with_primary': None}
         g_a = max(b[key_base] - m_a for n, b in base.items() if n != 'mean_map' and np.isfinite(b[key_base]))
         hb = h_b(g_a, r_a - m_a)
         return {'R_t': r_a, 'M_t': m_a, 'G_b': g_a, 'G_R': r_a - m_a, 'h_b': hb, 'gate_taken_from_primary': prim['gate_pass'],
@@ -338,12 +362,16 @@ def run_verdicts(models_dir=None, n14_dir=None, protocol_dir=None, repo_root=Non
     """Refuses (ProtocolError) before the P7 freeze or on a code-hash mismatch; then reads the scored files and writes verdicts_p7.json and
     tables_p7.md under `out_dir` (default = models_dir), run-once."""
     check_p7_freeze(protocol_dir, repo_root, what='P7 verdicts')
+    from .guard import p7_code_hash
     md = Path(models_dir or REPO_DIR / 'results' / 'p7')
     nd = Path(n14_dir or REPO_DIR / 'results' / 'n14')
     od = Path(out_dir or md)
     n14_models = _load(nd / f'models_{TASK}.json')
     n14_ver = _load(nd / 'verdicts.json') if (nd / 'verdicts.json').exists() else None
-    v = compute_p7_verdicts(load_seed_files(md, seeds), n14_models, n14_ver, load_train_records(md, seeds))
+    for name in ('verdicts_p7.json', 'tables_p7.md'):
+        if (od / name).exists():
+            raise ResultExists(f'{od / name} already exists; result files are run-once and are never overwritten (nothing written)')
+    v = compute_p7_verdicts(load_seed_files(md, seeds), n14_models, n14_ver, load_train_records(md, seeds), p7_code_hash(repo_root))
     write_once(od / 'verdicts_p7.json', {'label': 'REGISTERED (post-freeze)', **v}, dataset='p7')
     write_text_once(od / 'tables_p7.md', render_tables_p7(v))
     return v
