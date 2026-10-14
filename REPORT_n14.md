@@ -132,7 +132,7 @@ The random split is **not** materially optimistic on this benchmark (0 of 3 task
 
 ## 9. Post-run notes (written after the registered run)
 
-- **No POST HOC analysis, no re-run, no crashed stage.** Every stage ran exactly once to completion from the freeze state; the only commands after the stages were `verdicts` and the commits.
+- **Registered run: no POST HOC analysis inside the registered stages, no re-run, no crashed stage. POST HOC items after the freeze are listed separately below and labelled as such.** Every stage ran exactly once to completion from the freeze state; the only commands after the stages were `verdicts` and the commits.
 - **Pre-freeze review nits (non-blocking), recorded for the record:**
   1. The protocol banner still reads DRAFT / NOT FROZEN and section 12 says "Freeze (to happen)"; the text was left unedited and the discrepancy is recorded in `protocol/FROZEN_n14.json` `protocol_status_note`.
   2. `results/n14/tables.md` does not print the per-row weak-reference flag or the sensitivity-agreement flag; both are in `verdicts.json` (all three pairs weak; the single sensitivity agrees).
