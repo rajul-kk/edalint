@@ -1,0 +1,157 @@
+{
+ "label": "DEVELOPMENT, train-only (p7dev_kaggle); not a result",
+ "model": "mavi",
+ "task": "ir_drop",
+ "code_hash": "d3f6d2f67218794687d736ab2d8fe0ab095cced40ff8bd250bf36191a7f5a2b7",
+ "p7_code_hash": "55a061d03b055ec4f346bb6b9121967d2315eca0e91244e5f58bd1b8d2b78375",
+ "torch": "2.11.0+cu128",
+ "gpu": "Tesla T4",
+ "manifest": {
+  "n_rows": 6790,
+  "n_shards": 54,
+  "n_excluded_nonfinite": 0,
+  "bad_sha256": [],
+  "verify_seconds": 206.42244060600024,
+  "designs": [
+   "RISCY",
+   "RISCY-FPU",
+   "Vortex-small",
+   "nvdla-small"
+  ]
+ },
+ "n_train_fold": 6611,
+ "n_heldout_available": 179,
+ "held_out_designs": [
+  "Vortex-small",
+  "nvdla-small"
+ ],
+ "gpu_step": [
+  {
+   "precision": "fp32",
+   "sec_per_iteration": 2.3428702714000034,
+   "sec_per_sample": 1.1714351357000017,
+   "batch_load_seconds_first_batch": 0.552441904999796,
+   "n_timed": 30,
+   "peak_gpu_gib": 6.211260795593262
+  },
+  {
+   "precision": "fp16",
+   "sec_per_iteration": 0.5873824285333284,
+   "sec_per_sample": 0.2936912142666642,
+   "batch_load_seconds_first_batch": 0.06480897799974628,
+   "n_timed": 30,
+   "peak_gpu_gib": 6.211260795593262
+  }
+ ],
+ "checks": [
+  {
+   "tag": "mavi_500_fp16",
+   "train": {
+    "task": "ir_drop",
+    "model": "MAVI",
+    "seed": 20261101,
+    "iters_requested": 500,
+    "iters_done": 500,
+    "batch_size": 2,
+    "lr": 0.0002,
+    "weight_decay": 0.01,
+    "optimizer": "AdamW",
+    "betas": [
+     0.9,
+     0.999
+    ],
+    "schedule": "cosine 0.0002 -> 1e-07 compressed to 500 iterations, set per iteration",
+    "loss": "100 x mean L1",
+    "flip_augmentation": false,
+    "sampler_mode": "epoch",
+    "precision": "fp16",
+    "deviation": "fp16",
+    "skipped_steps": 4,
+    "nonfinite_losses": 0,
+    "diverged_at": null,
+    "n_train_rows": 6611,
+    "excluded_nonfinite_ids": [],
+    "n_excluded_nonfinite": 0,
+    "excluded_fraction": 0.0,
+    "rows_per_design": {
+     "RISCY": 3162,
+     "RISCY-FPU": 3449
+    },
+    "lr_first": 0.0002,
+    "lr_last": 1.0197292742909532e-07,
+    "loss_per_100_iters": [
+     28.64967628479004,
+     23.75913278579712,
+     23.03758575439453,
+     22.551621379852296,
+     22.567887077331545
+    ],
+    "wall_seconds": 307.17296154199994,
+    "hardware": {
+     "device": "cuda",
+     "torch": "2.11.0+cu128",
+     "threads": 2,
+     "platform": "Linux-6.18.48+-x86_64-with-glibc2.39",
+     "cpu_model": "Intel(R) Xeon(R) CPU @ 2.00GHz",
+     "logical_cores": 4,
+     "gpu": "Tesla T4"
+    },
+    "checkpoint": "last state, no validation"
+   },
+   "e2e_sec_per_iteration": 0.6134613516624995,
+   "train_seconds": 307.4278995710001,
+   "loss_finite": true,
+   "skipped_fraction": 0.008,
+   "const_mean_map_train_loss": 28.42984888820951,
+   "last_block_train_loss": 22.567887077331545,
+   "first_block_train_loss": 28.64967628479004,
+   "loss_drop_fraction": 0.21228125396611497,
+   "heldout": {
+    "n_rows": 179,
+    "seconds": 74.59406884799955,
+    "nrms_model": Infinity,
+    "nrms_mean_map": Infinity,
+    "roc_model": 0.7677993860632846,
+    "roc_mean_map": 0.5076822386470696,
+    "roc_model_anchored": 0.8183953019696829,
+    "roc_mean_map_anchored": 0.5076822386797852,
+    "per_design": {
+     "Vortex-small": {
+      "n": 95,
+      "nrms_model": 0.39967115719408364,
+      "nrms_mean_map": 0.3751843687428693,
+      "roc_model": 0.7134068009191802,
+      "roc_mean_map": 0.5296091968299454
+     },
+     "nvdla-small": {
+      "n": 84,
+      "nrms_model": Infinity,
+      "nrms_mean_map": Infinity,
+      "roc_model": 0.8094763998185969,
+      "roc_mean_map": 0.4816292623311645
+     }
+    }
+   },
+   "fp16_vs_fp32_forward": {
+    "n_rows": 20,
+    "max_abs_diff": 0.0014872550964355469,
+    "max_abs_diff_over_max_abs_fp32": 0.0010106699774041772
+   },
+   "criteria": {
+    "all_losses_finite": true,
+    "skipped_fraction_le_5pct": true,
+    "last_block_below_const_mean_map_loss": true,
+    "heldout_roc_above_train_only_mean_map": true
+   },
+   "pass": true
+  }
+ ],
+ "projection": {
+  "mavi_500_fp16": {
+   "e2e_sec_per_iteration": 0.6134613516624995
+  },
+  "mavi_30k_hours_per_seed_fp16": 5.112177930520829,
+  "mavi_3_seeds_hours": 15.336533791562488,
+  "d2_ladder_choice": "30k x 3 seeds"
+ }
+}

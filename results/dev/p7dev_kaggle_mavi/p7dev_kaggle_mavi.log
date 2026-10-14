@@ -1,0 +1,13 @@
+14:55:26 mavi: code_hash d3f6d2f67218794687d736ab2d8fe0ab095cced40ff8bd250bf36191a7f5a2b7 p7_code_hash 55a061d03b055ec4f346bb6b9121967d2315eca0e91244e5f58bd1b8d2b78375
+14:55:26 gpu Tesla T4
+14:58:53 manifest verified: 6790 rows, bad sha 0, 206s
+15:00:44 gpu step fp32: 2.3429 s/iter (1171.4 ms/sample), peak 6.2 GiB
+15:01:11 gpu step fp16: 0.5874 s/iter (293.7 ms/sample), peak 6.2 GiB
+15:01:11 check mavi_500_fp16: train 6611 rows, held out 179 rows, 500 iterations fp16
+15:02:13 [mavi_500_fp16] ir_drop iter 100/500 loss 28.6497 lr 1.813e-04 62s
+15:03:14 [mavi_500_fp16] ir_drop iter 200/500 loss 23.7591 lr 1.315e-04 123s
+15:04:15 [mavi_500_fp16] ir_drop iter 300/500 loss 23.0376 lr 6.976e-05 184s
+15:05:17 [mavi_500_fp16] ir_drop iter 400/500 loss 22.5516 lr 1.956e-05 246s
+15:06:18 [mavi_500_fp16] ir_drop iter 500/500 loss 22.5679 lr 1.020e-07 307s
+15:13:32 check mavi_500_fp16: {"all_losses_finite": true, "skipped_fraction_le_5pct": true, "last_block_below_const_mean_map_loss": true, "heldout_roc_above_train_only_mean_map": true} PASS=True
+15:13:32 done

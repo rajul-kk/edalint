@@ -1,0 +1,20 @@
+[{"stream_name":"stdout","time":12.892190087,"data":"14:55:26 mavi: code_hash d3f6d2f67218794687d736ab2d8fe0ab095cced40ff8bd250bf36191a7f5a2b7 p7_code_hash 55a061d03b055ec4f346bb6b9121967d2315eca0e91244e5f58bd1b8d2b78375\n"}
+,{"stream_name":"stdout","time":13.203232717,"data":"14:55:26 gpu Tesla T4\n"}
+,{"stream_name":"stdout","time":219.662704599,"data":"14:58:53 manifest verified: 6790 rows, bad sha 0, 206s\n"}
+,{"stream_name":"stdout","time":330.601463105,"data":"15:00:44 gpu step fp32: 2.3429 s/iter (1171.4 ms/sample), peak 6.2 GiB\n"}
+,{"stream_name":"stdout","time":357.616491567,"data":"15:01:11 gpu step fp16: 0.5874 s/iter (293.7 ms/sample), peak 6.2 GiB\n"}
+,{"stream_name":"stdout","time":357.616851601,"data":"15:01:11 check mavi_500_fp16: train 6611 rows, held out 179 rows, 500 iterations fp16\n"}
+,{"stream_name":"stdout","time":419.652137974,"data":"15:02:13 [mavi_500_fp16] ir_drop iter 100/500 loss 28.6497 lr 1.813e-04 62s\n"}
+,{"stream_name":"stdout","time":480.823301013,"data":"15:03:14 [mavi_500_fp16] ir_drop iter 200/500 loss 23.7591 lr 1.315e-04 123s\n"}
+,{"stream_name":"stdout","time":542.054479193,"data":"15:04:15 [mavi_500_fp16] ir_drop iter 300/500 loss 23.0376 lr 6.976e-05 184s\n"}
+,{"stream_name":"stdout","time":603.539524628,"data":"15:05:17 [mavi_500_fp16] ir_drop iter 400/500 loss 22.5516 lr 1.956e-05 246s\n"}
+,{"stream_name":"stdout","time":665.036661541,"data":"15:06:18 [mavi_500_fp16] ir_drop iter 500/500 loss 22.5679 lr 1.020e-07 307s\n"}
+,{"stream_name":"stdout","time":1098.720364363,"data":"15:13:32 check mavi_500_fp16: {\"all_losses_finite\": true, \"skipped_fraction_le_5pct\": true, \"last_block_below_const_mean_map_loss\": true, \"heldout_roc_above_train_only_mean_map\": true} PASS=True\n"}
+,{"stream_name":"stdout","time":1098.721176718,"data":"15:13:32 done\n"}
+,{"stream_name":"stderr","time":1105.514318826,"data":"/usr/local/lib/python3.13/dist-packages/mistune.py:435: SyntaxWarning: invalid escape sequence '\\|'\n"}
+,{"stream_name":"stderr","time":1105.514342085,"data":"  cells[i][c] = re.sub('\\\\\\\\\\|', '|', cell)\n"}
+,{"stream_name":"stderr","time":1105.840319751,"data":"/usr/local/lib/python3.13/dist-packages/nbconvert/filters/filter_links.py:36: SyntaxWarning: invalid escape sequence '\\_'\n"}
+,{"stream_name":"stderr","time":1105.840343599,"data":"  text = re.sub(r'_', '\\_', text) # Escape underscores in display text\n"}
+,{"stream_name":"stderr","time":1106.702703613,"data":"[NbConvertApp] Converting notebook __script__.ipynb to html\n"}
+,{"stream_name":"stderr","time":1107.75301985,"data":"[NbConvertApp] Writing 274528 bytes to __results__.html\n"}
+]
