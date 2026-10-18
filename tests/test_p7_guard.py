@@ -147,9 +147,9 @@ def test_accepts_when_everything_matches(tmp_path):
     assert check_p7_freeze(str(r / 'protocol'), r)['frozen_commit'] == rec['frozen_commit']
 
 
-def test_real_repo_is_not_frozen_for_p7():
-    with pytest.raises(ProtocolError):
-        check_p7_freeze(str(REPO / 'protocol'), REPO)               # no protocol/FROZEN_p7.json in this commit; legacy FROZEN.json is iccad23's
+def test_real_repo_is_frozen_for_p7():
+    info = check_p7_freeze(str(REPO / 'protocol'), REPO)
+    assert info['dataset'] == 'p7' and info['p7_code_hash'] == p7_code_hash()
 
 
 # -- open_test_rows ------------------------------------------------------------------------------------------------------------------
@@ -237,4 +237,4 @@ def test_protocol_section_6_names_the_freeze_fields_correctly():
     assert '"code_hash"' in sec and '"p7_code_hash"' in sec
     assert 'edalint_code_hash' not in sec
     assert 'scripts/p7_run_*.py' in sec and 'scripts/p7_*.py' not in sec
-    assert 'NOT FROZEN' in text.splitlines()[2] and not (REPO / 'protocol' / 'FROZEN_p7.json').exists()
+    assert text.splitlines()[2].startswith('**STATUS: FROZEN') and (REPO / 'protocol' / 'FROZEN_p7.json').exists()

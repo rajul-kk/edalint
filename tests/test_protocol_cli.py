@@ -114,4 +114,5 @@ def test_real_repo_freezes_are_recognised_per_dataset(monkeypatch):
     assert frozen_info(d, 'iccad23') is not None
     n14 = frozen_info(d, 'circuitnet_n14_ir_drop_authors')
     assert n14 is not None and n14['dataset'] == 'n14' and n14['code_hash'] == code_hash()
+    assert frozen_info(d, 'p7')['dataset'] == 'p7'
     assert frozen_info(d, 'no_such_dataset_without_freeze') is None

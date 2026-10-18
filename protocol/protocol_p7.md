@@ -1,7 +1,7 @@
 # edalint P7: retrain the authors' published CircuitNet models on our N14 split (pre-registration)
 
-**STATUS: DRAFT, NOT FROZEN.** Written 2026-10-14. Nothing here is binding until a freeze commit adds `protocol/FROZEN_p7.json` (section 9).
-No P7 model has been trained on anything but the 3-step timing smoke test of section 8, except the train-only dev runs of section 12; no P7 number on any test row exists. **Amended 2026-10-15 by section 12 (draft amendment): the congestion arm is dropped, P7 is IR-only.**
+**STATUS: FROZEN 2026-10-19** (IR-only, MAVI arm A). Written 2026-10-14; binding from the commit that adds `protocol/FROZEN_p7.json` (section 6, section 10 item 7). Headings of sections 11 and 12 that say "stays NOT FROZEN" are historical.
+At the freeze no P7 model had been trained on anything but the 3-step timing smoke test of section 8 and the train-only dev runs of section 12; no P7 number on any test row existed. **Amended 2026-10-15 by section 12 (amendment A1, now frozen with the rest): the congestion arm is dropped, P7 is IR-only.**
 
 ## 1. Purpose
 
@@ -156,6 +156,7 @@ Filled before the freeze (all recorded in section 12; none uses a test value):
 4. Section 12 amendment itself (A1) and the pre-freeze review fixes to it.
 5. Aggregator clarifications (12.10): exact gate constants, `G_b` definition, undefined / diverged seeds, sensitivities, H-C edge, NRMS rule, file checks.
 6. Reduced training budget (30,000 of 200,000 iterations), unchanged from section 3.3 item 1.
+7. **Freeze, 2026-10-19** (user go-ahead 2026-10-15): the frozen code, protocol and test edits are one commit; `protocol/FROZEN_p7.json` (code_hash d3f6d2f6..., p7_code_hash 76fdfeae...035f, protocol sha256 of this file as committed) is added by the next commit, before any P7 test-split read, export or scoring. Registered training runs: MAVI, ir_drop, arm A, 30,000 iterations, fp16, epoch sampler, batch 2, seeds 20261101-3, on Kaggle from the private bundle `edalint-p7-code-frozen`.
 
 ## 11. Reviewer decisions (independent review, 2026-10-14; this protocol stays NOT FROZEN)
 
