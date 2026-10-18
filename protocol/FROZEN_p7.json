@@ -1,0 +1,26 @@
+{
+ "dataset": "p7",
+ "protocol_file": "protocol/protocol_p7.md",
+ "protocol_sha256": "6673d773046aae254f88d9136044ca481185d1e058b527b830420d75344441c2",
+ "protocol_sha256_note": "sha256 of the file with CRLF normalised to LF",
+ "code_hash": "d3f6d2f67218794687d736ab2d8fe0ab095cced40ff8bd250bf36191a7f5a2b7",
+ "p7_code_hash": "76fdfeaeb46b5f4ceb60bc4aa4824c971af339c4064f142851c8ec3a4231035f",
+ "p7_code_hash_note": "sha256 over src/edalint_p7/**/*.py and scripts/p7_run_*.py (guard.py recipe)",
+ "frozen_at": "2026-10-19T04:18:47+0800",
+ "frozen_commit": "b916479f5e4ca6aec0f2a93c07d164c750551264",
+ "frozen_commit_note": "commit of the code and protocol being frozen (the freeze commit itself adds this file)",
+ "budget": {
+  "model": "MAVI",
+  "task": "ir_drop",
+  "arm": "A",
+  "iterations": 30000,
+  "precision": "fp16",
+  "sampler_mode": "epoch",
+  "batch_size": 2
+ },
+ "seeds": [
+  20261101,
+  20261102,
+  20261103
+ ]
+}
