@@ -64,4 +64,11 @@ test held as a test split.
 `results/faults/faults_p8.json` (run-once, with git HEAD, code hash, library versions), `results/faults/tables_p8.md`, README section "What edalint does not detect".
 
 ## 9. Amendments
-None.
+**A1 (2026-11-04, implementation clarifications; written before any injection, false-positive or IC-ThermBench check run; no threshold or criterion changes).**
+1. E004 "design moved": for each of k designs ONE sample is reassigned to the other split, so the design occurs on both sides (moving a whole design would not create overlap). Clean layout = whole designs assigned to one side.
+2. E004 design count: N = min(20, designs available in the pool); IC-ThermBench has 10 cases (5 in level5), so its N is reported per base. The N = 5 arm is run where the base has at least 5 designs.
+3. Draws are taken from a pool of 600 evenly spaced non-test samples per base (read once; N14 tarball reads dominate), 200 per draw.
+4. E003 near-copy: 5 near-copies per draw; noise is calibrated per input channel and the label so that the E003 descriptor correlation of each equals the target (bisection); the concatenated multi-channel correlation is then close to, not exactly, the target.
+5. IC-ThermBench scopes level2..level5 are separate bases (`icb2`..`icb5`); the false-positive bound must hold on each.
+6. Loader check, 2026-11-04: the train/val boundary of the benchmark's index split falls inside one case in every scope (Case8 on level2-4 by the README layout; Case19 on level5 by the manifest). Under design = case, E004 is expected to report this on the as-released data. It is reported as an observation about the benchmark split, not as an injected-fault result, and it enters the known-findings list for the false-positive run only for E004 on icb.
+7. E002 zero-channel: the check reports a single all-zero input channel as `info` only, so this pair cannot reach the detection criterion by construction; it is run and reported as a limit.
