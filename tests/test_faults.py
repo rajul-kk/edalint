@@ -5,7 +5,7 @@ import json
 import numpy as np
 import pytest
 
-from edalint import faults as F
+from edalint_p8 import faults as F
 from edalint.checks import CHECKS, Options
 from edalint.datasets.synthetic import make_synthetic
 
@@ -79,7 +79,7 @@ def test_weakest_levels_are_ordered_by_strength(base):
 
 def test_icthermbench_loader(tmp_path):
     h5py = pytest.importorskip('h5py')
-    from edalint.datasets.icthermbench import ICThermBenchDataset
+    from edalint_p8.icthermbench import ICThermBenchDataset
     folder = tmp_path / 'level3_steady'
     folder.mkdir()
     n, hw = 40, 8
@@ -101,3 +101,23 @@ def test_icthermbench_loader(tmp_path):
         ds.get(ds.splits['test'][0])                                  # guarded test split
     (tmp_path / 'level3_steady' / 'manifest.json').write_text(json.dumps([{'case': f'C{i // 20}', 'index': i % 20} for i in range(n)]))
     assert ICThermBenchDataset(tmp_path, 'level3').meta(ds.splits['train'][21])['design'] == 'C1'
+
+
+@pytest.mark.parametrize('const', [0, 1, 3])
+def test_e003_near_duplicate_is_not_diluted_by_constant_channels(const):
+    """Amendment A3: constant channels used to cap the input correlation at (varying channels / channels), hiding near-duplicates."""
+    from edalint_p8.e003_fixed import e003_duplicates
+    from edalint.core import ListDataset, Sample
+    rng = np.random.default_rng(0)
+
+    def mk(i, split):
+        ins = {'power': rng.random((64, 64)), 'k': rng.random((64, 64))}
+        ins.update({f'c{j}': np.full((64, 64), 300.0) for j in range(const)})
+        return Sample(f's{i}', split, f'd{i}', ins, ins['power'] * 2 + 1)
+    a = mk(0, 'train')
+    r2 = np.random.default_rng(1)
+    b = Sample('s1', 'val', 'd1', {k: v + r2.normal(scale=1e-4 * v.std(), size=v.shape) if v.std() > 0 else v.copy() for k, v in a.inputs.items()},
+               a.label + r2.normal(scale=1e-4, size=a.label.shape))
+    res = e003_duplicates(ListDataset([a, b, mk(2, 'train')], test_splits=()), Options(split='all'))
+    assert res.metrics['max_input_corr_offdiag'] > 0.999 and res.metrics['n_near_dup_pairs'] == 1
+    assert any(f.severity == 'error' and 'ACROSS' in f.message for f in res.findings)

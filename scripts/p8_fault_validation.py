@@ -15,7 +15,7 @@ from pathlib import Path
 import numpy as np
 
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent / 'src'))
-from edalint import faults as F                                    # noqa: E402
+from edalint_p8 import faults as F                                    # noqa: E402
 from edalint.checks import CHECKS, Options                         # noqa: E402
 from edalint.runner import write_once, write_text_once              # noqa: E402
 
@@ -35,7 +35,7 @@ def open_base(name, root, cache):
         from edalint.datasets import open_dataset
         return open_dataset('n14-ir_drop', mode='authors', cache_dir=cache, **({'root': root} if root else {}))
     if name.startswith('icb'):
-        from edalint.datasets.icthermbench import ICThermBenchDataset
+        from edalint_p8.icthermbench import ICThermBenchDataset
         stored = name.endswith('-stored')
         return ICThermBenchDataset(root, f"level{name[3]}", fix_orientation=not stored)
     raise SystemExit(f'unknown base {name!r}')
@@ -88,11 +88,15 @@ def main():
     ap.add_argument('--out', required=True)
     ap.add_argument('--tag', required=True)
     ap.add_argument('--no-injection', action='store_true', help='false-positive run only (used for icbN-stored)')
+    ap.add_argument('--e003-fixed', action='store_true', help='use edalint_p8.e003_fixed (amendment A3) instead of the registered E003')
     ap.add_argument('--float32', action='store_true', help='hold the pool as float32 (N14, amendment A5)')
     ap.add_argument('--seed0', type=int, default=SEED0, help='first draw seed (amendments A3/A4 reruns use 20261204)')
     ap.add_argument('--only', help='comma list of check codes: restrict the false-positive run and the faults to these checks')
     args = ap.parse_args()
     SEED0 = args.seed0
+    if args.e003_fixed:
+        from edalint_p8.e003_fixed import e003_duplicates
+        CHECKS['E003'] = e003_duplicates
     if args.only:
         CHECKED = tuple(c for c in CHECKED if c in args.only.split(','))
     t0 = time.time()

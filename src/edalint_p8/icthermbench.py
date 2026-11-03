@@ -16,7 +16,7 @@ from typing import Dict, List, Optional
 
 import numpy as np
 
-from ..core import MapDataset, Sample
+from edalint.core import MapDataset, Sample
 
 SCOPES = {
     'level2': ['chiplet_power', 'grid_x', 'grid_y'],

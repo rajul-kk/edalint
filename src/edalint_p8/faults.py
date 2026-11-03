@@ -12,8 +12,8 @@ from typing import Callable, Dict, List, Optional, Sequence
 
 import numpy as np
 
-from .checks import _zdesc
-from .core import CheckResult, ListDataset, MapDataset, Sample, area_resize
+from edalint.checks import _zdesc
+from edalint.core import CheckResult, ListDataset, MapDataset, Sample, area_resize
 
 LEVELS = 5
 

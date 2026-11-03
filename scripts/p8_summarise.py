@@ -5,7 +5,7 @@ import sys
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent.parent / 'src'))
-from edalint import faults as F                       # noqa: E402
+from edalint_p8 import faults as F                       # noqa: E402
 
 BASES = ['iccad23', 'n14ir', 'icb2', 'icb3', 'icb4', 'icb5']
 
