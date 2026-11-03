@@ -41,7 +41,7 @@ def open_base(name, root, cache):
     raise SystemExit(f'unknown base {name!r}')
 
 
-def pool_samples(ds, size):
+def pool_samples(ds, size, as_float32=False):
     names = [s for s in ds.splits if s not in ds.test_splits and s not in ds.aux_splits and ds.splits[s]]
     ids = [i for s in names for i in ds.splits[s]]
     ids = [ids[j] for j in np.unique(np.linspace(0, len(ids) - 1, min(size, len(ids))).round().astype(int))]
@@ -57,6 +57,10 @@ def pool_samples(ds, size):
             removed['negative label'] += 1
         else:
             keep.append(s)
+    if as_float32:                                              # amendment A5: N14 maps do not fit in RAM as float64
+        for s in keep:
+            s.inputs = {k: v.astype(np.float32) for k, v in s.inputs.items()}
+            s.label = s.label.astype(np.float32)
     for s in keep:                                              # grouping rule of amendment A2(c)
         s.design = str(s.meta.get('design_id', s.design))
     return keep, dict(removed), len(ids)
@@ -84,6 +88,7 @@ def main():
     ap.add_argument('--out', required=True)
     ap.add_argument('--tag', required=True)
     ap.add_argument('--no-injection', action='store_true', help='false-positive run only (used for icbN-stored)')
+    ap.add_argument('--float32', action='store_true', help='hold the pool as float32 (N14, amendment A5)')
     ap.add_argument('--seed0', type=int, default=SEED0, help='first draw seed (amendments A3/A4 reruns use 20261204)')
     ap.add_argument('--only', help='comma list of check codes: restrict the false-positive run and the faults to these checks')
     args = ap.parse_args()
@@ -92,7 +97,7 @@ def main():
         CHECKED = tuple(c for c in CHECKED if c in args.only.split(','))
     t0 = time.time()
     ds = open_base(args.base, args.data_root, args.cache_dir)
-    pool, removed, n_pool0 = pool_samples(ds, args.pool)
+    pool, removed, n_pool0 = pool_samples(ds, args.pool, args.float32)
     print(f'{args.base}: pool {len(pool)}/{n_pool0}, removed {removed}', flush=True)
     fp = {c: {'draws': 0, 'flagged': 0, 'messages': Counter()} for c in CHECKED}
     det = {}
