@@ -219,7 +219,7 @@ FAULTS: Dict[str, Fault] = {f.name: f for f in (
     Fault('grid_mismatch', 'E001', grid_mismatch, 'different grid from the label', severities=(4,)),
     Fault('zero_label', 'E002', zero_label, 'all-zero label'),
     Fault('negative_pixel', 'E002', negative_pixel, 'negative label'),
-    Fault('zero_channel', 'E002', zero_channel, 'input channel'),
+    Fault('zero_channel', 'E002', zero_channel, 'is all-zero in'),
     Fault('exact_copy', 'E003', exact_copy, 'byte-identical'),
     Fault('near_copy', 'E003', near_copy, 'near-duplicate pair(s) ACROSS'),
     Fault('design_overlap', 'E004', design_overlap, 'occur in both', needs='designs'),
