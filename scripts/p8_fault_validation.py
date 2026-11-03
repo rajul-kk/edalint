@@ -53,7 +53,7 @@ def pool_samples(ds, size):
             removed['non-finite'] += 1
         elif np.all(L == L.flat[0]):
             removed['constant or all-zero label'] += 1
-        elif L.min() < 0:
+        elif L.min() < -max(1e-12, 1e-6 * float(np.abs(L).max())):         # E002's tolerance: rounding-level negatives are not negative labels
             removed['negative label'] += 1
         else:
             keep.append(s)
@@ -73,6 +73,7 @@ def wilson(k, n, z=1.96):
 
 
 def main():
+    global SEED0, CHECKED
     ap = argparse.ArgumentParser()
     ap.add_argument('--base', required=True)
     ap.add_argument('--data-root')
@@ -83,7 +84,12 @@ def main():
     ap.add_argument('--out', required=True)
     ap.add_argument('--tag', required=True)
     ap.add_argument('--no-injection', action='store_true', help='false-positive run only (used for icbN-stored)')
+    ap.add_argument('--seed0', type=int, default=SEED0, help='first draw seed (amendments A3/A4 reruns use 20261204)')
+    ap.add_argument('--only', help='comma list of check codes: restrict the false-positive run and the faults to these checks')
     args = ap.parse_args()
+    SEED0 = args.seed0
+    if args.only:
+        CHECKED = tuple(c for c in CHECKED if c in args.only.split(','))
     t0 = time.time()
     ds = open_base(args.base, args.data_root, args.cache_dir)
     pool, removed, n_pool0 = pool_samples(ds, args.pool)
@@ -107,6 +113,8 @@ def main():
         if args.no_injection:
             continue
         for name, fault in F.FAULTS.items():
+            if fault.check not in CHECKED:
+                continue
             why = F.applicable(fault, clean)
             if why:
                 skipped[name] = why

@@ -11,7 +11,7 @@ BASES = ['iccad23', 'n14ir', 'icb2', 'icb3', 'icb4', 'icb5']
 
 
 def known(base, check, msg):
-    return base in ('icb4', 'icb5') and check == 'E002' and 'is a constant non-zero map in' in msg
+    return check == 'E002' and 'is a constant non-zero map in' in msg and (base in ('icb4', 'icb5') or ('iccad23' == base and 'pdn_density' in msg))
 
 
 def main(d, tag):

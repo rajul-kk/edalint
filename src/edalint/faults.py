@@ -160,7 +160,10 @@ def near_copy(samples, rng, level):
 # -- E004 ------------------------------------------------------------------------------------------------------------------------
 def design_overlap(samples, rng, level):
     """k designs get ONE sample reassigned to the other side (the design then occurs in both splits)."""
-    designs = sorted({s.design for s in samples})
+    count = {}
+    for s in samples:
+        count[s.design] = count.get(s.design, 0) + 1
+    designs = sorted(d for d, n in count.items() if n >= 2)             # a single-sample design cannot occur on both sides (amendment A4)
     k = min(DESIGNS_MOVED[level], len(designs))
     for d in rng.choice(designs, size=k, replace=False):
         members = [s for s in samples if s.design == d]
@@ -237,8 +240,12 @@ def detected(res: CheckResult, fault: Fault) -> bool:
 
 def applicable(fault: Fault, samples: Sequence[Sample]) -> Optional[str]:
     """None if the fault can be injected on this base, else the reason it cannot."""
-    if fault.needs == 'designs' and len({s.design for s in samples}) < 2:
-        return 'fewer than 2 designs'
+    if fault.needs == 'designs':
+        count = {}
+        for s in samples:
+            count[s.design] = count.get(s.design, 0) + 1
+        if len(count) < 2 or max(count.values()) < 2:
+            return 'fewer than 2 designs, or no design with 2 samples'
     if fault.needs == 'twins' and not any(s.meta.get('twin_of') for s in samples):
         return 'base has no twin metadata'
     if fault.needs == 'square' and not any(s.label.shape[0] == s.label.shape[1] for s in samples):
