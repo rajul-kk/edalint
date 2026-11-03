@@ -23,6 +23,9 @@ def main(d, tag):
     for c in ('E001', 'E002', 'E003', 'E004', 'E005'):
         row = []
         for b, r in R.items():
+            if c not in r['false_positive']:
+                row.append('-')
+                continue
             v = r['false_positive'][c]
             msgs = {m: n for m, n in v['messages'].items() if not known(b, c, m)}
             # all flagged draws explained by known findings => 0; otherwise the raw flagged count
@@ -42,7 +45,7 @@ def main(d, tag):
             rates = {int(k): e['detected'] / e['n'] for k, e in lv.items()}
             mn = next((k for k in sorted(rates) if rates[k] >= 0.9), None)
             top = sorted(rates)[-2:]
-            ok = all(rates[k] >= 0.9 for k in top) and fpmax[(f.check, b)] <= 0.05
+            ok = all(rates[k] >= 0.9 for k in top) and fpmax.get((f.check, b), 1.0) <= 0.05
             cells.append(f"L{mn}" + (' (validated)' if ok else '') if mn is not None else '-')
         print(f'| {f.check} | {name} | ' + ' | '.join(cells) + ' |')
 
