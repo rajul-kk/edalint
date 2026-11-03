@@ -1,0 +1,118 @@
+{
+ "base": "icb3-stored",
+ "protocol": "protocol/protocol_faults.md",
+ "seed0": 20261104,
+ "draws": 20,
+ "sample": 200,
+ "pool": 600,
+ "pool_before_removal": 600,
+ "pool_removed_known_defects": {},
+ "false_positive": {
+  "E001": {
+   "draws": 20,
+   "flagged": 0,
+   "messages": {}
+  },
+  "E002": {
+   "draws": 20,
+   "flagged": 0,
+   "messages": {}
+  },
+  "E003": {
+   "draws": 20,
+   "flagged": 16,
+   "messages": {
+    "warning: 4 near-duplicate pair(s) within a split (input and label corr >= 0.999)": 2,
+    "warning: 1 near-duplicate pair(s) within a split (input and label corr >= 0.999)": 7,
+    "warning: 2 near-duplicate pair(s) within a split (input and label corr >= 0.999)": 2,
+    "warning: 3 near-duplicate pair(s) within a split (input and label corr >= 0.999)": 4,
+    "error: 2 near-duplicate pair(s) ACROSS splits (input and label corr >= 0.999)": 1,
+    "error: 1 near-duplicate pair(s) ACROSS splits (input and label corr >= 0.999)": 1
+   }
+  },
+  "E004": {
+   "draws": 20,
+   "flagged": 0,
+   "messages": {}
+  },
+  "E005": {
+   "draws": 20,
+   "flagged": 20,
+   "messages": {
+    "error: channel 'chiplet_power': |corr| with the label is 0.29 as stored but 0.72 when 'transpose' (better in 98% of samples) [primary channel]": 1,
+    "error: channel 'chiplet_power': |corr| with the label is 0.28 as stored but 0.79 when 'transpose' (better in 96% of samples) [primary channel]": 1,
+    "error: channel 'chiplet_power': |corr| with the label is 0.34 as stored but 0.84 when 'transpose' (better in 99% of samples) [primary channel]": 1,
+    "error: channel 'chiplet_power': |corr| with the label is 0.28 as stored but 0.82 when 'transpose' (better in 98% of samples) [primary channel]": 1,
+    "error: channel 'chiplet_power': |corr| with the label is 0.31 as stored but 0.81 when 'transpose' (better in 98% of samples) [primary channel]": 1,
+    "error: channel 'chiplet_power': |corr| with the label is 0.34 as stored but 0.83 when 'transpose' (better in 96% of samples) [primary channel]": 1,
+    "error: channel 'chiplet_power': |corr| with the label is 0.35 as stored but 0.83 when 'transpose' (better in 98% of samples) [primary channel]": 2,
+    "error: channel 'chiplet_power': |corr| with the label is 0.37 as stored but 0.83 when 'transpose' (better in 99% of samples) [primary channel]": 1,
+    "error: channel 'chiplet_power': |corr| with the label is 0.31 as stored but 0.82 when 'transpose' (better in 98% of samples) [primary channel]": 1,
+    "error: channel 'chiplet_power': |corr| with the label is 0.35 as stored but 0.82 when 'transpose' (better in 96% of samples) [primary channel]": 1,
+    "error: channel 'chiplet_power': |corr| with the label is 0.32 as stored but 0.80 when 'transpose' (better in 99% of samples) [primary channel]": 1,
+    "error: channel 'chiplet_power': |corr| with the label is 0.27 as stored but 0.73 when 'transpose' (better in 95% of samples) [primary channel]": 1,
+    "error: channel 'chiplet_power': |corr| with the label is 0.28 as stored but 0.69 when 'transpose' (better in 94% of samples) [primary channel]": 1,
+    "error: channel 'chiplet_power': |corr| with the label is 0.40 as stored but 0.82 when 'transpose' (better in 91% of samples) [primary channel]": 1,
+    "error: channel 'chiplet_power': |corr| with the label is 0.29 as stored but 0.80 when 'transpose' (better in 95% of samples) [primary channel]": 1,
+    "error: channel 'chiplet_power': |corr| with the label is 0.30 as stored but 0.81 when 'transpose' (better in 99% of samples) [primary channel]": 1,
+    "error: channel 'chiplet_power': |corr| with the label is 0.27 as stored but 0.75 when 'transpose' (better in 94% of samples) [primary channel]": 1,
+    "error: channel 'chiplet_power': |corr| with the label is 0.28 as stored but 0.80 when 'transpose' (better in 99% of samples) [primary channel]": 1,
+    "error: channel 'chiplet_power': |corr| with the label is 0.31 as stored but 0.81 when 'transpose' (better in 99% of samples) [primary channel]": 1
+   }
+  }
+ },
+ "detection": {},
+ "not_applicable": {},
+ "options": {
+  "split": "all",
+  "max_samples": null,
+  "dup_max_samples": 800,
+  "dup_corr": 0.999,
+  "orient_samples": 40
+ },
+ "seconds": 12.672989845275879,
+ "provenance": {
+  "started": "2026-11-04T04:31:12+0800",
+  "git_head": "14a4b4e9c6bbdaa48b269529a21e792f2eadf267",
+  "git_dirty_tracked": "",
+  "code_hash": "451c5a8022900931c21330154d902608f748ddc9df45cc102ae4cfebba3ed1e0",
+  "versions": {
+   "python": "3.10.0",
+   "numpy": "2.2.6",
+   "scipy": "1.15.3",
+   "pandas": "2.3.3",
+   "platform": "Windows-10-10.0.26200-SP0",
+   "sklearn": "1.6.1",
+   "pyamg": "5.3.0",
+   "edalint": "0.1.0",
+   "cpu_model": "13th Gen Intel(R) Core(TM) i7-1355U",
+   "logical_cores": 12
+  },
+  "argv": [
+   "scripts/p8_fault_validation.py",
+   "--base",
+   "icb3-stored",
+   "--data-root",
+   "D:/Work/3D-ICE Thermal-modelling/Thermo/data/ic-thermbench/datasets",
+   "--out",
+   "results/faults",
+   "--tag",
+   "p8",
+   "--no-injection"
+  ],
+  "frozen_protocol": {
+   "dataset": "iccad23",
+   "code_hash": "750d252f863b119518b660db061d1e5b814a84ad9ca68672a28a1c62ad5e5f8e",
+   "protocol_file": "protocol/protocol_iccad23.md",
+   "protocol_sha256": "efffaed85a5f2b04de518541b9bde9c3ef07871dd74db428c57302c671caf0d5",
+   "protocol_sha256_note": "sha256 of the file with CRLF normalised to LF",
+   "frozen_at": "2026-10-12T20:38:41+0800",
+   "frozen_commit": "79779855b0d09ffa8569f7b2cd3c22823d15e7a4",
+   "frozen_commit_note": "commit of the code and protocol being frozen (the freeze commit itself adds this file)",
+   "machine": {
+    "cpu_model": "13th Gen Intel(R) Core(TM) i7-1355U",
+    "logical_cores": 12
+   }
+  }
+ }
+}
