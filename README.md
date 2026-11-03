@@ -36,10 +36,10 @@ Protocol `protocol/protocol_faults.md` (amendments A1-A6), results `results/faul
 * **Not found:** a single all-zero input channel (E002 reports it only as `info`, by design). Metadata or label faults that E006/E007 would have to catch are out of scope.
 * **Found only when large:** a transposed or flipped label (E005) is found when essentially every sample is affected (100%: found in 100% of draws, except a transposed
   label on IC-ThermBench level 5: 80%). At 75% of samples affected the detection rate is 5-70% depending on the base, because E005 needs the alternative orientation to win in
-  at least 75% of the sampled maps. A partially transposed dataset is likely to be missed. Noise on the label did not matter in the tested range (SNR 1-20) when all samples were transposed.
+  at least 75% of the sampled maps. A partially transposed dataset is likely to be missed. With every sample transposed, label noise (SNR 1-20) did not hide it, except on IC-ThermBench level 5, where it was already only 80% detected without noise.
 * **Near-duplicates (E003) need a change that is not in the registered package.** The registered E003 divides the input correlation by the total channel count, so any input with
   constant channels (N14, IC-ThermBench levels 4-5, ICCAD'23 partly) can never reach the 0.999 threshold: near-duplicate detection was 0/20 at every strength on N14 and IC-ThermBench 4-5.
-  The corrected variant (`edalint_p8.e003_fixed`, amendment A3) detects them from a noise level giving correlation 0.995-0.999 upward (ICCAD'23 and N14: validated; 0.90+ at the third level).
+  The corrected variant (`edalint_p8.e003_fixed`, amendment A3) detects them once the pair's descriptor correlation is 0.999-0.9995 or higher (the thresholds' neighbourhood; 0.90+ detection from the third or fourth strength level; ICCAD'23 and N14 meet the validation criterion).
   It is not merged into `edalint.checks` because that would change the package hash that `FROZEN_n14.json` and `FROZEN_p7.json` bind to.
 * **False positives:** none (0/20 draws) for E001, E002, E004, E005 on any base once the known findings of protocol section 7 are excluded. E003 flags 50-90% of clean IC-ThermBench draws
   (with the corrected variant on levels 4-5, and with the registered check on levels 2-3): the benchmark contains byte-identical inputs and labels on level 2 and repeated power maps on all levels
