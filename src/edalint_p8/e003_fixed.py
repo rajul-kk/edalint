@@ -1,6 +1,6 @@
 """E003 with the amendment-A3 correction (protocol/protocol_faults.md section 9, item 10): the near-duplicate input correlation is computed on the
 channels that vary in at least one of the two samples. Registered edalint.checks.e003_duplicates is NOT modified (the N14 and P7 freezes hash
-src/edalint); this variant is what the P8 reruns use. Merging it into edalint.checks needs a re-freeze decision by the project owner.
+src/edalint); this variant is what the P8 reruns use. It has since been merged into edalint.checks (protocol_faults.md A7); this file is kept as the record of what the P8 reruns used.
 """
 from collections import defaultdict
 

@@ -1,0 +1,17 @@
+{
+ "note": "History of edalint.protocol.code_hash() (sha256 over src/edalint/**/*.py). Freeze records are NOT rewritten when the hash moves: each one certifies the code that produced the results registered under it. A freeze whose code_hash is not the current hash simply no longer unlocks test reads; a new test read needs a new freeze. Nothing in the guards reads this file; tests/test_code_hash_lineage.py pins it.",
+ "lineage": [
+  {
+   "code_hash": "d3f6d2f67218794687d736ab2d8fe0ab095cced40ff8bd250bf36191a7f5a2b7",
+   "commit": "c252323",
+   "certified": ["protocol/FROZEN_n14.json", "protocol/FROZEN_p7.json", "results/n14/*", "results/p7/*", "results/faults/*_p8.json (registered P8 runs)"],
+   "note": "E003 near-duplicate descriptor concatenated z-scored channels (constant channels dilute the correlation, protocol_faults.md A3). To reproduce those results run the code at this commit."
+  },
+  {
+   "code_hash": "a9900e6faaa4eb93f049c7d61c03ab919a8970ede2b0e90c3e07696bb2589b95",
+   "commit": "see git log: the commit that adds this entry",
+   "certified": [],
+   "note": "E003 averaged over the channels that vary in at least one of the pair (protocol_faults.md A7, merge of the A3 variant edalint_p8.e003_fixed). No test split has been opened under this hash; FROZEN_n14.json, FROZEN_p7.json and FROZEN.json do not cover it."
+  }
+ ]
+}

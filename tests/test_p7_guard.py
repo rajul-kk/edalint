@@ -147,9 +147,13 @@ def test_accepts_when_everything_matches(tmp_path):
     assert check_p7_freeze(str(r / 'protocol'), r)['frozen_commit'] == rec['frozen_commit']
 
 
-def test_real_repo_is_frozen_for_p7():
-    info = check_p7_freeze(str(REPO / 'protocol'), REPO)
+def test_real_repo_p7_freeze_record_and_p7_code_are_intact():
+    """The P7 freeze certifies the code that produced the registered P7 results. Since the E003 merge (protocol_faults.md A7) the edalint
+    code hash has moved on, so the freeze no longer unlocks P7 test reads (they are done); the P7 code itself is unchanged."""
+    info = json.loads((REPO / 'protocol' / 'FROZEN_p7.json').read_text(encoding='utf-8'))
     assert info['dataset'] == 'p7' and info['p7_code_hash'] == p7_code_hash()
+    with pytest.raises(ProtocolError, match='code hash differs'):
+        check_p7_freeze(str(REPO / 'protocol'), REPO)
 
 
 # -- open_test_rows ------------------------------------------------------------------------------------------------------------------

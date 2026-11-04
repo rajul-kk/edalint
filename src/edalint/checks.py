@@ -230,7 +230,8 @@ def e003_duplicates(ds: MapDataset, opt: Options) -> CheckResult:
 
     Why: a held-out sample that is (nearly) a copy of a training sample measures memorisation, not generalisation; the ICCAD'23
     contest itself removed duplicates from the fake set in v4. Exact = byte-identical inputs (all channels) or labels; near =
-    Pearson correlation >= dup_corr of the maps area-resized to dup_grid^2, for inputs AND labels. Channel-level exact duplicates
+    Pearson correlation >= dup_corr of the maps area-resized to dup_grid^2, for inputs AND labels (the input correlation is the mean
+    over the channels that vary in at least one of the two samples; protocol_faults.md A3/A7). Channel-level exact duplicates
     (e.g. the same current map in two samples) are reported as info: ICCAD real "twin" cases share a current map by design.
     Does NOT apply: degenerate all-zero inputs are excluded (E002 reports them); near-duplicate scans use at most dup_max_samples
     evenly spaced samples per split. Cross-split comparison needs the test split, so it runs only after the freeze.
@@ -249,7 +250,7 @@ def e003_duplicates(ds: MapDataset, opt: Options) -> CheckResult:
             for nm, a in s.inputs.items():
                 if not np.all(a == 0):
                     chan_hash[(nm, _hash(a))].append(sid)
-            idesc = np.concatenate([_zdesc(a if a.shape == s.shape else area_resize(a, s.shape), opt.dup_grid) for _, a in s.channels()])
+            idesc = np.stack([_zdesc(a if a.shape == s.shape else area_resize(a, s.shape), opt.dup_grid) for _, a in s.channels()])   # (C, g*g)
             items.append((sid, split, ih, _hash(s.label), idesc, _zdesc(s.label, opt.dup_grid)))
     n = len(items)
     res.metrics['n_checked'] = n
@@ -277,9 +278,15 @@ def e003_duplicates(ds: MapDataset, opt: Options) -> CheckResult:
     # near duplicates
     ok = [i for i in items if np.any(i[4] != 0)]
     if len(ok) >= 2:
-        X = np.stack([i[4] for i in ok]) / np.sqrt(len(ok[0][4]))
+        X = np.stack([i[4] for i in ok])                                        # (n, C, g*g), z-scored per channel (constant channel = zeros)
         Y = np.stack([i[5] for i in ok]) / np.sqrt(len(ok[0][5]))
-        Ci, Cl = X @ X.T, Y @ Y.T
+        # Amendment A3 of protocol_faults.md: a pair is compared on the channels that vary in at least one of the two samples. A constant
+        # channel is a zero vector and used to dilute the correlation to (non-constant channels / channels), which made near-duplicates of
+        # any input with constant channels undetectable.
+        vary = (X != 0).any(-1)
+        n_var = (vary[:, None, :] | vary[None, :, :]).sum(-1)
+        Ci = np.einsum('icg,jcg->ij', X, X) / X.shape[-1] / np.maximum(n_var, 1)
+        Cl = Y @ Y.T
         iu = np.triu_indices(len(ok), 1)
         both = (Ci[iu] >= opt.dup_corr) & (Cl[iu] >= opt.dup_corr)
         in_only = (Ci[iu] >= opt.dup_corr) & (Cl[iu] < opt.dup_corr)
