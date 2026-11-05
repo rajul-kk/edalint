@@ -110,3 +110,8 @@ Outputs in `results/dev/*_p9dev.json`; nothing in them is a test number.
 * Two earlier ICCAD'23 dev attempts died with numpy MemoryError while the shared machine was out of commit memory (other processes); no code
   change, the third attempt completed. Registered runs are therefore run one at a time.
 * Dev timings set the zero-riscy subsample (section 5.3).
+
+## Deviation 2026-11-05: re-run of N14 IR drop ridge UQ
+
+The registered run `uq_n14_ir_drop_ridge` was stopped by the host for low memory after calibration and before any test-design number was computed or read. No result file was written. Per section 7 it is re-run once, unchanged, with the remaining UQ runs executed one at a time.
+
