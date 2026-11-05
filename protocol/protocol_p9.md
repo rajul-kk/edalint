@@ -1,7 +1,7 @@
 # edalint P9: split-leakage / test-set-tuning audit and UQ / OOD calibration baselines (pre-registration)
 
-**STATUS: DRAFT, NOT FROZEN.** Binding from the commit that adds `protocol/FROZEN_p9.json` (section 7). Until then no P9 code opens an N14 test
-design or an ICCAD'23 hidden case. Design and alternatives: `docs/leakage_uq_design.md`; scoop check: `docs/scoop_check_leakage_uq.md`.
+**STATUS: FROZEN 2026-11-05** (record `protocol/FROZEN_p9.json`, section 7). No P9 code opened an N14 test design or an ICCAD'23 hidden case
+before the freeze. Design and alternatives: `docs/leakage_uq_design.md`; scoop check: `docs/scoop_check_leakage_uq.md`.
 
 ## 1. Questions
 * **Q1 (leakage).** Do the test rows of CircuitNet-N14 (IR drop, congestion, DRC) and the ICCAD'23 hidden cases have near-duplicate layouts in the
