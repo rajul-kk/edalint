@@ -115,3 +115,13 @@ Outputs in `results/dev/*_p9dev.json`; nothing in them is a test number.
 
 The registered run `uq_n14_ir_drop_ridge` was stopped by the host for low memory after calibration and before any test-design number was computed or read. No result file was written. Per section 7 it is re-run once, unchanged, with the remaining UQ runs executed one at a time.
 
+
+## Deviation 2026-11-05: N14 IR drop gbm UQ run crashed after a partial test number
+
+The re-run of `uq_n14_ir_drop_ridge` completed and wrote its result file. The next registered run, `uq_n14_ir_drop_gbm`, was stopped at 22:32
+after calibration and after its first test-design line had been logged (T_id, crc_norm|id coverage@0.9 = 0.914); no result file was written. The
+stop coincided with the end of the session that launched it (the log ends with the host's `[killed]` marker; no Windows resource-exhaustion event
+was recorded), so the cause is most likely the host shell being closed rather than memory, but this is not confirmed. Because a partial test number
+was logged and read, section 7 does not allow a re-run; the run is reported as crashed. Whether to re-run it (the run is seeded and unchanged, so a
+re-run could be checked against the logged 0.914) is left to the project owner and, if done, gets its own dated note. The ICCAD'23 UQ runs are
+independent registered runs and proceed. `p9_run_verdicts.py` is not run until this is decided.
