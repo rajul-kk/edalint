@@ -125,3 +125,9 @@ was recorded), so the cause is most likely the host shell being closed rather th
 was logged and read, section 7 does not allow a re-run; the run is reported as crashed. Whether to re-run it (the run is seeded and unchanged, so a
 re-run could be checked against the logged 0.914) is left to the project owner and, if done, gets its own dated note. The ICCAD'23 UQ runs are
 independent registered runs and proceed. `p9_run_verdicts.py` is not run until this is decided.
+
+## Deviation 2026-11-05: owner-authorised re-run of N14 IR drop gbm UQ
+
+The project owner decided to re-run `uq_n14_ir_drop_gbm` once, unchanged (same code, data and seeds), despite the partial number logged by the crashed
+attempt. Safeguard: the re-run's T_id crc_norm|id coverage@0.9 must equal the crashed attempt's logged 0.914; any mismatch is reported as
+non-determinism next to the result. No other job runs on the machine during the re-run. This is the last allowed attempt for this run.
