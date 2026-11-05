@@ -60,7 +60,9 @@ def lk3(splits: dict) -> dict:
 def uq(res: dict, test_keys: List[str]) -> dict:
     ev = res['evaluation']
     tid = ev['T_id']
-    u1 = {m: abs(_cov(tid, f'{m}|id') - NOMINAL) <= U1_TOL for m in ('crc_abs', 'crc_norm')}
+    n_id = res.get('calibration', {}).get('id', {}).get('n_maps')
+    hi = NOMINAL + max(U1_TOL, 1.0 / (n_id + 1)) if n_id else NOMINAL + U1_TOL     # CRC upper bound 1 - alpha + 1/(n+1) (protocol 5.4)
+    u1 = {m: bool(NOMINAL - U1_TOL <= _cov(tid, f'{m}|id') <= hi) for m in ('crc_abs', 'crc_norm')}
     per = {d: {'id': _cov(ev[d], f'{PRIMARY}|id'), 'xd': _cov(ev[d], f'{PRIMARY}|xd'), 'abs_id': _cov(ev[d], 'crc_abs|id'),
                'abs_xd': _cov(ev[d], 'crc_abs|xd'), 'ens_gauss': _cov(ev[d], 'ens_gauss|-'),
                'width_id': ev[d].get(f'{PRIMARY}|id', {}).get('0.1', {}).get('width'),

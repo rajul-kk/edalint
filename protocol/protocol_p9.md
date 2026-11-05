@@ -69,7 +69,9 @@ ICCAD'23: all 10 hidden cases. Per map: coverage, mean
 width, coverage on pixels >= the map's 90th label percentile, MAE of mu. Per design: means; interval calibration error = mean over the six nominal
 levels of |coverage - nominal|; OOD degradation = coverage(design) - coverage(T_id), same regime.
 ### 5.4 Hypotheses (per target x task x model; nominal 0.9)
-* **U1** (implementation validity) |coverage(T_id, C_id) - 0.9| <= 0.03 for crc_abs and crc_norm. Expected TRUE; FALSE is reported as an anomaly.
+* **U1** (implementation validity) 0.9 - 0.03 <= coverage(T_id, C_id) <= 0.9 + max(0.03, 1/(n_C_id + 1)) for crc_abs and crc_norm (the upper
+  band is the CRC upper bound; it only differs for ICCAD'23, n = 15 -> 0.9625; set in development, section 8). Expected TRUE; FALSE is reported
+  as an anomaly.
 * **U2** (naive calibration under-covers OOD) crc_norm calibrated on C_id has coverage < 0.85 on >= 2 of the 3 N14 test designs (ICCAD'23: on the
   hidden set).
 * **U3** (cross-design calibration repairs it) mean over test designs of |coverage - 0.9| with C_xd <= the same with C_id - 0.02, AND design-macro
@@ -91,4 +93,20 @@ Computed mechanically by `edalint_p9.verdicts` from the run-once result files (`
 * At most two CPU jobs at once (PLAN.md).
 
 ## 8. Development (train only) and deviations
-(filled before the freeze)
+All development used train data only (N14: RISCY, RISCY-FPU, Vortex-small, nvdla-small from the cache; ICCAD'23: fake and visible real).
+Outputs in `results/dev/*_p9dev.json`; nothing in them is a test number.
+* **Leakage, N14 congestion (dev)**: reference RISCY + RISCY-FPU (800 rows), queries Vortex-small + nvdla-small (179). 0 NN pairs >= 0.95.
+  Within-design leave-one-out NN similarity: RISCY median 0.891 (q25 0.826), RISCY-FPU median 0.928 (q25 0.888); cross-design NN: Vortex-small
+  median 0.466, nvdla-small 0.388. So placement variants of one design sit near 0.9 and unrelated designs near 0.4-0.5 on this descriptor; the
+  L002 rule (q25 of the pooled reference, margin 0.02) was kept unchanged. Describing 979 rows took ~10 min.
+* **UQ, ICCAD'23 ridge (dev)**: T_id = 15 fake maps; C_xd split into 5 / 5 visible real for a dev cross-check. Fit of 5 members 145 s.
+  crc_norm / C_id: T_id coverage 0.957 at nominal 0.9 (n_cal = 15); visible-half coverage 0.756. ens_gauss coverage 0.106 on T_id (bootstrap
+  ridge members barely disagree). With n = 5 calibration maps lambda@0.1 is infinite (alpha (n+1) - 1 < 0), as designed. Change made from this
+  run: the U1 upper band now allows the CRC upper bound 1/(n+1) (0.9625 for n = 15), because 0.03 is below the finite-sample slack for 15
+  maps. The lower band (the guarantee side) is unchanged.
+* **UQ, N14 congestion ridge (dev)**: F 600 / C_id 100 / T_id 100 / C_xd 179; ensemble fit 98 s, whole run 4 min. crc_norm / C_id T_id coverage
+  0.888 (U1 band holds); cross-design dev check (C_id calibration, evaluated on Vortex-small / nvdla-small): 0.948 / 0.841. lambda_norm ~100
+  at alpha 0.1: the bootstrap spread is ~100x smaller than the error, so crc_norm mainly rescales a weak shape signal. No change.
+* Two earlier ICCAD'23 dev attempts died with numpy MemoryError while the shared machine was out of commit memory (other processes); no code
+  change, the third attempt completed. Registered runs are therefore run one at a time.
+* Dev timings set the zero-riscy subsample (section 5.3).

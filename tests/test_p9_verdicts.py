@@ -18,6 +18,11 @@ def test_uq_rules():
     assert abs(v['per_design']['a']['ood_degradation_id'] - (0.70 - 0.905)) < 1e-12
     v1 = V.uq({'evaluation': {'T_id': _ev(0.85, 0.9), 'h': _ev(0.86, 0.95)}}, ['h'])
     assert v1['U1_id_validity']['crc_norm'] is False and v1['U2_ood_undercoverage']['verdict'] is False
+    # small calibration set: the upper band widens to 1/(n+1) (n=15 -> 0.9625), the lower band does not
+    small = {'calibration': {'id': {'n_maps': 15}}, 'evaluation': {'T_id': _ev(0.957, 0.9), 'h': _ev(0.86, 0.95)}}
+    assert V.uq(small, ['h'])['U1_id_validity']['crc_norm'] is True
+    big = {'calibration': {'id': {'n_maps': 100}}, 'evaluation': {'T_id': _ev(0.957, 0.9), 'h': _ev(0.86, 0.95)}}
+    assert V.uq(big, ['h'])['U1_id_validity']['crc_norm'] is False
 
 
 def test_leakage_rules():
