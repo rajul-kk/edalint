@@ -1,0 +1,17 @@
+{
+ "dataset": "p9",
+ "protocol_file": "protocol/protocol_p9.md",
+ "protocol_sha256": "a9c42d012725a52e756a162740b168ecfdf0ae27930182f0386e166e97723b8b",
+ "protocol_sha256_note": "sha256 of the file with CRLF normalised to LF",
+ "code_hash": "a9900e6faaa4eb93f049c7d61c03ab919a8970ede2b0e90c3e07696bb2589b95",
+ "p9_code_hash": "62273eeb1b6092970bc9717dc4ff16cf66de15c83d54185227cab2ff7d964696",
+ "p9_code_hash_note": "sha256 over src/edalint_p9/**/*.py and scripts/p9_run_*.py (guard.py recipe)",
+ "frozen_at": "2026-11-05T20:02:35+0800",
+ "frozen_commit": "bc0858ca19863c33ecb300c57c2ec91420b98da0",
+ "frozen_commit_note": "commit of the code and protocol being frozen (the freeze commit itself adds this file)",
+ "seed": 20261105,
+ "machine": {
+  "cpu_model": "13th Gen Intel(R) Core(TM) i7-1355U",
+  "logical_cores": 12
+ }
+}
