@@ -63,7 +63,9 @@ member k: bootstrap of the F maps with seed 20261105 + k, pixel-subsample seed k
 `crc_abs` mu +/- lambda; `crc_norm` mu +/- lambda (sigma + eps), eps = 0.05 x mean calibration sigma; lambda by conformal risk control with loss =
 miscovered pixel fraction, separately per alpha in {0.5, 0.4, 0.3, 0.2, 0.1, 0.05} and per regime (C_id, C_xd). Primary: `crc_norm`, alpha 0.1.
 ### 5.3 Evaluation
-Every T_id map and every test row of every test design (no subsample unless amended before the freeze from dev timings). Per map: coverage, mean
+Every T_id map, every Vortex-large and openc910-1 test row, and a seeded subsample of 600 of the 3,441 zero-riscy rows (`seeded_split(names, [600], 20261105)`,
+fixed from dev timings before the freeze: ~0.5 s per IR row read on E: plus 5 member predictions; 600 maps give a coverage standard error < 0.01).
+ICCAD'23: all 10 hidden cases. Per map: coverage, mean
 width, coverage on pixels >= the map's 90th label percentile, MAE of mu. Per design: means; interval calibration error = mean over the six nominal
 levels of |coverage - nominal|; OOD degradation = coverage(design) - coverage(T_id), same regime.
 ### 5.4 Hypotheses (per target x task x model; nominal 0.9)

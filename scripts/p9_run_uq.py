@@ -26,7 +26,8 @@ from edalint_p9.guard import open_iccad_hidden, open_n14_test, p9_code_hash   # 
 SEED = 20261105
 M = 5
 ALPHAS = tuple(round(1 - n, 4) for n in U.NOMINALS)                     # 0.5, 0.4, 0.3, 0.2, 0.1, 0.05
-N14_SUBSAMPLE = {}                                                      # per-design caps on evaluated test rows (protocol section 5.3)
+N14_SUBSAMPLE = {('ir_drop', 'ridge', 'zero-riscy'): 600, ('ir_drop', 'gbm', 'zero-riscy'): 600,      # seeded caps on evaluated test rows
+                 ('congestion', 'ridge', 'zero-riscy'): 600, ('congestion', 'gbm', 'zero-riscy'): 600}  # (protocol section 5.3, from dev timings)
 
 
 def factory(target, task, model):

@@ -32,6 +32,9 @@ class Subset:
         return len(self.idx)
 
     def __iter__(self):
+        if hasattr(self.seq, 'prefetch'):
+            yield from self.seq.prefetch(self.idx)
+            return
         for i in self.idx:
             yield self.seq[i]
 

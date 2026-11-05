@@ -13,6 +13,7 @@ from __future__ import annotations
 
 import hashlib
 import io
+from concurrent.futures import ThreadPoolExecutor
 from pathlib import Path
 from typing import Callable, Dict, List, Optional, Sequence
 
@@ -44,8 +45,8 @@ class N14Cache:
         self.task, self.root = task, Path(root or CACHE_ROOT) / task / 'authors'
         self.members = task_members(task)
         self._allow_test = allow_test is _GUARD_TOKEN
-        self.digests: Dict[str, 'hashlib._Hash'] = {}
-        self.n_files: Dict[str, int] = {}
+        self.file_sha: Dict[str, Dict[str, str]] = {}            # design -> {feature/name: sha256 of the file bytes}
+        self._pool = ThreadPoolExecutor(max_workers=len(self.members))
         rows = official_rows()
         self.split_of = {}
         for sp, names in rows.items():
@@ -69,21 +70,24 @@ class N14Cache:
     def _read(self, design: str, feature: str, name: str) -> np.ndarray:
         p = self.root / design / feature / f'{name}.npy'
         b = p.read_bytes()
-        h = self.digests.setdefault(design, hashlib.sha256())
-        h.update(f'{feature}/{name}\0'.encode())
-        h.update(hashlib.sha256(b).digest())
-        self.n_files[design] = self.n_files.get(design, 0) + 1
+        self.file_sha.setdefault(design, {})[f'{feature}/{name}'] = hashlib.sha256(b).hexdigest()
         return np.load(io.BytesIO(b))
 
     def load(self, design: str, name: str) -> Sample:
+        """Member files are read concurrently (file-open latency on E: dominates; measured ~0.12 s per open in development)."""
         self._check(design)
-        ins, lab = assemble(self.task, 'authors', lambda f: self._read(design, f, name))
+        arrs = dict(zip(self.members, self._pool.map(lambda f: self._read(design, f, name), self.members)))
+        ins, lab = assemble(self.task, 'authors', lambda f: arrs[f])
         sp = 'test' if design in TEST_DESIGNS else 'train'
         return Sample(name, sp, design, ins, lab, {'name': name, 'mode': 'authors'})
 
     def digest_report(self) -> Dict[str, dict]:
-        """Order-dependent digest (rows are always read in a fixed order by the runners) and file count per design."""
-        return {d: {'sha256_of_file_hashes': h.hexdigest(), 'n_file_reads': self.n_files.get(d, 0)} for d, h in sorted(self.digests.items())}
+        """Per design: sha256 over the sorted 'feature/name sha256' lines of every distinct file read, and the file count."""
+        out = {}
+        for d, m in sorted(self.file_sha.items()):
+            h = hashlib.sha256('\n'.join(f'{k} {v}' for k, v in sorted(m.items())).encode())
+            out[d] = {'sha256_of_file_hashes': h.hexdigest(), 'n_files': len(m)}
+        return out
 
 
 class LazySamples:
@@ -99,8 +103,19 @@ class LazySamples:
         return self.loader(self.keys[i])
 
     def __iter__(self):
-        for k in self.keys:
-            yield self.loader(k)
+        return self.prefetch(range(len(self.keys)))
+
+    def prefetch(self, idx, workers: int = 3):
+        """Yield self[i] for i in idx in order, loading up to `workers` samples ahead in threads."""
+        idx = list(idx)
+        with ThreadPoolExecutor(max_workers=workers) as ex:
+            futs = [ex.submit(self.loader, self.keys[i]) for i in idx[:workers]]
+            for j in range(len(idx)):
+                f = futs[j]
+                if j + workers < len(idx):
+                    futs.append(ex.submit(self.loader, self.keys[idx[j + workers]]))
+                futs[j] = None
+                yield f.result()
 
 
 def seeded_split(names: Sequence[str], sizes: Sequence[int], seed: int) -> List[List[str]]:
