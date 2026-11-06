@@ -131,3 +131,10 @@ independent registered runs and proceed. `p9_run_verdicts.py` is not run until t
 The project owner decided to re-run `uq_n14_ir_drop_gbm` once, unchanged (same code, data and seeds), despite the partial number logged by the crashed
 attempt. Safeguard: the re-run's T_id crc_norm|id coverage@0.9 must equal the crashed attempt's logged 0.914; any mismatch is reported as
 non-determinism next to the result. No other job runs on the machine during the re-run. This is the last allowed attempt for this run.
+
+## Deviation 2026-11-06: second stop of N14 IR drop gbm UQ; further owner-authorised attempt
+
+The authorised re-run reproduced the crashed attempt exactly up to where it stopped (C_id lambda abs 0.2673 / norm 35.46, C_xd 0.4306 / 26.38,
+T_id coverage 0.914, matching the first attempt), then was stopped by the host for low memory at the same step (the zero-riscy evaluation). No result
+file was written. Both stops at the same step point to memory as the cause of the first stop too, correcting the earlier note. The owner authorised
+one more attempt, run as a process detached from the agent's shell (so the agent's memory-pressure reaper cannot stop it) with no other job running.
