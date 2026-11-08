@@ -32,14 +32,20 @@ when the data is on disk, the first 300 maps of the smallest real IR-drop tarbal
 
 ## Speed (first 3000 maps of `IR_drop_features/RISCY.tar.gz`, 10 GB, on drive E:, best of 2)
 
-| | edalint | python | native |
-|---|---|---|---|
-| Windows, Python 3.10 | 64.1 s | **15.3 s (4.2x)** | not built |
-| WSL2, Python 3.14 | 46.2 s | 23.3 s (2.0x) | 22.1 s (2.1x) |
+| | edalint | python (zlib) | python (ISA-L) | native (zlib) |
+|---|---|---|---|---|
+| Windows, Python 3.10 | 52.6-64.1 s | 15.3 s (4.2x) | **9.6 s (5.5x)** | not built |
+| WSL2, Python 3.14 | 46.2-54.2 s | 23.3 s (2.0x) | 19.3 s (2.8x) | 18.7-22.1 s (2.1-2.9x) |
+
+Speed-ups are against edalint's reader in the same run (two runs per platform; the ranges are run-to-run spread on a
+loaded machine). `pip install isal` (or the `fast` extra) makes the pure-Python reader use Intel ISA-L for inflate
+(344 MB/s against zlib's 180 MB/s on this tarball, Windows); `EDALINT_N14IO_NO_ISAL=1` turns it off. The C++ reader
+still uses zlib: ISA-L's C headers are not installable here without root, and under WSL both readers are already
+capped by reading the Windows drive.
 
 Where the time went (600 MB compressed, Windows): raw read 0.6 s, zlib inflate 10.8 s, `np.load` 5.3 s, and 54 s in
-the `GzipFile`/`BufferedReader`/`tarfile` layering. Both new readers remove that layer; what is left is zlib inflate
-(single-threaded, the same library in both) and, under WSL, reading the Windows drive (about 90 MB/s compressed). That
+the `GzipFile`/`BufferedReader`/`tarfile` layering. Both new readers remove that layer; what is left is inflate
+(single-threaded zlib, or ISA-L in the pure-Python reader) and, under WSL, reading the Windows drive (about 90 MB/s compressed). That
 is why the C++ reader is barely faster than the pure-Python one: the language was not the bottleneck. Further gains
 need a faster inflate (zlib-ng is typically 1.5-2x) or a different storage format, not a rewrite.
 

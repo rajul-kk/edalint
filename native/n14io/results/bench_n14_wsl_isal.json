@@ -1,0 +1,26 @@
+{
+ "tarball": "/mnt/e/edalint_data/circuitnet_n14/CircuitNet-N14/IR_drop_features/RISCY.tar.gz",
+ "platform": "Linux-6.6.114.1-microsoft-standard-WSL2-x86_64-with-glibc2.43",
+ "python": "3.14.4",
+ "numpy": "2.5.4",
+ "rows": [
+  {
+   "impl": "edalint",
+   "seconds": 54.16693343000952,
+   "maps": 3000,
+   "array_MB": 1593.810775756836
+  },
+  {
+   "impl": "python",
+   "seconds": 19.259651309985202,
+   "maps": 3000,
+   "array_MB": 1593.810775756836
+  },
+  {
+   "impl": "native",
+   "seconds": 18.703521445044316,
+   "maps": 3000,
+   "array_MB": 1593.810775756836
+  }
+ ]
+}

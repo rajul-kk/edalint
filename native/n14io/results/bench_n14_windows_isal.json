@@ -1,0 +1,20 @@
+{
+ "tarball": "E:\\edalint_data\\circuitnet_n14\\CircuitNet-N14\\IR_drop_features\\RISCY.tar.gz",
+ "platform": "Windows-10-10.0.26200-SP0",
+ "python": "3.10.0",
+ "numpy": "2.2.6",
+ "rows": [
+  {
+   "impl": "edalint",
+   "seconds": 52.61551730008796,
+   "maps": 3000,
+   "array_MB": 1593.810775756836
+  },
+  {
+   "impl": "python",
+   "seconds": 9.566397000104189,
+   "maps": 3000,
+   "array_MB": 1593.810775756836
+  }
+ ]
+}
