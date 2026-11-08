@@ -49,6 +49,14 @@ the `GzipFile`/`BufferedReader`/`tarfile` layering. Both new readers remove that
 is why the C++ reader is barely faster than the pure-Python one: the language was not the bottleneck. Further gains
 need a faster inflate (zlib-ng is typically 1.5-2x) or a different storage format, not a rewrite.
 
+## End-of-stream state in the readers
+
+Both readers keep "input exhausted" separate from "gzip member finished": a file that runs out on a tar block boundary
+without its gzip end marker (an interrupted download) raises, as edalint's `GzipFile` does, instead of being returned
+as a complete archive. A finished `decompressobj` that is fed more input passes it to `unused_data`, which starts the
+next member; zlib and ISA-L behave the same here (checked). `tests/test_n14io.py::test_unfinished_gzip_on_a_block_boundary_raises`
+covers it.
+
 ## State this does not change (edalint's staging, for anyone parallelising it)
 
 - `N14Dataset._stage_one` mutates `splits`, `skipped`, `inventory` and `_staged` without locks, so staging designs from
