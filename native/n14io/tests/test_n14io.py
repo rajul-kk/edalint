@@ -106,6 +106,27 @@ def test_truncated_archive_raises(tmp_path, impl):
         run(impl, cut, None)
 
 
+@pytest.mark.parametrize("impl", IMPLS, ids=lambda f: f.__name__)
+@pytest.mark.parametrize("keep", ["members", "headers"])
+def test_unfinished_gzip_on_a_block_boundary_raises(tmp_path, impl, keep):
+    """A gzip stream that stops (no end marker, no trailer) where the inflated tar happens to end on a 512-byte block:
+    an interrupted download. edalint's GzipFile raises; a reader that treats running out of input as end of archive
+    would return a presence set and the staging code would record the tarball as scanned."""
+    import zlib
+    p = build_tar(tmp_path)
+    data = gzip.decompress(p.read_bytes())
+    end = len(data) - 1024 if keep == "members" else 512 * 3        # drop the end-of-archive blocks / most members
+    while data[end - 512:end].count(0) == 512:
+        end -= 512
+    c = zlib.compressobj(9, zlib.DEFLATED, 16 + zlib.MAX_WBITS)
+    cut = tmp_path / "unfinished.tar.gz"
+    cut.write_bytes(c.compress(data[:end]) + c.flush(zlib.Z_SYNC_FLUSH))  # everything inflates, but the stream never ends
+    with pytest.raises((EOFError, RuntimeError, OSError, zlib_error())):
+        run(circuitnet.stream_tarball, cut, None)                   # the reference behaviour
+    with pytest.raises((EOFError, RuntimeError, OSError, zlib_error())):
+        run(impl, cut, None)
+
+
 def zlib_error():
     import zlib
     return zlib.error

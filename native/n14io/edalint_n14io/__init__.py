@@ -92,6 +92,11 @@ class _Inflated:
         self._fill(n)
         if len(self.buf) - self.pos < n:
             if len(self.buf) == self.pos:
+                # Out of input exactly on a request boundary is only a clean end if the last gzip member finished
+                # (d.eof); otherwise the file was cut off (e.g. an interrupted download), which edalint's GzipFile
+                # reports. Returning None here would let the caller record a partial tarball as fully scanned.
+                if not self.d.eof:
+                    raise EOFError("gzip stream ended before its end-of-stream marker")
                 return None
             raise EOFError("truncated gzip stream")
         b = bytes(self.buf[self.pos:self.pos + n])
@@ -153,6 +158,8 @@ def stream_tarball_python(tar_path, design: str, dir_to_feature: Dict[str, str],
             kind = hdr[156:157]
             if kind in (b"L", b"x"):
                 data = src.read(size) if size else b""
+                if data is None:
+                    raise EOFError("truncated tar extended header")
                 src.skip(padded - size)
                 long_name = (_cstr(data) if kind == b"L" else _pax_path(data)) or long_name
                 continue
