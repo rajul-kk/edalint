@@ -1,0 +1,22 @@
+[build-system]
+requires = ["setuptools>=61", "pybind11>=2.11"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "edalint-pdn"
+version = "0.1.0"
+description = "Native (C++/Eigen) parse and DC solve of ICCAD'23 power-delivery netlists, a drop-in for edalint.spice"
+requires-python = ">=3.9"
+license = { text = "MIT" }
+authors = [{ name = "Rajul Kabeer" }]
+dependencies = ["numpy>=1.22", "edalint"]
+
+[project.optional-dependencies]
+test = ["pytest"]
+
+[tool.setuptools]
+packages = ["edalint_pdn"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+markers = ["realdata: needs the ICCAD'23 benchmark on disk (skipped if absent)"]
