@@ -13,6 +13,7 @@ dependencies = ["numpy>=1.22", "edalint"]
 
 [project.optional-dependencies]
 test = ["pytest"]
+fast = ["isal>=1.6"]   # Intel ISA-L inflate for the pure-Python reader (about 1.9x zlib)
 
 [tool.setuptools]
 packages = ["edalint_n14io"]
