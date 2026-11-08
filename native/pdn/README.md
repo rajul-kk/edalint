@@ -49,19 +49,18 @@ map, and, when the benchmark is on disk, a real ICCAD'23 netlist.
 
 `bench/bench_iccad23.py` times edalint.spice (pandas parse, SciPy `spsolve`) against the native path on the train split
 only (fake-circuit-data and the visible real-circuit-data; the hidden real cases are the guarded test split and are
-never opened). WSL2 on an i7-1355U, Python 3.14, SciPy 1.18, best of 3 runs per measurement
-(`results/bench_iccad23_train_partial.log`: 64 of the 100 fake netlists, 10k-199k nodes, before the run was stopped):
+never opened). WSL2 on an i7-1355U, Python 3.14, SciPy 1.18, best of 3 runs per measurement, all 110 train netlists
+(100 fake + 10 visible real, 10k-206k nodes; `results/bench_iccad23_train.json` and `.log`):
 
 | | median speed-up | range |
 |---|---|---|
-| parse + solve, `direct` | **4.4x** (1.38 s -> 0.35 s per netlist) | 1.8x - 8.0x |
-| parse only | 5.0x | 1.4x - 9.3x |
-| solve only, `direct` | 3.4x | 2.2x - 7.0x |
-| parse + solve, `cg_ic` | 0.6x (slower) | 0.3x - 2.1x |
+| parse + solve, `direct` | **4.7x** (1.30 s -> 0.31 s per netlist) | 2.0x - 7.4x |
+| parse only | 5.4x | |
+| solve only, `direct` | 3.5x | |
 
-Largest netlist (199k nodes): parse 2.16 -> 1.03 s, solve 1.22 -> 0.30 s. An earlier single-pass run over all 110 train
-netlists (100 fake + 10 visible real) gave a median of 4.2x (1.6x - 8.2x; 4.2x on both subsets), with the native
-`direct` voltages within 1.4e-13 V of SciPy's on every node; its raw output was not kept.
+Fake and visible real netlists give the same picture (4.7x and 4.9x). Largest netlist (206k nodes): parse 1.70 -> 0.33 s,
+solve 1.05 -> 0.32 s. Native `direct` voltages agree with SciPy's within 1.4e-13 V on every node of every netlist.
+`cg_ic` was slower than SciPy's direct solve (median 0.6x, from an earlier run over 64 netlists), so it is not timed here.
 
 ## Limits
 
