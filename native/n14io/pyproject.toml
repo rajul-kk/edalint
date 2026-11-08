@@ -1,0 +1,22 @@
+[build-system]
+requires = ["setuptools>=61", "pybind11>=2.11"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "edalint-n14io"
+version = "0.1.0"
+description = "Faster CircuitNet-N14 tarball streaming (C++ reader with a pure-Python fallback), a drop-in for edalint's loader"
+requires-python = ">=3.9"
+license = { text = "MIT" }
+authors = [{ name = "Rajul Kabeer" }]
+dependencies = ["numpy>=1.22", "edalint"]
+
+[project.optional-dependencies]
+test = ["pytest"]
+
+[tool.setuptools]
+packages = ["edalint_n14io"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+markers = ["realdata: needs the CircuitNet-N14 tarballs on disk (skipped if absent)"]
