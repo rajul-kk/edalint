@@ -12,7 +12,17 @@ import pytest
 import edalint_n14io as n14
 from edalint.datasets import circuitnet
 
-IMPLS = ([n14.stream_tarball_python] + ([n14.stream_tarball_native] if n14.HAVE_NATIVE else [])
+
+
+def _python_with(inflate):
+    def impl(*a, **k):
+        return n14.stream_tarball_python(*a, inflate=inflate, **k)
+    impl.__name__ = f"stream_tarball_python[{inflate}]"
+    return impl
+
+
+PY_IMPLS = [_python_with(i) for i in n14.INFLATES]
+IMPLS = (PY_IMPLS + ([n14.stream_tarball_native] if n14.HAVE_NATIVE else [])
          + ([n14.stream_tarball_rust] if n14.HAVE_RUST else []))
 DIRS = {"power_i": "power_i", "RUDY/RUDY": "RUDY", "congestion/a/deep/path/that/is/long/" + "x" * 90: "LONGDIR"}
 
@@ -136,7 +146,7 @@ def zlib_error():
 def test_install_swaps_edalints_reader_and_uninstall_restores_it():
     original = circuitnet.stream_tarball
     try:
-        assert n14.install() in ("native", "python")
+        assert n14.install() == n14.default_impl() in ("native", "python", "rust")
         assert circuitnet.stream_tarball is n14.stream_tarball
     finally:
         n14.uninstall()
@@ -206,3 +216,74 @@ def test_rust_reader_stops_when_python_stops_early(tmp_path):
             n14.stream_tarball_rust(p, "des", DIRS, None, handle)
     same(run(circuitnet.stream_tarball, p, None), run(n14.stream_tarball_rust, p, None))
     assert threading.active_count() == before        # Rust threads are not Python threads; nothing leaked into Python
+
+
+def _gzip_tar_without_end_blocks(tmp_path):
+    """A properly finished gzip stream whose tar has no end-of-archive blocks (some writers omit them)."""
+    data = gzip.decompress(build_tar(tmp_path).read_bytes())
+    end = len(data)
+    while data[end - 512:end].count(0) == 512:
+        end -= 512
+    p = tmp_path / "noend.tar.gz"
+    p.write_bytes(gzip.compress(data[:end]))
+    return p
+
+
+@pytest.mark.parametrize("inflate", [i for i in n14.INFLATES if i != "rapidgzip"])
+def test_verifying_sources_accept_a_tar_without_end_blocks_like_edalint(tmp_path, inflate):
+    p = _gzip_tar_without_end_blocks(tmp_path)
+    same(run(circuitnet.stream_tarball, p, None), run(_python_with(inflate), p, None))
+
+
+@pytest.mark.skipif("rapidgzip" not in n14.INFLATES, reason="rapidgzip not installed")
+def test_rapidgzip_source_requires_the_end_of_archive_block(tmp_path):
+    """rapidgzip cannot tell a finished gzip stream from a cut one, so without the tar end block the reader refuses
+    rather than report a possibly partial archive as complete (stricter than edalint, on purpose)."""
+    with pytest.raises(EOFError):
+        run(_python_with("rapidgzip"), _gzip_tar_without_end_blocks(tmp_path), None)
+
+
+@pytest.mark.skipif("rapidgzip" not in n14.INFLATES, reason="rapidgzip not installed")
+@pytest.mark.parametrize("threads", ["1", "4"])
+def test_rapidgzip_thread_count_does_not_change_results(tmp_path, monkeypatch, threads):
+    monkeypatch.setenv("EDALINT_N14IO_THREADS", threads)
+    p = build_tar(tmp_path, split_gzip=True)
+    same(run(circuitnet.stream_tarball, p, None), run(_python_with("rapidgzip"), p, None))
+
+
+@pytest.mark.parametrize("impl", PY_IMPLS, ids=lambda f: f.__name__)
+@pytest.mark.parametrize("where", [0.3, 0.6, 0.9])
+def test_corrupt_archive_raises_edalints_error_types(tmp_path, impl, where):
+    """Flipped bytes: edalint's GzipFile raises BadGzipFile (an OSError) or EOFError; the Python reader raises the same
+    types whichever inflate it uses, instead of zlib.error, IsalError or rapidgzip's ValueError/RuntimeError."""
+    b = bytearray(build_tar(tmp_path).read_bytes())
+    i = int(len(b) * where)
+    b[i:i + 4] = bytes(x ^ 0x5A for x in b[i:i + 4])
+    q = tmp_path / "bad.tar.gz"
+    q.write_bytes(bytes(b))
+    with pytest.raises((OSError, EOFError)):
+        run(circuitnet.stream_tarball, q, None)
+    with pytest.raises((gzip.BadGzipFile, EOFError)):
+        run(impl, q, None)
+
+
+def test_default_reader_order(monkeypatch):
+    for inflate, rust, native, want in [("rapidgzip", True, True, "python"), ("isal", True, True, "rust"),
+                                        ("isal", False, True, "native"), ("zlib", False, False, "python")]:
+        monkeypatch.setattr(n14, "INFLATE", inflate)
+        monkeypatch.setattr(n14, "HAVE_RUST", rust)
+        monkeypatch.setattr(n14, "HAVE_NATIVE", native)
+        assert n14.default_impl() == want
+
+
+@pytest.mark.parametrize("impl, accepts", [(f, True) for f in ([n14.stream_tarball_native] if n14.HAVE_NATIVE else [])]
+                         + [(f, False) for f in ([n14.stream_tarball_rust] if n14.HAVE_RUST else [])],
+                         ids=lambda x: getattr(x, "__name__", str(x)))
+def test_compiled_readers_on_a_tar_without_end_blocks(tmp_path, impl, accepts):
+    """native follows edalint (the gzip end marker is enough); rust also wants the tar end block, like rapidgzip."""
+    p = _gzip_tar_without_end_blocks(tmp_path)
+    if accepts:
+        same(run(circuitnet.stream_tarball, p, None), run(impl, p, None))
+    else:
+        with pytest.raises(EOFError):
+            run(impl, p, None)

@@ -1,17 +1,19 @@
 """Faster CircuitNet-N14 tarball streaming, as a drop-in for edalint.datasets.circuitnet.stream_tarball.
 
-Two implementations with the semantics of edalint's stream_tarball (one sequential pass; presence of every matching
+Three implementations with the semantics of edalint's stream_tarball (one sequential pass; presence of every matching
 member; handle(feature, name, array) for the wanted ones, in archive order):
+  python  pure Python: a hand-written tar header parser over one inflate source (rapidgzip, ISA-L or zlib) instead of
+          the GzipFile -> BufferedReader -> tarfile stack, whose per-member overhead dominates edalint's loader.
   native  C++ (_reader): zlib inflate, tar, zip and npy parsing with the GIL released. Linux / WSL / macOS builds.
-  python  pure Python: one zlib.decompressobj over large chunks and a hand-written tar header parser instead of the
-          GzipFile -> BufferedReader -> tarfile stack, whose per-member overhead dominates edalint's loader.
-stream_tarball() uses native when the extension is importable, else python.
+  rust    Rust (edalint_n14io_rs, native/n14io-rs): zlib-rs inflate on a reader thread, npz decoding on a pool.
+stream_tarball() uses default_impl(), the fastest one installed.
 
 install() points edalint.datasets.circuitnet.stream_tarball at this module's stream_tarball for the running process;
 uninstall() restores it. Nothing under src/edalint changes, so edalint.protocol.code_hash() and the freezes are unaffected.
 """
 from __future__ import annotations
 
+import gzip
 import io
 import os
 import posixpath
@@ -30,21 +32,28 @@ try:  # the Rust reader (native/n14io-rs), a separate package
 except ImportError:
     _RustReader = None
 
-# Inflate for the pure-Python reader: Intel ISA-L (pip install isal; same decompressobj API, about 1.9x zlib's speed on
-# these tarballs) when installed, else zlib. EDALINT_N14IO_NO_ISAL=1 forces zlib.
-_inflate = zlib
-if not os.environ.get("EDALINT_N14IO_NO_ISAL"):
-    try:
-        from isal import isal_zlib as _inflate
-    except ImportError:
-        pass
+# Inflate for the pure-Python reader, fastest available first (each can be turned off for testing or by choice):
+#   rapidgzip  parallel gzip decompression over all cores (pip install rapidgzip); EDALINT_N14IO_NO_RAPIDGZIP=1 skips it
+#   isal       Intel ISA-L, decompressobj API, about 1.9x zlib (pip install isal); EDALINT_N14IO_NO_ISAL=1 skips it
+#   zlib       always there
+# rapidgzip does not report an unfinished gzip stream (it returns the data, or nothing, without an error), so with it
+# the reader only accepts an archive that reaches its tar end-of-archive block; see _RapidSource.
+try:
+    from isal import isal_zlib as _isal
+except ImportError:
+    _isal = None
+try:
+    import rapidgzip as _rapidgzip
+except ImportError:
+    _rapidgzip = None
 
 __all__ = ["stream_tarball", "stream_tarball_native", "stream_tarball_python", "stream_tarball_rust", "install",
-           "uninstall", "HAVE_NATIVE", "HAVE_RUST", "INFLATE"]
+           "uninstall", "default_impl", "HAVE_NATIVE", "HAVE_RUST", "INFLATE", "INFLATES"]
 
 HAVE_NATIVE = _reader is not None
 HAVE_RUST = _RustReader is not None
-INFLATE = "isal" if _inflate is not zlib else "zlib"
+INFLATES = ([] if _rapidgzip is None else ["rapidgzip"]) + ([] if _isal is None else ["isal"]) + ["zlib"]
+INFLATE = next(i for i in INFLATES if not os.environ.get(f"EDALINT_N14IO_NO_{i.upper()}") or i == "zlib")
 _CHUNK = 1 << 24
 
 
@@ -85,11 +94,15 @@ def stream_tarball_rust(tar_path, design: str, dir_to_feature: Dict[str, str], w
 
 
 class _Inflated:
-    """Exact-size reads from a gzip file through one zlib.decompressobj (handles concatenated members)."""
+    """Exact-size reads from a gzip file through one decompressobj (zlib or ISA-L; handles concatenated members).
+    It knows whether the last gzip member reached its end marker, so a clean end from read() is a real end."""
 
-    def __init__(self, path):
+    vouches_for_end = True
+
+    def __init__(self, path, mod=zlib):
+        self._mod = mod
         self.f = open(path, "rb")
-        self.d = _inflate.decompressobj(16 + zlib.MAX_WBITS)
+        self.d = mod.decompressobj(16 + zlib.MAX_WBITS)
         self.buf = bytearray()
         self.pos = 0
         self.eof = False
@@ -98,6 +111,12 @@ class _Inflated:
         self.f.close()
 
     def _fill(self, need):
+        try:
+            self._fill_raw(need)
+        except self._mod.error as e:   # zlib.error / IsalError: report corrupt data the way edalint's GzipFile does
+            raise gzip.BadGzipFile(f"corrupt gzip data: {e}") from e
+
+    def _fill_raw(self, need):
         while len(self.buf) - self.pos < need and not self.eof:
             if self.pos > _CHUNK:                     # drop consumed bytes now and then
                 del self.buf[:self.pos]
@@ -110,7 +129,7 @@ class _Inflated:
             out = self.d.decompress(raw)
             while self.d.eof and self.d.unused_data:  # next gzip member
                 rest = self.d.unused_data
-                self.d = _inflate.decompressobj(16 + zlib.MAX_WBITS)
+                self.d = self._mod.decompressobj(16 + zlib.MAX_WBITS)
                 out += self.d.decompress(rest)
             self.buf += out
 
@@ -137,6 +156,63 @@ class _Inflated:
                 raise EOFError("truncated gzip stream")
             self.pos += k
             n -= k
+
+
+class _RapidSource:
+    """Exact-size reads through rapidgzip (parallel inflate). rapidgzip returns an unfinished gzip stream's data, or
+    nothing for a stream cut mid-way, without an error, so a clean end from read() proves nothing here
+    (vouches_for_end = False): the caller must have seen the tar end-of-archive block."""
+
+    vouches_for_end = False
+
+    def __init__(self, path, threads=0):
+        self.f = _rapidgzip.open(os.fspath(path), parallelization=threads)
+
+    def close(self):
+        self.f.close()
+
+    def _read(self, n):
+        try:
+            return self.f.read(n)
+        except (RuntimeError, ValueError) as e:  # rapidgzip's CRC, size and end-of-file errors, as edalint's types
+            if "End of file" in str(e):
+                raise EOFError(f"truncated gzip stream: {e}") from e
+            raise gzip.BadGzipFile(f"corrupt gzip data: {e}") from e
+
+    def read(self, n):
+        parts, got = [], 0
+        while got < n:
+            b = self._read(n - got)
+            if not b:
+                break
+            parts.append(b)
+            got += len(b)
+        if got == 0:
+            return None
+        if got < n:
+            raise EOFError("truncated gzip stream")
+        return parts[0] if len(parts) == 1 else b"".join(parts)
+
+    def skip(self, n):
+        while n > 0:
+            b = self._read(min(n, _CHUNK))
+            if not b:
+                raise EOFError("truncated gzip stream")
+            n -= len(b)
+
+
+def _open_source(path, inflate):
+    if inflate == "rapidgzip":
+        if _rapidgzip is None:
+            raise ImportError("rapidgzip is not installed")
+        return _RapidSource(path, int(os.environ.get("EDALINT_N14IO_THREADS", "0")))
+    if inflate == "isal":
+        if _isal is None:
+            raise ImportError("isal is not installed")
+        return _Inflated(path, _isal)
+    if inflate == "zlib":
+        return _Inflated(path, zlib)
+    raise ValueError(f"unknown inflate {inflate!r}; one of {INFLATES}")
 
 
 def _tar_number(b: bytes) -> int:
@@ -170,14 +246,21 @@ def _pax_path(rec: bytes) -> Optional[str]:
 
 
 def stream_tarball_python(tar_path, design: str, dir_to_feature: Dict[str, str], wanted: Optional[set],
-                          handle: Callable) -> Dict[str, set]:
+                          handle: Callable, inflate: Optional[str] = None) -> Dict[str, set]:
+    """inflate: "rapidgzip", "isal" or "zlib" (default INFLATE, the fastest installed)."""
     presence: Dict[str, set] = {f: set() for f in dir_to_feature.values()}
-    src = _Inflated(tar_path)
+    src = _open_source(tar_path, inflate or INFLATE)
     try:
         long_name = None
         while True:
             hdr = src.read(512)
-            if hdr is None or hdr.count(0) == 512:
+            if hdr is None:
+                # Out of data at a header boundary with no end-of-archive block. edalint's tarfile accepts that, and so
+                # do we when the source has verified the gzip end marker; rapidgzip cannot, so it is an error there.
+                if not src.vouches_for_end:
+                    raise EOFError("archive ended without its tar end-of-archive block (possibly truncated)")
+                return presence
+            if hdr.count(0) == 512:
                 return presence
             size = _tar_number(hdr[124:136])
             padded = (size + 511) // 512 * 512
@@ -225,10 +308,21 @@ def stream_tarball_python(tar_path, design: str, dir_to_feature: Dict[str, str],
         src.close()
 
 
+def default_impl() -> str:
+    """The fastest reader available, by the benchmarks in README.md: the Python reader on rapidgzip (parallel inflate),
+    else Rust, else C++, else the Python reader on ISA-L or zlib. Decided per call from module state, which is fixed
+    at import (EDALINT_N14IO_NO_* are read once)."""
+    if INFLATE == "rapidgzip":
+        return "python"
+    return "rust" if HAVE_RUST else "native" if HAVE_NATIVE else "python"
+
+
+_IMPLS = {"python": stream_tarball_python, "rust": stream_tarball_rust, "native": stream_tarball_native}
+
+
 def stream_tarball(tar_path, design, dir_to_feature, wanted, handle):
-    """edalint.datasets.circuitnet.stream_tarball, faster: native when built, else the pure-Python reader."""
-    impl = stream_tarball_native if HAVE_NATIVE else stream_tarball_python
-    return impl(tar_path, design, dir_to_feature, wanted, handle)
+    """edalint.datasets.circuitnet.stream_tarball, faster: the reader default_impl() names."""
+    return _IMPLS[default_impl()](tar_path, design, dir_to_feature, wanted, handle)
 
 
 _original = None
@@ -241,7 +335,7 @@ def install():
     if _original is None:
         _original = circuitnet.stream_tarball
     circuitnet.stream_tarball = stream_tarball
-    return "native" if HAVE_NATIVE else "python"
+    return default_impl()
 
 
 def uninstall():
