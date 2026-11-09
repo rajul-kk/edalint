@@ -37,7 +37,10 @@ python -c "import edalint_n14io as n; print(n.HAVE_RUST)"
 Best of 3 (local disk) and of 2 (drive E:), on a loaded machine; the E: run was slower for every reader than earlier
 runs, so compare within a column. The gain over C++ is the faster inflate only: CircuitNet's `.npz` members are
 *stored*, not deflated, so the decoder threads have little to do and their count barely matters (measured 1-8).
-What is left is the single outer gzip stream, which no reader here can split across cores.
+What is left is the single outer gzip stream, which this reader inflates on one core. The pure-Python reader on
+rapidgzip inflates it on all cores and is faster (1.81 s against 3.4 s on the same prefix, see
+`native/n14io/README.md`), so `edalint_n14io.default_impl()` prefers it when rapidgzip is installed; this reader is
+the fastest without it.
 
 ## State, made explicit
 
