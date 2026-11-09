@@ -25,6 +25,11 @@ try:
 except ImportError:  # extension not built (e.g. Windows): the pure-Python path is used
     _reader = None
 
+try:  # the Rust reader (native/n14io-rs), a separate package
+    from edalint_n14io_rs import Reader as _RustReader
+except ImportError:
+    _RustReader = None
+
 # Inflate for the pure-Python reader: Intel ISA-L (pip install isal; same decompressobj API, about 1.9x zlib's speed on
 # these tarballs) when installed, else zlib. EDALINT_N14IO_NO_ISAL=1 forces zlib.
 _inflate = zlib
@@ -34,10 +39,11 @@ if not os.environ.get("EDALINT_N14IO_NO_ISAL"):
     except ImportError:
         pass
 
-__all__ = ["stream_tarball", "stream_tarball_native", "stream_tarball_python", "install", "uninstall", "HAVE_NATIVE",
-           "INFLATE"]
+__all__ = ["stream_tarball", "stream_tarball_native", "stream_tarball_python", "stream_tarball_rust", "install",
+           "uninstall", "HAVE_NATIVE", "HAVE_RUST", "INFLATE"]
 
 HAVE_NATIVE = _reader is not None
+HAVE_RUST = _RustReader is not None
 INFLATE = "isal" if _inflate is not zlib else "zlib"
 _CHUNK = 1 << 24
 
@@ -56,6 +62,26 @@ def stream_tarball_native(tar_path, design: str, dir_to_feature: Dict[str, str],
         presence[feat].add(name)
         if arr is not None:
             handle(feat, name, arr)
+
+
+def stream_tarball_rust(tar_path, design: str, dir_to_feature: Dict[str, str], wanted: Optional[set],
+                        handle: Callable, workers: int = 0) -> Dict[str, set]:
+    """The Rust reader: zlib-rs inflate on a reader thread, the wanted npz members decoded by `workers` threads
+    (0: two, enough for stored npz members; raise it for deflated ones), results in archive order."""
+    if _RustReader is None:
+        raise ImportError("edalint_n14io_rs is not installed (native/n14io-rs)")
+    presence: Dict[str, set] = {f: set() for f in dir_to_feature.values()}
+    r = _RustReader(str(tar_path), design, dict(dir_to_feature), None if wanted is None else list(wanted), workers)
+    while True:
+        m = r.next()
+        if m is None:
+            return presence
+        feat, name, arr = m
+        presence[feat].add(name)
+        if arr is not None:
+            descr, fortran, shape, data = arr
+            a = np.frombuffer(data, dtype=np.dtype(descr)).reshape(shape, order="F" if fortran else "C")
+            handle(feat, name, a)
 
 
 class _Inflated:

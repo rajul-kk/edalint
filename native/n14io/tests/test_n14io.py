@@ -12,7 +12,8 @@ import pytest
 import edalint_n14io as n14
 from edalint.datasets import circuitnet
 
-IMPLS = [n14.stream_tarball_python] + ([n14.stream_tarball_native] if n14.HAVE_NATIVE else [])
+IMPLS = ([n14.stream_tarball_python] + ([n14.stream_tarball_native] if n14.HAVE_NATIVE else [])
+         + ([n14.stream_tarball_rust] if n14.HAVE_RUST else []))
 DIRS = {"power_i": "power_i", "RUDY/RUDY": "RUDY", "congestion/a/deep/path/that/is/long/" + "x" * 90: "LONGDIR"}
 
 
@@ -175,3 +176,33 @@ def test_real_tarball_matches_edalint(impl):
     got = first_members(impl, p, design, dirs, 300)
     assert list(ref) == list(got) and len(ref) == 300
     assert all(ref[k].dtype == got[k].dtype and np.array_equal(ref[k], got[k]) for k in ref)
+
+
+@pytest.mark.skipif(not n14.HAVE_RUST, reason="edalint_n14io_rs not installed")
+@pytest.mark.parametrize("workers", [1, 2, 7])
+def test_rust_order_does_not_depend_on_worker_count(tmp_path, workers):
+    p = build_tar(tmp_path)
+    ref = run(circuitnet.stream_tarball, p, None)
+    got = run(lambda *a: n14.stream_tarball_rust(*a, workers=workers), p, None)
+    same(ref, got)
+
+
+@pytest.mark.skipif(not n14.HAVE_RUST, reason="edalint_n14io_rs not installed")
+def test_rust_reader_stops_when_python_stops_early(tmp_path):
+    """The handle raising mid-archive must propagate, and the reader and decoder threads must wind down (Reader
+    dropped -> stop flag and closed queues), so a second pass over the same file starts clean."""
+    import threading
+    p = build_tar(tmp_path)
+    before = threading.active_count()
+
+    class Stop(Exception):
+        pass
+
+    def handle(f, n, a):
+        raise Stop
+
+    for _ in range(20):
+        with pytest.raises(Stop):
+            n14.stream_tarball_rust(p, "des", DIRS, None, handle)
+    same(run(circuitnet.stream_tarball, p, None), run(n14.stream_tarball_rust, p, None))
+    assert threading.active_count() == before        # Rust threads are not Python threads; nothing leaked into Python
