@@ -1,0 +1,44 @@
+{
+ "tarball": "/home/rajul/n14bench/IR_drop_features/RISCY.tar.gz.head",
+ "platform": "Linux-6.6.114.1-microsoft-standard-WSL2-x86_64-with-glibc2.43",
+ "python": "3.14.4",
+ "numpy": "2.5.4",
+ "rows": [
+  {
+   "impl": "edalint",
+   "seconds": 14.13219489799667,
+   "maps": 3000,
+   "array_MB": 1593.810775756836
+  },
+  {
+   "impl": "python[rapidgzip]",
+   "seconds": 1.8082283120020293,
+   "maps": 3000,
+   "array_MB": 1593.810775756836
+  },
+  {
+   "impl": "python[isal]",
+   "seconds": 4.80813066400151,
+   "maps": 3000,
+   "array_MB": 1593.810775756836
+  },
+  {
+   "impl": "python[zlib]",
+   "seconds": 7.047463914997934,
+   "maps": 3000,
+   "array_MB": 1593.810775756836
+  },
+  {
+   "impl": "native",
+   "seconds": 4.525149438006338,
+   "maps": 3000,
+   "array_MB": 1593.810775756836
+  },
+  {
+   "impl": "rust",
+   "seconds": 3.3875624669963145,
+   "maps": 3000,
+   "array_MB": 1593.810775756836
+  }
+ ]
+}
