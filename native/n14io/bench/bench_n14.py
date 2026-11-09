@@ -43,13 +43,15 @@ def main():
     ap.add_argument("--repeats", type=int, default=2)
     a = ap.parse_args()
     p = Path(a.tarball)
-    design = p.name[: -len(".tar.gz")]
+    design = p.name.split(".tar.gz")[0]            # also accepts a prefix copy such as RISCY.tar.gz.head
     task = "ir_drop" if p.parent.name == circuitnet.IRD else "congestion"
     feats = circuitnet.TASKS[task]["inputs"] + circuitnet.TASKS[task]["label"]
     dirs = {circuitnet.FEATURE_DIRS[f]: f for f in feats}
     impls = {"edalint": circuitnet.stream_tarball, "python": n14.stream_tarball_python}
     if n14.HAVE_NATIVE:
         impls["native"] = n14.stream_tarball_native
+    if n14.HAVE_RUST:
+        impls["rust"] = n14.stream_tarball_rust
     rows = []
     for name, impl in impls.items():
         best, got = None, None
