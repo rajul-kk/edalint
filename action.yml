@@ -1,0 +1,88 @@
+name: edalint
+description: Lint an ML-for-EDA map dataset (integrity, degenerate samples, duplicates, split leakage, orientation, metric sanity)
+branding:
+  icon: check-square
+  color: blue
+
+inputs:
+  dataset:
+    description: Folder of .npz files (or iccad23 / n14-<task>). Empty = the dataset named in edalint.toml.
+    default: ''
+  config:
+    description: edalint.toml or pyproject.toml to read. Empty = search the working directory.
+    default: ''
+  fail-on:
+    description: Lowest severity that fails the step (error | warning | info | never). Empty = config, else warning.
+    default: ''
+  baseline:
+    description: JSON of accepted findings (edalint lint --write-baseline FILE writes one).
+    default: ''
+  args:
+    description: Extra arguments for edalint lint, e.g. "--ignore E006 --max-samples 200".
+    default: ''
+  sarif-file:
+    description: Where to write the SARIF report.
+    default: edalint.sarif
+  upload-sarif:
+    description: Upload the SARIF report to GitHub code scanning (needs permissions security-events write).
+    default: 'false'
+  python-version:
+    description: Python used to run edalint.
+    default: '3.12'
+
+outputs:
+  exit-code:
+    description: edalint's exit code (0 pass, 1 warning, 2 error, 3 protocol guard, 5 configuration).
+    value: ${{ steps.lint.outputs.exit-code }}
+  sarif-file:
+    description: Path of the SARIF report.
+    value: ${{ inputs.sarif-file }}
+
+runs:
+  using: composite
+  steps:
+    - uses: actions/setup-python@v5
+      with:
+        python-version: ${{ inputs.python-version }}
+    - name: Install edalint
+      shell: bash
+      run: python -m pip install --disable-pip-version-check -q "$GITHUB_ACTION_PATH"
+    - name: Lint
+      id: lint
+      shell: bash
+      env:
+        DATASET: ${{ inputs.dataset }}
+        CONFIG: ${{ inputs.config }}
+        FAIL_ON: ${{ inputs.fail-on }}
+        BASELINE: ${{ inputs.baseline }}
+        ARGS: ${{ inputs.args }}
+        SARIF: ${{ inputs.sarif-file }}
+      run: |
+        cmd=(edalint lint)
+        [ -n "$DATASET" ] && cmd+=("$DATASET")
+        [ -n "$CONFIG" ] && cmd+=(--config "$CONFIG")
+        [ -n "$FAIL_ON" ] && cmd+=(--fail-on "$FAIL_ON")
+        [ -n "$BASELINE" ] && cmd+=(--baseline "$BASELINE")
+        read -r -a extra <<< "$ARGS"
+        set +e
+        # one run: annotations on stdout (GitHub turns them into PR annotations), SARIF and a Markdown report for the job summary
+        "${cmd[@]}" "${extra[@]}" --format github --sarif "$SARIF" --markdown "$RUNNER_TEMP/edalint-report.md"
+        code=$?
+        set -e
+        echo "exit-code=$code" >> "$GITHUB_OUTPUT"
+        if [ -f "$RUNNER_TEMP/edalint-report.md" ]; then
+          cat "$RUNNER_TEMP/edalint-report.md"
+          cat "$RUNNER_TEMP/edalint-report.md" >> "$GITHUB_STEP_SUMMARY"
+        fi
+    - name: Upload SARIF
+      if: inputs.upload-sarif == 'true' && hashFiles(inputs.sarif-file) != ''
+      uses: github/codeql-action/upload-sarif@v3
+      with:
+        sarif_file: ${{ inputs.sarif-file }}
+        category: edalint
+    - name: Result
+      shell: bash
+      env:
+        CODE: ${{ steps.lint.outputs.exit-code }}
+      run: |
+        if [ "$CODE" != "0" ]; then echo "edalint exited with $CODE"; exit "$CODE"; fi

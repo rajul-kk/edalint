@@ -1,0 +1,13 @@
+# pre-commit hook: lint the dataset named in edalint.toml (or [tool.edalint] in pyproject.toml) when its files change.
+#   - repo: https://github.com/rajul-kk/edalint
+#     rev: v0.2.0
+#     hooks:
+#       - id: edalint
+- id: edalint
+  name: edalint (ML-for-EDA dataset lint)
+  description: Integrity, degenerate samples, duplicates, split leakage, orientation and metric sanity of a map dataset
+  entry: edalint lint
+  language: python
+  pass_filenames: false
+  files: \.(npz|csv|toml)$
+  require_serial: true
