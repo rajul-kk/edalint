@@ -47,7 +47,9 @@ def main():
     task = "ir_drop" if p.parent.name == circuitnet.IRD else "congestion"
     feats = circuitnet.TASKS[task]["inputs"] + circuitnet.TASKS[task]["label"]
     dirs = {circuitnet.FEATURE_DIRS[f]: f for f in feats}
-    impls = {"edalint": circuitnet.stream_tarball, "python": n14.stream_tarball_python}
+    impls = {"edalint": circuitnet.stream_tarball}
+    for inf in n14.INFLATES:
+        impls[f"python[{inf}]"] = (lambda inf: lambda *x: n14.stream_tarball_python(*x, inflate=inf))(inf)
     if n14.HAVE_NATIVE:
         impls["native"] = n14.stream_tarball_native
     if n14.HAVE_RUST:
@@ -59,7 +61,7 @@ def main():
             dt, got = run(impl, p, design, dirs, a.members)
             best = dt if best is None else min(best, dt)
         rows.append({"impl": name, "seconds": best, "maps": got["n"], "array_MB": got["bytes"] / 2**20})
-        print(f"{name:<8} {best:7.2f} s for {got['n']} maps ({got['bytes'] / 2**20 / best:6.0f} MB/s of arrays)", flush=True)
+        print(f"{name:<17} {best:7.2f} s for {got['n']} maps ({got['bytes'] / 2**20 / best:6.0f} MB/s of arrays)", flush=True)
     base = rows[0]["seconds"]
     for r in rows[1:]:
         print(f"{r['impl']}: {base / r['seconds']:.1f}x faster than edalint's reader")
