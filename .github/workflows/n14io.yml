@@ -32,7 +32,7 @@ jobs:
         shell: bash
         run: |
           if [ "$RUNNER_OS" = "Windows" ]; then export EDALINT_N14IO_PURE=1; fi
-          python -m pip install pybind11 && python -m pip install --no-build-isolation -e native/n14io
+          python -m pip install pybind11 setuptools wheel && python -m pip install --no-build-isolation -e native/n14io
       - run: python -m pip install ./native/n14io-rs
       - name: readers agree with edalint (python, native where built, rust)
         run: python -c "import edalint_n14io as n; assert n.HAVE_RUST; print('native', n.HAVE_NATIVE, 'inflate', n.INFLATE)"
