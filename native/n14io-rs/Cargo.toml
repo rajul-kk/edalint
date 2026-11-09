@@ -1,0 +1,20 @@
+[package]
+name = "edalint-n14io-rs"
+version = "0.1.0"
+edition = "2024"
+license = "MIT"
+description = "CircuitNet-N14 tarball streaming in Rust (pure-Rust inflate, parallel npz decoding), a drop-in reader for edalint_n14io"
+publish = false
+
+[lib]
+name = "_reader"
+crate-type = ["cdylib", "rlib"]
+
+[dependencies]
+flate2 = { version = "1.1.11", default-features = false, features = ["zlib-rs"] }
+pyo3 = { version = "0.30.1", features = ["abi3-py39", "extension-module"] }
+
+[profile.release]
+lto = "fat"
+codegen-units = 1
+panic = "unwind"   # a panic in a worker becomes a Python exception, not an abort

@@ -1,0 +1,17 @@
+[build-system]
+requires = ["maturin>=1.7,<2"]
+build-backend = "maturin"
+
+[project]
+name = "edalint-n14io-rs"
+version = "0.1.0"
+description = "CircuitNet-N14 tarball streaming in Rust (pure-Rust inflate, parallel npz decoding) for edalint_n14io"
+requires-python = ">=3.9"
+license = { text = "MIT" }
+authors = [{ name = "Rajul Kabeer" }]
+dependencies = ["numpy>=1.22"]
+
+[tool.maturin]
+module-name = "edalint_n14io_rs._reader"
+python-packages = ["edalint_n14io_rs"]
+features = ["pyo3/extension-module"]
