@@ -37,6 +37,9 @@ when the data is on disk, the first 300 maps of the smallest real IR-drop tarbal
 | Windows, Python 3.10 | 52.6-64.1 s | 15.3 s (4.2x) | **9.6 s (5.5x)** | not built |
 | WSL2, Python 3.14 | 46.2-54.2 s | 23.3 s (2.0x) | 19.3 s (2.8x) | 18.7-22.1 s (2.1-2.9x) |
 
+With the Rust reader (`native/n14io-rs`, see its README), on a 800 MB prefix copied to WSL's own disk so the
+Windows-drive cap does not hide the readers: edalint 16.2 s, python (ISA-L) 5.6 s, native 5.5 s, **rust 3.8 s (4.3x)**.
+
 Speed-ups are against edalint's reader in the same run (two runs per platform; the ranges are run-to-run spread on a
 loaded machine). `pip install isal` (or the `fast` extra) makes the pure-Python reader use Intel ISA-L for inflate
 (344 MB/s against zlib's 180 MB/s on this tarball, Windows); `EDALINT_N14IO_NO_ISAL=1` turns it off. The C++ reader
