@@ -1,0 +1,283 @@
+{
+ "label": "REGISTERED (post-freeze, run once)",
+ "p9_code_hash": "62273eeb1b6092970bc9717dc4ff16cf66de15c83d54185227cab2ff7d964696",
+ "seconds_total": 0.2437911033630371,
+ "result": {
+  "circuitnet_official_N14": {
+   "designs": {
+    "train": {
+     "RISCY": 3162,
+     "RISCY-FPU": 3449,
+     "Vortex-small": 95,
+     "nvdla-small": 84
+    },
+    "test": {
+     "Vortex-large": 47,
+     "openc910-1": 56,
+     "zero-riscy": 3441
+    }
+   },
+   "pairs": [
+    {
+     "splits": [
+      "train",
+      "test"
+     ],
+     "design_overlap": [],
+     "rows_in_overlap": {
+      "train": 0,
+      "test": 0
+     },
+     "family_overlap": [
+      "riscy",
+      "vortex"
+     ]
+    }
+   ],
+   "files": {
+    "train": {
+     "path": "E:\\edalint_data\\docs_cache\\cn_gh\\routability_ir_drop_prediction\\files\\train_N14.csv",
+     "sha256": "c4fca2e4a60c01a133a5f30728bde8ef9e59f0ef61d778ed1012f31828e94579",
+     "rows": 6790
+    },
+    "test": {
+     "path": "E:\\edalint_data\\docs_cache\\cn_gh\\routability_ir_drop_prediction\\files\\test_N14.csv",
+     "sha256": "bec6e3222a12bf61f58efae280ac6be717c576194eaa745e05982a404dd35bc7",
+     "rows": 3544
+    }
+   }
+  },
+  "circuitnet_official_N28": {
+   "designs": {
+    "train": {
+     "RISCY-FPU-a": 1969,
+     "RISCY-FPU-b": 1248,
+     "RISCY-a": 2003,
+     "RISCY-b": 1858
+    },
+    "test": {
+     "zero-riscy-a": 2042,
+     "zero-riscy-b": 1122
+    }
+   },
+   "pairs": [
+    {
+     "splits": [
+      "train",
+      "test"
+     ],
+     "design_overlap": [],
+     "rows_in_overlap": {
+      "train": 0,
+      "test": 0
+     },
+     "family_overlap": [
+      "riscy"
+     ]
+    }
+   ],
+   "files": {
+    "train": {
+     "path": "E:\\edalint_data\\docs_cache\\cn_gh\\routability_ir_drop_prediction\\files\\train_N28.csv",
+     "sha256": "2246b1bc2b53fa71e9498b2c73294709692cfc62c182caa15ef21c454ed86227",
+     "rows": 7078
+    },
+    "test": {
+     "path": "E:\\edalint_data\\docs_cache\\cn_gh\\routability_ir_drop_prediction\\files\\test_N28.csv",
+     "sha256": "77ab7b4f47d127c2d2fb31b462758cbad6446236998b2dfe4c4ca99119126e99",
+     "rows": 3164
+    }
+   }
+  },
+  "cldroute_N14": {
+   "designs": {
+    "train": {
+     "RISCY": 3456,
+     "RISCY-FPU": 3456,
+     "zero-riscy": 3456
+    },
+    "val": {
+     "Vortex-large": 74,
+     "Vortex-small": 96
+    },
+    "test": {
+     "nvdla-large": 68,
+     "nvdla-small": 96,
+     "openc910-1": 96
+    }
+   },
+   "pairs": [
+    {
+     "splits": [
+      "train",
+      "val"
+     ],
+     "design_overlap": [],
+     "rows_in_overlap": {
+      "train": 0,
+      "val": 0
+     },
+     "family_overlap": []
+    },
+    {
+     "splits": [
+      "train",
+      "test"
+     ],
+     "design_overlap": [],
+     "rows_in_overlap": {
+      "train": 0,
+      "test": 0
+     },
+     "family_overlap": []
+    },
+    {
+     "splits": [
+      "val",
+      "test"
+     ],
+     "design_overlap": [],
+     "rows_in_overlap": {
+      "val": 0,
+      "test": 0
+     },
+     "family_overlap": []
+    }
+   ],
+   "files": {
+    "train": {
+     "path": "E:\\edalint_data\\p9_external\\cldroute\\n14_train.csv",
+     "sha256": "92286a848f1b084bfc01b990a7f0cee99af9f1bd6ae04b6f8e591438cf55b0a4",
+     "rows": 10368
+    },
+    "val": {
+     "path": "E:\\edalint_data\\p9_external\\cldroute\\n14_val.csv",
+     "sha256": "ebbec7da94d4058416ea81cf17a110d301148d8cf45ac36def19c419d7c73cb6",
+     "rows": 170
+    },
+    "test": {
+     "path": "E:\\edalint_data\\p9_external\\cldroute\\n14_test.csv",
+     "sha256": "1e857c0d60df48abac11da82f42349f30192a00a759c6f3b93cefd2cea99aae8",
+     "rows": 260
+    }
+   }
+  },
+  "cldroute_N28": {
+   "designs": {
+    "train": {
+     "RISCY-FPU-a": 1969,
+     "RISCY-a": 2003,
+     "RISCY-b": 1858,
+     "zero-riscy-a": 2042
+    },
+    "val": {
+     "RISCY-FPU-b": 1248
+    },
+    "test": {
+     "zero-riscy-b": 1122
+    }
+   },
+   "pairs": [
+    {
+     "splits": [
+      "train",
+      "val"
+     ],
+     "design_overlap": [],
+     "rows_in_overlap": {
+      "train": 0,
+      "val": 0
+     },
+     "family_overlap": [
+      "riscy"
+     ]
+    },
+    {
+     "splits": [
+      "train",
+      "test"
+     ],
+     "design_overlap": [],
+     "rows_in_overlap": {
+      "train": 0,
+      "test": 0
+     },
+     "family_overlap": [
+      "riscy"
+     ]
+    },
+    {
+     "splits": [
+      "val",
+      "test"
+     ],
+     "design_overlap": [],
+     "rows_in_overlap": {
+      "val": 0,
+      "test": 0
+     },
+     "family_overlap": [
+      "riscy"
+     ]
+    }
+   ],
+   "files": {
+    "train": {
+     "path": "E:\\edalint_data\\p9_external\\cldroute\\n28_train.csv",
+     "sha256": "5ab65ebbac2e143d3a6e4f53df8b30e40c79486176aa509d1ec295d29bd79e55",
+     "rows": 7872
+    },
+    "val": {
+     "path": "E:\\edalint_data\\p9_external\\cldroute\\n28_val.csv",
+     "sha256": "2fbb06b998732c0f15cdd0ce6103023744ee9e702de05a8a297148bf5df0885c",
+     "rows": 1248
+    },
+    "test": {
+     "path": "E:\\edalint_data\\p9_external\\cldroute\\n28_test.csv",
+     "sha256": "80079e932360abd416d47f1f1e72345dab13f17e7feb43c62b69fb8e308b8948",
+     "rows": 1122
+    }
+   }
+  }
+ },
+ "provenance": {
+  "started": "2026-11-05T20:02:46+0800",
+  "git_head": "f745cbdd9786cee9c2a7bbd18a5cb8302021d3ef",
+  "git_dirty_tracked": "",
+  "code_hash": "a9900e6faaa4eb93f049c7d61c03ab919a8970ede2b0e90c3e07696bb2589b95",
+  "versions": {
+   "python": "3.10.0",
+   "numpy": "2.2.6",
+   "scipy": "1.15.3",
+   "pandas": "2.3.3",
+   "platform": "Windows-10-10.0.26200-SP0",
+   "sklearn": "1.6.1",
+   "pyamg": "5.3.0",
+   "edalint": "0.1.0",
+   "cpu_model": "13th Gen Intel(R) Core(TM) i7-1355U",
+   "logical_cores": 12
+  },
+  "argv": [
+   "scripts/p9_run_leakage.py",
+   "--target",
+   "splits"
+  ],
+  "frozen_protocol": {
+   "dataset": "p9",
+   "protocol_file": "protocol/protocol_p9.md",
+   "protocol_sha256": "a9c42d012725a52e756a162740b168ecfdf0ae27930182f0386e166e97723b8b",
+   "protocol_sha256_note": "sha256 of the file with CRLF normalised to LF",
+   "code_hash": "a9900e6faaa4eb93f049c7d61c03ab919a8970ede2b0e90c3e07696bb2589b95",
+   "p9_code_hash": "62273eeb1b6092970bc9717dc4ff16cf66de15c83d54185227cab2ff7d964696",
+   "p9_code_hash_note": "sha256 over src/edalint_p9/**/*.py and scripts/p9_run_*.py (guard.py recipe)",
+   "frozen_at": "2026-11-05T20:02:35+0800",
+   "frozen_commit": "bc0858ca19863c33ecb300c57c2ec91420b98da0",
+   "frozen_commit_note": "commit of the code and protocol being frozen (the freeze commit itself adds this file)",
+   "seed": 20261105,
+   "machine": {
+    "cpu_model": "13th Gen Intel(R) Core(TM) i7-1355U",
+    "logical_cores": 12
+   }
+  }
+ }
+}

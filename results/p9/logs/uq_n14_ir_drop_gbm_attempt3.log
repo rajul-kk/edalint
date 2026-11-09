@@ -1,0 +1,9 @@
+10:19:47 ir_drop/gbm: F 600, C_id 100, T_id 100, C_xd 179
+10:23:07   ensemble fitted in 200 s
+10:24:59   calibrated C_id: n=100, lambda@0.1 abs 0.2673 norm 35.46
+10:28:37   calibrated C_xd: n=179, lambda@0.1 abs 0.4306 norm 26.38
+10:30:43   T_id: n=100, crc_norm|id coverage@0.9 0.914
+10:42:14   zero-riscy: n=600, crc_norm|id coverage@0.9 0.904
+10:43:16   openc910-1: n=56, crc_norm|id coverage@0.9 0.945
+10:44:09   Vortex-large: n=47, crc_norm|id coverage@0.9 0.800
+10:44:10 wrote D:\Work\edalint-leakage-uq\results\p9\uq_n14_ir_drop_gbm.json

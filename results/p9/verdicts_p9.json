@@ -1,0 +1,513 @@
+{
+ "label": "REGISTERED VERDICTS (mechanical)",
+ "p9_code_hash": "62273eeb1b6092970bc9717dc4ff16cf66de15c83d54185227cab2ff7d964696",
+ "missing": [],
+ "LK1_n14_ir_drop": {
+  "n_flagged": 0,
+  "n_confirmed_rows": 0,
+  "rate": 0.0,
+  "verdict": "not found (lower bound)"
+ },
+ "LK2_n14_ir_drop": {
+  "Vortex-large": {
+   "proximity_material": false,
+   "share_of_test_rows": 0.013261851015801355,
+   "severity": null,
+   "S_same": 0.20353242754936218,
+   "S_other": 0.30686381459236145,
+   "q25_reference": 0.7441233396530151
+  },
+  "openc910-1": {
+   "proximity_material": false,
+   "share_of_test_rows": 0.01580135440180587,
+   "severity": null,
+   "S_same": null,
+   "S_other": 0.3415948748588562,
+   "q25_reference": 0.7441233396530151
+  },
+  "zero-riscy": {
+   "proximity_material": false,
+   "share_of_test_rows": 0.9709367945823928,
+   "severity": null,
+   "S_same": 0.5853140950202942,
+   "S_other": 0.2522062361240387,
+   "q25_reference": 0.7441233396530151
+  }
+ },
+ "LK1_n14_congestion": {
+  "n_flagged": 0,
+  "n_confirmed_rows": 0,
+  "rate": 0.0,
+  "verdict": "not found (lower bound)"
+ },
+ "LK2_n14_congestion": {
+  "Vortex-large": {
+   "proximity_material": false,
+   "share_of_test_rows": 0.013261851015801355,
+   "severity": null,
+   "S_same": 0.25137779116630554,
+   "S_other": 0.3766610622406006,
+   "q25_reference": 0.8718594312667847
+  },
+  "openc910-1": {
+   "proximity_material": false,
+   "share_of_test_rows": 0.01580135440180587,
+   "severity": null,
+   "S_same": null,
+   "S_other": 0.3786560297012329,
+   "q25_reference": 0.8718594312667847
+  },
+  "zero-riscy": {
+   "proximity_material": false,
+   "share_of_test_rows": 0.9709367945823928,
+   "severity": null,
+   "S_same": 0.701504647731781,
+   "S_other": 0.320661723613739,
+   "q25_reference": 0.8718594312667847
+  }
+ },
+ "LK1_n14_drc": {
+  "n_flagged": 0,
+  "n_confirmed_rows": 0,
+  "rate": 0.0,
+  "verdict": "not found (lower bound)"
+ },
+ "LK2_n14_drc": {
+  "Vortex-large": {
+   "proximity_material": false,
+   "share_of_test_rows": 0.012983347445667513,
+   "severity": null,
+   "S_same": 0.15167948603630066,
+   "S_other": 0.20507588982582092,
+   "q25_reference": 0.4968898296356201
+  },
+  "openc910-1": {
+   "proximity_material": false,
+   "share_of_test_rows": 0.01580581428168219,
+   "severity": null,
+   "S_same": null,
+   "S_other": 0.20075100660324097,
+   "q25_reference": 0.4968898296356201
+  },
+  "zero-riscy": {
+   "proximity_material": false,
+   "share_of_test_rows": 0.9712108382726503,
+   "severity": null,
+   "S_same": 0.39819103479385376,
+   "S_other": 0.19721272587776184,
+   "q25_reference": 0.4968898296356201
+  }
+ },
+ "LK1_iccad23": {
+  "n_flagged": 0,
+  "n_confirmed_rows": 0,
+  "rate": 0.0,
+  "verdict": "not found (lower bound)"
+ },
+ "LK3": {
+  "circuitnet_official_N14": {
+   "overlaps_with_test": [],
+   "verdict": "none"
+  },
+  "circuitnet_official_N28": {
+   "overlaps_with_test": [],
+   "verdict": "none"
+  },
+  "cldroute_N14": {
+   "overlaps_with_test": [],
+   "verdict": "none"
+  },
+  "cldroute_N28": {
+   "overlaps_with_test": [],
+   "verdict": "none"
+  }
+ },
+ "uq_n14_ir_drop_ridge": {
+  "U1_id_validity": {
+   "crc_abs": true,
+   "crc_norm": true
+  },
+  "U2_ood_undercoverage": {
+   "designs_below_line": 1,
+   "needed": 2,
+   "verdict": false
+  },
+  "U3_xd_repairs": {
+   "mean_abs_gap_id": 0.06292171907279993,
+   "mean_abs_gap_xd": 0.21085105277605456,
+   "macro_cov_xd": 0.6891489472239454,
+   "verdict": false
+  },
+  "U4_raw_ensemble_undercovers": {
+   "T_id_coverage": 0.000330963134765625,
+   "verdict": true
+  },
+  "per_design": {
+   "zero-riscy": {
+    "id": 0.9280858612060547,
+    "xd": 0.8027598571777343,
+    "abs_id": 0.9123392995198568,
+    "abs_xd": 0.9404656728108723,
+    "ens_gauss": 0.0004708099365234375,
+    "width_id": 1.1821476702834237,
+    "width_xd": 0.9400580810673462,
+    "coverage_high_id": 0.5881498288559791,
+    "calibration_error_id": 0.0812960645887587,
+    "calibration_error_xd": 0.23803946177164714,
+    "ood_degradation_id": 0.008098678588867259
+   },
+   "Vortex-large": {
+    "id": 0.7393412488572141,
+    "xd": 0.538800503345246,
+    "abs_id": 0.7927807747049535,
+    "abs_xd": 0.8253219279837101,
+    "ens_gauss": 3.149154338430851e-05,
+    "width_id": 1.035480782030913,
+    "width_xd": 0.8257078917654905,
+    "coverage_high_id": 0.21238960588414543,
+    "calibration_error_id": 0.20476496270362365,
+    "calibration_error_xd": 0.36240118581352504,
+    "ood_degradation_id": -0.1806459337599734
+   },
+   "openc910-1": {
+    "id": 0.8999794551304409,
+    "xd": 0.725886481148856,
+    "abs_id": 0.786027363368443,
+    "abs_xd": 0.8189920697893415,
+    "ens_gauss": 1.934596470424107e-05,
+    "width_id": 1.7412397194559144,
+    "width_xd": 1.3759593429115817,
+    "coverage_high_id": 0.8207637365760104,
+    "calibration_error_id": 0.03959963662283761,
+    "calibration_error_xd": 0.17888823917933871,
+    "ood_degradation_id": -0.020007727486746618
+   }
+  },
+  "T_id": {
+   "crc_norm_id": 0.9199871826171875,
+   "crc_abs_id": 0.9108500671386719,
+   "width_id": 1.1617027966874907
+  }
+ },
+ "uq_n14_ir_drop_gbm": {
+  "U1_id_validity": {
+   "crc_abs": true,
+   "crc_norm": true
+  },
+  "U2_ood_undercoverage": {
+   "designs_below_line": 1,
+   "needed": 2,
+   "verdict": false
+  },
+  "U3_xd_repairs": {
+   "mean_abs_gap_id": 0.04975742480514097,
+   "mean_abs_gap_xd": 0.06725941061208633,
+   "macro_cov_xd": 0.8535044589005625,
+   "verdict": false
+  },
+  "U4_raw_ensemble_undercovers": {
+   "T_id_coverage": 0.05405258178710937,
+   "verdict": true
+  },
+  "per_design": {
+   "zero-riscy": {
+    "id": 0.9042593638102213,
+    "xd": 0.8842364247639974,
+    "abs_id": 0.8989035034179688,
+    "abs_xd": 0.9304485575358072,
+    "ens_gauss": 0.04689852396647135,
+    "width_id": 0.37772473985949295,
+    "width_xd": 0.31598739252064384,
+    "coverage_high_id": 0.9651816835906694,
+    "calibration_error_id": 0.1144070137871636,
+    "calibration_error_xd": 0.17741766611735024,
+    "ood_degradation_id": -0.009863103230794312
+   },
+   "Vortex-large": {
+    "id": 0.7995797015250997,
+    "xd": 0.7451311476687168,
+    "abs_id": 0.6815052438289562,
+    "abs_xd": 0.7648412826213431,
+    "ens_gauss": 0.023718651304853722,
+    "width_id": 0.7605675836762671,
+    "width_xd": 0.6007985272453806,
+    "coverage_high_id": 0.9666686177967541,
+    "calibration_error_id": 0.08624870354402153,
+    "calibration_error_xd": 0.1974422698325299,
+    "ood_degradation_id": -0.11454276551591591
+   },
+   "openc910-1": {
+    "id": 0.9445926121303013,
+    "xd": 0.9311458042689732,
+    "abs_id": 0.8954808371407645,
+    "abs_xd": 0.9335528782435826,
+    "ens_gauss": 0.07019288199288505,
+    "width_id": 0.9326484635327467,
+    "width_xd": 0.7288159407818112,
+    "coverage_high_id": 0.9954149314794695,
+    "calibration_error_id": 0.18729926518031528,
+    "calibration_error_xd": 0.07035032908121745,
+    "ood_degradation_id": 0.030470145089285694
+   }
+  },
+  "T_id": {
+   "crc_norm_id": 0.9141224670410156,
+   "crc_abs_id": 0.9110638427734375,
+   "width_id": 0.3888465873970219
+  }
+ },
+ "uq_n14_congestion_ridge": {
+  "U1_id_validity": {
+   "crc_abs": true,
+   "crc_norm": true
+  },
+  "U2_ood_undercoverage": {
+   "designs_below_line": 1,
+   "needed": 2,
+   "verdict": false
+  },
+  "U3_xd_repairs": {
+   "mean_abs_gap_id": 0.07117234595600556,
+   "mean_abs_gap_xd": 0.07144449351889504,
+   "macro_cov_xd": 0.9013716322600298,
+   "verdict": false
+  },
+  "U4_raw_ensemble_undercovers": {
+   "T_id_coverage": 0.0164239501953125,
+   "verdict": true
+  },
+  "per_design": {
+   "zero-riscy": {
+    "id": 0.9651336161295573,
+    "xd": 0.9700141143798828,
+    "abs_id": 0.9520072682698568,
+    "abs_xd": 0.9735507456461588,
+    "ens_gauss": 0.04150873819986979,
+    "width_id": 0.12509583313774433,
+    "width_xd": 0.13018351301079376,
+    "coverage_high_id": 0.8230658122266301,
+    "calibration_error_id": 0.10955220540364584,
+    "calibration_error_xd": 0.09192429860432944,
+    "ood_degradation_id": 0.07762262980143231
+   },
+   "Vortex-large": {
+    "id": 0.7864964261968085,
+    "xd": 0.7948907081117021,
+    "abs_id": 0.7610285332862367,
+    "abs_xd": 0.7970084332405253,
+    "ens_gauss": 0.0243718573387633,
+    "width_id": 0.1285605944445681,
+    "width_xd": 0.13378525146587647,
+    "coverage_high_id": 0.6785169362221544,
+    "calibration_error_id": 0.10695358168148823,
+    "calibration_error_xd": 0.12834721558482934,
+    "ood_degradation_id": -0.10101456013131649
+   },
+   "openc910-1": {
+    "id": 0.9348798479352679,
+    "xd": 0.9392100742885044,
+    "abs_id": 0.9278793334960938,
+    "abs_xd": 0.957951409476144,
+    "ens_gauss": 0.01709883553641183,
+    "width_id": 0.1141714638539165,
+    "width_xd": 0.11882725569240506,
+    "coverage_high_id": 0.5841443611316972,
+    "calibration_error_id": 0.06344052269345238,
+    "calibration_error_xd": 0.09241226741245817,
+    "ood_degradation_id": 0.04736886160714293
+   }
+  },
+  "T_id": {
+   "crc_norm_id": 0.887510986328125,
+   "crc_abs_id": 0.908394775390625,
+   "width_id": 0.1088591408271347
+  }
+ },
+ "uq_n14_congestion_gbm": {
+  "U1_id_validity": {
+   "crc_abs": true,
+   "crc_norm": true
+  },
+  "U2_ood_undercoverage": {
+   "designs_below_line": 0,
+   "needed": 2,
+   "verdict": false
+  },
+  "U3_xd_repairs": {
+   "mean_abs_gap_id": 0.06844958227093823,
+   "mean_abs_gap_xd": 0.06890394801507323,
+   "macro_cov_xd": 0.9406854040628346,
+   "verdict": false
+  },
+  "U4_raw_ensemble_undercovers": {
+   "T_id_coverage": 0.15832382202148437,
+   "verdict": true
+  },
+  "per_design": {
+   "zero-riscy": {
+    "id": 0.9879086303710938,
+    "xd": 0.9848670450846354,
+    "abs_id": 0.9391961924235026,
+    "abs_xd": 0.9719748433430989,
+    "ens_gauss": 0.25212308247884113,
+    "width_id": 0.2809132794660463,
+    "width_xd": 0.25663584044505056,
+    "coverage_high_id": 0.923081070084427,
+    "calibration_error_id": 0.13475084516737199,
+    "calibration_error_xd": 0.15398861355251736,
+    "ood_degradation_id": 0.07351791381835937
+   },
+   "Vortex-large": {
+    "id": 0.8659479668799867,
+    "xd": 0.8576721840716423,
+    "abs_id": 0.7554577766580785,
+    "abs_xd": 0.7971279063123338,
+    "ens_gauss": 0.1224904161818484,
+    "width_id": 0.2492459881648806,
+    "width_xd": 0.22773746726283356,
+    "coverage_high_id": 0.8279822619287232,
+    "calibration_error_id": 0.07387312219498005,
+    "calibration_error_xd": 0.047891462610123,
+    "ood_degradation_id": -0.048442749672747754
+   },
+   "openc910-1": {
+    "id": 0.9833880833217076,
+    "xd": 0.9795169830322266,
+    "abs_id": 0.8561267852783203,
+    "abs_xd": 0.9358602251325335,
+    "ens_gauss": 0.13742719377790177,
+    "width_id": 0.3043683639509676,
+    "width_xd": 0.2780400640655512,
+    "coverage_high_id": 0.8630743493613496,
+    "calibration_error_id": 0.08524535042898997,
+    "calibration_error_xd": 0.11693068004789807,
+    "ood_degradation_id": 0.06899736676897317
+   }
+  },
+  "T_id": {
+   "crc_norm_id": 0.9143907165527344,
+   "crc_abs_id": 0.90423828125,
+   "width_id": 0.21497869140898107
+  }
+ },
+ "uq_iccad23_ridge": {
+  "U1_id_validity": {
+   "crc_abs": false,
+   "crc_norm": true
+  },
+  "U2_ood_undercoverage": {
+   "designs_below_line": 1,
+   "needed": 1,
+   "verdict": true
+  },
+  "U3_xd_repairs": {
+   "mean_abs_gap_id": 0.25587811921624704,
+   "mean_abs_gap_xd": 0.06269909395763806,
+   "macro_cov_xd": 0.9626990939576381,
+   "verdict": true
+  },
+  "U4_raw_ensemble_undercovers": {
+   "T_id_coverage": 0.10608033435028492,
+   "verdict": true
+  },
+  "per_design": {
+   "hidden": {
+    "id": 0.644121880783753,
+    "xd": 0.9626990939576381,
+    "abs_id": 0.6568394262128764,
+    "abs_xd": 0.93025592481684,
+    "ens_gauss": 0.04841049710697818,
+    "width_id": 0.002529287808352889,
+    "width_xd": 0.006408680974864642,
+    "coverage_high_id": 0.6350427515498229,
+    "calibration_error_id": 0.2748159098215199,
+    "calibration_error_xd": 0.07663265729913434,
+    "ood_degradation_id": -0.31285584259059096
+   }
+  },
+  "T_id": {
+   "crc_norm_id": 0.956977723374344,
+   "crc_abs_id": 0.971459280857987,
+   "width_id": 0.0015338034944665459
+  }
+ },
+ "uq_iccad23_gbm": {
+  "U1_id_validity": {
+   "crc_abs": false,
+   "crc_norm": true
+  },
+  "U2_ood_undercoverage": {
+   "designs_below_line": 1,
+   "needed": 1,
+   "verdict": true
+  },
+  "U3_xd_repairs": {
+   "mean_abs_gap_id": 0.16594247252511762,
+   "mean_abs_gap_xd": 0.04903303816846627,
+   "macro_cov_xd": 0.9490330381684663,
+   "verdict": true
+  },
+  "U4_raw_ensemble_undercovers": {
+   "T_id_coverage": 0.1370872121242241,
+   "verdict": true
+  },
+  "per_design": {
+   "hidden": {
+    "id": 0.7340575274748824,
+    "xd": 0.9490330381684663,
+    "abs_id": 0.674010336422864,
+    "abs_xd": 0.9139701414490945,
+    "ens_gauss": 0.06590783568053932,
+    "width_id": 0.002730362684284829,
+    "width_xd": 0.006177279358161895,
+    "coverage_high_id": 0.5539451752284867,
+    "calibration_error_id": 0.24174089135554733,
+    "calibration_error_xd": 0.08586053354170638,
+    "ood_degradation_id": -0.2210822736328929
+   }
+  },
+  "T_id": {
+   "crc_norm_id": 0.9551398011077753,
+   "crc_abs_id": 0.9710451137784818,
+   "width_id": 0.0017193721923128486
+  }
+ },
+ "provenance": {
+  "started": "2026-11-06T10:44:27+0800",
+  "git_head": "d27828fd970b67a2c609fabba4c75989f8cbd998",
+  "git_dirty_tracked": "",
+  "code_hash": "a9900e6faaa4eb93f049c7d61c03ab919a8970ede2b0e90c3e07696bb2589b95",
+  "versions": {
+   "python": "3.10.0",
+   "numpy": "2.2.6",
+   "scipy": "1.15.3",
+   "pandas": "2.3.3",
+   "platform": "Windows-10-10.0.26200-SP0",
+   "sklearn": "1.6.1",
+   "pyamg": "5.3.0",
+   "edalint": "0.1.0",
+   "cpu_model": "13th Gen Intel(R) Core(TM) i7-1355U",
+   "logical_cores": 12
+  },
+  "argv": [
+   "scripts/p9_run_verdicts.py"
+  ],
+  "frozen_protocol": {
+   "dataset": "p9",
+   "protocol_file": "protocol/protocol_p9.md",
+   "protocol_sha256": "a9c42d012725a52e756a162740b168ecfdf0ae27930182f0386e166e97723b8b",
+   "protocol_sha256_note": "sha256 of the file with CRLF normalised to LF",
+   "code_hash": "a9900e6faaa4eb93f049c7d61c03ab919a8970ede2b0e90c3e07696bb2589b95",
+   "p9_code_hash": "62273eeb1b6092970bc9717dc4ff16cf66de15c83d54185227cab2ff7d964696",
+   "p9_code_hash_note": "sha256 over src/edalint_p9/**/*.py and scripts/p9_run_*.py (guard.py recipe)",
+   "frozen_at": "2026-11-05T20:02:35+0800",
+   "frozen_commit": "bc0858ca19863c33ecb300c57c2ec91420b98da0",
+   "frozen_commit_note": "commit of the code and protocol being frozen (the freeze commit itself adds this file)",
+   "seed": 20261105,
+   "machine": {
+    "cpu_model": "13th Gen Intel(R) Core(TM) i7-1355U",
+    "logical_cores": 12
+   }
+  }
+ }
+}

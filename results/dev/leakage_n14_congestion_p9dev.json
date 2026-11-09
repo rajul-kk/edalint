@@ -1,0 +1,1653 @@
+{
+ "label": "DEVELOPMENT (train only)",
+ "p9_code_hash": "13847391b165c5b91e80e44ab40988d54cb1939289b00db1a25905508d0ad94d",
+ "seconds_total": 616.5429656505585,
+ "result": {
+  "task": "congestion",
+  "reference_designs": [
+   "RISCY",
+   "RISCY-FPU"
+  ],
+  "query_designs": [
+   "Vortex-small",
+   "nvdla-small"
+  ],
+  "n_reference": 800,
+  "n_queries": 179,
+  "L001": {
+   "pooled": {
+    "counts": {
+     "0.999": {
+      "n_queries": 179,
+      "nn_pair_ge": 0,
+      "nn_input_ge": 0,
+      "nn_input_only": 0,
+      "frac_pair": 0.0
+     },
+     "0.99": {
+      "n_queries": 179,
+      "nn_pair_ge": 0,
+      "nn_input_ge": 0,
+      "nn_input_only": 0,
+      "frac_pair": 0.0
+     },
+     "0.95": {
+      "n_queries": 179,
+      "nn_pair_ge": 0,
+      "nn_input_ge": 0,
+      "nn_input_only": 0,
+      "frac_pair": 0.0
+     },
+     "any_pair_ge_primary": 0
+    }
+   },
+   "per_design": {
+    "Vortex-small": {
+     "counts": {
+      "0.999": {
+       "n_queries": 95,
+       "nn_pair_ge": 0,
+       "nn_input_ge": 0,
+       "nn_input_only": 0,
+       "frac_pair": 0.0
+      },
+      "0.99": {
+       "n_queries": 95,
+       "nn_pair_ge": 0,
+       "nn_input_ge": 0,
+       "nn_input_only": 0,
+       "frac_pair": 0.0
+      },
+      "0.95": {
+       "n_queries": 95,
+       "nn_pair_ge": 0,
+       "nn_input_ge": 0,
+       "nn_input_only": 0,
+       "frac_pair": 0.0
+      },
+      "any_pair_ge_primary": 0
+     },
+     "nn_input_sim_quantiles_0_10_50_90_99_100": [
+      0.3853689432144165,
+      0.4286630809307098,
+      0.4660494029521942,
+      0.5385245084762573,
+      0.5875068306922913,
+      0.5875068306922913
+     ],
+     "nn_label_sim_quantiles_0_10_50_90_99_100": [
+      -0.029531117528676987,
+      0.019859239086508752,
+      0.13344083726406097,
+      0.2596779465675356,
+      0.33269789814949036,
+      0.33269789814949036
+     ]
+    },
+    "nvdla-small": {
+     "counts": {
+      "0.999": {
+       "n_queries": 84,
+       "nn_pair_ge": 0,
+       "nn_input_ge": 0,
+       "nn_input_only": 0,
+       "frac_pair": 0.0
+      },
+      "0.99": {
+       "n_queries": 84,
+       "nn_pair_ge": 0,
+       "nn_input_ge": 0,
+       "nn_input_only": 0,
+       "frac_pair": 0.0
+      },
+      "0.95": {
+       "n_queries": 84,
+       "nn_pair_ge": 0,
+       "nn_input_ge": 0,
+       "nn_input_only": 0,
+       "frac_pair": 0.0
+      },
+      "any_pair_ge_primary": 0
+     },
+     "nn_input_sim_quantiles_0_10_50_90_99_100": [
+      0.12940411269664764,
+      0.1456177532672882,
+      0.38793326914310455,
+      0.478706955909729,
+      0.4876136779785156,
+      0.4876136779785156
+     ],
+     "nn_label_sim_quantiles_0_10_50_90_99_100": [
+      -0.0629158616065979,
+      -0.022381068021059033,
+      0.06016593053936958,
+      0.1667633756995201,
+      0.24562004461884498,
+      0.24562005698680878
+     ]
+    }
+   },
+   "flagged_pairs_confirmation": [],
+   "n_confirmed": 0,
+   "rows": [
+    {
+     "id": "Vortex-small/Vortex-small_freq_200_mp_1_fpu_50_fpa_1.0_p_1_fi_ap",
+     "nn": "RISCY/RISCY_freq_200_mp_2_fpu_65_fpa_1.0_p_4_fi_ap",
+     "input_sim": 0.5065825581550598,
+     "label_sim": 0.0841728150844574,
+     "n_pair_ge_primary": 0,
+     "n_input_ge_primary": 0
+    },
+    {
+     "id": "Vortex-small/Vortex-small_freq_200_mp_1_fpu_50_fpa_1.0_p_1_fi_ar",
+     "nn": "RISCY/RISCY_freq_200_mp_2_fpu_65_fpa_1.0_p_4_fi_ap",
+     "input_sim": 0.5065825581550598,
+     "label_sim": 0.07672014832496643,
+     "n_pair_ge_primary": 0,
+     "n_input_ge_primary": 0
+    },
+    {
+     "id": "Vortex-small/Vortex-small_freq_200_mp_1_fpu_50_fpa_1.0_p_2_fi_ap",
+     "nn": "RISCY/RISCY_freq_200_mp_2_fpu_65_fpa_1.0_p_4_fi_ap",
+     "input_sim": 0.5067468285560608,
+     "label_sim": 0.01985776610672474,
+     "n_pair_ge_primary": 0,
+     "n_input_ge_primary": 0
+    },
+    {
+     "id": "Vortex-small/Vortex-small_freq_200_mp_1_fpu_50_fpa_1.0_p_2_fi_ar",
+     "nn": "RISCY/RISCY_freq_200_mp_2_fpu_65_fpa_1.0_p_4_fi_ap",
+     "input_sim": 0.5067468285560608,
+     "label_sim": 0.02909100614488125,
+     "n_pair_ge_primary": 0,
+     "n_input_ge_primary": 0
+    },
+    {
+     "id": "Vortex-small/Vortex-small_freq_200_mp_1_fpu_50_fpa_1.0_p_4_fi_ap",
+     "nn": "RISCY/RISCY_freq_200_mp_2_fpu_65_fpa_1.0_p_4_fi_ap",
+     "input_sim": 0.5018355250358582,
+     "label_sim": -0.013941062614321709,
+     "n_pair_ge_primary": 0,
+     "n_input_ge_primary": 0
+    },
+    {
+     "id": "Vortex-small/Vortex-small_freq_200_mp_1_fpu_50_fpa_1.0_p_4_fi_ar",
+     "nn": "RISCY/RISCY_freq_200_mp_2_fpu_65_fpa_1.0_p_4_fi_ap",
+     "input_sim": 0.5018355250358582,
+     "label_sim": -0.016554387286305428,
+     "n_pair_ge_primary": 0,
+     "n_input_ge_primary": 0
+    },
+    {
+     "id": "Vortex-small/Vortex-small_freq_200_mp_1_fpu_55_fpa_1.0_p_1_fi_ap",
+     "nn": "RISCY/RISCY_freq_200_mp_2_fpu_65_fpa_1.0_p_4_fi_ap",
+     "input_sim": 0.5230470299720764,
+     "label_sim": 0.146173357963562,
+     "n_pair_ge_primary": 0,
+     "n_input_ge_primary": 0
+    },
+    {
+     "id": "Vortex-small/Vortex-small_freq_200_mp_1_fpu_55_fpa_1.0_p_1_fi_ar",
+     "nn": "RISCY/RISCY_freq_200_mp_2_fpu_65_fpa_1.0_p_4_fi_ap",
+     "input_sim": 0.5230470299720764,
+     "label_sim": 0.15127351880073547,
+     "n_pair_ge_primary": 0,
+     "n_input_ge_primary": 0
+    },
+    {
+     "id": "Vortex-small/Vortex-small_freq_200_mp_1_fpu_55_fpa_1.0_p_2_fi_ap",
+     "nn": "RISCY/RISCY_freq_200_mp_2_fpu_65_fpa_1.0_p_4_fi_ap",
+     "input_sim": 0.5231407284736633,
+     "label_sim": -0.029531117528676987,
+     "n_pair_ge_primary": 0,
+     "n_input_ge_primary": 0
+    },
+    {
+     "id": "Vortex-small/Vortex-small_freq_200_mp_1_fpu_55_fpa_1.0_p_2_fi_ar",
+     "nn": "RISCY/RISCY_freq_200_mp_2_fpu_65_fpa_1.0_p_4_fi_ap",
+     "input_sim": 0.5231407284736633,
+     "label_sim": -0.02677822858095169,
+     "n_pair_ge_primary": 0,
+     "n_input_ge_primary": 0
+    },
+    {
+     "id": "Vortex-small/Vortex-small_freq_200_mp_1_fpu_55_fpa_1.0_p_4_fi_ap",
+     "nn": "RISCY/RISCY_freq_200_mp_2_fpu_65_fpa_1.0_p_4_fi_ap",
+     "input_sim": 0.5134135484695435,
+     "label_sim": 0.009872633963823318,
+     "n_pair_ge_primary": 0,
+     "n_input_ge_primary": 0
+    },
+    {
+     "id": "Vortex-small/Vortex-small_freq_200_mp_1_fpu_55_fpa_1.0_p_4_fi_ar",
+     "nn": "RISCY/RISCY_freq_200_mp_2_fpu_65_fpa_1.0_p_4_fi_ap",
+     "input_sim": 0.5134135484695435,
+     "label_sim": 0.012293105944991112,
+     "n_pair_ge_primary": 0,
+     "n_input_ge_primary": 0
+    },
+    {
+     "id": "Vortex-small/Vortex-small_freq_200_mp_1_fpu_60_fpa_1.0_p_1_fi_ap",
+     "nn": "RISCY/RISCY_freq_200_mp_2_fpu_50_fpa_2.0_p_0_fi_ap",
+     "input_sim": 0.4563906788825989,
+     "label_sim": 0.2139052152633667,
+     "n_pair_ge_primary": 0,
+     "n_input_ge_primary": 0
+    },
+    {
+     "id": "Vortex-small/Vortex-small_freq_200_mp_1_fpu_60_fpa_1.0_p_1_fi_ar",
+     "nn": "RISCY/RISCY_freq_200_mp_2_fpu_50_fpa_2.0_p_0_fi_ap",
+     "input_sim": 0.4563906788825989,
+     "label_sim": 0.2139856070280075,
+     "n_pair_ge_primary": 0,
+     "n_input_ge_primary": 0
+    },
+    {
+     "id": "Vortex-small/Vortex-small_freq_200_mp_1_fpu_60_fpa_1.0_p_2_fi_ap",
+     "nn": "RISCY/RISCY_freq_200_mp_2_fpu_50_fpa_2.0_p_0_fi_ap",
+     "input_sim": 0.44144803285598755,
+     "label_sim": 0.28800758719444275,
+     "n_pair_ge_primary": 0,
+     "n_input_ge_primary": 0
+    },
+    {
+     "id": "Vortex-small/Vortex-small_freq_200_mp_1_fpu_60_fpa_1.0_p_2_fi_ar",
+     "nn": "RISCY/RISCY_freq_200_mp_2_fpu_50_fpa_2.0_p_0_fi_ap",
+     "input_sim": 0.44144803285598755,
+     "label_sim": 0.28684961795806885,
+     "n_pair_ge_primary": 0,
+     "n_input_ge_primary": 0
+    },
+    {
+     "id": "Vortex-small/Vortex-small_freq_200_mp_1_fpu_60_fpa_1.0_p_4_fi_ap",
+     "nn": "RISCY/RISCY_freq_200_mp_2_fpu_50_fpa_2.0_p_0_fi_ap",
+     "input_sim": 0.4383443593978882,
+     "label_sim": 0.19360801577568054,
+     "n_pair_ge_primary": 0,
+     "n_input_ge_primary": 0
+    },
+    {
+     "id": "Vortex-small/Vortex-small_freq_200_mp_1_fpu_60_fpa_1.0_p_4_fi_ar",
+     "nn": "RISCY/RISCY_freq_200_mp_2_fpu_50_fpa_2.0_p_0_fi_ap",
+     "input_sim": 0.4383443593978882,
+     "label_sim": 0.19765439629554749,
+     "n_pair_ge_primary": 0,
+     "n_input_ge_primary": 0
+    },
+    {
+     "id": "Vortex-small/Vortex-small_freq_200_mp_1_fpu_65_fpa_1.0_p_1_fi_ap",
+     "nn": "RISCY/RISCY_freq_200_mp_2_fpu_75_fpa_2.0_p_2_fi_ar",
+     "input_sim": 0.44480469822883606,
+     "label_sim": 0.13996919989585876,
+     "n_pair_ge_primary": 0,
+     "n_input_ge_primary": 0
+    },
+    {
+     "id": "Vortex-small/Vortex-small_freq_200_mp_1_fpu_65_fpa_1.0_p_1_fi_ar",
+     "nn": "RISCY/RISCY_freq_200_mp_2_fpu_75_fpa_2.0_p_2_fi_ar",
+     "input_sim": 0.44480469822883606,
+     "label_sim": 0.13344083726406097,
+     "n_pair_ge_primary": 0,
+     "n_input_ge_primary": 0
+    },
+    {
+     "id": "Vortex-small/Vortex-small_freq_200_mp_1_fpu_65_fpa_1.0_p_2_fi_ap",
+     "nn": "RISCY/RISCY_freq_200_mp_2_fpu_75_fpa_2.0_p_2_fi_ar",
+     "input_sim": 0.4304391145706177,
+     "label_sim": 0.081206314265728,
+     "n_pair_ge_primary": 0,
+     "n_input_ge_primary": 0
+    },
+    {
+     "id": "Vortex-small/Vortex-small_freq_200_mp_1_fpu_65_fpa_1.0_p_2_fi_ar",
+     "nn": "RISCY/RISCY_freq_200_mp_2_fpu_75_fpa_2.0_p_2_fi_ar",
+     "input_sim": 0.4304391145706177,
+     "label_sim": 0.0784691721200943,
+     "n_pair_ge_primary": 0,
+     "n_input_ge_primary": 0
+    },
+    {
+     "id": "Vortex-small/Vortex-small_freq_200_mp_1_fpu_65_fpa_1.0_p_4_fi_ap",
+     "nn": "RISCY/RISCY_freq_200_mp_2_fpu_75_fpa_2.0_p_2_fi_ar",
+     "input_sim": 0.44285666942596436,
+     "label_sim": 0.05447161942720413,
+     "n_pair_ge_primary": 0,
+     "n_input_ge_primary": 0
+    },
+    {
+     "id": "Vortex-small/Vortex-small_freq_200_mp_1_fpu_65_fpa_1.0_p_4_fi_ar",
+     "nn": "RISCY/RISCY_freq_200_mp_2_fpu_75_fpa_2.0_p_2_fi_ar",
+     "input_sim": 0.44285666942596436,
+     "label_sim": 0.05405546724796295,
+     "n_pair_ge_primary": 0,
+     "n_input_ge_primary": 0
+    },
+    {
+     "id": "Vortex-small/Vortex-small_freq_200_mp_2_fpu_50_fpa_1.0_p_1_fi_ap",
+     "nn": "RISCY/RISCY_freq_50_mp_3_fpu_60_fpa_1.5_p_1_fi_ar",
+     "input_sim": 0.44922903180122375,
+     "label_sim": 0.11949822306632996,
+     "n_pair_ge_primary": 0,
+     "n_input_ge_primary": 0
+    },
+    {
+     "id": "Vortex-small/Vortex-small_freq_200_mp_2_fpu_50_fpa_1.0_p_1_fi_ar",
+     "nn": "RISCY/RISCY_freq_50_mp_3_fpu_60_fpa_1.5_p_1_fi_ar",
+     "input_sim": 0.44922903180122375,
+     "label_sim": 0.11949822306632996,
+     "n_pair_ge_primary": 0,
+     "n_input_ge_primary": 0
+    },
+    {
+     "id": "Vortex-small/Vortex-small_freq_200_mp_2_fpu_50_fpa_1.0_p_2_fi_ap",
+     "nn": "RISCY/RISCY_freq_50_mp_3_fpu_60_fpa_1.5_p_1_fi_ar",
+     "input_sim": 0.44193896651268005,
+     "label_sim": 0.10545990616083145,
+     "n_pair_ge_primary": 0,
+     "n_input_ge_primary": 0
+    },
+    {
+     "id": "Vortex-small/Vortex-small_freq_200_mp_2_fpu_50_fpa_1.0_p_2_fi_ar",
+     "nn": "RISCY/RISCY_freq_50_mp_3_fpu_60_fpa_1.5_p_1_fi_ar",
+     "input_sim": 0.44193896651268005,
+     "label_sim": 0.10545991361141205,
+     "n_pair_ge_primary": 0,
+     "n_input_ge_primary": 0
+    },
+    {
+     "id": "Vortex-small/Vortex-small_freq_200_mp_2_fpu_50_fpa_1.0_p_4_fi_ap",
+     "nn": "RISCY/RISCY_freq_50_mp_3_fpu_60_fpa_1.5_p_1_fi_ar",
+     "input_sim": 0.43086516857147217,
+     "label_sim": 0.27115398645401,
+     "n_pair_ge_primary": 0,
+     "n_input_ge_primary": 0
+    },
+    {
+     "id": "Vortex-small/Vortex-small_freq_200_mp_2_fpu_50_fpa_1.0_p_4_fi_ar",
+     "nn": "RISCY/RISCY_freq_50_mp_3_fpu_60_fpa_1.5_p_1_fi_ar",
+     "input_sim": 0.43086516857147217,
+     "label_sim": 0.271490216255188,
+     "n_pair_ge_primary": 0,
+     "n_input_ge_primary": 0
+    },
+    {
+     "id": "Vortex-small/Vortex-small_freq_200_mp_2_fpu_55_fpa_1.0_p_1_fi_ap",
+     "nn": "RISCY/RISCY_freq_200_mp_2_fpu_65_fpa_1.0_p_2_fi_ar",
+     "input_sim": 0.4660494029521942,
+     "label_sim": 0.044492654502391815,
+     "n_pair_ge_primary": 0,
+     "n_input_ge_primary": 0
+    },
+    {
+     "id": "Vortex-small/Vortex-small_freq_200_mp_2_fpu_55_fpa_1.0_p_1_fi_ar",
+     "nn": "RISCY/RISCY_freq_200_mp_2_fpu_65_fpa_1.0_p_2_fi_ar",
+     "input_sim": 0.4660494029521942,
+     "label_sim": 0.044169701635837555,
+     "n_pair_ge_primary": 0,
+     "n_input_ge_primary": 0
+    },
+    {
+     "id": "Vortex-small/Vortex-small_freq_200_mp_2_fpu_55_fpa_1.0_p_2_fi_ap",
+     "nn": "RISCY/RISCY_freq_200_mp_2_fpu_65_fpa_1.0_p_2_fi_ar",
+     "input_sim": 0.4613170027732849,
+     "label_sim": 0.10172837972640991,
+     "n_pair_ge_primary": 0,
+     "n_input_ge_primary": 0
+    },
+    {
+     "id": "Vortex-small/Vortex-small_freq_200_mp_2_fpu_55_fpa_1.0_p_2_fi_ar",
+     "nn": "RISCY/RISCY_freq_200_mp_2_fpu_65_fpa_1.0_p_2_fi_ar",
+     "input_sim": 0.4613170027732849,
+     "label_sim": 0.09937998652458191,
+     "n_pair_ge_primary": 0,
+     "n_input_ge_primary": 0
+    },
+    {
+     "id": "Vortex-small/Vortex-small_freq_200_mp_2_fpu_55_fpa_1.0_p_4_fi_ap",
+     "nn": "RISCY/RISCY_freq_200_mp_2_fpu_65_fpa_1.0_p_2_fi_ar",
+     "input_sim": 0.459525465965271,
+     "label_sim": 0.06985601782798767,
+     "n_pair_ge_primary": 0,
+     "n_input_ge_primary": 0
+    },
+    {
+     "id": "Vortex-small/Vortex-small_freq_200_mp_2_fpu_55_fpa_1.0_p_4_fi_ar",
+     "nn": "RISCY/RISCY_freq_200_mp_2_fpu_65_fpa_1.0_p_2_fi_ar",
+     "input_sim": 0.459525465965271,
+     "label_sim": 0.07029055058956146,
+     "n_pair_ge_primary": 0,
+     "n_input_ge_primary": 0
+    },
+    {
+     "id": "Vortex-small/Vortex-small_freq_200_mp_2_fpu_60_fpa_1.0_p_1_fi_ap",
+     "nn": "RISCY/RISCY_freq_200_mp_2_fpu_50_fpa_2.0_p_0_fi_ap",
+     "input_sim": 0.47254130244255066,
+     "label_sim": 0.20621123909950256,
+     "n_pair_ge_primary": 0,
+     "n_input_ge_primary": 0
+    },
+    {
+     "id": "Vortex-small/Vortex-small_freq_200_mp_2_fpu_60_fpa_1.0_p_1_fi_ar",
+     "nn": "RISCY/RISCY_freq_200_mp_2_fpu_50_fpa_2.0_p_0_fi_ap",
+     "input_sim": 0.47254130244255066,
+     "label_sim": 0.2066327929496765,
+     "n_pair_ge_primary": 0,
+     "n_input_ge_primary": 0
+    },
+    {
+     "id": "Vortex-small/Vortex-small_freq_200_mp_2_fpu_60_fpa_1.0_p_2_fi_ap",
+     "nn": "RISCY/RISCY_freq_200_mp_2_fpu_50_fpa_2.0_p_0_fi_ap",
+     "input_sim": 0.46686625480651855,
+     "label_sim": 0.23514321446418762,
+     "n_pair_ge_primary": 0,
+     "n_input_ge_primary": 0
+    },
+    {
+     "id": "Vortex-small/Vortex-small_freq_200_mp_2_fpu_60_fpa_1.0_p_2_fi_ar",
+     "nn": "RISCY/RISCY_freq_200_mp_2_fpu_50_fpa_2.0_p_0_fi_ap",
+     "input_sim": 0.46686625480651855,
+     "label_sim": 0.2400457262992859,
+     "n_pair_ge_primary": 0,
+     "n_input_ge_primary": 0
+    },
+    {
+     "id": "Vortex-small/Vortex-small_freq_200_mp_2_fpu_60_fpa_1.0_p_4_fi_ap",
+     "nn": "RISCY/RISCY_freq_200_mp_2_fpu_50_fpa_2.0_p_0_fi_ap",
+     "input_sim": 0.46881482005119324,
+     "label_sim": 0.08011685311794281,
+     "n_pair_ge_primary": 0,
+     "n_input_ge_primary": 0
+    },
+    {
+     "id": "Vortex-small/Vortex-small_freq_200_mp_2_fpu_60_fpa_1.0_p_4_fi_ar",
+     "nn": "RISCY/RISCY_freq_200_mp_2_fpu_50_fpa_2.0_p_0_fi_ap",
+     "input_sim": 0.46881482005119324,
+     "label_sim": 0.0751664862036705,
+     "n_pair_ge_primary": 0,
+     "n_input_ge_primary": 0
+    },
+    {
+     "id": "Vortex-small/Vortex-small_freq_200_mp_2_fpu_65_fpa_1.0_p_1_fi_ap",
+     "nn": "RISCY/RISCY_freq_50_mp_4_fpu_50_fpa_1.5_p_4_fi_ap",
+     "input_sim": 0.4832252562046051,
+     "label_sim": 0.11464488506317139,
+     "n_pair_ge_primary": 0,
+     "n_input_ge_primary": 0
+    },
+    {
+     "id": "Vortex-small/Vortex-small_freq_200_mp_2_fpu_65_fpa_1.0_p_1_fi_ar",
+     "nn": "RISCY/RISCY_freq_50_mp_4_fpu_50_fpa_1.5_p_4_fi_ap",
+     "input_sim": 0.4832252562046051,
+     "label_sim": 0.11029061675071716,
+     "n_pair_ge_primary": 0,
+     "n_input_ge_primary": 0
+    },
+    {
+     "id": "Vortex-small/Vortex-small_freq_200_mp_2_fpu_65_fpa_1.0_p_2_fi_ap",
+     "nn": "RISCY/RISCY_freq_50_mp_2_fpu_75_fpa_1.0_p_0_fi_ar",
+     "input_sim": 0.4810810089111328,
+     "label_sim": 0.1737203747034073,
+     "n_pair_ge_primary": 0,
+     "n_input_ge_primary": 0
+    },
+    {
+     "id": "Vortex-small/Vortex-small_freq_200_mp_2_fpu_65_fpa_1.0_p_2_fi_ar",
+     "nn": "RISCY/RISCY_freq_50_mp_2_fpu_75_fpa_1.0_p_0_fi_ar",
+     "input_sim": 0.4810810089111328,
+     "label_sim": 0.17383591830730438,
+     "n_pair_ge_primary": 0,
+     "n_input_ge_primary": 0
+    },
+    {
+     "id": "Vortex-small/Vortex-small_freq_200_mp_2_fpu_65_fpa_1.0_p_4_fi_ap",
+     "nn": "RISCY/RISCY_freq_50_mp_2_fpu_75_fpa_1.0_p_0_fi_ar",
+     "input_sim": 0.49492737650871277,
+     "label_sim": 0.21938690543174744,
+     "n_pair_ge_primary": 0,
+     "n_input_ge_primary": 0
+    },
+    {
+     "id": "Vortex-small/Vortex-small_freq_200_mp_2_fpu_65_fpa_1.0_p_4_fi_ar",
+     "nn": "RISCY/RISCY_freq_50_mp_2_fpu_75_fpa_1.0_p_0_fi_ar",
+     "input_sim": 0.49492737650871277,
+     "label_sim": 0.21938690543174744,
+     "n_pair_ge_primary": 0,
+     "n_input_ge_primary": 0
+    },
+    {
+     "id": "Vortex-small/Vortex-small_freq_500_mp_1_fpu_50_fpa_1.0_p_1_fi_ap",
+     "nn": "RISCY/RISCY_freq_50_mp_3_fpu_50_fpa_1.5_p_1_fi_ap",
+     "input_sim": 0.5382577180862427,
+     "label_sim": 0.1659986674785614,
+     "n_pair_ge_primary": 0,
+     "n_input_ge_primary": 0
+    },
+    {
+     "id": "Vortex-small/Vortex-small_freq_500_mp_1_fpu_50_fpa_1.0_p_1_fi_ar",
+     "nn": "RISCY/RISCY_freq_50_mp_3_fpu_50_fpa_1.5_p_1_fi_ap",
+     "input_sim": 0.5382577180862427,
+     "label_sim": 0.1659986674785614,
+     "n_pair_ge_primary": 0,
+     "n_input_ge_primary": 0
+    },
+    {
+     "id": "Vortex-small/Vortex-small_freq_500_mp_1_fpu_50_fpa_1.0_p_2_fi_ap",
+     "nn": "RISCY/RISCY_freq_50_mp_3_fpu_50_fpa_1.5_p_1_fi_ap",
+     "input_sim": 0.5432770848274231,
+     "label_sim": 0.1236807331442833,
+     "n_pair_ge_primary": 0,
+     "n_input_ge_primary": 0
+    },
+    {
+     "id": "Vortex-small/Vortex-small_freq_500_mp_1_fpu_50_fpa_1.0_p_2_fi_ar",
+     "nn": "RISCY/RISCY_freq_50_mp_3_fpu_50_fpa_1.5_p_1_fi_ap",
+     "input_sim": 0.5432770848274231,
+     "label_sim": 0.1236807331442833,
+     "n_pair_ge_primary": 0,
+     "n_input_ge_primary": 0
+    },
+    {
+     "id": "Vortex-small/Vortex-small_freq_500_mp_1_fpu_50_fpa_1.0_p_4_fi_ap",
+     "nn": "RISCY/RISCY_freq_50_mp_3_fpu_50_fpa_1.5_p_1_fi_ap",
+     "input_sim": 0.5387023687362671,
+     "label_sim": -0.026356035843491554,
+     "n_pair_ge_primary": 0,
+     "n_input_ge_primary": 0
+    },
+    {
+     "id": "Vortex-small/Vortex-small_freq_500_mp_1_fpu_50_fpa_1.0_p_4_fi_ar",
+     "nn": "RISCY/RISCY_freq_50_mp_3_fpu_50_fpa_1.5_p_1_fi_ap",
+     "input_sim": 0.5387023687362671,
+     "label_sim": -0.02635602280497551,
+     "n_pair_ge_primary": 0,
+     "n_input_ge_primary": 0
+    },
+    {
+     "id": "Vortex-small/Vortex-small_freq_500_mp_1_fpu_55_fpa_1.0_p_1_fi_ap",
+     "nn": "RISCY/RISCY_freq_50_mp_3_fpu_50_fpa_1.5_p_1_fi_ap",
+     "input_sim": 0.5875068306922913,
+     "label_sim": 0.2424638867378235,
+     "n_pair_ge_primary": 0,
+     "n_input_ge_primary": 0
+    },
+    {
+     "id": "Vortex-small/Vortex-small_freq_500_mp_1_fpu_55_fpa_1.0_p_1_fi_ar",
+     "nn": "RISCY/RISCY_freq_50_mp_3_fpu_50_fpa_1.5_p_1_fi_ap",
+     "input_sim": 0.5875068306922913,
+     "label_sim": 0.2424638867378235,
+     "n_pair_ge_primary": 0,
+     "n_input_ge_primary": 0
+    },
+    {
+     "id": "Vortex-small/Vortex-small_freq_500_mp_1_fpu_55_fpa_1.0_p_2_fi_ap",
+     "nn": "RISCY/RISCY_freq_50_mp_3_fpu_50_fpa_1.5_p_1_fi_ap",
+     "input_sim": 0.5750346183776855,
+     "label_sim": 0.16836506128311157,
+     "n_pair_ge_primary": 0,
+     "n_input_ge_primary": 0
+    },
+    {
+     "id": "Vortex-small/Vortex-small_freq_500_mp_1_fpu_55_fpa_1.0_p_2_fi_ar",
+     "nn": "RISCY/RISCY_freq_50_mp_3_fpu_50_fpa_1.5_p_1_fi_ap",
+     "input_sim": 0.5750346183776855,
+     "label_sim": 0.16746437549591064,
+     "n_pair_ge_primary": 0,
+     "n_input_ge_primary": 0
+    },
+    {
+     "id": "Vortex-small/Vortex-small_freq_500_mp_1_fpu_55_fpa_1.0_p_4_fi_ap",
+     "nn": "RISCY/RISCY_freq_50_mp_3_fpu_50_fpa_1.5_p_1_fi_ap",
+     "input_sim": 0.5842242240905762,
+     "label_sim": 0.031855955719947815,
+     "n_pair_ge_primary": 0,
+     "n_input_ge_primary": 0
+    },
+    {
+     "id": "Vortex-small/Vortex-small_freq_500_mp_1_fpu_55_fpa_1.0_p_4_fi_ar",
+     "nn": "RISCY/RISCY_freq_50_mp_3_fpu_50_fpa_1.5_p_1_fi_ap",
+     "input_sim": 0.5842242240905762,
+     "label_sim": 0.032325584441423416,
+     "n_pair_ge_primary": 0,
+     "n_input_ge_primary": 0
+    },
+    {
+     "id": "Vortex-small/Vortex-small_freq_500_mp_1_fpu_60_fpa_1.0_p_1_fi_ap",
+     "nn": "RISCY/RISCY_freq_50_mp_2_fpu_65_fpa_1.0_p_4_fi_ar",
+     "input_sim": 0.535041868686676,
+     "label_sim": 0.05549909919500351,
+     "n_pair_ge_primary": 0,
+     "n_input_ge_primary": 0
+    },
+    {
+     "id": "Vortex-small/Vortex-small_freq_500_mp_1_fpu_60_fpa_1.0_p_1_fi_ar",
+     "nn": "RISCY/RISCY_freq_50_mp_2_fpu_65_fpa_1.0_p_4_fi_ar",
+     "input_sim": 0.535041868686676,
+     "label_sim": 0.05534031242132187,
+     "n_pair_ge_primary": 0,
+     "n_input_ge_primary": 0
+    },
+    {
+     "id": "Vortex-small/Vortex-small_freq_500_mp_1_fpu_60_fpa_1.0_p_2_fi_ap",
+     "nn": "RISCY/RISCY_freq_50_mp_2_fpu_65_fpa_1.0_p_4_fi_ar",
+     "input_sim": 0.5354684591293335,
+     "label_sim": 0.13349562883377075,
+     "n_pair_ge_primary": 0,
+     "n_input_ge_primary": 0
+    },
+    {
+     "id": "Vortex-small/Vortex-small_freq_500_mp_1_fpu_60_fpa_1.0_p_2_fi_ar",
+     "nn": "RISCY/RISCY_freq_50_mp_2_fpu_65_fpa_1.0_p_4_fi_ar",
+     "input_sim": 0.5354684591293335,
+     "label_sim": 0.1335105150938034,
+     "n_pair_ge_primary": 0,
+     "n_input_ge_primary": 0
+    },
+    {
+     "id": "Vortex-small/Vortex-small_freq_500_mp_1_fpu_60_fpa_1.0_p_4_fi_ap",
+     "nn": "RISCY/RISCY_freq_50_mp_2_fpu_65_fpa_1.0_p_2_fi_ap",
+     "input_sim": 0.536110520362854,
+     "label_sim": 0.144326314330101,
+     "n_pair_ge_primary": 0,
+     "n_input_ge_primary": 0
+    },
+    {
+     "id": "Vortex-small/Vortex-small_freq_500_mp_1_fpu_60_fpa_1.0_p_4_fi_ar",
+     "nn": "RISCY/RISCY_freq_50_mp_2_fpu_65_fpa_1.0_p_2_fi_ap",
+     "input_sim": 0.536110520362854,
+     "label_sim": 0.1407136470079422,
+     "n_pair_ge_primary": 0,
+     "n_input_ge_primary": 0
+    },
+    {
+     "id": "Vortex-small/Vortex-small_freq_500_mp_1_fpu_65_fpa_1.0_p_1_fi_ap",
+     "nn": "RISCY/RISCY_freq_500_mp_4_fpu_70_fpa_1.0_p_2_fi_ar",
+     "input_sim": 0.512883722782135,
+     "label_sim": 0.024250853806734085,
+     "n_pair_ge_primary": 0,
+     "n_input_ge_primary": 0
+    },
+    {
+     "id": "Vortex-small/Vortex-small_freq_500_mp_1_fpu_65_fpa_1.0_p_1_fi_ar",
+     "nn": "RISCY/RISCY_freq_500_mp_4_fpu_70_fpa_1.0_p_2_fi_ar",
+     "input_sim": 0.512883722782135,
+     "label_sim": 0.020679239183664322,
+     "n_pair_ge_primary": 0,
+     "n_input_ge_primary": 0
+    },
+    {
+     "id": "Vortex-small/Vortex-small_freq_500_mp_1_fpu_65_fpa_1.0_p_2_fi_ap",
+     "nn": "RISCY/RISCY_freq_500_mp_4_fpu_70_fpa_1.0_p_2_fi_ar",
+     "input_sim": 0.5022872686386108,
+     "label_sim": 0.05121647194027901,
+     "n_pair_ge_primary": 0,
+     "n_input_ge_primary": 0
+    },
+    {
+     "id": "Vortex-small/Vortex-small_freq_500_mp_1_fpu_65_fpa_1.0_p_4_fi_ap",
+     "nn": "RISCY/RISCY_freq_500_mp_4_fpu_70_fpa_1.0_p_2_fi_ar",
+     "input_sim": 0.5136722326278687,
+     "label_sim": 0.08835114538669586,
+     "n_pair_ge_primary": 0,
+     "n_input_ge_primary": 0
+    },
+    {
+     "id": "Vortex-small/Vortex-small_freq_500_mp_1_fpu_65_fpa_1.0_p_4_fi_ar",
+     "nn": "RISCY/RISCY_freq_500_mp_4_fpu_70_fpa_1.0_p_2_fi_ar",
+     "input_sim": 0.5136722326278687,
+     "label_sim": 0.08831562846899033,
+     "n_pair_ge_primary": 0,
+     "n_input_ge_primary": 0
+    },
+    {
+     "id": "Vortex-small/Vortex-small_freq_500_mp_2_fpu_50_fpa_1.0_p_1_fi_ap",
+     "nn": "RISCY/RISCY_freq_50_mp_1_fpu_55_fpa_1.5_p_0_fi_ar",
+     "input_sim": 0.43950119614601135,
+     "label_sim": 0.2728067934513092,
+     "n_pair_ge_primary": 0,
+     "n_input_ge_primary": 0
+    },
+    {
+     "id": "Vortex-small/Vortex-small_freq_500_mp_2_fpu_50_fpa_1.0_p_1_fi_ar",
+     "nn": "RISCY/RISCY_freq_50_mp_1_fpu_55_fpa_1.5_p_0_fi_ar",
+     "input_sim": 0.43950119614601135,
+     "label_sim": 0.2840576767921448,
+     "n_pair_ge_primary": 0,
+     "n_input_ge_primary": 0
+    },
+    {
+     "id": "Vortex-small/Vortex-small_freq_500_mp_2_fpu_50_fpa_1.0_p_2_fi_ap",
+     "nn": "RISCY/RISCY_freq_50_mp_1_fpu_55_fpa_1.5_p_0_fi_ar",
+     "input_sim": 0.4431816041469574,
+     "label_sim": 0.16887685656547546,
+     "n_pair_ge_primary": 0,
+     "n_input_ge_primary": 0
+    },
+    {
+     "id": "Vortex-small/Vortex-small_freq_500_mp_2_fpu_50_fpa_1.0_p_2_fi_ar",
+     "nn": "RISCY/RISCY_freq_50_mp_1_fpu_55_fpa_1.5_p_0_fi_ar",
+     "input_sim": 0.4431816041469574,
+     "label_sim": 0.16829943656921387,
+     "n_pair_ge_primary": 0,
+     "n_input_ge_primary": 0
+    },
+    {
+     "id": "Vortex-small/Vortex-small_freq_500_mp_2_fpu_50_fpa_1.0_p_4_fi_ap",
+     "nn": "RISCY/RISCY_freq_50_mp_1_fpu_55_fpa_1.5_p_0_fi_ar",
+     "input_sim": 0.42232587933540344,
+     "label_sim": 0.15619926154613495,
+     "n_pair_ge_primary": 0,
+     "n_input_ge_primary": 0
+    },
+    {
+     "id": "Vortex-small/Vortex-small_freq_500_mp_2_fpu_50_fpa_1.0_p_4_fi_ar",
+     "nn": "RISCY/RISCY_freq_50_mp_1_fpu_55_fpa_1.5_p_0_fi_ar",
+     "input_sim": 0.42232587933540344,
+     "label_sim": 0.15995444357395172,
+     "n_pair_ge_primary": 0,
+     "n_input_ge_primary": 0
+    },
+    {
+     "id": "Vortex-small/Vortex-small_freq_500_mp_2_fpu_55_fpa_1.0_p_1_fi_ap",
+     "nn": "RISCY/RISCY_freq_500_mp_3_fpu_55_fpa_1.0_p_0_fi_ap",
+     "input_sim": 0.4493303894996643,
+     "label_sim": 0.2810130715370178,
+     "n_pair_ge_primary": 0,
+     "n_input_ge_primary": 0
+    },
+    {
+     "id": "Vortex-small/Vortex-small_freq_500_mp_2_fpu_55_fpa_1.0_p_1_fi_ar",
+     "nn": "RISCY/RISCY_freq_500_mp_3_fpu_55_fpa_1.0_p_0_fi_ap",
+     "input_sim": 0.4493303894996643,
+     "label_sim": 0.27926361560821533,
+     "n_pair_ge_primary": 0,
+     "n_input_ge_primary": 0
+    },
+    {
+     "id": "Vortex-small/Vortex-small_freq_500_mp_2_fpu_55_fpa_1.0_p_2_fi_ap",
+     "nn": "RISCY/RISCY_freq_500_mp_3_fpu_55_fpa_1.0_p_0_fi_ap",
+     "input_sim": 0.44618281722068787,
+     "label_sim": 0.18466125428676605,
+     "n_pair_ge_primary": 0,
+     "n_input_ge_primary": 0
+    },
+    {
+     "id": "Vortex-small/Vortex-small_freq_500_mp_2_fpu_55_fpa_1.0_p_2_fi_ar",
+     "nn": "RISCY/RISCY_freq_500_mp_3_fpu_55_fpa_1.0_p_0_fi_ap",
+     "input_sim": 0.44618281722068787,
+     "label_sim": 0.18466125428676605,
+     "n_pair_ge_primary": 0,
+     "n_input_ge_primary": 0
+    },
+    {
+     "id": "Vortex-small/Vortex-small_freq_500_mp_2_fpu_55_fpa_1.0_p_4_fi_ap",
+     "nn": "RISCY/RISCY_freq_500_mp_3_fpu_55_fpa_1.0_p_0_fi_ap",
+     "input_sim": 0.4431414008140564,
+     "label_sim": 0.18509140610694885,
+     "n_pair_ge_primary": 0,
+     "n_input_ge_primary": 0
+    },
+    {
+     "id": "Vortex-small/Vortex-small_freq_500_mp_2_fpu_55_fpa_1.0_p_4_fi_ar",
+     "nn": "RISCY/RISCY_freq_500_mp_3_fpu_55_fpa_1.0_p_0_fi_ap",
+     "input_sim": 0.4431414008140564,
+     "label_sim": 0.18509140610694885,
+     "n_pair_ge_primary": 0,
+     "n_input_ge_primary": 0
+    },
+    {
+     "id": "Vortex-small/Vortex-small_freq_500_mp_2_fpu_60_fpa_1.0_p_1_fi_ap",
+     "nn": "RISCY/RISCY_freq_500_mp_3_fpu_55_fpa_1.0_p_0_fi_ap",
+     "input_sim": 0.452187180519104,
+     "label_sim": 0.33269789814949036,
+     "n_pair_ge_primary": 0,
+     "n_input_ge_primary": 0
+    },
+    {
+     "id": "Vortex-small/Vortex-small_freq_500_mp_2_fpu_60_fpa_1.0_p_1_fi_ar",
+     "nn": "RISCY/RISCY_freq_500_mp_3_fpu_55_fpa_1.0_p_0_fi_ap",
+     "input_sim": 0.452187180519104,
+     "label_sim": 0.33269789814949036,
+     "n_pair_ge_primary": 0,
+     "n_input_ge_primary": 0
+    },
+    {
+     "id": "Vortex-small/Vortex-small_freq_500_mp_2_fpu_60_fpa_1.0_p_2_fi_ap",
+     "nn": "RISCY/RISCY_freq_500_mp_1_fpu_60_fpa_1.0_p_5_fi_ap",
+     "input_sim": 0.4327203035354614,
+     "label_sim": 0.05937432497739792,
+     "n_pair_ge_primary": 0,
+     "n_input_ge_primary": 0
+    },
+    {
+     "id": "Vortex-small/Vortex-small_freq_500_mp_2_fpu_60_fpa_1.0_p_2_fi_ar",
+     "nn": "RISCY/RISCY_freq_500_mp_1_fpu_60_fpa_1.0_p_5_fi_ap",
+     "input_sim": 0.4327203035354614,
+     "label_sim": 0.06039223447442055,
+     "n_pair_ge_primary": 0,
+     "n_input_ge_primary": 0
+    },
+    {
+     "id": "Vortex-small/Vortex-small_freq_500_mp_2_fpu_60_fpa_1.0_p_4_fi_ap",
+     "nn": "RISCY/RISCY_freq_500_mp_1_fpu_60_fpa_1.0_p_5_fi_ap",
+     "input_sim": 0.4274790585041046,
+     "label_sim": 0.09378284215927124,
+     "n_pair_ge_primary": 0,
+     "n_input_ge_primary": 0
+    },
+    {
+     "id": "Vortex-small/Vortex-small_freq_500_mp_2_fpu_60_fpa_1.0_p_4_fi_ar",
+     "nn": "RISCY/RISCY_freq_500_mp_1_fpu_60_fpa_1.0_p_5_fi_ap",
+     "input_sim": 0.4274790585041046,
+     "label_sim": 0.09378284215927124,
+     "n_pair_ge_primary": 0,
+     "n_input_ge_primary": 0
+    },
+    {
+     "id": "Vortex-small/Vortex-small_freq_500_mp_2_fpu_65_fpa_1.0_p_1_fi_ap",
+     "nn": "RISCY/RISCY_freq_50_mp_2_fpu_70_fpa_2.0_p_2_fi_ap",
+     "input_sim": 0.4009495973587036,
+     "label_sim": 0.019856879487633705,
+     "n_pair_ge_primary": 0,
+     "n_input_ge_primary": 0
+    },
+    {
+     "id": "Vortex-small/Vortex-small_freq_500_mp_2_fpu_65_fpa_1.0_p_1_fi_ar",
+     "nn": "RISCY/RISCY_freq_50_mp_2_fpu_70_fpa_2.0_p_2_fi_ap",
+     "input_sim": 0.4009495973587036,
+     "label_sim": 0.01986144855618477,
+     "n_pair_ge_primary": 0,
+     "n_input_ge_primary": 0
+    },
+    {
+     "id": "Vortex-small/Vortex-small_freq_500_mp_2_fpu_65_fpa_1.0_p_2_fi_ap",
+     "nn": "RISCY/RISCY_freq_500_mp_1_fpu_50_fpa_1.5_p_0_fi_ar",
+     "input_sim": 0.3965246081352234,
+     "label_sim": 0.1768030971288681,
+     "n_pair_ge_primary": 0,
+     "n_input_ge_primary": 0
+    },
+    {
+     "id": "Vortex-small/Vortex-small_freq_500_mp_2_fpu_65_fpa_1.0_p_2_fi_ar",
+     "nn": "RISCY/RISCY_freq_500_mp_1_fpu_50_fpa_1.5_p_0_fi_ar",
+     "input_sim": 0.3965246081352234,
+     "label_sim": 0.1768030971288681,
+     "n_pair_ge_primary": 0,
+     "n_input_ge_primary": 0
+    },
+    {
+     "id": "Vortex-small/Vortex-small_freq_500_mp_2_fpu_65_fpa_1.0_p_4_fi_ap",
+     "nn": "RISCY/RISCY_freq_500_mp_1_fpu_50_fpa_1.5_p_0_fi_ar",
+     "input_sim": 0.3853689432144165,
+     "label_sim": 0.19476550817489624,
+     "n_pair_ge_primary": 0,
+     "n_input_ge_primary": 0
+    },
+    {
+     "id": "Vortex-small/Vortex-small_freq_500_mp_2_fpu_65_fpa_1.0_p_4_fi_ar",
+     "nn": "RISCY/RISCY_freq_500_mp_1_fpu_50_fpa_1.5_p_0_fi_ar",
+     "input_sim": 0.3853689432144165,
+     "label_sim": 0.19476550817489624,
+     "n_pair_ge_primary": 0,
+     "n_input_ge_primary": 0
+    },
+    {
+     "id": "nvdla-small/nvdla-small_freq_200_mp_1_fpu_50_fpa_1.0_p_1_fi_ap",
+     "nn": "RISCY-FPU/RISCY-FPU_freq_50_mp_2_fpu_60_fpa_1.5_p_4_fi_ap",
+     "input_sim": 0.362229585647583,
+     "label_sim": 0.10726722329854965,
+     "n_pair_ge_primary": 0,
+     "n_input_ge_primary": 0
+    },
+    {
+     "id": "nvdla-small/nvdla-small_freq_200_mp_1_fpu_50_fpa_1.0_p_2_fi_ap",
+     "nn": "RISCY-FPU/RISCY-FPU_freq_50_mp_2_fpu_60_fpa_1.5_p_4_fi_ap",
+     "input_sim": 0.35341814160346985,
+     "label_sim": 0.01973215863108635,
+     "n_pair_ge_primary": 0,
+     "n_input_ge_primary": 0
+    },
+    {
+     "id": "nvdla-small/nvdla-small_freq_200_mp_1_fpu_55_fpa_1.0_p_1_fi_ar",
+     "nn": "RISCY-FPU/RISCY-FPU_freq_200_mp_2_fpu_60_fpa_2.0_p_6_fi_ar",
+     "input_sim": 0.48110678791999817,
+     "label_sim": 0.09072976559400558,
+     "n_pair_ge_primary": 0,
+     "n_input_ge_primary": 0
+    },
+    {
+     "id": "nvdla-small/nvdla-small_freq_200_mp_1_fpu_55_fpa_1.0_p_2_fi_ar",
+     "nn": "RISCY-FPU/RISCY-FPU_freq_200_mp_2_fpu_60_fpa_2.0_p_6_fi_ar",
+     "input_sim": 0.4865356683731079,
+     "label_sim": -0.02397284284234047,
+     "n_pair_ge_primary": 0,
+     "n_input_ge_primary": 0
+    },
+    {
+     "id": "nvdla-small/nvdla-small_freq_200_mp_1_fpu_55_fpa_1.0_p_4_fi_ap",
+     "nn": "RISCY-FPU/RISCY-FPU_freq_200_mp_2_fpu_60_fpa_2.0_p_6_fi_ar",
+     "input_sim": 0.48173949122428894,
+     "label_sim": -0.011033598333597183,
+     "n_pair_ge_primary": 0,
+     "n_input_ge_primary": 0
+    },
+    {
+     "id": "nvdla-small/nvdla-small_freq_200_mp_1_fpu_55_fpa_1.0_p_4_fi_ar",
+     "nn": "RISCY-FPU/RISCY-FPU_freq_200_mp_2_fpu_60_fpa_2.0_p_6_fi_ar",
+     "input_sim": 0.48173949122428894,
+     "label_sim": -0.011001628823578358,
+     "n_pair_ge_primary": 0,
+     "n_input_ge_primary": 0
+    },
+    {
+     "id": "nvdla-small/nvdla-small_freq_200_mp_1_fpu_60_fpa_1.0_p_1_fi_ap",
+     "nn": "RISCY-FPU/RISCY-FPU_freq_200_mp_4_fpu_70_fpa_2.0_p_1_fi_ar",
+     "input_sim": 0.1614736169576645,
+     "label_sim": -0.0629158616065979,
+     "n_pair_ge_primary": 0,
+     "n_input_ge_primary": 0
+    },
+    {
+     "id": "nvdla-small/nvdla-small_freq_200_mp_1_fpu_60_fpa_1.0_p_1_fi_ar",
+     "nn": "RISCY-FPU/RISCY-FPU_freq_200_mp_4_fpu_70_fpa_2.0_p_1_fi_ar",
+     "input_sim": 0.1614736169576645,
+     "label_sim": -0.0629158616065979,
+     "n_pair_ge_primary": 0,
+     "n_input_ge_primary": 0
+    },
+    {
+     "id": "nvdla-small/nvdla-small_freq_200_mp_1_fpu_60_fpa_1.0_p_2_fi_ap",
+     "nn": "RISCY-FPU/RISCY-FPU_freq_200_mp_4_fpu_70_fpa_2.0_p_1_fi_ar",
+     "input_sim": 0.16788311302661896,
+     "label_sim": 0.11464975774288177,
+     "n_pair_ge_primary": 0,
+     "n_input_ge_primary": 0
+    },
+    {
+     "id": "nvdla-small/nvdla-small_freq_200_mp_1_fpu_60_fpa_1.0_p_2_fi_ar",
+     "nn": "RISCY-FPU/RISCY-FPU_freq_200_mp_4_fpu_70_fpa_2.0_p_1_fi_ar",
+     "input_sim": 0.16788311302661896,
+     "label_sim": 0.1146349161863327,
+     "n_pair_ge_primary": 0,
+     "n_input_ge_primary": 0
+    },
+    {
+     "id": "nvdla-small/nvdla-small_freq_200_mp_1_fpu_60_fpa_1.0_p_4_fi_ap",
+     "nn": "RISCY-FPU/RISCY-FPU_freq_200_mp_4_fpu_70_fpa_2.0_p_1_fi_ar",
+     "input_sim": 0.17404480278491974,
+     "label_sim": -0.0315047949552536,
+     "n_pair_ge_primary": 0,
+     "n_input_ge_primary": 0
+    },
+    {
+     "id": "nvdla-small/nvdla-small_freq_200_mp_1_fpu_60_fpa_1.0_p_4_fi_ar",
+     "nn": "RISCY-FPU/RISCY-FPU_freq_200_mp_4_fpu_70_fpa_2.0_p_1_fi_ar",
+     "input_sim": 0.17404480278491974,
+     "label_sim": -0.03140822798013687,
+     "n_pair_ge_primary": 0,
+     "n_input_ge_primary": 0
+    },
+    {
+     "id": "nvdla-small/nvdla-small_freq_200_mp_1_fpu_65_fpa_1.0_p_1_fi_ap",
+     "nn": "RISCY-FPU/RISCY-FPU_freq_200_mp_4_fpu_70_fpa_2.0_p_1_fi_ar",
+     "input_sim": 0.13532336056232452,
+     "label_sim": 0.035328831523656845,
+     "n_pair_ge_primary": 0,
+     "n_input_ge_primary": 0
+    },
+    {
+     "id": "nvdla-small/nvdla-small_freq_200_mp_1_fpu_65_fpa_1.0_p_1_fi_ar",
+     "nn": "RISCY-FPU/RISCY-FPU_freq_200_mp_4_fpu_70_fpa_2.0_p_1_fi_ar",
+     "input_sim": 0.13532336056232452,
+     "label_sim": 0.035328831523656845,
+     "n_pair_ge_primary": 0,
+     "n_input_ge_primary": 0
+    },
+    {
+     "id": "nvdla-small/nvdla-small_freq_200_mp_1_fpu_65_fpa_1.0_p_2_fi_ap",
+     "nn": "RISCY-FPU/RISCY-FPU_freq_200_mp_4_fpu_70_fpa_2.0_p_1_fi_ar",
+     "input_sim": 0.13288185000419617,
+     "label_sim": 0.01911053992807865,
+     "n_pair_ge_primary": 0,
+     "n_input_ge_primary": 0
+    },
+    {
+     "id": "nvdla-small/nvdla-small_freq_200_mp_1_fpu_65_fpa_1.0_p_2_fi_ar",
+     "nn": "RISCY-FPU/RISCY-FPU_freq_200_mp_4_fpu_70_fpa_2.0_p_1_fi_ar",
+     "input_sim": 0.13288185000419617,
+     "label_sim": 0.023829352110624313,
+     "n_pair_ge_primary": 0,
+     "n_input_ge_primary": 0
+    },
+    {
+     "id": "nvdla-small/nvdla-small_freq_200_mp_1_fpu_65_fpa_1.0_p_4_fi_ar",
+     "nn": "RISCY-FPU/RISCY-FPU_freq_200_mp_4_fpu_70_fpa_2.0_p_1_fi_ar",
+     "input_sim": 0.12940411269664764,
+     "label_sim": -0.015509781427681446,
+     "n_pair_ge_primary": 0,
+     "n_input_ge_primary": 0
+    },
+    {
+     "id": "nvdla-small/nvdla-small_freq_200_mp_2_fpu_50_fpa_1.0_p_1_fi_ar",
+     "nn": "RISCY-FPU/RISCY-FPU_freq_200_mp_2_fpu_75_fpa_2.0_p_6_fi_ar",
+     "input_sim": 0.41336217522621155,
+     "label_sim": 0.11259065568447113,
+     "n_pair_ge_primary": 0,
+     "n_input_ge_primary": 0
+    },
+    {
+     "id": "nvdla-small/nvdla-small_freq_200_mp_2_fpu_50_fpa_1.0_p_2_fi_ap",
+     "nn": "RISCY-FPU/RISCY-FPU_freq_200_mp_2_fpu_75_fpa_2.0_p_6_fi_ar",
+     "input_sim": 0.4181581735610962,
+     "label_sim": 0.10617224872112274,
+     "n_pair_ge_primary": 0,
+     "n_input_ge_primary": 0
+    },
+    {
+     "id": "nvdla-small/nvdla-small_freq_200_mp_2_fpu_50_fpa_1.0_p_4_fi_ap",
+     "nn": "RISCY-FPU/RISCY-FPU_freq_200_mp_2_fpu_75_fpa_2.0_p_6_fi_ar",
+     "input_sim": 0.41462281346321106,
+     "label_sim": 0.11421571671962738,
+     "n_pair_ge_primary": 0,
+     "n_input_ge_primary": 0
+    },
+    {
+     "id": "nvdla-small/nvdla-small_freq_200_mp_2_fpu_55_fpa_1.0_p_1_fi_ap",
+     "nn": "RISCY-FPU/RISCY-FPU_freq_50_mp_2_fpu_60_fpa_2.0_p_2_fi_ar",
+     "input_sim": 0.4447121322154999,
+     "label_sim": 0.1756284087896347,
+     "n_pair_ge_primary": 0,
+     "n_input_ge_primary": 0
+    },
+    {
+     "id": "nvdla-small/nvdla-small_freq_200_mp_2_fpu_55_fpa_1.0_p_1_fi_ar",
+     "nn": "RISCY-FPU/RISCY-FPU_freq_50_mp_2_fpu_60_fpa_2.0_p_2_fi_ar",
+     "input_sim": 0.4447121322154999,
+     "label_sim": 0.1756284087896347,
+     "n_pair_ge_primary": 0,
+     "n_input_ge_primary": 0
+    },
+    {
+     "id": "nvdla-small/nvdla-small_freq_200_mp_2_fpu_55_fpa_1.0_p_2_fi_ap",
+     "nn": "RISCY-FPU/RISCY-FPU_freq_50_mp_2_fpu_60_fpa_2.0_p_2_fi_ar",
+     "input_sim": 0.44749319553375244,
+     "label_sim": 0.017095977440476418,
+     "n_pair_ge_primary": 0,
+     "n_input_ge_primary": 0
+    },
+    {
+     "id": "nvdla-small/nvdla-small_freq_200_mp_2_fpu_55_fpa_1.0_p_2_fi_ar",
+     "nn": "RISCY-FPU/RISCY-FPU_freq_50_mp_2_fpu_60_fpa_2.0_p_2_fi_ar",
+     "input_sim": 0.44749319553375244,
+     "label_sim": 0.017095977440476418,
+     "n_pair_ge_primary": 0,
+     "n_input_ge_primary": 0
+    },
+    {
+     "id": "nvdla-small/nvdla-small_freq_200_mp_2_fpu_55_fpa_1.0_p_4_fi_ap",
+     "nn": "RISCY-FPU/RISCY-FPU_freq_50_mp_2_fpu_60_fpa_2.0_p_2_fi_ar",
+     "input_sim": 0.4343802034854889,
+     "label_sim": 0.05466989800333977,
+     "n_pair_ge_primary": 0,
+     "n_input_ge_primary": 0
+    },
+    {
+     "id": "nvdla-small/nvdla-small_freq_200_mp_2_fpu_60_fpa_1.0_p_1_fi_ap",
+     "nn": "RISCY-FPU/RISCY-FPU_freq_200_mp_2_fpu_75_fpa_2.0_p_6_fi_ar",
+     "input_sim": 0.4283091127872467,
+     "label_sim": -0.03055652603507042,
+     "n_pair_ge_primary": 0,
+     "n_input_ge_primary": 0
+    },
+    {
+     "id": "nvdla-small/nvdla-small_freq_200_mp_2_fpu_60_fpa_1.0_p_1_fi_ar",
+     "nn": "RISCY-FPU/RISCY-FPU_freq_200_mp_2_fpu_75_fpa_2.0_p_6_fi_ar",
+     "input_sim": 0.4283091127872467,
+     "label_sim": -0.03055652603507042,
+     "n_pair_ge_primary": 0,
+     "n_input_ge_primary": 0
+    },
+    {
+     "id": "nvdla-small/nvdla-small_freq_200_mp_2_fpu_60_fpa_1.0_p_2_fi_ap",
+     "nn": "RISCY-FPU/RISCY-FPU_freq_200_mp_2_fpu_75_fpa_2.0_p_6_fi_ar",
+     "input_sim": 0.43613073229789734,
+     "label_sim": 0.05394517630338669,
+     "n_pair_ge_primary": 0,
+     "n_input_ge_primary": 0
+    },
+    {
+     "id": "nvdla-small/nvdla-small_freq_200_mp_2_fpu_60_fpa_1.0_p_2_fi_ar",
+     "nn": "RISCY-FPU/RISCY-FPU_freq_200_mp_2_fpu_75_fpa_2.0_p_6_fi_ar",
+     "input_sim": 0.43613073229789734,
+     "label_sim": 0.05394517630338669,
+     "n_pair_ge_primary": 0,
+     "n_input_ge_primary": 0
+    },
+    {
+     "id": "nvdla-small/nvdla-small_freq_200_mp_2_fpu_60_fpa_1.0_p_4_fi_ap",
+     "nn": "RISCY-FPU/RISCY-FPU_freq_200_mp_2_fpu_75_fpa_2.0_p_6_fi_ar",
+     "input_sim": 0.4345604479312897,
+     "label_sim": -0.016817905008792877,
+     "n_pair_ge_primary": 0,
+     "n_input_ge_primary": 0
+    },
+    {
+     "id": "nvdla-small/nvdla-small_freq_200_mp_2_fpu_60_fpa_1.0_p_4_fi_ar",
+     "nn": "RISCY-FPU/RISCY-FPU_freq_200_mp_2_fpu_75_fpa_2.0_p_6_fi_ar",
+     "input_sim": 0.4345604479312897,
+     "label_sim": -0.01700238510966301,
+     "n_pair_ge_primary": 0,
+     "n_input_ge_primary": 0
+    },
+    {
+     "id": "nvdla-small/nvdla-small_freq_200_mp_2_fpu_65_fpa_1.0_p_1_fi_ap",
+     "nn": "RISCY-FPU/RISCY-FPU_freq_200_mp_4_fpu_70_fpa_2.0_p_1_fi_ar",
+     "input_sim": 0.3396705687046051,
+     "label_sim": 0.07597021013498306,
+     "n_pair_ge_primary": 0,
+     "n_input_ge_primary": 0
+    },
+    {
+     "id": "nvdla-small/nvdla-small_freq_200_mp_2_fpu_65_fpa_1.0_p_2_fi_ap",
+     "nn": "RISCY-FPU/RISCY-FPU_freq_200_mp_4_fpu_70_fpa_2.0_p_1_fi_ar",
+     "input_sim": 0.34559202194213867,
+     "label_sim": 0.16667897999286652,
+     "n_pair_ge_primary": 0,
+     "n_input_ge_primary": 0
+    },
+    {
+     "id": "nvdla-small/nvdla-small_freq_200_mp_2_fpu_65_fpa_1.0_p_2_fi_ar",
+     "nn": "RISCY-FPU/RISCY-FPU_freq_200_mp_4_fpu_70_fpa_2.0_p_1_fi_ar",
+     "input_sim": 0.34559202194213867,
+     "label_sim": 0.16679954528808594,
+     "n_pair_ge_primary": 0,
+     "n_input_ge_primary": 0
+    },
+    {
+     "id": "nvdla-small/nvdla-small_freq_200_mp_2_fpu_65_fpa_1.0_p_4_fi_ap",
+     "nn": "RISCY-FPU/RISCY-FPU_freq_500_mp_2_fpu_55_fpa_2.0_p_4_fi_ap",
+     "input_sim": 0.31814977526664734,
+     "label_sim": 0.0828411728143692,
+     "n_pair_ge_primary": 0,
+     "n_input_ge_primary": 0
+    },
+    {
+     "id": "nvdla-small/nvdla-small_freq_200_mp_2_fpu_65_fpa_1.0_p_4_fi_ar",
+     "nn": "RISCY-FPU/RISCY-FPU_freq_500_mp_2_fpu_55_fpa_2.0_p_4_fi_ap",
+     "input_sim": 0.31814977526664734,
+     "label_sim": 0.0828411728143692,
+     "n_pair_ge_primary": 0,
+     "n_input_ge_primary": 0
+    },
+    {
+     "id": "nvdla-small/nvdla-small_freq_500_mp_1_fpu_50_fpa_1.0_p_1_fi_ap",
+     "nn": "RISCY-FPU/RISCY-FPU_freq_500_mp_1_fpu_50_fpa_2.0_p_0_fi_ar",
+     "input_sim": 0.3814891576766968,
+     "label_sim": 0.24562004208564758,
+     "n_pair_ge_primary": 0,
+     "n_input_ge_primary": 0
+    },
+    {
+     "id": "nvdla-small/nvdla-small_freq_500_mp_1_fpu_50_fpa_1.0_p_1_fi_ar",
+     "nn": "RISCY-FPU/RISCY-FPU_freq_500_mp_1_fpu_50_fpa_2.0_p_0_fi_ar",
+     "input_sim": 0.3814891576766968,
+     "label_sim": 0.24562005698680878,
+     "n_pair_ge_primary": 0,
+     "n_input_ge_primary": 0
+    },
+    {
+     "id": "nvdla-small/nvdla-small_freq_500_mp_1_fpu_50_fpa_1.0_p_2_fi_ap",
+     "nn": "RISCY-FPU/RISCY-FPU_freq_500_mp_1_fpu_50_fpa_2.0_p_0_fi_ar",
+     "input_sim": 0.3850466310977936,
+     "label_sim": 0.11915752291679382,
+     "n_pair_ge_primary": 0,
+     "n_input_ge_primary": 0
+    },
+    {
+     "id": "nvdla-small/nvdla-small_freq_500_mp_1_fpu_50_fpa_1.0_p_2_fi_ar",
+     "nn": "RISCY-FPU/RISCY-FPU_freq_500_mp_1_fpu_50_fpa_2.0_p_0_fi_ar",
+     "input_sim": 0.3850466310977936,
+     "label_sim": 0.11915752291679382,
+     "n_pair_ge_primary": 0,
+     "n_input_ge_primary": 0
+    },
+    {
+     "id": "nvdla-small/nvdla-small_freq_500_mp_1_fpu_50_fpa_1.0_p_4_fi_ap",
+     "nn": "RISCY-FPU/RISCY-FPU_freq_500_mp_1_fpu_50_fpa_2.0_p_0_fi_ar",
+     "input_sim": 0.38048794865608215,
+     "label_sim": 0.13005487620830536,
+     "n_pair_ge_primary": 0,
+     "n_input_ge_primary": 0
+    },
+    {
+     "id": "nvdla-small/nvdla-small_freq_500_mp_1_fpu_50_fpa_1.0_p_4_fi_ar",
+     "nn": "RISCY-FPU/RISCY-FPU_freq_500_mp_1_fpu_50_fpa_2.0_p_0_fi_ar",
+     "input_sim": 0.38048794865608215,
+     "label_sim": 0.13005487620830536,
+     "n_pair_ge_primary": 0,
+     "n_input_ge_primary": 0
+    },
+    {
+     "id": "nvdla-small/nvdla-small_freq_500_mp_1_fpu_55_fpa_1.0_p_1_fi_ap",
+     "nn": "RISCY-FPU/RISCY-FPU_freq_200_mp_2_fpu_60_fpa_2.0_p_6_fi_ar",
+     "input_sim": 0.486963152885437,
+     "label_sim": 0.059519052505493164,
+     "n_pair_ge_primary": 0,
+     "n_input_ge_primary": 0
+    },
+    {
+     "id": "nvdla-small/nvdla-small_freq_500_mp_1_fpu_55_fpa_1.0_p_1_fi_ar",
+     "nn": "RISCY-FPU/RISCY-FPU_freq_200_mp_2_fpu_60_fpa_2.0_p_6_fi_ar",
+     "input_sim": 0.486963152885437,
+     "label_sim": 0.059519052505493164,
+     "n_pair_ge_primary": 0,
+     "n_input_ge_primary": 0
+    },
+    {
+     "id": "nvdla-small/nvdla-small_freq_500_mp_1_fpu_55_fpa_1.0_p_2_fi_ap",
+     "nn": "RISCY-FPU/RISCY-FPU_freq_200_mp_2_fpu_60_fpa_2.0_p_6_fi_ar",
+     "input_sim": 0.4876136779785156,
+     "label_sim": 0.05436669662594795,
+     "n_pair_ge_primary": 0,
+     "n_input_ge_primary": 0
+    },
+    {
+     "id": "nvdla-small/nvdla-small_freq_500_mp_1_fpu_55_fpa_1.0_p_2_fi_ar",
+     "nn": "RISCY-FPU/RISCY-FPU_freq_200_mp_2_fpu_60_fpa_2.0_p_6_fi_ar",
+     "input_sim": 0.4876136779785156,
+     "label_sim": 0.05436669662594795,
+     "n_pair_ge_primary": 0,
+     "n_input_ge_primary": 0
+    },
+    {
+     "id": "nvdla-small/nvdla-small_freq_500_mp_1_fpu_55_fpa_1.0_p_4_fi_ap",
+     "nn": "RISCY-FPU/RISCY-FPU_freq_200_mp_2_fpu_60_fpa_2.0_p_6_fi_ar",
+     "input_sim": 0.47767460346221924,
+     "label_sim": 0.05017820745706558,
+     "n_pair_ge_primary": 0,
+     "n_input_ge_primary": 0
+    },
+    {
+     "id": "nvdla-small/nvdla-small_freq_500_mp_1_fpu_55_fpa_1.0_p_4_fi_ar",
+     "nn": "RISCY-FPU/RISCY-FPU_freq_200_mp_2_fpu_60_fpa_2.0_p_6_fi_ar",
+     "input_sim": 0.47767460346221924,
+     "label_sim": 0.05014244094491005,
+     "n_pair_ge_primary": 0,
+     "n_input_ge_primary": 0
+    },
+    {
+     "id": "nvdla-small/nvdla-small_freq_500_mp_1_fpu_60_fpa_1.0_p_1_fi_ap",
+     "nn": "RISCY-FPU/RISCY-FPU_freq_50_mp_2_fpu_75_fpa_1.5_p_4_fi_ap",
+     "input_sim": 0.3908199071884155,
+     "label_sim": -0.01861540973186493,
+     "n_pair_ge_primary": 0,
+     "n_input_ge_primary": 0
+    },
+    {
+     "id": "nvdla-small/nvdla-small_freq_500_mp_1_fpu_60_fpa_1.0_p_1_fi_ar",
+     "nn": "RISCY-FPU/RISCY-FPU_freq_50_mp_2_fpu_75_fpa_1.5_p_4_fi_ap",
+     "input_sim": 0.3908199071884155,
+     "label_sim": -0.01866692677140236,
+     "n_pair_ge_primary": 0,
+     "n_input_ge_primary": 0
+    },
+    {
+     "id": "nvdla-small/nvdla-small_freq_500_mp_1_fpu_60_fpa_1.0_p_2_fi_ap",
+     "nn": "RISCY-FPU/RISCY-FPU_freq_50_mp_2_fpu_75_fpa_1.5_p_4_fi_ap",
+     "input_sim": 0.3820602595806122,
+     "label_sim": 0.060812808573246,
+     "n_pair_ge_primary": 0,
+     "n_input_ge_primary": 0
+    },
+    {
+     "id": "nvdla-small/nvdla-small_freq_500_mp_1_fpu_60_fpa_1.0_p_2_fi_ar",
+     "nn": "RISCY-FPU/RISCY-FPU_freq_50_mp_2_fpu_75_fpa_1.5_p_4_fi_ap",
+     "input_sim": 0.3820602595806122,
+     "label_sim": 0.060812808573246,
+     "n_pair_ge_primary": 0,
+     "n_input_ge_primary": 0
+    },
+    {
+     "id": "nvdla-small/nvdla-small_freq_500_mp_1_fpu_60_fpa_1.0_p_4_fi_ap",
+     "nn": "RISCY-FPU/RISCY-FPU_freq_50_mp_2_fpu_75_fpa_1.5_p_4_fi_ap",
+     "input_sim": 0.3832920789718628,
+     "label_sim": -0.025558803230524063,
+     "n_pair_ge_primary": 0,
+     "n_input_ge_primary": 0
+    },
+    {
+     "id": "nvdla-small/nvdla-small_freq_500_mp_1_fpu_60_fpa_1.0_p_4_fi_ar",
+     "nn": "RISCY-FPU/RISCY-FPU_freq_50_mp_2_fpu_75_fpa_1.5_p_4_fi_ap",
+     "input_sim": 0.3832920789718628,
+     "label_sim": -0.02550569549202919,
+     "n_pair_ge_primary": 0,
+     "n_input_ge_primary": 0
+    },
+    {
+     "id": "nvdla-small/nvdla-small_freq_500_mp_1_fpu_65_fpa_1.0_p_1_fi_ap",
+     "nn": "RISCY/RISCY_freq_50_mp_4_fpu_75_fpa_1.5_p_1_fi_ar",
+     "input_sim": 0.1456177532672882,
+     "label_sim": 0.12858673930168152,
+     "n_pair_ge_primary": 0,
+     "n_input_ge_primary": 0
+    },
+    {
+     "id": "nvdla-small/nvdla-small_freq_500_mp_1_fpu_65_fpa_1.0_p_1_fi_ar",
+     "nn": "RISCY/RISCY_freq_50_mp_4_fpu_75_fpa_1.5_p_1_fi_ar",
+     "input_sim": 0.1456177532672882,
+     "label_sim": 0.13523446023464203,
+     "n_pair_ge_primary": 0,
+     "n_input_ge_primary": 0
+    },
+    {
+     "id": "nvdla-small/nvdla-small_freq_500_mp_1_fpu_65_fpa_1.0_p_2_fi_ap",
+     "nn": "RISCY/RISCY_freq_50_mp_4_fpu_75_fpa_1.5_p_1_fi_ar",
+     "input_sim": 0.138581320643425,
+     "label_sim": 0.11717931926250458,
+     "n_pair_ge_primary": 0,
+     "n_input_ge_primary": 0
+    },
+    {
+     "id": "nvdla-small/nvdla-small_freq_500_mp_1_fpu_65_fpa_1.0_p_2_fi_ar",
+     "nn": "RISCY/RISCY_freq_50_mp_4_fpu_75_fpa_1.5_p_1_fi_ar",
+     "input_sim": 0.15030188858509064,
+     "label_sim": 0.10021528601646423,
+     "n_pair_ge_primary": 0,
+     "n_input_ge_primary": 0
+    },
+    {
+     "id": "nvdla-small/nvdla-small_freq_500_mp_1_fpu_65_fpa_1.0_p_4_fi_ap",
+     "nn": "RISCY/RISCY_freq_50_mp_4_fpu_75_fpa_1.5_p_1_fi_ar",
+     "input_sim": 0.14170943200588226,
+     "label_sim": 0.10725681483745575,
+     "n_pair_ge_primary": 0,
+     "n_input_ge_primary": 0
+    },
+    {
+     "id": "nvdla-small/nvdla-small_freq_500_mp_1_fpu_65_fpa_1.0_p_4_fi_ar",
+     "nn": "RISCY/RISCY_freq_50_mp_4_fpu_75_fpa_1.5_p_1_fi_ar",
+     "input_sim": 0.14170943200588226,
+     "label_sim": 0.10725681483745575,
+     "n_pair_ge_primary": 0,
+     "n_input_ge_primary": 0
+    },
+    {
+     "id": "nvdla-small/nvdla-small_freq_500_mp_2_fpu_50_fpa_1.0_p_1_fi_ap",
+     "nn": "RISCY-FPU/RISCY-FPU_freq_200_mp_2_fpu_75_fpa_2.0_p_6_fi_ar",
+     "input_sim": 0.39406248927116394,
+     "label_sim": 0.046537648886442184,
+     "n_pair_ge_primary": 0,
+     "n_input_ge_primary": 0
+    },
+    {
+     "id": "nvdla-small/nvdla-small_freq_500_mp_2_fpu_50_fpa_1.0_p_1_fi_ar",
+     "nn": "RISCY-FPU/RISCY-FPU_freq_200_mp_2_fpu_75_fpa_2.0_p_6_fi_ar",
+     "input_sim": 0.39406248927116394,
+     "label_sim": 0.046537648886442184,
+     "n_pair_ge_primary": 0,
+     "n_input_ge_primary": 0
+    },
+    {
+     "id": "nvdla-small/nvdla-small_freq_500_mp_2_fpu_50_fpa_1.0_p_2_fi_ap",
+     "nn": "RISCY-FPU/RISCY-FPU_freq_200_mp_2_fpu_75_fpa_2.0_p_6_fi_ar",
+     "input_sim": 0.4112086296081543,
+     "label_sim": 0.06400031596422195,
+     "n_pair_ge_primary": 0,
+     "n_input_ge_primary": 0
+    },
+    {
+     "id": "nvdla-small/nvdla-small_freq_500_mp_2_fpu_50_fpa_1.0_p_2_fi_ar",
+     "nn": "RISCY-FPU/RISCY-FPU_freq_200_mp_2_fpu_75_fpa_2.0_p_6_fi_ar",
+     "input_sim": 0.4112086296081543,
+     "label_sim": 0.06400030851364136,
+     "n_pair_ge_primary": 0,
+     "n_input_ge_primary": 0
+    },
+    {
+     "id": "nvdla-small/nvdla-small_freq_500_mp_2_fpu_50_fpa_1.0_p_4_fi_ap",
+     "nn": "RISCY-FPU/RISCY-FPU_freq_200_mp_2_fpu_75_fpa_2.0_p_6_fi_ar",
+     "input_sim": 0.38073834776878357,
+     "label_sim": -0.0024504591710865498,
+     "n_pair_ge_primary": 0,
+     "n_input_ge_primary": 0
+    },
+    {
+     "id": "nvdla-small/nvdla-small_freq_500_mp_2_fpu_50_fpa_1.0_p_4_fi_ar",
+     "nn": "RISCY-FPU/RISCY-FPU_freq_200_mp_2_fpu_75_fpa_2.0_p_6_fi_ar",
+     "input_sim": 0.38073834776878357,
+     "label_sim": -0.0024504591710865498,
+     "n_pair_ge_primary": 0,
+     "n_input_ge_primary": 0
+    },
+    {
+     "id": "nvdla-small/nvdla-small_freq_500_mp_2_fpu_55_fpa_1.0_p_1_fi_ap",
+     "nn": "RISCY-FPU/RISCY-FPU_freq_50_mp_1_fpu_60_fpa_1.5_p_3_fi_ar",
+     "input_sim": 0.37282517552375793,
+     "label_sim": 0.012811134569346905,
+     "n_pair_ge_primary": 0,
+     "n_input_ge_primary": 0
+    },
+    {
+     "id": "nvdla-small/nvdla-small_freq_500_mp_2_fpu_55_fpa_1.0_p_1_fi_ar",
+     "nn": "RISCY-FPU/RISCY-FPU_freq_50_mp_1_fpu_60_fpa_1.5_p_3_fi_ar",
+     "input_sim": 0.37282517552375793,
+     "label_sim": 0.012811137363314629,
+     "n_pair_ge_primary": 0,
+     "n_input_ge_primary": 0
+    },
+    {
+     "id": "nvdla-small/nvdla-small_freq_500_mp_2_fpu_55_fpa_1.0_p_2_fi_ap",
+     "nn": "RISCY-FPU/RISCY-FPU_freq_50_mp_1_fpu_60_fpa_1.5_p_3_fi_ar",
+     "input_sim": 0.3658495843410492,
+     "label_sim": 0.04872848838567734,
+     "n_pair_ge_primary": 0,
+     "n_input_ge_primary": 0
+    },
+    {
+     "id": "nvdla-small/nvdla-small_freq_500_mp_2_fpu_55_fpa_1.0_p_2_fi_ar",
+     "nn": "RISCY-FPU/RISCY-FPU_freq_50_mp_1_fpu_60_fpa_1.5_p_3_fi_ar",
+     "input_sim": 0.3658495843410492,
+     "label_sim": 0.04872848838567734,
+     "n_pair_ge_primary": 0,
+     "n_input_ge_primary": 0
+    },
+    {
+     "id": "nvdla-small/nvdla-small_freq_500_mp_2_fpu_55_fpa_1.0_p_4_fi_ap",
+     "nn": "RISCY-FPU/RISCY-FPU_freq_50_mp_1_fpu_60_fpa_1.5_p_3_fi_ar",
+     "input_sim": 0.36791694164276123,
+     "label_sim": -0.0021511062514036894,
+     "n_pair_ge_primary": 0,
+     "n_input_ge_primary": 0
+    },
+    {
+     "id": "nvdla-small/nvdla-small_freq_500_mp_2_fpu_55_fpa_1.0_p_4_fi_ar",
+     "nn": "RISCY-FPU/RISCY-FPU_freq_50_mp_1_fpu_60_fpa_1.5_p_3_fi_ar",
+     "input_sim": 0.36791694164276123,
+     "label_sim": -0.0021511062514036894,
+     "n_pair_ge_primary": 0,
+     "n_input_ge_primary": 0
+    },
+    {
+     "id": "nvdla-small/nvdla-small_freq_500_mp_2_fpu_60_fpa_1.0_p_1_fi_ap",
+     "nn": "RISCY-FPU/RISCY-FPU_freq_50_mp_2_fpu_60_fpa_2.0_p_2_fi_ar",
+     "input_sim": 0.4739099442958832,
+     "label_sim": 0.12915189564228058,
+     "n_pair_ge_primary": 0,
+     "n_input_ge_primary": 0
+    },
+    {
+     "id": "nvdla-small/nvdla-small_freq_500_mp_2_fpu_60_fpa_1.0_p_1_fi_ar",
+     "nn": "RISCY-FPU/RISCY-FPU_freq_50_mp_2_fpu_60_fpa_2.0_p_2_fi_ar",
+     "input_sim": 0.4739099442958832,
+     "label_sim": 0.12365057319402695,
+     "n_pair_ge_primary": 0,
+     "n_input_ge_primary": 0
+    },
+    {
+     "id": "nvdla-small/nvdla-small_freq_500_mp_2_fpu_60_fpa_1.0_p_2_fi_ap",
+     "nn": "RISCY-FPU/RISCY-FPU_freq_50_mp_2_fpu_60_fpa_2.0_p_2_fi_ar",
+     "input_sim": 0.4772282540798187,
+     "label_sim": 0.21011218428611755,
+     "n_pair_ge_primary": 0,
+     "n_input_ge_primary": 0
+    },
+    {
+     "id": "nvdla-small/nvdla-small_freq_500_mp_2_fpu_60_fpa_1.0_p_2_fi_ar",
+     "nn": "RISCY-FPU/RISCY-FPU_freq_50_mp_2_fpu_60_fpa_2.0_p_2_fi_ar",
+     "input_sim": 0.4772282540798187,
+     "label_sim": 0.21011218428611755,
+     "n_pair_ge_primary": 0,
+     "n_input_ge_primary": 0
+    },
+    {
+     "id": "nvdla-small/nvdla-small_freq_500_mp_2_fpu_60_fpa_1.0_p_4_fi_ap",
+     "nn": "RISCY-FPU/RISCY-FPU_freq_50_mp_2_fpu_60_fpa_2.0_p_2_fi_ar",
+     "input_sim": 0.478706955909729,
+     "label_sim": 0.1837116926908493,
+     "n_pair_ge_primary": 0,
+     "n_input_ge_primary": 0
+    },
+    {
+     "id": "nvdla-small/nvdla-small_freq_500_mp_2_fpu_60_fpa_1.0_p_4_fi_ar",
+     "nn": "RISCY-FPU/RISCY-FPU_freq_50_mp_2_fpu_60_fpa_2.0_p_2_fi_ar",
+     "input_sim": 0.478706955909729,
+     "label_sim": 0.1837116926908493,
+     "n_pair_ge_primary": 0,
+     "n_input_ge_primary": 0
+    },
+    {
+     "id": "nvdla-small/nvdla-small_freq_500_mp_2_fpu_65_fpa_1.0_p_1_fi_ap",
+     "nn": "RISCY-FPU/RISCY-FPU_freq_50_mp_2_fpu_60_fpa_2.0_p_2_fi_ar",
+     "input_sim": 0.44873785972595215,
+     "label_sim": 0.08907216042280197,
+     "n_pair_ge_primary": 0,
+     "n_input_ge_primary": 0
+    },
+    {
+     "id": "nvdla-small/nvdla-small_freq_500_mp_2_fpu_65_fpa_1.0_p_1_fi_ar",
+     "nn": "RISCY-FPU/RISCY-FPU_freq_50_mp_2_fpu_60_fpa_2.0_p_2_fi_ar",
+     "input_sim": 0.44873785972595215,
+     "label_sim": 0.08667484670877457,
+     "n_pair_ge_primary": 0,
+     "n_input_ge_primary": 0
+    },
+    {
+     "id": "nvdla-small/nvdla-small_freq_500_mp_2_fpu_65_fpa_1.0_p_2_fi_ap",
+     "nn": "RISCY-FPU/RISCY-FPU_freq_50_mp_2_fpu_60_fpa_2.0_p_2_fi_ar",
+     "input_sim": 0.44738486409187317,
+     "label_sim": 0.14468413591384888,
+     "n_pair_ge_primary": 0,
+     "n_input_ge_primary": 0
+    },
+    {
+     "id": "nvdla-small/nvdla-small_freq_500_mp_2_fpu_65_fpa_1.0_p_2_fi_ar",
+     "nn": "RISCY-FPU/RISCY-FPU_freq_50_mp_2_fpu_60_fpa_2.0_p_2_fi_ar",
+     "input_sim": 0.44738486409187317,
+     "label_sim": 0.14467638731002808,
+     "n_pair_ge_primary": 0,
+     "n_input_ge_primary": 0
+    },
+    {
+     "id": "nvdla-small/nvdla-small_freq_500_mp_2_fpu_65_fpa_1.0_p_4_fi_ap",
+     "nn": "RISCY-FPU/RISCY-FPU_freq_50_mp_2_fpu_60_fpa_2.0_p_2_fi_ar",
+     "input_sim": 0.4436819553375244,
+     "label_sim": 0.06184636801481247,
+     "n_pair_ge_primary": 0,
+     "n_input_ge_primary": 0
+    },
+    {
+     "id": "nvdla-small/nvdla-small_freq_500_mp_2_fpu_65_fpa_1.0_p_4_fi_ar",
+     "nn": "RISCY-FPU/RISCY-FPU_freq_50_mp_2_fpu_60_fpa_2.0_p_2_fi_ar",
+     "input_sim": 0.4436819553375244,
+     "label_sim": 0.06210871785879135,
+     "n_pair_ge_primary": 0,
+     "n_input_ge_primary": 0
+    }
+   ]
+  },
+  "L002": {
+   "per_design": {
+    "Vortex-small": {
+     "family": "vortex",
+     "n_rows": 95,
+     "same_family_train_designs": [],
+     "S_same": null,
+     "S_other": 0.4660494029521942,
+     "reference_q25_within_design": 0.8522156476974487,
+     "reference_median_within_design": 0.9117095470428467,
+     "material": false,
+     "reason": "no same-family train design"
+    },
+    "nvdla-small": {
+     "family": "nvdla",
+     "n_rows": 84,
+     "same_family_train_designs": [],
+     "S_same": null,
+     "S_other": 0.38793325424194336,
+     "reference_q25_within_design": 0.8522156476974487,
+     "reference_median_within_design": 0.9117095470428467,
+     "material": false,
+     "reason": "no same-family train design"
+    }
+   },
+   "within_design_reference": {
+    "RISCY": {
+     "median": 0.8911930918693542,
+     "q25": 0.8260684013366699,
+     "n": 400
+    },
+    "RISCY-FPU": {
+     "median": 0.9281982183456421,
+     "q25": 0.8884344100952148,
+     "n": 400
+    }
+   }
+  },
+  "cache_digests": {
+   "RISCY": {
+    "sha256_of_file_hashes": "54cfb264c0279643a10b8775d39f93578146a5d70db66c256d9d77dd98d40c9d",
+    "n_file_reads": 2000
+   },
+   "RISCY-FPU": {
+    "sha256_of_file_hashes": "77dd9606e91da701b70620c0ce57a67c05f1d487549b1bf3d4bc852542a396a0",
+    "n_file_reads": 2000
+   },
+   "Vortex-small": {
+    "sha256_of_file_hashes": "d29199c97c5ef1ff60989473b98e69a06ae786bff3a6dd5b8b9070670eed1a90",
+    "n_file_reads": 475
+   },
+   "nvdla-small": {
+    "sha256_of_file_hashes": "ac1898bbf3e5b7266b1ea9152bb811e7dde87919f4d90d975d0ba57ead8e5366",
+    "n_file_reads": 420
+   }
+  },
+  "seconds_describe": 615.0492603778839,
+  "freeze": null
+ },
+ "provenance": {
+  "started": "2026-11-05T19:35:09+0800",
+  "git_head": "f14625d63100d22cc208d7562a4be8e7d806ee12",
+  "git_dirty_tracked": "",
+  "code_hash": "a9900e6faaa4eb93f049c7d61c03ab919a8970ede2b0e90c3e07696bb2589b95",
+  "versions": {
+   "python": "3.10.0",
+   "numpy": "2.2.6",
+   "scipy": "1.15.3",
+   "pandas": "2.3.3",
+   "platform": "Windows-10-10.0.26200-SP0",
+   "sklearn": "1.6.1",
+   "pyamg": "5.3.0",
+   "edalint": "0.1.0",
+   "cpu_model": "13th Gen Intel(R) Core(TM) i7-1355U",
+   "logical_cores": 12
+  },
+  "argv": [
+   "scripts/p9_run_leakage.py",
+   "--target",
+   "n14",
+   "--task",
+   "congestion",
+   "--dev"
+  ],
+  "frozen_protocol": null
+ }
+}

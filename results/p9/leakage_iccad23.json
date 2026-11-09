@@ -1,0 +1,392 @@
+{
+ "label": "REGISTERED (post-freeze, run once)",
+ "p9_code_hash": "62273eeb1b6092970bc9717dc4ff16cf66de15c83d54185227cab2ff7d964696",
+ "seconds_total": 34.95745348930359,
+ "result": {
+  "target": "iccad23",
+  "n_reference": 110,
+  "n_queries": 10,
+  "L001": {
+   "pooled": {
+    "counts": {
+     "0.999": {
+      "n_queries": 10,
+      "nn_pair_ge": 0,
+      "nn_input_ge": 0,
+      "nn_input_only": 0,
+      "frac_pair": 0.0
+     },
+     "0.99": {
+      "n_queries": 10,
+      "nn_pair_ge": 0,
+      "nn_input_ge": 0,
+      "nn_input_only": 0,
+      "frac_pair": 0.0
+     },
+     "0.95": {
+      "n_queries": 10,
+      "nn_pair_ge": 0,
+      "nn_input_ge": 0,
+      "nn_input_only": 0,
+      "frac_pair": 0.0
+     },
+     "any_pair_ge_primary": 0
+    }
+   },
+   "per_design": {
+    "real_257x257_11864src": {
+     "counts": {
+      "0.999": {
+       "n_queries": 2,
+       "nn_pair_ge": 0,
+       "nn_input_ge": 0,
+       "nn_input_only": 0,
+       "frac_pair": 0.0
+      },
+      "0.99": {
+       "n_queries": 2,
+       "nn_pair_ge": 0,
+       "nn_input_ge": 0,
+       "nn_input_only": 0,
+       "frac_pair": 0.0
+      },
+      "0.95": {
+       "n_queries": 2,
+       "nn_pair_ge": 0,
+       "nn_input_ge": 0,
+       "nn_input_only": 0,
+       "frac_pair": 0.0
+      },
+      "any_pair_ge_primary": 0
+     },
+     "nn_input_sim_quantiles_0_10_50_90_99_100": [
+      0.3098560869693756,
+      0.31020126342773435,
+      0.31158196926116943,
+      0.3129626750946045,
+      0.31327333390712736,
+      0.31330785155296326
+     ],
+     "nn_label_sim_quantiles_0_10_50_90_99_100": [
+      0.010787900537252426,
+      0.027130488678812983,
+      0.0925008412450552,
+      0.1578711938112974,
+      0.17257952313870192,
+      0.17421378195285797
+     ]
+    },
+    "real_489x489_44117src": {
+     "counts": {
+      "0.999": {
+       "n_queries": 2,
+       "nn_pair_ge": 0,
+       "nn_input_ge": 0,
+       "nn_input_only": 0,
+       "frac_pair": 0.0
+      },
+      "0.99": {
+       "n_queries": 2,
+       "nn_pair_ge": 0,
+       "nn_input_ge": 0,
+       "nn_input_only": 0,
+       "frac_pair": 0.0
+      },
+      "0.95": {
+       "n_queries": 2,
+       "nn_pair_ge": 0,
+       "nn_input_ge": 0,
+       "nn_input_only": 0,
+       "frac_pair": 0.0
+      },
+      "any_pair_ge_primary": 0
+     },
+     "nn_input_sim_quantiles_0_10_50_90_99_100": [
+      0.29651686549186707,
+      0.3200549691915512,
+      0.4142073839902878,
+      0.5083597987890244,
+      0.5295440921187401,
+      0.5318979024887085
+     ],
+     "nn_label_sim_quantiles_0_10_50_90_99_100": [
+      0.4709535241127014,
+      0.48259528875350954,
+      0.5291623473167419,
+      0.5757294058799743,
+      0.5862069940567016,
+      0.5873711705207825
+     ]
+    },
+    "real_601x601_24988src": {
+     "counts": {
+      "0.999": {
+       "n_queries": 2,
+       "nn_pair_ge": 0,
+       "nn_input_ge": 0,
+       "nn_input_only": 0,
+       "frac_pair": 0.0
+      },
+      "0.99": {
+       "n_queries": 2,
+       "nn_pair_ge": 0,
+       "nn_input_ge": 0,
+       "nn_input_only": 0,
+       "frac_pair": 0.0
+      },
+      "0.95": {
+       "n_queries": 2,
+       "nn_pair_ge": 0,
+       "nn_input_ge": 0,
+       "nn_input_only": 0,
+       "frac_pair": 0.0
+      },
+      "any_pair_ge_primary": 0
+     },
+     "nn_input_sim_quantiles_0_10_50_90_99_100": [
+      0.3568974733352661,
+      0.3681217283010483,
+      0.41301874816417694,
+      0.4579157680273056,
+      0.46801759749650956,
+      0.46914002299308777
+     ],
+     "nn_label_sim_quantiles_0_10_50_90_99_100": [
+      0.5193496942520142,
+      0.5251652777194977,
+      0.5484276115894318,
+      0.5716899454593658,
+      0.576923970580101,
+      0.5775055289268494
+     ]
+    },
+    "real_835x835_64064src": {
+     "counts": {
+      "0.999": {
+       "n_queries": 2,
+       "nn_pair_ge": 0,
+       "nn_input_ge": 0,
+       "nn_input_only": 0,
+       "frac_pair": 0.0
+      },
+      "0.99": {
+       "n_queries": 2,
+       "nn_pair_ge": 0,
+       "nn_input_ge": 0,
+       "nn_input_only": 0,
+       "frac_pair": 0.0
+      },
+      "0.95": {
+       "n_queries": 2,
+       "nn_pair_ge": 0,
+       "nn_input_ge": 0,
+       "nn_input_only": 0,
+       "frac_pair": 0.0
+      },
+      "any_pair_ge_primary": 0
+     },
+     "nn_input_sim_quantiles_0_10_50_90_99_100": [
+      0.27101728320121765,
+      0.2829443156719208,
+      0.3306524455547333,
+      0.37836057543754575,
+      0.3890949046611786,
+      0.3902876079082489
+     ],
+     "nn_label_sim_quantiles_0_10_50_90_99_100": [
+      0.30378443002700806,
+      0.32361828684806826,
+      0.40295371413230896,
+      0.48228914141654966,
+      0.5001396125555039,
+      0.5021229982376099
+     ]
+    },
+    "real_870x870_63347src": {
+     "counts": {
+      "0.999": {
+       "n_queries": 2,
+       "nn_pair_ge": 0,
+       "nn_input_ge": 0,
+       "nn_input_only": 0,
+       "frac_pair": 0.0
+      },
+      "0.99": {
+       "n_queries": 2,
+       "nn_pair_ge": 0,
+       "nn_input_ge": 0,
+       "nn_input_only": 0,
+       "frac_pair": 0.0
+      },
+      "0.95": {
+       "n_queries": 2,
+       "nn_pair_ge": 0,
+       "nn_input_ge": 0,
+       "nn_input_only": 0,
+       "frac_pair": 0.0
+      },
+      "any_pair_ge_primary": 0
+     },
+     "nn_input_sim_quantiles_0_10_50_90_99_100": [
+      0.3122706711292267,
+      0.3132463932037354,
+      0.31714928150177,
+      0.32105216979980467,
+      0.3219303196668625,
+      0.32202789187431335
+     ],
+     "nn_label_sim_quantiles_0_10_50_90_99_100": [
+      -0.18147093057632446,
+      -0.1423150733113289,
+      0.014308355748653412,
+      0.17093178480863572,
+      0.20617205634713173,
+      0.2100876420736313
+     ]
+    }
+   },
+   "flagged_pairs_confirmation": [],
+   "n_confirmed": 0,
+   "rows": [
+    {
+     "id": "q/hidden/testcase7",
+     "nn": "r/fake/current_map85",
+     "input_sim": 0.3568974733352661,
+     "label_sim": 0.5775055289268494,
+     "n_pair_ge_primary": 0,
+     "n_input_ge_primary": 0
+    },
+    {
+     "id": "q/hidden/testcase8",
+     "nn": "r/real/testcase4",
+     "input_sim": 0.46914002299308777,
+     "label_sim": 0.5193496942520142,
+     "n_pair_ge_primary": 0,
+     "n_input_ge_primary": 0
+    },
+    {
+     "id": "q/hidden/testcase9",
+     "nn": "r/fake/current_map03",
+     "input_sim": 0.27101728320121765,
+     "label_sim": 0.30378443002700806,
+     "n_pair_ge_primary": 0,
+     "n_input_ge_primary": 0
+    },
+    {
+     "id": "q/hidden/testcase10",
+     "nn": "r/real/testcase4",
+     "input_sim": 0.3902876079082489,
+     "label_sim": 0.5021229982376099,
+     "n_pair_ge_primary": 0,
+     "n_input_ge_primary": 0
+    },
+    {
+     "id": "q/hidden/testcase13",
+     "nn": "r/fake/current_map36",
+     "input_sim": 0.31330785155296326,
+     "label_sim": 0.17421378195285797,
+     "n_pair_ge_primary": 0,
+     "n_input_ge_primary": 0
+    },
+    {
+     "id": "q/hidden/testcase14",
+     "nn": "r/real/testcase2",
+     "input_sim": 0.3098560869693756,
+     "label_sim": 0.010787900537252426,
+     "n_pair_ge_primary": 0,
+     "n_input_ge_primary": 0
+    },
+    {
+     "id": "q/hidden/testcase15",
+     "nn": "r/fake/current_map36",
+     "input_sim": 0.29651686549186707,
+     "label_sim": 0.4709535241127014,
+     "n_pair_ge_primary": 0,
+     "n_input_ge_primary": 0
+    },
+    {
+     "id": "q/hidden/testcase16",
+     "nn": "r/real/testcase12",
+     "input_sim": 0.5318979024887085,
+     "label_sim": 0.5873711705207825,
+     "n_pair_ge_primary": 0,
+     "n_input_ge_primary": 0
+    },
+    {
+     "id": "q/hidden/testcase19",
+     "nn": "r/fake/current_map52",
+     "input_sim": 0.3122706711292267,
+     "label_sim": 0.2100876420736313,
+     "n_pair_ge_primary": 0,
+     "n_input_ge_primary": 0
+    },
+    {
+     "id": "q/hidden/testcase20",
+     "nn": "r/real/testcase12",
+     "input_sim": 0.32202789187431335,
+     "label_sim": -0.18147093057632446,
+     "n_pair_ge_primary": 0,
+     "n_input_ge_primary": 0
+    }
+   ]
+  },
+  "L002": "not applicable: ICCAD'23 has no design-family metadata (protocol section 4.2)",
+  "freeze": {
+   "dataset": "p9",
+   "protocol_file": "protocol/protocol_p9.md",
+   "protocol_sha256": "a9c42d012725a52e756a162740b168ecfdf0ae27930182f0386e166e97723b8b",
+   "protocol_sha256_note": "sha256 of the file with CRLF normalised to LF",
+   "code_hash": "a9900e6faaa4eb93f049c7d61c03ab919a8970ede2b0e90c3e07696bb2589b95",
+   "p9_code_hash": "62273eeb1b6092970bc9717dc4ff16cf66de15c83d54185227cab2ff7d964696",
+   "p9_code_hash_note": "sha256 over src/edalint_p9/**/*.py and scripts/p9_run_*.py (guard.py recipe)",
+   "frozen_at": "2026-11-05T20:02:35+0800",
+   "frozen_commit": "bc0858ca19863c33ecb300c57c2ec91420b98da0",
+   "frozen_commit_note": "commit of the code and protocol being frozen (the freeze commit itself adds this file)",
+   "seed": 20261105,
+   "machine": {
+    "cpu_model": "13th Gen Intel(R) Core(TM) i7-1355U",
+    "logical_cores": 12
+   }
+  }
+ },
+ "provenance": {
+  "started": "2026-11-05T20:15:39+0800",
+  "git_head": "1c8873b0946cf52a200dc804278ee6b354b0f132",
+  "git_dirty_tracked": "",
+  "code_hash": "a9900e6faaa4eb93f049c7d61c03ab919a8970ede2b0e90c3e07696bb2589b95",
+  "versions": {
+   "python": "3.10.0",
+   "numpy": "2.2.6",
+   "scipy": "1.15.3",
+   "pandas": "2.3.3",
+   "platform": "Windows-10-10.0.26200-SP0",
+   "sklearn": "1.6.1",
+   "pyamg": "5.3.0",
+   "edalint": "0.1.0",
+   "cpu_model": "13th Gen Intel(R) Core(TM) i7-1355U",
+   "logical_cores": 12
+  },
+  "argv": [
+   "scripts/p9_run_leakage.py",
+   "--target",
+   "iccad23"
+  ],
+  "frozen_protocol": {
+   "dataset": "p9",
+   "protocol_file": "protocol/protocol_p9.md",
+   "protocol_sha256": "a9c42d012725a52e756a162740b168ecfdf0ae27930182f0386e166e97723b8b",
+   "protocol_sha256_note": "sha256 of the file with CRLF normalised to LF",
+   "code_hash": "a9900e6faaa4eb93f049c7d61c03ab919a8970ede2b0e90c3e07696bb2589b95",
+   "p9_code_hash": "62273eeb1b6092970bc9717dc4ff16cf66de15c83d54185227cab2ff7d964696",
+   "p9_code_hash_note": "sha256 over src/edalint_p9/**/*.py and scripts/p9_run_*.py (guard.py recipe)",
+   "frozen_at": "2026-11-05T20:02:35+0800",
+   "frozen_commit": "bc0858ca19863c33ecb300c57c2ec91420b98da0",
+   "frozen_commit_note": "commit of the code and protocol being frozen (the freeze commit itself adds this file)",
+   "seed": 20261105,
+   "machine": {
+    "cpu_model": "13th Gen Intel(R) Core(TM) i7-1355U",
+    "logical_cores": 12
+   }
+  }
+ }
+}
