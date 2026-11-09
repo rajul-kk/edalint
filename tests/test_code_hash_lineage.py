@@ -23,6 +23,8 @@ def test_registered_freezes_keep_the_registered_hash():
     for name in ('FROZEN_n14.json', 'FROZEN_p7.json'):
         assert json.loads((Path(REPO_DIR) / 'protocol' / name).read_text(encoding='utf-8'))['code_hash'] == REGISTERED
     assert code_hash() != REGISTERED          # so the registered freezes no longer unlock test reads under this code
+    p9 = json.loads((Path(REPO_DIR) / 'protocol' / 'FROZEN_p9.json').read_text(encoding='utf-8'))['code_hash']
+    assert p9 in [e['code_hash'] for e in LINEAGE[:-1]] and p9 != code_hash()    # P9 keeps the hash it ran under
 
 
 def test_merged_e003_equals_the_p8_variant():
