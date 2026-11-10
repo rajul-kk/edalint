@@ -90,11 +90,14 @@ jobs:
           from pathlib import Path
           from edalint.datasets.synthetic import make_synthetic
           ds = make_synthetic(leak_design=True)
+          rows = ['id,design']                    # design ids let E004 see the leaked design
           for sid in ds.ids('all'):
               s = ds._samples[sid]
               d = Path('ci-data') / s.split
               d.mkdir(parents=True, exist_ok=True)
               np.savez(d / f'{sid}.npz', label=s.label, **s.inputs)
+              rows.append(f'{s.split}/{sid},{s.design}')
+          Path('ci-data/samples.csv').write_text('\n'.join(rows) + '\n')
           EOF
       - id: lint
         uses: ./
