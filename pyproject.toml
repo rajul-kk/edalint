@@ -4,13 +4,25 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "edalint"
-version = "0.1.0"
+version = "0.2.0"
 description = "Linter, metrics and baseline zoo for ML-for-EDA map benchmarks (ICCAD'23 Problem C, CircuitNet)"
 readme = "README.md"
 requires-python = ">=3.9"
 license = { text = "MIT" }
 authors = [{ name = "Rajul Kabeer" }]
-dependencies = ["numpy>=1.22", "scipy>=1.8", "pandas>=1.4"]
+dependencies = ["numpy>=1.22", "scipy>=1.8", "pandas>=1.4", "tomli>=1.1; python_version < \"3.11\""]
+keywords = ["eda", "machine-learning", "dataset", "linter", "ci", "ir-drop", "circuitnet"]
+classifiers = [
+  "Programming Language :: Python :: 3",
+  "License :: OSI Approved :: MIT License",
+  "Operating System :: OS Independent",
+  "Topic :: Scientific/Engineering :: Electronic Design Automation (EDA)",
+  "Topic :: Software Development :: Quality Assurance",
+]
+
+[project.urls]
+Homepage = "https://github.com/rajul-kk/edalint"
+Issues = "https://github.com/rajul-kk/edalint/issues"
 
 [project.optional-dependencies]
 sklearn = ["scikit-learn"]
@@ -22,10 +34,12 @@ edalint = "edalint.cli:main"
 
 [tool.setuptools.packages.find]
 where = ["src"]
+include = ["edalint", "edalint.*"]     # the study packages (edalint_p7/p8/p9) stay in the repo, not in the wheel
 
 [tool.setuptools.package-data]
 edalint = ["data/*.csv"]
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]
+pythonpath = ["src"]
 markers = ["realdata: needs external datasets on disk (skipped if absent)"]

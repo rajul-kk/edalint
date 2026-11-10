@@ -1,0 +1,131 @@
+# edalint's own CI: the full test suite, the installed wheel's command line on every OS, the GitHub Action, and the package build.
+# Synthetic data only; tests marked realdata skip without the datasets.
+name: tests
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  suite:
+    strategy:
+      fail-fast: false
+      matrix:
+        python: ["3.10", "3.12"]
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: "${{ matrix.python }}"}
+      # CPU torch for the P7 model tests (the CUDA wheels are ~2 GB)
+      - run: python -m pip install torch --index-url https://download.pytorch.org/whl/cpu
+      - run: python -m pip install -e ".[test,amg]"
+      - run: python -m pytest -q -p no:cacheprovider
+
+  cli:
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, macos-latest, windows-latest]
+        python: ["3.9", "3.13"]
+        # ubuntu-latest (26.04) has no Python 3.9; test the oldest version it offers there
+        exclude: [{os: ubuntu-latest, python: "3.9"}]
+        include: [{os: ubuntu-latest, python: "3.10"}]
+    runs-on: ${{ matrix.os }}
+    defaults: {run: {shell: bash}}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: "${{ matrix.python }}"}
+      - name: Install the wheel (not the source tree)
+        run: |
+          python -m pip install build
+          python -m build --wheel --outdir dist .
+          python -m pip install dist/*.whl
+      - name: Make a small dataset with planted faults
+        run: |
+          cd "$RUNNER_TEMP"
+          python - <<'EOF'
+          import numpy as np
+          from pathlib import Path
+          from edalint.datasets.synthetic import make_synthetic
+          for name, kw in (('clean', {}), ('faulty', {'n_duplicates': 1, 'leak_design': True, 'n_nan': 1})):
+              ds = make_synthetic(**kw)
+              for sid in ds.ids('all'):
+                  s = ds._samples[sid]
+                  d = Path(name) / s.split
+                  d.mkdir(parents=True, exist_ok=True)
+                  np.savez(d / f'{sid}.npz', label=s.label, **s.inputs)
+          EOF
+      - name: Exit codes of the installed command
+        run: |
+          cd "$RUNNER_TEMP"
+          edalint --version
+          edalint checks
+          set +e
+          edalint lint faulty --sarif out/r.sarif --junit out/r.xml; test $? -eq 2 || exit 1
+          edalint lint faulty --fail-on never > /dev/null; test $? -eq 0 || exit 1
+          edalint lint clean --ignore E006 > /dev/null; test $? -eq 0 || exit 1
+          edalint lint does-not-exist 2> /dev/null; test $? -eq 5 || exit 1
+          python -m edalint lint clean --ignore E006 --format json > out/clean.json; test $? -eq 0 || exit 1
+          set -e
+          python -c "import json; d = json.load(open('out/r.sarif')); assert d['version'] == '2.1.0' and d['runs'][0]['results']"
+          python -c "import xml.etree.ElementTree as T; assert T.parse('out/r.xml').getroot().get('failures') != '0'"
+
+  action:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: "3.12"}
+      - name: Make a dataset with a planted leak
+        run: |
+          python -m pip install -q numpy scipy pandas
+          PYTHONPATH=src python - <<'EOF'
+          import numpy as np
+          from pathlib import Path
+          from edalint.datasets.synthetic import make_synthetic
+          ds = make_synthetic(leak_design=True)
+          rows = ['id,design']                    # design ids let E004 see the leaked design
+          for sid in ds.ids('all'):
+              s = ds._samples[sid]
+              d = Path('ci-data') / s.split
+              d.mkdir(parents=True, exist_ok=True)
+              np.savez(d / f'{sid}.npz', label=s.label, **s.inputs)
+              rows.append(f'{s.split}/{sid},{s.design}')
+          Path('ci-data/samples.csv').write_text('\n'.join(rows) + '\n')
+          EOF
+      - id: lint
+        uses: ./
+        with:
+          dataset: ci-data
+          fail-on: never
+      - name: The action reports the leak but does not fail with fail-on never
+        env:
+          CODE: ${{ steps.lint.outputs.exit-code }}
+        run: |
+          test "$CODE" = "0"
+          python -c "import json; r = json.load(open('edalint.sarif'))['runs'][0]['results']; assert any(x['ruleId'] == 'E004' for x in r)"
+
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: "3.12"}
+      - run: python -m pip install build twine
+      - run: python -m build
+      - run: python -m twine check --strict dist/*
+      - name: The wheel holds edalint only, not the study packages
+        run: |
+          python - <<'EOF'
+          import glob, zipfile
+          names = zipfile.ZipFile(glob.glob('dist/*.whl')[0]).namelist()
+          tops = {n.split('/')[0] for n in names}
+          assert not any(t.startswith('edalint_p') for t in tops), tops
+          assert 'edalint/cli.py' in names and 'edalint/data/train_N14.csv' in names
+          EOF

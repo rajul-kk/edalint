@@ -12,6 +12,12 @@
    "commit": "see git log: the commit that adds this entry",
    "certified": [],
    "note": "E003 averaged over the channels that vary in at least one of the pair (protocol_faults.md A7, merge of the A3 variant edalint_p8.e003_fixed). No test split has been opened under this hash; FROZEN_n14.json, FROZEN_p7.json and FROZEN.json do not cover it."
+  },
+  {
+   "code_hash": "1590f6ac5a1eb44acb80b848de00e84aaeb4525eeac27e9cd0741565b0ec7bfa",
+   "commit": "see git log: the commit that adds this entry",
+   "certified": [],
+   "note": "2026-11-10, edalint 0.2.0: CI-tool additions only (folder datasets, edalint.toml configuration, --fail-on, baselines of accepted findings, SARIF / JUnit / GitHub-annotation output, `edalint checks`, `python -m edalint`). The checks E001-E007, the metrics, the baselines, the loaders of the registered benchmarks and the guards are unchanged, so lint results on the registered datasets are the same under this hash. Recorded here because the previous entry's note is now out of date: protocol/FROZEN_p9.json (frozen 2026-11-05) certified a9900e6f, and the registered P9 results (results/p9/*, verdicts in 7cfa396) were produced under it. P9 is complete; FROZEN_p9.json no longer unlocks test reads under this hash, as intended. No freeze covers this hash."
   }
  ]
 }

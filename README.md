@@ -24,6 +24,72 @@ edalint freeze-status
   equals `edalint code-hash`. Result files written with `--out` are run-once (never overwritten) and record the git HEAD,
   code hash and library versions.
 
+## Lint your own dataset in CI
+
+Point `edalint lint` at a folder of `.npz` files, one per sample: the label map (key `label`) and any input maps. Sub-folders are
+splits; an optional `samples.csv` (`id,design[,twin_of]`) gives design ids, which the leakage check (E004) needs. Details in
+`src/edalint/datasets/folder.py`.
+
+```
+mydata/train/case001.npz   mydata/val/case101.npz   mydata/test/case201.npz   mydata/samples.csv
+edalint lint mydata                                   # text report; exit code below
+edalint lint mydata --ignore E006 --fail-on error --sarif edalint.sarif --junit edalint.xml
+edalint lint mydata --write-baseline edalint-baseline.json   # accept today's findings ...
+edalint lint mydata --baseline edalint-baseline.json         # ... and fail only on new ones
+edalint checks                                         # what each check looks for
+```
+
+| exit code | meaning |
+|---|---|
+| 0 | no finding at or above `--fail-on` (default `warning`) |
+| 1 | worst finding is a warning (or an info with `--fail-on info`) |
+| 2 | worst finding is an error |
+| 3 | refused: reading a guarded test split needs a valid freeze record |
+| 4 | a run-once `--out` result file already exists |
+| 5 | bad configuration, unknown check or split, unreadable dataset |
+
+| output | flag | use |
+|---|---|---|
+| text, JSON, Markdown | `--format`, `--json FILE`, `--markdown FILE` | logs, scripts, job summaries |
+| SARIF 2.1.0 | `--sarif FILE` | GitHub code scanning (results point at the affected `.npz` files) |
+| JUnit XML | `--junit FILE` | one test case per check, for CI test reports |
+| GitHub annotations | `--format github` | warnings and errors on the run and the pull request |
+
+Settings live in `edalint.toml` or `[tool.edalint]` in `pyproject.toml` (searched in the current folder, then in the dataset
+folder); flags override them. Unknown keys are an error, so a typo does not silently switch a check off.
+
+```toml
+dataset = "data/irdrop"
+ignore = ["E006"]
+fail-on = "error"
+baseline = "edalint-baseline.json"
+[options]                 # check thresholds (edalint.checks.Options)
+dup_corr = 0.999
+[dataset-format]          # folder datasets
+label_key = "ir_drop"
+hotspot = { kind = "frac_of_max", value = 0.9 }
+```
+
+GitHub Action (`action.yml`) and pre-commit hook (`.pre-commit-hooks.yaml`):
+
+```yaml
+- uses: rajul-kk/edalint@v0.2.0
+  with:
+    dataset: data/irdrop
+    fail-on: error
+    upload-sarif: 'true'        # needs permissions: security-events: write
+```
+
+```yaml
+- repo: https://github.com/rajul-kk/edalint
+  rev: v0.2.0
+  hooks: [{id: edalint}]       # lints the dataset named in edalint.toml when .npz / .csv / .toml files change
+```
+
+For your own folder no split is guarded. The frozen-protocol guard is for the registered benchmark studies in this repository;
+set `test_splits` under `[dataset-format]` to use it on your data. The wheel holds the `edalint` package only; the study code
+(`edalint_p7`, `_p8`, `_p9`) stays in the repository.
+
 Licence: MIT. The packaged `train_N14.csv` / `test_N14.csv` are copied unmodified from the CircuitNet repository (BSD-3-Clause).
 
 ## What edalint does and does not detect (P8 fault-injection validation)

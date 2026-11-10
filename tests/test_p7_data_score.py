@@ -9,7 +9,7 @@ import pytest
 from edalint.baselines import stream
 from edalint.baselines.zoo import MeanMap, PixelRidge, ScalarMean
 from edalint.core import ListDataset, ProtocolError, Sample
-from edalint.datasets.circuitnet import assemble, design_of
+from edalint.datasets.circuitnet import DEFAULT_ROOT, assemble, design_of
 from edalint.p4_n14 import LABEL_THRESHOLD, _score_rows
 from edalint_p7.data import (ShardSource, SubsetSource, check_disjoint, check_train_ids, export_rows, open_train_rows, sha256_file,
                              stack_inputs, train_names)
@@ -61,6 +61,7 @@ def test_train_count_equals_official_count_corrected_for_loader_skips():
         check_train_ids(names[3:] + ['RISCY_freq_99'], {}, names, skipped)
 
 
+@pytest.mark.skipif(not (Path(DEFAULT_ROOT) / 'CircuitNet-N14').is_dir(), reason='needs the CircuitNet-N14 archives')
 def test_train_opener_has_no_evaluation_rows(tmp_path):
     ds = open_train_rows('congestion', stage=False, designs=['RISCY'])
     assert ds.ids('train') and ds.splits['test'] == []
